@@ -14,3 +14,5 @@ Format:
     "dimension": {width, height}
 }
 ```
+
+NOTE: If a player has been eliminated their cone coordinates will be {-1, -1}
