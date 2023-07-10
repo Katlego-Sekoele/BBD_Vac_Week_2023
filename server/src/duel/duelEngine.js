@@ -1,38 +1,66 @@
-var rows = 5;
-var cols = 5;
+var xLen = 10;
+var yLen = 10;
 
 
-function initializeMap(numPlayers)
+function initializeMap(numCones)
 {
-    //Get the starting map with all empty positions
-    var map = new Array(rows);
-    for (var i = 0; i < rows; i++)
+    // Get the starting map with all empty positions
+    var map = new Array(yLen);
+    for (var i = 0; i < yLen; i++)
     {
         map[i] = [];
-        for (var j = 0; j < cols; j++)
+        for (var j = 0; j < xLen; j++)
         {
             map[i][j] = 'W';
         }
     }
 
-    //Place the ball in the center (top left center)
-    var centerRow = Math.floor(rows/2);
-    var centerCol = Math.floor(cols/2);
-    map[centerRow][centerCol] = 'B';
+    // Place the ball in the center (top left center)
+    var centerX = Math.floor(xLen/2);
+    var centerY = Math.floor(yLen/2);
+    map[centerY][centerX] = 'B';
 
-    //Place the cones around the center
-    //Generate random starting angle
-    if (numPlayers == 2)
+    // Random offset for distance of cones from center
+    var centerOffset = Math.floor(Math.random()*(Math.min(centerX, centerY)-1+1))+1-1;
+    console.log(centerOffset);
+
+    // Place the cones equally around the center
+    if (numCones == 3) // Top and bottom two corners
     {
-
+        map[centerY-centerOffset][centerX] = '1';
+        map[centerY+centerOffset][centerX-centerOffset] = '2';
+        map[centerY+centerOffset][centerX+centerOffset] = '3';
+    }
+    else if (numCones == 4) // Above, below, left, right
+    {
+        map[centerY-centerOffset][centerX] = '1';
+        map[centerY+centerOffset][centerX] = '2';
+        map[centerY][centerX-centerOffset] = '3';
+        map[centerY][centerX+centerOffset] = '4';
+    }
+    else // Above and below center, default option
+    {
+        map[centerY-centerOffset][centerX] = '1';
+        map[centerY+centerOffset][centerX] = '2';
     }
 
+
+    //var lineSquares = calcStraightLine(2, 2, 4, 4);
+    //console.log(lineSquares);
+
+    //for (var i = 0; i < lineSquares.length; i++)
+    //{
+    //    map[lineSquares[i][1]][lineSquares[i][0]] = 'T';
+    //}
 
 
     return map;
 }
 
-function calcStraightLine (x1, y1, x2, y2)
+
+// Takes in two coordinate pairs and returns a minimal traced
+// line between the two using the Bresenham algorithm
+function calcStraightLine(x1, y1, x2, y2)
 {
     var coordinatesArray = new Array();
 
@@ -44,22 +72,24 @@ function calcStraightLine (x1, y1, x2, y2)
     var err = dx - dy;
 
     // Set first coordinates
-    coordinatesArray.push(new Coordinates(y1, x1));
+    coordinatesArray.push([x1, y1]);
 
-    // Main loop
+    // Loop until end point reached
     while (!((x1 == x2) && (y1 == y2)))
     {
         var e2 = err << 1;
-        if (e2 > -dy) {
+        if (e2 > -dy)
+        {
             err -= dy;
             x1 += sx;
         }
-        if (e2 < dx) {
+        if (e2 < dx)
+        {
             err += dx;
             y1 += sy;
         }
         // Set coordinates
-        coordinatesArray.push(new Coordinates(y1, x1));
+        coordinatesArray.push([x1, y1]);
     }
 
     // Return the result
@@ -69,14 +99,4 @@ function calcStraightLine (x1, y1, x2, y2)
 
 
 
-
-
-
-
-
-
-
-
-
-
-console.log(initializeMap(2));
+console.log(initializeMap(4));
