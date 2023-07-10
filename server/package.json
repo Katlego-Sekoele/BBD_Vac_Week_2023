@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "The project backend server",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/chrislangeveldt/groupa_bbd_vacweek_2023.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/chrislangeveldt/groupa_bbd_vacweek_2023/issues"
+  },
+  "homepage": "https://gitlab.com/chrislangeveldt/groupa_bbd_vacweek_2023#readme"
+}
