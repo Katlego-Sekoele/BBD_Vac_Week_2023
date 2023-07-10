@@ -15,4 +15,4 @@ Format:
 }
 ```
 
-NOTE: If a player has been eliminated their cone coordinates will be {-1, -1}
+NOTE: If a player has been eliminated, their cone coordinates will be $[-1, -1]$
