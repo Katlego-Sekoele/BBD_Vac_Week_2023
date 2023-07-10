@@ -9,7 +9,7 @@
 
 ### How to pull
 - `git pull` (pulls the changes from the current branch)
-- 
+
 ### How to push
 - `git add <file_name>` (adds a file to the commit)
 - `git commit -m "<commit_message>"` (commits the changes)
