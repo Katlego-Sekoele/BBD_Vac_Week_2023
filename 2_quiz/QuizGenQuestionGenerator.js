@@ -1,4 +1,19 @@
-function getQuestionAndAnswer(){
+// Quiz refers to question and set of answers
+function getQuizFromDatabase(){
+    var question = 'How many planets are there in our solar system?'; // change to database call                
+    var options = ['6', '7', '8', '9']; // change to database call
+
+    var quiz = {
+        "Question:": question,
+        "Answers": [
+            options[0],
+            options[1],
+            options[2],
+            options[3]
+        ],
+    };
+
+    return quiz;
 
 }
 
@@ -13,6 +28,7 @@ function generateQuestions(numQ){
     ];
 
     var answerIndexes = [2, 2];
+
 
     return 
 }
