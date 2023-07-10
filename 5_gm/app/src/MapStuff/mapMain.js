@@ -77,13 +77,13 @@ function createMap(data) {
       // Create a shape based on the value in the 2D array
       if (value === 0) { // 0 is a square (empty space)
         const square = two.makePolygon(x, y, 10, 4);
-        circle.fill = 'grey';
+        square.fill = 'grey';
       } else if (value === 1) { // 1 is a cone
         const triangle = two.makePolygon(x, y, 10, 3);
         triangle.fill = 'orange';
       } else if (value === 2) { // 2 is a circle (ball)
         const circle = two.makeCircle(x, y, 10);
-        triangle.fill = 'red';
+        circle.fill = 'red';
       }
 
       // Add the shape to the Two.js scene
