@@ -76,18 +76,18 @@ function createMap(data) {
       const square = null;
       // Create a shape based on the value in the 2D array
       if (value === 0) { // 0 is a square (empty space)
-        const circle = two.makePolygon(x, y, 10, 4);
+        const square = two.makePolygon(x, y, 10, 4);
         circle.fill = 'grey';
       } else if (value === 1) { // 1 is a cone
         const triangle = two.makePolygon(x, y, 10, 3);
         triangle.fill = 'orange';
       } else if (value === 2) { // 2 is a circle (ball)
-        const triangle = two.makeCircle(x, y, 10);
+        const circle = two.makeCircle(x, y, 10);
         triangle.fill = 'red';
       }
 
       // Add the shape to the Two.js scene
-      two.add(circle || triangle);
+      two.add(circle || triangle || square);
     }
   }
 
