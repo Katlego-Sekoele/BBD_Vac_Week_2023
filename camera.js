@@ -1,4 +1,4 @@
-function getMap() {
+function getMap(image) {
     console.log("camera.js - getMap() has been called.");
 
     return [
