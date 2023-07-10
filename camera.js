@@ -6,5 +6,3 @@ function getMap() {
         ['W', 'O', 'R', 'L', 'D']
     ];
 }
-
-console.log(getMap())
