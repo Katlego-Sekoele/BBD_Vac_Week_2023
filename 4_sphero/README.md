@@ -27,3 +27,6 @@ Line 2 above just uses the Bluetooth Low Energy Address of the ball, thereafter,
 
 ## Methods we will use:
 The functions are [here](https://www.npmjs.com/package/sphero?activeTab=code)
+
+## Spherov2.js
+- Install this library, you will need to install [this](https://visualstudio.microsoft.com/downloads/) first. click on free download and install c++ desktop development suite. Then run `npm install spherov2.js`. Make sure you also have python installed on your device.
