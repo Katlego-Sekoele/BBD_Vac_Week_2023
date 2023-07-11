@@ -15,8 +15,11 @@ var question = currentQuestion.Question;
 // Pull the 4 options from the object
 var possibleAnswers = QuizGen.getQuiz().Answers;
 
-for(let i=0;)
-let 
+// Question is a string, answer index is a integer
+for(let i=0; i<players.length;i+) {
+    if(QuizGen.checkAnswer(question, answerIndex))
+        // Streaking logic
+}
 ```
-## Rules
+## Rulesa
 - main branch for this team should be `2_main`
