@@ -13,6 +13,10 @@
     #output {
       margin-top: 10px;
     }
+
+    #coordinates {
+      margin-top: 10px;
+    }
   </style>
 </head>
 
@@ -20,6 +24,7 @@
   <input type="file" id="fileInput" accept=".jpg, .jpeg, .png">
   <canvas id="canvas"></canvas>
   <div id="output"></div>
+  <div id="coordinates"></div>
   <div id="feedback"></div>
 
   <script>
@@ -60,23 +65,24 @@
 
       // Convert the image to grayscale
       gray = new cv.Mat();
-      cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY);
-
+      cv.cvtColor(src, gray, cv.COLOR_BGR2GRAY);
+      cv.GaussianBlur(gray, gray, new cv.Size(5, 5), 1, 1, cv.BORDER_DEFAULT);
       // Apply HoughCircles algorithm for circle detection
       circles = new cv.Mat();
       cv.HoughCircles(
         gray,
         circles,
-        cv.HOUGH_GRADIENT,
+        cv.HOUGH_STANDARD,
         1,
-        20,
+        100,
+        150,
         50,
-        30,
-        0,
-        0
+        1,
+        80
       );
 
       drawCircles();
+      displayCoordinates();
 
       const feedbackDiv = document.getElementById('feedback');
       if (circles.cols === 0) {
@@ -100,7 +106,7 @@
         const radius = data32F[i + 2];
 
         context.beginPath();
-        context.strokeStyle = 'red';
+        context.strokeStyle = 'yellow';
         context.lineWidth = 2;
         context.arc(x, y, radius, 0, 2 * Math.PI);
         context.stroke();
@@ -114,6 +120,25 @@
       const outputDiv = document.getElementById('output');
       outputDiv.innerHTML = '';
       outputDiv.appendChild(imgElement);
+    }
+
+    // Display the coordinates of the detected circles
+    function displayCoordinates() {
+      const coordinatesDiv = document.getElementById('coordinates');
+      coordinatesDiv.innerHTML = '';
+
+      const numCircles = circles.cols;
+      const data32F = circles.data32F;
+      for (let i = 0; i < numCircles; i += 3) {
+        const x = data32F[i];
+        const y = data32F[i + 1];
+        const radius = data32F[i + 2];
+
+        const coordinatesText = `Circle - Center: (${x}, ${y}), Radius: ${radius}, NumCircles: ${(numCircles)/3}`;
+        const coordinatesParagraph = document.createElement('p');
+        coordinatesParagraph.textContent = coordinatesText;
+        coordinatesDiv.appendChild(coordinatesParagraph);
+      }
     }
   </script>
 </body>
