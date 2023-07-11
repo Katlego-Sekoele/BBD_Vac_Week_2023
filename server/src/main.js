@@ -39,12 +39,10 @@ app.use("/", express.static("../1_player"));
 app.use("/gm", express.static("../5_gm/app"));
 
 const server = http.createServer(app);
-
-const io = require("socket.io")(server, {
-	cors: { origin: "*" },
-});
-
-server.listen(3000, () => console.log("listening on http://localhost:3000"));
+const io = require('socket.io')(server, {
+  cors: {origin: '*'}
+})
+server.listen(3000, () => console.log('listening on http://localhost:3000'));
 
 let lobbies = [];
 
@@ -107,71 +105,30 @@ io.on("connection", (socket) => {
 		socket.emit("created_lobby");
 	});
 
-	socket.on("move_ball", (msg) => {
+  socket.on("move_ball", (msg) => {
 		console.log(msg);
 		socket.emit("response", "ball moved!");
 		for (const socket of allSockets) {
 			socket.emit("on_ball_control", msg);
 		}
 	});
-});
+
+  socket.on('update_map', () => {
+    const map = DuelEngine.initializeMap(4);
+    console.log(map);
+    socket.emit('updated_map', map);
+  });
 
 
+// Controller, Quiz, Duel connections ---------------------------------
+BallCamController = require('./controller/main.controller')
+BallCamController.mainMoveLeft(1000)
 
-// ALL GAME LOGIC BELOW
+DuelEngine = require('./duel/duelEngine')
+DuelEngine.initMap()
 
-// KATLEGO:
-// Lobby needs to be created with server
-// Lobby code
-// Display lobby code (send to GM)
-// Listen for players joining with that lobby code
-// If player joins, add them to a lobby - update players[], and displayed players in gm
-// Once lobby full (x players, max 8)
-// Wait for host to say "start game"
-
-
-// Get init map from Duel and give to GM (for cone placement)
-numCones = lobbySize
-initialMap = DuelEngine.initializeMap(numCones)
-
-
-
-// First, check if someone allowed to control ball duel (error check)
-// If not, generate question -> 
-  // send question info (question, options) to gm, and nothing to players.
-  // Wait for all the players to answer - timeout of x seconds
-  // Check answers for each player (quiz engine . checkAnswer()). 
-  // As soon as a player gets a right answer, end of question and add "1 point" to the player who answered correctly, first
-  // Get newest scores
-  // Send newest scores to gm, duel, and check if time for a duel.
-  // If time for a duel, 
-    // "reset" scores for all players, including if their duel
-    // DO A DUEL. --- Give player permission (socket.emit player turn to move ball with player ID), and 
-    // amount of moves they can make (count for moves)
-    // Once button presses = count, send move info to controller, etc -\n
-    // call controller function to decode move, and then output from there to GM to BALL
-    // Remove permission to move after move has taken place (front end count condition reached)
-    // Get processed image / camera data from GM through to main through to duel (main -> duel in 2d array), 
-    // update picture map on GM UI
-    // send updates to duel engine, to check eliminations. If eliminated, duel tells main to send event to deactivate players (check loss)
-    // kill player off, somehow, update to GM to fix leaderboard (dead, kick em off, cross out name w/ strikethru) etc.
-    // If win condition reached, display winner & end game. If not, prompt for next question.
-  // If not time for a duel, ie. score threshold not reached yet
-    // update scores, display scores, prompt for next question.
-
-
-
-const QuizQuestionInfo = QuizEngine.getQuiz();
-
-var playerChoice = -1
-socket.on("player_answered", (player_answer) => {
-  playerNum = player_answer.playerNum
-  playerChoice = player_answer.choice
-})
-
-correct = QuizEngine.checkAnswer(QuizQuestionInfo.Question, playerChoice)
-
-console.log("correct?", correct)
+QuizEngine = require('./quiz/quizEngine')
+QuizEngine.generateQuestions()
 
 
 
