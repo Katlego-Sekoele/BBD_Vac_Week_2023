@@ -14,6 +14,9 @@ var question = currentQuestion.Question;
 
 // Pull the 4 options from the object
 var possibleAnswers = QuizGen.getQuiz().Answers;
+
+for(let i=0;)
+let 
 ```
 ## Rules
 - main branch for this team should be `2_main`
