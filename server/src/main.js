@@ -5,6 +5,7 @@ const http = require("http");
 
 // Controller, Quiz, Duel connections ---------------------------------
 BallCamController = require("./controller/main.controller");
+CamController = require('../../server/src/camera/camera')
 // BallCamController.mainMoveLeft(1000);
 
 DuelEngine = require("./duel/duelEngine");
