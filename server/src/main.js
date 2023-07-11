@@ -135,6 +135,6 @@ console.log("correct?", correct)
 
 // socket.on('sendQuestionData', (data) =>{
 //   currentQuestion = data.currentQuestion
-//   correctAnswer = data.correctAnswer
 //   optionalAnswers = data.answers
+//   correctAnswer = data.correctAnswer
 // })
