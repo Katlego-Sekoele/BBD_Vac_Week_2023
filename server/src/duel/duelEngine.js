@@ -103,16 +103,21 @@ function initiateDuel(playerScores){
     const streakVal = 3;
     const playerDuelStates = new Array(playerScores.length);
     playerScores.forEach((playerScore,index) => {
+        const multiplier = calculateMulitplier(index);
         if (playerScore==streakVal){
-            playerDuelStates[index] = true;
+            //playerDuelStates[index] = true;
+            distance = 10*multiplier;
         }
         else{
-            playerDuelStates[index] = false;
+            //playerDuelStates[index] = false;
+            playerDuelStates[index] = 0;
         }
     });
-    //return array of boolean states for each player,true indicates the player can duel
+    //return array of states to determine if a player can duel.
+
     return playerDuelStates;
 }
+
 
 //currentPlayer is an integer based index for the current player
 //takes in the player currently controlling the ball and returns a value between 1 and maxMultiplier
@@ -270,7 +275,7 @@ function checkPlayerLoss(currentPlayer){
 
 
 //console.log(initializeMap(4));
-//console.log(initiateDuel(test));
+console.log(initiateDuel(test));
 
 module.exports = {initializeMap}
 
