@@ -50,12 +50,12 @@ io.on('connection', (socket) => {
     socket.emit('created_lobby');
   });
 
-  socket.broadcast.on("start", () => {
+  socket.on("start", () => {
     console.log('lobby created');
     socket.emit('startGame');
   });
 
-  socket.on("move_ball", (msg) => {
+  socket.on("ball_moves", (msg) => {
     console.log(msg);
     socket.emit("response", "ball moved!");
     for(const socket of allSockets) {

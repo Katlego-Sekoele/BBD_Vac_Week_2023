@@ -7,7 +7,10 @@ function sendDir(e, dir) {
     socket.emit("return_player_answer", dir);
 }
 
-socket.on("response", (msg) => console.log(msg));
+socket.on("controle", (msg) => {
+    window.location.assign("controls.html");
+    console.log(msg)
+});
 
 document.getElementById("A").addEventListener('click', (e) => {
     sendDir(e, "A");
