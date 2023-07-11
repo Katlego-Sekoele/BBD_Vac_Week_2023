@@ -1,24 +1,14 @@
 [
-	
-	  {
-		"Question": "Which of the following animals is known for its ability to camouflage?",
-		"Answers": ["Chameleon", "Gorilla", "Hippopotamus", "Penguin"],
-		"Correct_Answer_Index": "Chameleon"
-	  },
-	  {
-		"Question": "Which animal is the largest living mammal?",
-		"Answers": ["Elephant", "Giraffe", "Blue Whale", "Hippopotamus"],
-		"Correct_Answer_Index": "Blue Whale"
-	  },
 	  {
 		"Question": "Which of the following animals is a marsupial?",
 		"Answers": ["Kangaroo", "Elephant", "Gorilla", "Lion"],
-		"Correct_Answer_Index": "Kangaroo"
+		"Correct_Answer_Index": 0
 	  },
+
 	  {
 		"Question": "What is the national bird of the United States?",
 		"Answers": ["Eagle", "Ostrich", "Peacock", "Penguin"],
-		"Correct_Answer_Index": "Eagle"
+		"Correct_Answer_Index": 0
 	  },
 
 
@@ -31,7 +21,7 @@
 		"Germany",
 		"Argentina"
 	  ],
-	  "Correct_Answer_Index": "France"
+	  "Correct_Answer_Index": 0
 	},
 	{
 	  "Question": "Who holds the record for the most home runs in a single MLB season?",
@@ -41,7 +31,7 @@
 		"Mark McGwire",
 		"Sammy Sosa"
 	  ],
-	  "Correct_Answer_Index": "Barry Bonds"
+	  "Correct_Answer_Index": 1
 	},
 	{
 	  "Question": "Which tennis player has won the most Grand Slam titles in history?",
@@ -51,97 +41,83 @@
 		"Serena Williams",
 		"Novak Djokovic"
 	  ],
-	  "Correct_Answer_Index": "Roger Federer"
+	  "Correct_Answer_Index": 1
 	},
   
   {
 		"Question": "Which planet is the largest in our solar system?",
 		"Answers": ["Mars", "Jupiter", "Venus", "Mercury"],
-		"Correct_Answer_Index": "Jupiter"
+		"Correct_Answer_Index": 1
 	  },
 	  {
 		"Question": "Which planet is closest to the Sun?",
 		"Answers": ["Mars", "Jupiter", "Venus", "Mercury"],
-		"Correct_Answer_Index": "Mercury"
+		"Correct_Answer_Index": 3
 	  },
 	  {
 		"Question": "Which planet has the most known moons?",
 		"Answers": ["Mars", "Jupiter", "Venus", "Saturn"],
-		"Correct_Answer_Index": "Jupiter"
+		"Correct_Answer_Index": 1
 	  },
 	  {
 		"Question": "Which planet is famous for its beautiful rings?",
 		"Answers": ["Mars", "Jupiter", "Venus", "Saturn"],
-		"Correct_Answer_Index": "Saturn"
-	  }
-	]
-  }
-  
-	"Questions": [
+		"Correct_Answer_Index": 3
+	  },
+	
 	  {
 		"Question": "What is the Sun primarily made of?",
 		"Answers": ["Hydrogen", "Oxygen", "Carbon", "Helium"],
-		"Correct_Answer_Index": "Hydrogen"
+		"Correct_Answer_Index": 0
 	  },
 	  {
 		"Question": "Which layer of the Sun is visible during a solar eclipse?",
 		"Answers": ["Photosphere", "Corona", "Chromosphere", "Core"],
-		"Correct_Answer_Index": "Corona"
+		"Correct_Answer_Index": 1
 	  },
 	  {
 		"Question": "What is the approximate temperature at the core of the Sun?",
 		"Answers": ["2,000 degrees Celsius", "10,000 degrees Celsius", "1 million degrees Celsius", "15 million degrees Celsius"],
-		"Correct_Answer_Index": "15 million degrees Celsius"
+		"Correct_Answer_Index": 3
 	  },
-	  {
-		"Question": "What process powers the Sun by converting hydrogen into helium?",
-		"Answers": ["Nuclear fission", "Nuclear fu…
-  [14:12, 11/07/2023] Hlekani Nancy Baloyi: {
-	"Questions": [
+	
 	  {
 		"Question": "Who is the king of the gods in Greek mythology?",
 		"Answers": ["Apollo", "Zeus", "Hermes", "Poseidon"],
-		"Correct_Answer_Index": "Zeus"
+		"Correct_Answer_Index": 1
 	  },
 	  {
 		"Question": "Who is the goddess of wisdom and warfare in Greek mythology?",
 		"Answers": ["Hera", "Athena", "Aphrodite", "Artemis"],
-		"Correct_Answer_Index": "Athena"
+		"Correct_Answer_Index": 1
 	  },
 	  {
 		"Question": "Who is the god of the sea in Greek mythology?",
 		"Answers": ["Hades", "Apollo", "Hermes", "Poseidon"],
-		"Correct_Answer_Index": "Poseidon"
+		"Correct_Answer_Index": 3
 	  },
 	  {
 		"Question": "Who is the god of the underworld in Greek mythology?",
 		"Answers": ["Zeus", "Hades", "Ares", "Dionysus"],
-		"Correct_Answer_Index": "Hades"
+		"Correct_Answer_Index": 1
 	  },
-	  {
-		"Question": "Who is the goddess of love and beauty in Gree…
-  [14:14, 11/07/2023] Hlekani Nancy Baloyi: {
-	"Questions": [
+	  
 	  {
 		"Question": "When did apartheid begin in South Africa?",
 		"Answers": ["1945", "1950", "1960", "1948"],
-		"Correct_Answer_Index": "1948"
+		"Correct_Answer_Index": 3
 	  },
 	  {
 		"Question": "What does the term 'apartheid' mean in Afrikaans?",
 		"Answers": ["Separation", "Equality", "Unity", "Freedom"],
-		"Correct_Answer_Index": "Separation"
+		"Correct_Answer_Index": 0
 	  },
 	  {
 		"Question": "Which racial group held political power during apartheid?",
 		"Answers": ["Black Africans", "White Europeans", "Indian Asians", "Colored Mixed Race"],
-		"Correct_Answer_Index": "White Europeans"
+		"Correct_Answer_Index": 1
 	  },
-	  {
-		"Question": "What was the official policy of racial segregation called?",
-		"Answers": ["Apartheid Act", "Freedom Charter", "Separate Development", "Equal Rights Movement"],
-		"ans…
-  [14:18, 11/07/2023] Hlekani Nancy Baloyi: [
+	
 	{
 	  "Question": "In which year was Nelson Mandela born?",
 	  "Answers": [
@@ -150,7 +126,7 @@
 		"1936",
 		"1940"
 	  ],
-	  "Correct_Answer_Index": "1918"
+	  "Correct_Answer_Index": 0
 	},
 	{
 	  "Question": "What was Nelson Mandela's role in the anti-apartheid movement?",
@@ -160,7 +136,7 @@
 		"Peace negotiator",
 		"All of the above"
 	  ],
-	  "Correct_Answer_Index": "All of the above"
+	  "Correct_Answer_Index": 3
 	},
 	{
 	  "Question": "How many years did Nelson Mandela spend in prison?",
@@ -170,15 +146,9 @@
 		"30 years",
 		"35 years"
 	  ],
-	  "Correct_Answer_Index": "27 years"
+	  "Correct_Answer_Index": 1
 	},
-	{
-	  "Question": "When did Nelson Mandela become the first black President of South Africa?",
-	  "Answers": [
-		"1990",
-		"1994",
-	…
-  [14:20, 11/07/2023] Hlekani Nancy Baloyi: [
+	
 	{
 	  "Question": "Which of the following is not a type of educational institution?",
 	  "Answers": [
@@ -187,7 +157,7 @@
 		"College",
 		"School"
 	  ],
-	  "Correct_Answer_Index": "Hospital"
+	  "Correct_Answer_Index": 1
 	},
 	{
 	  "Question": "What does STEM stand for?",
@@ -197,18 +167,9 @@
 		"Sports, Technology, Entertainment, Music",
 		"Science, Theater, Engineering, Mathematics"
 	  ],
-	  "Correct_Answer_Index": "Science, Technology, Engineering, Mathematics"
+	  "Correct_Answer_Index": 0
 	},
-	{
-	  "Question": "Which of the following is an alternative to traditional classroom learning?",
-	  "Answers": [
-		"Distance Education",
-		"Art History",
-		"Physics",
-		"Chemistry"
-	 …
-  [14:22, 11/07/2023] Hlekani Nancy Baloyi: {
-	"Questions": [
+	
 	  {
 		"Question": "Which of the following is a citrus fruit?",
 		"Answers": [
@@ -217,7 +178,7 @@
 		  "Orange",
 		  "Grape"
 		],
-		"Correct_Answer_Index": "Orange"
+		"Correct_Answer_Index": 2
 	  },
 	  {
 		"Question": "Which vegetable is known for its spicy taste?",
@@ -227,7 +188,7 @@
 		  "Broccoli",
 		  "Cabbage"
 		],
-		"Correct_Answer_Index": "Radish"
+		"Correct_Answer_Index": 1
 	  },
 	  {
 		"Question": "Which fruit is commonly used to make guacamole?",
@@ -237,15 +198,8 @@
 		  "Pineapple",
 		  "Watermelon"
 		],
-		"Correct_Answer_Index": "Avocado"
+		"Correct_Answer_Index": 1
 	  },
-	  {
-		"Question": "Which of the following is a leafy green vegetable?",
-		"Answers": [
-		  "Potato",
-		  "Caulif…
-  [14:25, 11/07/2023] Hlekani Nancy Baloyi: {
-	"Questions": [
 	  {
 		"Question": "What is puberty?",
 		"Answers": [
@@ -295,11 +249,7 @@
 		  "D) The growth of breasts in females."
 		],
 		"Correct_Answer_Index": 2
-	  }
-	]
-  }
-  [14:26, 11/07/2023] Hlekani Nancy Baloyi: {
-	"Questions": [
+	  },
 	  {
 		"Question": "Which of the following is a nutrient-dense fruit?",
 		"Answers": [
@@ -349,11 +299,8 @@
 		  "d) Stretching"
 		],
 		"Correct_Answer_Index": 0
-	  }
-	]
-  }
-  [14:28, 11/07/2023] Hlekani Nancy Baloyi: {
-	"Questions": [
+	  },
+
 	  {
 		"Question": "What does HIV stand for?",
 		"Answers": [
@@ -403,10 +350,8 @@
 		  "AIDS"
 		],
 		"correctAnswer": 3
-	  }
-	]
-  }
-  [14:29, 11/07/2023] Hlekani Nancy Baloyi: [
+	  },
+
 	{
 	  "Question": "What is the common name for the coronavirus disease?",
 	  "Answers": [
@@ -456,9 +401,8 @@
 		"Avoiding all outdoor activities"
 	  ],
 	  "Correct_Answer_Index": "Wearing a mask, practicing social distancing, and washing hands frequently"
-	}
-  ]
-  [14:32, 11/07/2023] Hlekani Nancy Baloyi: [
+	},
+ 
 	{
 	  "Question": "What is the capital city of South Africa?",
 	  "Answers": ["Cape Town", "Durban", "Johannesburg", "Pretoria"],
@@ -483,10 +427,8 @@
 	  "Question": "Which event brought international attention to South Africa's system of racial segregation?",
 	  "Answers": ["Soweto Uprising", "Sharpeville Massacre", "Rivonia Trial", "Freedom Charter"],
 	  "Correct_Answer_Index": "Sharpeville Massacre"
-	}
-  ]
-  [14:35, 11/07/2023] Hlekani Nancy Baloyi: {
-	"Questions": [
+	},
+ 
 	  {
 		"Question": "Which year was BBD Software founded?",
 		"Answers": [
@@ -536,9 +478,8 @@
 		  "d) All of the above"
 		],
 		"Correct_Answer_Index": 3
-	  }
-	]
-  }
+	  },
+
 	{
 	  "Question": "Which of the following is not considered a drug?",
 	  "Answers": [
