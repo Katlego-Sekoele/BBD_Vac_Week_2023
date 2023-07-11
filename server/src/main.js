@@ -15,10 +15,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(express.static("../1_player"));
 const server = http.createServer(app);
+
 const io = require('socket.io')(server, {
   cors: {origin: '*'}
-})
+});
+
 server.listen(3000, () => console.log('listening on http://localhost:3000'));
 
 
@@ -41,6 +44,11 @@ io.on('connection', (socket) => {
     console.log('lobby created');
     socket.emit('created_lobby');
   });
+
+  socket.on("move_ball", (msg) => {
+    console.log(msg);
+    socket.emit("response", "ball moved!");
+  })
 
 });
 
