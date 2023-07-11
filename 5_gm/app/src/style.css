@@ -32,9 +32,9 @@ body {
 }
 
 .gameSetUpHeading{
-    font-size:4em;
+    font-size:4rem;
     background-color: var(--purple);
-    width: 35%;
+    width: 35rem;
     text-align: center;
     border-radius:var(--borderRadiusVal);
     padding: 0.05em;
@@ -44,7 +44,8 @@ body {
     font-size:2em;
     display: flex;
     flex-direction: column;
-    /*background-color: white;*/
+    background-color: white;
+    
 }
 
 .settingContainer{
@@ -52,14 +53,14 @@ body {
     flex-direction: row;
     height:1em;
     padding: 1em;
-    margin: 1em;
+    /*margin: 1em;*/
     align-items: baseline;
 }
 
 
 .settingdescription{
     /*margin:1em;*/
-    margin-top: -1.1rem;
+    /*margin-top: -1.1rem;*/
     margin-right: 2rem;
     height: 3rem;
     width: 22rem;
@@ -72,7 +73,7 @@ body {
 }
 
 .inputboxes{
-    margin-top: -1.1rem;
+    /*margin-top: -1.1rem;*/
     height:3rem;
     /*display: inline;*/
     /*position: relative;*/
@@ -88,6 +89,32 @@ body {
 }
 
 .mainFlex{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.buttonParent{
+    margin-left: 3rem;
+    width: 2rem;
+}
+
+.nextbutton{
+    background-color: var(--purple);
+    width: 20rem;
+    border-style: solid;
+    border-radius: var(--borderRadiusVal);
+    border-color: var(--lilac);
+    border-width: 0.5rem;
+    height: 20rem;
+    font-size: 7rem;
+    font-weight: bold;
+    font-family: 'Lilita One', sans-serif;
+    color: var(--lilac);
+}
+
+.specialDiv{
+    /*background-color: red;*/
     display: flex;
     flex-direction: row;
 }
