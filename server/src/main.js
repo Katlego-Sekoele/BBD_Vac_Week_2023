@@ -44,7 +44,8 @@ io.on('connection', (socket) => {
 
     for (let i = 0; i < lobbies.length; i++){
       if (lobbies[i].gamecode === data.gamecode){
-        lobbies[i].players.push({username: data.username})
+        lobbies[i].players.push({score: 0, playerNumber: lobbies[i].numPlayers})
+        lobbies[i].numPlayers++
       }
     }
 
@@ -64,10 +65,9 @@ io.on('connection', (socket) => {
   });
 
   socket.on("create_lobby", (data) => {
-    let numPlayers = data.size
-    let lobbyCode = 0 // TODO: generate lobby codes
+    let gamecode = Math.floor(Math.random() * 10000) + 10000
 
-    lobbies.push({lobbyCode, players: []})
+    lobbies.push({gamecode, players: [], lobbySize: data.size, numPlayers: 0})
 
     socket.emit('created_lobby');
   });
@@ -83,8 +83,3 @@ DuelEngine.initMap()
 
 QuizEngine = require('./quiz/quizEngine')
 QuizEngine.generateQuestions()
-
-
-
-
-
