@@ -26,24 +26,18 @@ function initializeMap(numCones)
     var centerOffset = Math.floor(Math.random()*(Math.min(centerX, centerY)-1-1))+1;
     //console.log(centerOffset);
 
-    // Place the cones equally around the center
-    if (numCones == 3) // Top and bottom two corners
+    // Place the cones equally around
+    if (numCones < 2 || numCones > 8)
+        numCones = 2;
+    for (var i = 0; i < numCones; i++)
     {
-        map[centerY-centerOffset][centerX] = '1';
-        map[centerY+centerOffset][centerX-centerOffset] = '2';
-        map[centerY+centerOffset][centerX+centerOffset] = '3';
-    }
-    else if (numCones == 4) // Above, below, left, right
-    {
-        map[centerY-centerOffset][centerX] = '1';
-        map[centerY+centerOffset][centerX] = '2';
-        map[centerY][centerX-centerOffset] = '3';
-        map[centerY][centerX+centerOffset] = '4';
-    }
-    else // Above and below center, default option
-    {
-        map[centerY-centerOffset][centerX] = '1';
-        map[centerY+centerOffset][centerX] = '2';
+        var angle = (360/numCones)*Math.PI/180*i;
+        //console.log(angle);
+        var newCoord = ellipticalDiscToSquare(angle);
+        var correctedY = Math.round(newCoord[0]*centerOffset)+centerY
+        var correctedX = Math.round(newCoord[1]*centerOffset)+centerX
+
+        map[correctedY][correctedX] = i.toString();
     }
 
 
@@ -59,6 +53,29 @@ function initializeMap(numCones)
     return map;
 }
 
+// Elliptical Grid mapping
+// mapping a circular disc to a square region
+// input: angle in circle
+// output: (x,y) coordinates in the square
+function ellipticalDiscToSquare(angle)
+{
+    u = Math.cos(angle);
+    v = Math.sin(angle);
+
+    var u2 = u * u;
+    var v2 = v * v;
+    var twosqrt2 = 2.0 * Math.sqrt(2.0);
+    var subtermx = 2.0 + u2 - v2;
+    var subtermy = 2.0 - u2 + v2;
+    var termx1 = Math.abs(subtermx + u * twosqrt2);
+    var termx2 = Math.abs(subtermx - u * twosqrt2);
+    var termy1 = Math.abs(subtermy + v * twosqrt2);
+    var termy2 = Math.abs(subtermy - v * twosqrt2);
+    x = 0.5 * Math.sqrt(termx1) - 0.5 * Math.sqrt(termx2);
+    y = 0.5 * Math.sqrt(termy1) - 0.5 * Math.sqrt(termy2);
+
+    return [x, y]
+}
 
 // Takes in two coordinate pairs and returns a minimal traced
 // line between the two using the Bresenham algorithm
