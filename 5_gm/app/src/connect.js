@@ -36,9 +36,10 @@ socket.on("generic_event", (data) => {
 
 // send payload to server and invoke another_generic_event on server side
 // socket.emit("another_generic_event", payload)
-export const myVariable = null
+import {createMap} from "./MapStuff/mapMain.js";
 socket.emit('update_map');
 socket.on('updated_map', (data) => {
 	console.log(data);
-	myVariable = data;
+	createMap(data);
 });
+

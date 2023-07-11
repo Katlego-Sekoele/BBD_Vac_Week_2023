@@ -1,5 +1,5 @@
-var xLen = 10;
-var yLen = 10;
+var xLen = 100;
+var yLen = 100;
 var test = [1,3,0];
 var map = new Array(yLen)
 

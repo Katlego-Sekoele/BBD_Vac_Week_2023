@@ -21,6 +21,16 @@ const io = require('socket.io')(server, {
 })
 server.listen(3000, () => console.log('listening on http://localhost:3000'));
 
+// Controller, Quiz, Duel connections ---------------------------------
+BallCamController = require('./controller/main.controller')
+BallCamController.mainMoveLeft(1000)
+
+DuelEngine = require('./duel/DuelEngine')
+DuelEngine.initializeMap()
+
+QuizEngine = require('./quiz/quizEngine')
+QuizEngine.generateQuestions()
+
 let lobbies = []
 io.on('connection', (socket) => {
   console.log('a user connected with ID: ' + socket.id);
@@ -72,22 +82,15 @@ io.on('connection', (socket) => {
     socket.emit('created_lobby');
   });
 
+  socket.on('update_map', () => {
+    const map = DuelEngine.initializeMap(4);
+    console.log(map);
+    socket.emit('updated_map', map);
+  });
+
 });
 
-// Controller, Quiz, Duel connections ---------------------------------
-BallCamController = require('./controller/main.controller')
-BallCamController.mainMoveLeft(1000)
-
-DuelEngine = require('./duel/duelEngine')
-DuelEngine.initializeMap()
-
-QuizEngine = require('./quiz/quizEngine')
-QuizEngine.generateQuestions()
 
 
-socket.on('update_map', () => {
-  const map = DuelEngine.initializeMap();
-  socket.emit('updated_map', map);
-});
 
 
