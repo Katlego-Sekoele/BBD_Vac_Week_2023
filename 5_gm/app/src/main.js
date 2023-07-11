@@ -1,5 +1,4 @@
 //import "./socket.io/client-dist/socket.io.js";
-
 // for navigation purposes
 const startGameContainer = document.getElementById('start-game-container');
 const setUpGameContainer = document.getElementById('set-up-game-container');
@@ -53,15 +52,15 @@ socket.on("player_join", (data) => {
 	//     TODO: decide on events with server team
 });
 
-// send payload to server and invoke another_generic_event on server side
-// socket.emit("another_generic_event", payload)
+//send payload to server and invoke another_generic_event on server side
+//socket.emit("another_generic_event", payload)
 
-// import {createMap} from "./MapStuff/mapMain.js";
-// socket.emit('update_map');
-// socket.on('updated_map', (data) => {
-// 	console.log(data);
-// 	createMap(data);
-// });
+import {createMap} from "./MapStuff/mapMain.js";
+socket.emit('update_map');
+socket.on('updated_map', (data) => {
+	console.log(data);
+	createMap(data);
+});
 
 
 //nav functions
