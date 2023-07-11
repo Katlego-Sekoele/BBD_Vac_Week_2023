@@ -1,6 +1,5 @@
 {
   "name": "quiz_api",
-  "type": "module",
   "version": "1.0.0",
   "description": "API for the Quiz Engine",
   "main": "server.js",
