@@ -1,7 +1,7 @@
 import Two from '../../node_modules/two.js/src/two.js';
-DuelEngine = require('../../../../server/src/duel/duelEngine.js');
+import {myVariable} from '../connect.js';
 
-mapArray = DuelEngine.initializeMap();
+mapArray = myVariable;
 
 // const mapArray = {
 //   ball: [12, 10],
