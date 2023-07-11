@@ -82,8 +82,8 @@ io.on("connection", (socket) => {
 				console.log("join_lobby: ", data);
 				//assumes that the users lobby code is correct
 
-				// server response to game master to notifying that a player has joined
-				socket.emit("player_joined", lobbies[i]);
+				// server response to all to notifying that a player has joined
+				io.emit("player_joined", lobbies[i]);
 
 				// game master response confirming receipt of player_joined event
 				socket.on("player_in_lobby", () => {
@@ -143,11 +143,6 @@ numCones = lobbies[0]?.lobbySize || 4
 initialMap = DuelEngine.initializeMap(numCones)
 
 // start game loop!
-var gameOn = true
-while(gameOn){
-  
-}
-
 
 
 // First, check if someone allowed to control ball duel (error check)

@@ -52,13 +52,14 @@ document.getElementById("startBtn").onclick = () => {
 	socket.emit("create_lobby", { size: size });
 
 	socket.on("created_lobby", (data) => {
-		window.location.assign("/gm/"); // TODO: redirect correctly
+		alert("started")
+		//window.location.assign("/gm/"); // TODO: redirect correctly
 	});
 };
 
 socket.on("player_joined", (lobby) => {
-	alert("Player Joined:" + lobby.numPlayers);
-	socket.emit("player_in_lobby");
+	console.log("Player Joined:", lobby);
+	io.emit("player_in_lobby");
 });
 
 socket.on("connect", () => {
