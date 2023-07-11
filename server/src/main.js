@@ -26,8 +26,6 @@ const io = require('socket.io')(server, {
 
 server.listen(3000, () => console.log('listening on http://localhost:3000'));
 
-
-
 const allSockets = [];
 
 io.on('connection', (socket) => {
@@ -64,15 +62,8 @@ io.on('connection', (socket) => {
   })
 
   socket.on("return_player_answer", (msg) => {
-    console.log(msg);
-    socket.emit("response", "player answered!");
     for(const socket of allSockets) {
       socket.emit("on_player_answered", msg);
     }
   })
 });
-
-
-
-
-

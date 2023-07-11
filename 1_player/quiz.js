@@ -1,33 +1,45 @@
-const SERVER_URL = "http://localhost:3000";
+const SERVER_URL = window.location.host === "server-bbd-vac-week.onrender.com"?  "https://server-bbd-vac-week.onrender.com/":"http://localhost:3000";
 
 const socket = io.connect(SERVER_URL);
 
-function sendAwns(e, awns) {
-    e.preventDefault();
-    socket.emit("return_player_answer", awns);
+function convertintChar(integer) {
+    let character = 'a'.charCodeAt(0);
+    return String.fromCharCode(character + integer);
 }
 
-socket.on("controle", (msg) => {
-    window.location.assign("controls.html");
-    console.log(msg)
+function sendAns(e, dir) {
+    e.preventDefault();
+    socket.emit("return_player_answer", dir);
+}
+
+// Events
+socket.on("on_next_question", (msg) => {
+    question_answer = JSON.parse(msg);
+    
+    buttons = "";
+    for (var i = 0; i < question_answer.answers.length; i++) {
+        buttons += `<div>
+            <button id=${convertintChar(i)} class="answer_button">${convertintChar(i).toUpperCase()}</button>
+        </div>`
+    }
+
+    document.getElementById("btn_container").innerHTML = buttons;
 });
 
-document.getElementById("A").addEventListener('click', (e) => {
-    sendAwns(e, "A");
+socket.on("on_answer_status", (msg) => {
+    console.log(msg);
 });
 
-document.getElementById("B").addEventListener('click', (e) => {
-    sendAwns(e, "B");
-});
+// Answer options
+for (const node of document.getElementsByClassName("answer_button")) {
+    node.innerHTML = node.id;
 
-document.getElementById("C").addEventListener('click', (e) => {
-    sendAwns(e, "C");
-});
+    document.getElementById(node.id).addEventListener('click', (e) => {
+        sendAns(e, node.id);
+    })
+}
 
-document.getElementById("D").addEventListener('click', (e) => {
-    sendAwns(e, "D");
-});
-
-function quit(){
-    window.location.assign("connect.html");
+function quit()
+{
+    window.location.assign("/");
 }
