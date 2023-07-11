@@ -19,9 +19,11 @@ document.getElementById("connectBtn").onclick = () => {
 	}
 
 	//create json object to send username and gamecode
-	let connectObject = {"username": username  , "gamecode" : gameCode};
+	let connectObject = {"gamecode" : gameCode};
 
-	socket.emit("join_lobby", JSON.stringify(connectObject))
+	// request to join lobby
+	socket.emit("join_lobby", connectObject)
+	// socket.emit("join_lobby", JSON.stringify(connectObject))
 
 	socket.on("joined_lobby", (data) => {
 		//check whether a userId was received
