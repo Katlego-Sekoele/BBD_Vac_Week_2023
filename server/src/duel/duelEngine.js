@@ -118,6 +118,17 @@ function initiateDuel(playerScores){
     return playerDuelStates;
 }
 
+//function that finds which player can currently play and returns their index, else return -1
+function getPlayerDuel(arrPlayerScores){
+    var playerDistances = initiateDuel(arrPlayerScores)
+    
+    for (i = 0; i < player.length; i++){
+        if (playerDistances[i] != 0){
+            return i
+        }
+    }
+    return -1
+}
 
 //currentPlayer is an integer based index for the current player
 //takes in the player currently controlling the ball and returns a value between 1 and maxMultiplier
@@ -280,10 +291,18 @@ function checkPlayerLoss(currentPlayer){
     return true
 }
 
-
+function softResetScores(playerScores, moverIndex){
+    for(let i = 0; i < playerScores.length; i++){
+        if(playerScores[i] != 0){
+            playerScores[i] -= 1
+        }
+    }
+    playerScores[moverIndex] = 0
+    return playerScores;
+}
 //console.log(initializeMap(4));
 //console.log(initiateDuel(test));
 //console.log(getPlayerWin())
 
 
-module.exports = {initializeMap}
+module.exports = { initializeMap, initiateDuel, getPlayerDuel, softResetScores }

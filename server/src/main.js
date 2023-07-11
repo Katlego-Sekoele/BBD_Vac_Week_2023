@@ -13,7 +13,6 @@ DuelEngine = require("./duel/duelEngine");
 QuizEngine = require("../../2_quiz/QuizGenQuestionGenerator");
 
 
-
 app.use(function (req, res, next) {
 	const allowedOrigins = [
 		"http://localhost:3000",
@@ -100,18 +99,13 @@ io.on("connection", (socket) => {
 			players: [],
 			lobbySize: data.size,
 			numPlayers: 0,
+      gameStarted: false
 		});
 
 		socket.emit("created_lobby");
 	});
 
-  socket.on("move_ball", (msg) => {
-		console.log(msg);
-		socket.emit("response", "ball moved!");
-		for (const socket of allSockets) {
-			socket.emit("on_ball_control", msg);
-		}
-	});
+  
 
   socket.on('update_map', () => {
     const map = DuelEngine.initializeMap(4);
@@ -134,14 +128,78 @@ io.on("connection", (socket) => {
 
 
 // Get init map from Duel and give to GM (for cone placement)
-numCones = lobbySize
+numCones = lobbies[0]?.lobbySize||4
 initialMap = DuelEngine.initializeMap(numCones)
 
 // start game loop!
 var gameOn = true
-while(gameOn){
-  
+let numPlayers = lobbies[0]?.numPlayers||0
+const playerScores = new Array(numPlayers)
+for (let i = 0; i < numPlayers; i++) {
+  playerScores[i] = 0
 }
+
+socket.on("game_start", () => {
+  // assume game loop started
+  lobbies[0].gameStarted = true
+  
+})
+
+socket.on("next_round", () => {
+  if(lobbies[0].gameStarted == false){
+    return
+  }
+  let playerIndexToMove = DuelEngine.getPlayerDuel(playerScores)
+
+  if(playerIndexToMove != -1){
+
+    playerScores = DuelEngine.softResetScores(playerScores, playerIndexToMove)
+    
+    // somebody turn, find out which and for how long
+    let time = DuelEngine.initiateDuel(playerScores) 
+    let playTime = time[playerIndexToMove]
+
+    // all players get this message, only correct player number can move
+    socket.emit("time_for_move", {playerNumber: playerIndexToMove + 1, playTime})
+
+    socket.on("move_ball", (msg) => {
+      // TODO: check call sphero controller function to make single move 
+
+      console.log(msg);
+      socket.emit("response", "ball moved!");
+      for (const socket of allSockets) {
+        socket.emit("on_ball_control", msg);
+      }
+
+    });
+
+    // ball will have moved
+
+
+    // get camera image data, after that all checks
+    // check if someone lost (loop)
+    // remove names from leaderboard
+
+    // check win - returnPlayerWin
+
+
+
+
+
+  }
+  else{
+
+  }
+})
+
+// all player scores 0
+// while(gameOn){
+//   // gives array of moves, if someone's turn, one of them will not be 0
+//   playerToMoveArr = DuelEngine.initiateDuel(playerScores)
+
+//   console.log("eating")
+
+// }
 
 
 
