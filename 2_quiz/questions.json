@@ -3073,5 +3073,1465 @@
     "Question": "In which country would you find the Dolomites?",
     "Answers": ["China", "Argentina", "Italy", "Belgium"],
     "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What is the Yiddish word for money?",
+    "Answers": ["mensch", "gelt", "kvetch", "schmuck"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who was the 29th president of the USA, in term during the period 1921�1923?",
+    "Answers": [
+      "Theodore Roosevelt",
+      "Gerald Ford",
+      "Warren Harding",
+      "Andrew Jackson "
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Who won the 1996 Academy Award for Best Leading Actress for playing the role of Marge Gunderson in Fargo?",
+    "Answers": [
+      "Diane Keaton",
+      "Brenda Blethyn",
+      "Kristin Scott Thomas",
+      "Frances McDormand"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Where Did The Mayflower Set Sail From In 1620?",
+    "Answers": ["Cardiff", "Portsmouth", "Southampton", "Plymouth"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which of these quotes is from the film 'Casablanca'?",
+    "Answers": [
+      "'This is the day you will always remember as the day you almost caught Captain Jack Sparrow!'",
+      "'Round up the usual suspects.'",
+      "'Keep your friends close, but your enemies closer.'",
+      "'Mother of mercy, is this the end of Rico?'"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What is the nickname of the English football team Aston Villa?",
+    "Answers": ["The Villans", "The Hornets", "The Seasiders", "The Seagulls"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Who was born in Assisi in 1181 and later became a missionary?",
+    "Answers": ["St. Augustine", "St. Paul", "St. Peter", "St. Francis"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What was the name of the Soviet Union's counter-attack on Germany in 1944?",
+    "Answers": [
+      "Operation Overlord",
+      "Operation Bagration",
+      "Operation Barbarossa",
+      "Operation Market Garden"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who was the conquistador who claimed Inca lands for Spain?",
+    "Answers": [
+      "Manuel Cruz",
+      "Philip Alberto",
+      "Francisco Pizarro",
+      "Hernando Cortez"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What Happened To The Apollo I Spacecraft On 27 January 1967?",
+    "Answers": [
+      "It landed on the moon",
+      "It was launched into the sun",
+      "It caught fire on its launch pad",
+      "It was hit by an asteroid and destroyed"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What year was NASA founded?",
+    "Answers": ["1946", "1901", "1980", "1958"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which author wrote 'Skeleton Crew'?",
+    "Answers": [
+      "Edgar Allan Poe",
+      "Jack Vance",
+      "H. P. Lovecraft",
+      "Stephen King"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Who Wrote The Songs 'Manic Monday', 'Nothing Compares To You', and 'I Feel For You'?",
+    "Answers": ["Celine Dion", "Prince", "Barry Gibb", "Elvis Presley"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which of these cities is in India?",
+    "Answers": ["Canberra", "Taipei", "Chennai", "Melbourne"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which strait separates Alaska from Russia?",
+    "Answers": [
+      "The Magellan Strait",
+      "The Bosphorus Strait",
+      "The Bering Strait�",
+      "The Channel Strait"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Who wrote '1984'?",
+    "Answers": [
+      "Gabriel Garcia Marquez",
+      "Charles Dickens",
+      "Washington Irving",
+      "George Orwell"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "The Devonian Period is also known as the Age of what?",
+    "Answers": ["Birds", "Fish", "Humans", "Dinosaurs"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which country reclaimed about 17% of its land from the sea by pumping out water and making new areas called polders?",
+    "Answers": ["The Netherlands", "Bangladesh", "Estonia", "Thailand"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What was first worn in the 1860's?",
+    "Answers": ["Sneakers", "The Wristwatch", "The Tuxedo", "Denim Jeans"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "With which sport is Grete Waitz associated?",
+    "Answers": ["Athletics", "Motor Racing", "Ice Hockey", "Cricket"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is the name given to the noise that donkeys make?",
+    "Answers": ["Bray", "Grok", "Lipple", "Neigh"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What date is St. Patrick's Day? ",
+    "Answers": ["February 15th", "March 17th", "February 16th", "March 14th"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "When did the Ottoman Empire reach its greatest territorial extent?",
+    "Answers": ["1683", "1189", "1453", "1916"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Who played the role of James Bond in GoldenEye?",
+    "Answers": [
+      "Sean Connery",
+      "Roger Moore",
+      "Pierce Brosnan",
+      "Daniel Craig"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which author wrote 'A Connecticut Yankee in King Arthur's Court'?",
+    "Answers": [
+      "Isabel Allende",
+      "Mark Twain",
+      "George R. R. Martin",
+      "Cassandra Clare"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "When did the demolition of the Berlin wall begin?",
+    "Answers": ["1999", "1994", "1984", "1990"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "The role of Eitri in the Marvel Cinematic Universe is played by which actor?",
+    "Answers": [
+      "J.K. Simmons",
+      "Paul Rudd",
+      "Peter Dinklage",
+      "Tom Hiddleston"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What is the name of the snake in the Disney film The Jungle Book?",
+    "Answers": ["Baloo", "Shere Khan", "Kaa", "King Louie"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What type of star is the sun?",
+    "Answers": ["K-Type", "G-Type", "Brown Dwarf", "Red Dwarf"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who Recorded The Album 'Love Over Gold'?",
+    "Answers": [
+      "The Moody Blues",
+      "Deep Purple",
+      "The Shadows",
+      "Dire Straits"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "The Clio is a model of car made by which manufacturer?",
+    "Answers": ["Land Rover", "Rolls-Royce", "Porsche", "Renault"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Manila is the capital city of which country?",
+    "Answers": ["Taiwan", "Philippines", "Spain", "Serbia"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What is the term given to the act of lying in court?",
+    "Answers": ["Perjury", "Fraud", "Obstruction", "Suborning"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is the meaning of the Latin phrase 'Necessitas etiam timidos fortes facit'?",
+    "Answers": [
+      "Out of chaos, comes order",
+      "I came, I saw, I conquered",
+      "Necessity breeds strength",
+      "Need makes even the timid brave"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What Do The Lyrics In The 1st Line Of The Elvis Presley Song �Blue Suede Shoes� Add Up To?",
+    "Answers": ["10", "20", "2", "6"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which actor has appeared in both A Beautiful Mind and Man of Steel?",
+    "Answers": ["John Wayne", "Russell Crowe", "Ron Perlman", "Seth Rogen"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which country hosted the 2006 FIFA World Cup?",
+    "Answers": ["South Africa", "Germany", "South Korea & Japan", "Russia"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which African country was once known as the Gold Coast and is located adjacent to the Ivory Coast?",
+    "Answers": ["Egypt", "Ghana", "Kenya", "Gabon"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What ancient civilization occupied the city of Cusco?",
+    "Answers": ["The Zapotecs", "The Mayans", "The Inca", "The Aztecs"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which river made The Grand Canyon?",
+    "Answers": ["Hudson", "Colorado", "Mississippi", "Rio Grande"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which Type Of Prepared Bread Is Named After An Opera Singer?",
+    "Answers": ["Melba Toast�", "Rye Bread", "Sourdough", "Tiger Bread"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "The Misubishi A6M fighter aircraft used by Japan in World War 2 was commonly known as what?",
+    "Answers": ["Dash", "Typhoon", "Zero", "Spitfire"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which German industrial metal band released the single 'Du hast'?",
+    "Answers": ["Scorpions", "Rammstein", "Cascada", "Blue System"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which director directed Pulp Fiction?",
+    "Answers": [
+      "Martin Scorsese",
+      "Woody Allen",
+      "Quentin Tarantino",
+      "Steven Spielberg"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which British musician released the song 'The Man Who Sold the World'?",
+    "Answers": ["Eric Clapton", "Elton John", "Mika", "David Bowie"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What type of pasta is bavette?",
+    "Answers": [
+      "Tubular pasta",
+      "Shaped pasta",
+      "Ribbon pasta",
+      "Strand pasta"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which country is separated from Spain by the Strait of Gibraltar?",
+    "Answers": ["Tunisia", "Libya", "Egypt", "Morocco"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Who sung the song 'Smooth Criminal'?",
+    "Answers": ["Eric Clapton", "Neil Young", "Michael Jackson", "Nicki Minaj"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which author wrote 'The Brothers Karamazov'?",
+    "Answers": [
+      "Leo Tolstoy",
+      "Fyodor Dostoyevsky",
+      "Vladimir Nabokov",
+      "Mikhail Bulgakov"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which musical group consists of Tre Cool and Mike Dirnt, among others?",
+    "Answers": ["Red Hot Chili Peppers", "Metallica", "Green Day", "Nirvana"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What gives leaves their colour ?",
+    "Answers": ["Oxygen", "Chlorophyll", "Nutrients", "Grass"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who taught Alexander the Great? ",
+    "Answers": ["Aristotle", "Plato", "Diogenes", "Socrates"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "With which sport is Pele associated?",
+    "Answers": ["Football", "Athletics", "Basketball", "Motor racing"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What song did Gary Numan have a hit with in 1980?",
+    "Answers": [
+      "I Know What Boys Like",
+      "Somebody's Watching Me",
+      "Heart And Soul",
+      "Cars"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which band was David Byrne the lead singer of?",
+    "Answers": [
+      "The Rolling Stones",
+      "The Velvet Underground",
+      "U2",
+      "Talking Heads"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which of these countries is between Bolivia and the Pacific Ocean?",
+    "Answers": ["Chile", "Argentina", "Mexico", "Brazil"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Who wrote 'To Kill A Mockingbird'?",
+    "Answers": [
+      "Chester Washington",
+      "Ursula K Le Guin",
+      "Harper Lee",
+      "Kurt Vonnegut"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which author wrote 'Breaking Dawn'?",
+    "Answers": [
+      "Jack Vance",
+      "Robert A. Heinlein",
+      "Brandon Sanderson",
+      "Stephenie Meyer"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which actor has featued in films including Milk and Mystic River?",
+    "Answers": ["Colin Firth", "Sean Penn", "Javier Bardem", "Pierce Brosnan"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "In Which Country Will You Find The Bay Of Pigs?",
+    "Answers": ["Cuba", "Jamaica", "Dominican Republic", "Haiti"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Geological eras are divided into units called ________.",
+    "Answers": ["Periods", "Stratas", "Cycles", "Eons"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What was the name of someone who fought professionally in Roman arenas?",
+    "Answers": ["A Caesar", "A Gladiator", "A Dominus", "A Centurion"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What is Nephrology the study of?",
+    "Answers": [
+      "heat",
+      "sacred texts",
+      "the kidneys and their diseases, a branch of medicine",
+      "bees"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Plov is a dish that is most associated with which part of the world?",
+    "Answers": ["Poland", "Azerbaijan", "Bhutan", "Brazil"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What is the nickname of the English football team Millwall?",
+    "Answers": ["The Lions", "The Tigers", "The Magpies", "The Boro"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What was the name of the defensive fortifications built by France along its border before World War 2?",
+    "Answers": [
+      "The de Galle Bunkers",
+      "The Maginot Line",
+      "The Hadrian Wall",
+      "The Vichy System"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "In which book series would you find 'Peter Pevensie'?",
+    "Answers": [
+      "His Dark Materials",
+      "Ender's Game",
+      "Twilight",
+      "The Chronicles of Narnia"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Who performed the theme song to the James Bond film On Her Majesty's Secret Service?",
+    "Answers": [
+      "Jack White and Alicia Keys",
+      "A-ha",
+      "Louis Armstrong",
+      "Garbage"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which actor has featured in films including Spider-Man and Milk?",
+    "Answers": [
+      "Donald Sutherland",
+      "James Franco",
+      "Sean Connery",
+      "Gary Oldman"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which Town Is Situated Close To The Geographic Centre Of Australia",
+    "Answers": ["Perth", "Canberra", "Wolongonga", "Alice Springs�"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which author wrote 'The Oval Portrait'?",
+    "Answers": [
+      "Mario Puzo",
+      "Nathaniel Hawthorne",
+      "Stephen King",
+      "Edgar Allan Poe"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What constellation is represented by scales?",
+    "Answers": ["Libra", "Scorpio", "Gemini", "Aries"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "When was Israel created?",
+    "Answers": ["1956", "1961", "1948", "1940"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which author wrote 'The 39 Clues'?",
+    "Answers": [
+      "Jude Watson",
+      "Philip K. Dick",
+      "Brandon Sanderson",
+      "Stephenie Meyer"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which British rock band (1970-) released the studio album 'News of the World'?",
+    "Answers": ["Queen", "Feeder", "Deep Purple", "Level 42"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is the German term for the 'Lightning War' that was employed by the Nazis in World War II?",
+    "Answers": ["Blitzkrieg", "Luftwaffe", "Sturm", "Panzer"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What word is used in the NATO Phonetic Alphabet for the letter Q?",
+    "Answers": ["Qualify", "Queen", "Qwerty", "Quebec"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Why was Mike Tyson fined $3 million by the boxing association in 1997?",
+    "Answers": [
+      "He was found to be doping",
+      "Match fixing",
+      "He had cocaine detected during a drugs test",
+      "He bit off an opponent's ear"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "The painting 'The Dance' by Henri Matisse is a part of which art movement?",
+    "Answers": ["Primitivism", "Impressionism", "Fauvism", "Pointillism"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which of these quotes is from the film 'Jaws'?",
+    "Answers": [
+      "'You're gonna need a bigger boat.'",
+      "'Wait a minute, wait a minute. You ain't heard nothin' yet!'",
+      "'Mother of mercy, is this the end of Rico?;",
+      "'A census taker once tried to test me. I ate his liver with some fava beans and a nice Chianti.'"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is Dermatology the study of?",
+    "Answers": ["Parasites", "The skin", "Birds", "The Ancient Egyptians"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What is a male wallaby known as?",
+    "Answers": ["A Rooster", "A Jack", "A Billy", "A Macho"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What is the capital of France?",
+    "Answers": ["Lyon", "Strasbourg", "Paris", "Nantes"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "How Many Pairs of Chromosomes Does The Average Human Have?",
+    "Answers": ["23", "12", "10", "2"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is the word for a young wallaby?",
+    "Answers": ["A Gosling", "A Cygnet", "A Joey", "A Kid"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What was the first ship to reach the Titanic after it sank?",
+    "Answers": ["Olympia", "Iberia", "Carpathia", "Lusitania"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which region of the world uses '.sd' at the end of its web addresses?",
+    "Answers": ["South Korea", "Sudan", "Sweden", "Switzerland"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What is a male panda known as?",
+    "Answers": ["A Macho", "A Drone", "A Tom", "A Boar"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What is Economic geology the study of?",
+    "Answers": [
+      "is concerned with earth materials that can be utilized for economic and/or industrial purposes",
+      "bryophytes",
+      "the structure of cells",
+      "fossils of ancient life"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which U.S. territory was attacked 18 years before it became a state in 1959?",
+    "Answers": ["Hawaii", "Puerto Rico", "Alaska", "Guam"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Who Had A Hit With 'Kokomo'",
+    "Answers": [
+      "The Velvet Underground",
+      "The Beach Boys",
+      "Three 6 Mafia",
+      "Swans"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who wrote the novel 'Lady Chatterly's Lover'?",
+    "Answers": ["Jane Austen", "DH Lawrence", "Walter Davis", "Samuel Scott"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who Established A Communist Government In Cuba in 1959?",
+    "Answers": ["Fidel Castro", "Miguel Castro", "Pedro Castro", "Raul Castro"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is the process used to convert grape juice into wine called?",
+    "Answers": ["Oxidation", "Clarification", "Fermentation", "Distillation"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What is Hydrology the study of?",
+    "Answers": [
+      "water",
+      "human beings killing other human beings",
+      "wonders, or monsters",
+      "the age of the Earth"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "In which year was Monsters, Inc. first released in the cinema?",
+    "Answers": ["1992", "1995", "1998", "2001"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "In which book does 'Huckleberry Finn' appear?",
+    "Answers": [
+      "The Neverending Story",
+      "Kidnapped",
+      "The Adventures of Tom Sawyer",
+      "Adventures of Huckleberry Finn"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What is a baby alpaca known as?",
+    "Answers": ["A Duckling", "A Cria", "A Fry", "A Chick"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who was the U.S. general in charge in Afghanistan?",
+    "Answers": [
+      "John Allen",
+      "David Petraeus",
+      "James Mattis",
+      "Stanley McChrystal"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What Was The Name Given To The Coding Machine Used By The Germans In World War II?",
+    "Answers": ["Paradox", "Mystery", "Enigma", "Riddle"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which author wrote 'Angels & Demons'?",
+    "Answers": ["Stephen King", "Donna Leon", "Dan Brown", "Frederik Pohl"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which 2 Countries Occupy The Iberian Peninsular?",
+    "Answers": [
+      "Sweden & Norway",
+      "Spain & Portugal�",
+      "North Korea & South Korea",
+      "Malaysia & Singapore"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which author wrote 'In the Penal Colony'?",
+    "Answers": [
+      "Franz Kafka",
+      "�mile Zola",
+      "Nathaniel Hawthorne",
+      "Leo Tolstoy"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "If you flew due south from Belize, which countries would you pass over on your way to El Salvador?",
+    "Answers": [
+      "Honduras and Guatemala",
+      "Nicaragua and Panama",
+      "Mexico and Costa Rica",
+      "Colombia and Ecuador"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "The song 'Smells Like Teen Spirit' had a well-known cover by Tori Amos, but who recorded the original?",
+    "Answers": ["Devo", "The Isley Brothers", "Van Halen", "Nirvana"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which country's capital city is Yaounde?",
+    "Answers": ["Cameroon", "Egypt", "Brazil", "China"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What type of pasta is tortellini?",
+    "Answers": ["Stuffed pasta", "Tubular pasta", "Soup pasta", "Strand pasta"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What color is carmine?",
+    "Answers": ["Yellow", "Green", "Blue", "Red"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Where would you find the city of San Juan?",
+    "Answers": ["Uruguay", "Chile", "Bahamas", "Argentina"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which dinosaur, made famous by 'Jurassic Park', had a 'killing claw' on each foot and was around six feet long?",
+    "Answers": ["Velociraptor", "Stegosaurus", "Triceratops", "T-Rex"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "As of 2021, Who is the last British player to win the women's singles title at Wimbledon?",
+    "Answers": [
+      "Annabel Croft",
+      "Sue Barker",
+      "Heather Watson",
+      "Virginia Wade"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What is criminology the study of?",
+    "Answers": ["Crime", "Spiders", "Human growth", "The color red"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "K-Ci & JoJo had a one hit wonder in 1997 with which song?",
+    "Answers": [
+      "We Don't Have to Take Our Clothes Off",
+      "Rock Me Amedeus",
+      "All My Life",
+      "Relax"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which 1963 drama features Marlon Brando as the U.S. Ambassador to an Asian country?",
+    "Answers": [
+      "The Ugly American",
+      "An American in Vietnam",
+      "The Quiet American",
+      "The Americanization of Emily"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What grammatical unit can be simple, compound or complex?",
+    "Answers": ["Clause", "Sentence", "Word", "Conjunction"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "In which city is Edo Castle located?",
+    "Answers": ["Nagoya", "Kyoto", "Tokyo", "Osaka"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What is Sociobiology the study of?",
+    "Answers": [
+      "the medical study of the causation of disease",
+      "wonders, or monsters",
+      "snakes",
+      "the effect of evolution on ethology"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which author wrote 'Amerika'?",
+    "Answers": [
+      "Leo Tolstoy",
+      "Nathaniel Hawthorne",
+      "Franz Kafka",
+      "�mile Zola"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which of these cities is in Uruguay?",
+    "Answers": ["Buenos Aires", "Cali", "Santiago", "Montevideo"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which actress has appeared in both The Bourne Legacy and The Mummy?",
+    "Answers": [
+      "Salma Hayek",
+      "Rachel Weisz",
+      "Catherine Deneuve",
+      "Audrey Hepburn"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which of these is a baseball team based in Chicago?",
+    "Answers": [
+      "Chicago Capitals",
+      "Chicago Spurs",
+      "Chicago Giants",
+      "Chicago Cubs"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which of these is a model of car made by Chevrolet?",
+    "Answers": ["Giulietta", "Civic", "Silverado", "Cobra"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What type of shape might be obtuse or isosceles?",
+    "Answers": ["A Square", "A Rectangle", "A Circle", "A Triangle"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "In which country is the city of Budapest?",
+    "Answers": ["Luxembourg", "Moldova", "Hungary", "Greece"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which of these is a soccer team based in Portland?",
+    "Answers": [
+      "Portland Dolphins",
+      "Portland Sporting",
+      "Portland Indians",
+      "Portland Timbers"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which of these drinks would you associate with Norway?",
+    "Answers": ["Gin", "Slivovitz", "Akevitt", "Mama Juana"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which physicist caused a stir in 2014 when he retracted his 1974 theory about black holes, stating that light may be able to escape them after all?",
+    "Answers": [
+      "Issac Newton",
+      "Albert Einstein",
+      "Stephen Hawking",
+      "Richard Feynman"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "The language 'Amharic' belongs to which language family?",
+    "Answers": ["Afroasiatic", "Sino-Tibetan", "Dravidian", "Japonic"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which of the following describes Charlemagne?",
+    "Answers": [
+      "United most of Western Europe to form the Carolingian Empire.",
+      "King of Macedonia and military leader.",
+      "Italian explorer who landed in America.",
+      "Social philosopher and pioneer of classical economics."
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which of these is a hockey team based in St. Louis?",
+    "Answers": [
+      "St. Louis Fire",
+      "St. Louis Blues",
+      "St. Louis Raiders",
+      "St. Louis Dynamo"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What is the largest seaweed?",
+    "Answers": [
+      "Giant Kombu",
+      "Giant Sea Lettuce",
+      "Giant Algae",
+      "Giant Kelp"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Who Opened The First Cinema In Paris In 1895?",
+    "Answers": [
+      "The Cannes Brothers",
+      "The Canal Brothers",
+      "The Warner Brothers",
+      "The Lumiere Brothers"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What is the word for a group of swifts?",
+    "Answers": ["A skulk", "A down", "A brood", "A flock"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Who was the monarch of The United Kingdom during the time period 1837-1901?",
+    "Answers": ["Victoria", "William IV", "Mary II", "Richard I"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "In which country is the city of Rome?",
+    "Answers": ["Slovakia", "Finland", "Iceland", "Italy"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Name the movie that matches the following plot summary: 'A hacker discovers the life he knows is the elaborate deception of an evil cyber-intelligence.'",
+    "Answers": [
+      "The Matrix",
+      "Seven",
+      "The Big Lebowski",
+      "The Lord of the Rings: The Fellowship of the Ring"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What term is used to describe the cards in a deck that have either a Jack, Queen, or King on the card?",
+    "Answers": ["Lord cards", "Icon cards", "Face cards", "Number cards"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "The painting 'Primavera' by Sandro Botticelli is a part of which art movement?",
+    "Answers": [
+      "Romanticism",
+      "Italian Renaissance",
+      "Surrealism",
+      "Art Nouveau"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who was the 28th president of the USA, in term during the period 1913�1921?",
+    "Answers": [
+      "George H. W. Bush",
+      "John Adams",
+      "Woodrow Wilson",
+      "Andrew Jackson "
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Who discovered the structure of DNA?",
+    "Answers": [
+      "Gregor Mendel and Ernest Rutherford",
+      "Albert Einstein and Richard Feynman",
+      "James Watson and Francis Crick",
+      "Linus Pauling and Merl Harding"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What is the Japanese Drink 'Sake' Made From?",
+    "Answers": ["Plum", "Wheat", "Grape", "Rice�"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which author wrote 'Mrs Dalloway'?",
+    "Answers": [
+      "Virginia Woolf",
+      "George Orwell",
+      "Joseph Conrad",
+      "Oscar Wilde"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which region of the world uses '.sc' at the end of its web addresses?",
+    "Answers": ["Seychelles", "Madagascar", "Comoros", "Costa Rica"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which British recording artist released the album 'Hounds of Love'?",
+    "Answers": ["John Lennon", "George Michael", "David Bowie", "Kate Bush"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "For what is Ethylene glycol frequently used in automobiles?",
+    "Answers": [
+      "Windscreen washing fluid",
+      "Anti-freeze",
+      "Engine oil",
+      "Brake fluid"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "On which island was Napoleon Bonaparte born?",
+    "Answers": ["Corsica", "St Helena", "Sicily", "Jersey"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "In Dutch, what is the word for for 'three'?",
+    "Answers": ["Trois", "Tres", "Zeven", "Drie"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which author wrote 'The Thirteen Problems'?",
+    "Answers": [
+      "Lewis Carroll",
+      "Agatha Christie",
+      "Robert Louis Stevenson",
+      "Charles Dickens"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which band includes 'George Harrison'?",
+    "Answers": ["Uriah Heep", "Feeder", "The Beatles", "Deep Purple"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What is Victimology the study of?",
+    "Answers": [
+      "or biogeomorphology, interactions between organisms and geomorphological processes",
+      "the cosmos or our place in it",
+      "embryos",
+      "victims of crime, often applied to characterizing the criminal"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What type of animal is pulex irritants?",
+    "Answers": ["Dust Mite", "Flea", "Rat", "Tick"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which actress has acted in both That '70s Show and Black Swan?",
+    "Answers": ["Sophia Loren", "Madonna", "Mila Kunis", "Jacqueline Bisset"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which region of the world uses '.sd' at the end of its web addresses?",
+    "Answers": ["Switzerland", "Sweden", "South Korea", "Sudan"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which author wrote 'Les Mis�rables'?",
+    "Answers": [
+      "Alphonse Daudet",
+      "Miguel de Cervantes",
+      "Jules Verne",
+      "Victor Hugo"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which actor played the role of Dr. Evil in Austin Powers: International Man of Mystery?",
+    "Answers": [
+      "Macauley Culkin",
+      "Peter Sellers",
+      "Mike Myers",
+      "Bruce Willis"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Who won the 2019 Academy Award for Best Supporting Actor for playing the role of Cliff Booth in Once upon a Time...in Hollywood?",
+    "Answers": ["Anthony Hopkins", "Al Pacino", "Tom Hanks", "Brad Pitt"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "In which book series does 'Sirius Black' appear?",
+    "Answers": [
+      "Twilight",
+      "The Dark Tower",
+      "Sherlock Holmes",
+      "Harry Potter"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Xavier Roberts was the name associated with which eighties toy?",
+    "Answers": [
+      "Slinky",
+      "Stretch Armstrong",
+      "Cabbage Patch Kids",
+      "Care Bear"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which of these is a popular drink in Portugal?",
+    "Answers": ["Port", "Vana Tallinn", "Soju", "Arak"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Who was the leader of the British forces during the Battle of Waterloo?",
+    "Answers": [
+      "The Duke of Wellington",
+      "The Duke of Marlborough",
+      "The Earl of Marlborough",
+      "The Earl of Wellington"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is an autoclave designed to do to surgical instruments in a medical lab?",
+    "Answers": [
+      "Sterilize them",
+      "Sharpen them",
+      "Repair them",
+      "Dispose of them"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Whose 'Variations On a Theme by Paganini' is a standard part of the piano repertoire?",
+    "Answers": ["Beethoven", "Stravinsky", "Rachmaninoff", "Mozart"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "In the poem by Alfred Tennyson, who does the Lady of Shallot see out of her window, causing her to be cursed?",
+    "Answers": ["Sir Gawain", "Sir Lancelot", "King Arthur", "Merlin"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Animals and plants which produce light are said to be what?",
+    "Answers": ["Glogasmic", "Bioluminescent", "Natulight", "Technicolor"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "In which story does the schoolboy 'Piggy' star?",
+    "Answers": [
+      "St. Trinian's",
+      "Treasure Island",
+      "Harry Potter",
+      "Lord of the Flies"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "The iconic album 'Space Oddity' was released by which musician?",
+    "Answers": ["Eric Clapton", "Madonna", "David Bowie", "Mika"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "In which novel does a character called John Galt persuade the world's business leaders to abandon their companies and form a new capitalist society?",
+    "Answers": ["Brave New World", "Fahrenheit 451", "Atlas Shrugged", "1984"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which of these countries borders Argentina?",
+    "Answers": ["Peru", "Suriname", "Ecuador", "Brazil"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which English heavy metal band released the song 'Sanctuary'?",
+    "Answers": ["Feeder", "Squeeze", "Deep Purple", "Iron Maiden"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which region of the world uses '.sc' at the end of its web addresses?",
+    "Answers": ["Comoros", "Madagascar", "Costa Rica", "Seychelles"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which actor played the role of Jeff Spicoli in Fast Times at Ridgemont High?",
+    "Answers": [
+      "Johnny Depp",
+      "James Stewart",
+      "Arnold Schwarzenegger",
+      "Sean Penn"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What is the chemical nitrous oxide often used for?",
+    "Answers": [
+      "It is used as an ingredient in baking.",
+      "It is used in laundry detergent.",
+      "It is used to relieve pain.",
+      "It is used in disinfectants and antiseptics."
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What group of ships, commanded by the Duke of Medina, was considered invincible but was defeated by The Royal Navy in 1588?",
+    "Answers": [
+      "The Napoleonic Fleet",
+      "The Scottish Armada",
+      "Spanish Armada",
+      "The Viking Fleet"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "The language 'Nigerian Fulfulde' belongs to which language family?",
+    "Answers": ["Niger�Congo", "Afroasiatic", "Austroasiatic", "Kra�Dai"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which English rock band released the song 'Sympathy for the Devil'?",
+    "Answers": ["Delirious?", "McFly", "The Rolling Stones", "Depeche Mode"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which of these cities is in Belgium?",
+    "Answers": ["Stockholm", "Prague", "Gent", "Vienna"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which book contains the character 'Judge Holden'?",
+    "Answers": [
+      "Howards End",
+      "Blood Meridian",
+      "Pale Fire",
+      "The Quiet American"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who said 'But, soft! what light through yonder window breaks'?",
+    "Answers": ["Juliet", "Romeo", "Paris", "Hamlet"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which of these is a competition in Horse Racing?",
+    "Answers": [
+      "The Copa Am�rica",
+      "The World Cup Sevens",
+      "The Africa Cup of Nations",
+      "The Grand National"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What is the official language of Egypt?",
+    "Answers": ["Italian", "Arabic", "Hebrew", "Egyptian"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which American singer released the studio album '�Baby One More Time'?",
+    "Answers": [
+      "Britney Spears",
+      "Madonna",
+      "Nicki Minaj",
+      "Alanis Morissette"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Who did Stalin allegedly force Norway to expel in 1936 by buying its entire herring catch?",
+    "Answers": [
+      "Che Guevara",
+      "Nikita Khrushchev",
+      "Fidel Castro",
+      "Leon Trotsky"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "On internet chats, what do the letters 'AFAIR' mean?",
+    "Answers": [
+      "As Far As I Remember",
+      "As For All Intelligent Readers",
+      "A Free And Indisputable Right",
+      "All For An Interesting Read"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which of these Latin phrases means 'One swallow does not make summer'?",
+    "Answers": [
+      "Una hirundo non facit ver",
+      "Dies irae",
+      "Faber est suae quisque fortunae",
+      "Carpe diem"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is the name of the German car brand whose logo is a three-pointed star?",
+    "Answers": ["BMW", "Volkswagen", "Audi", "Mercedes-Benz"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which author wrote 'Mumu'?",
+    "Answers": [
+      "Leo Tolstoy",
+      "Ivan Turgenev",
+      "Alphonse Daudet",
+      "Henryk Sienkiewicz"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who shot Abraham Lincoln?",
+    "Answers": [
+      "Leon Czolgosz",
+      "Lee Harvey Oswald",
+      "Mark David Chapman",
+      "John Wilkes Booth"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which film contains the character 'Ethan Edwards'?",
+    "Answers": [
+      "The Searchers",
+      "Scarface",
+      "Raiders of the Lost Ark",
+      "Gangs of New York"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which American musician released the album 'Blonde on Blonde'?",
+    "Answers": ["Eric Clapton", "Alanis Morissette", "Neil Young", "Bob Dylan"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "How many fighters are playable in 'Street Fighter II'?",
+    "Answers": ["20", "8", "5", "14"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which English-American psychedelic rock band released the song 'Purple Haze'?",
+    "Answers": [
+      "The Jimi Hendrix Experience",
+      "Poison",
+      "Three 6 Mafia",
+      "The Pussycat Dolls"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What 3 Letter Word It The Name Given To A Replayed Point In Tennis?",
+    "Answers": ["Dus", "Let", "Par", "See"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Amman is the capital city of which country?",
+    "Answers": ["Lesotho", "Jordan", "Bosnia and Herzegovina", "Uganda"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What is Geobiology the study of?",
+    "Answers": [
+      "sleep, also: hypnology",
+      "pollen",
+      "the biosphere and its relations to the lithosphere and atmosphere",
+      "the mental processes within mental illness or disorders"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which word is defined as 'hand of cards containing no card above a nine'?",
+    "Answers": ["Pauciloquent", "Yarborough", "Octothorpe", "Grommet"],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which Ancient Greek writer was famous for his Fables?",
+    "Answers": ["Plato", "Homer", "Odysseus", "Aesop"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "In 1995 Which Formula One Driver Signed For McLaren But Couldn't Fit In The Car?",
+    "Answers": [
+      "Jacques Villeneuve",
+      "Damon Hill",
+      "Michael Schumacher",
+      "Nigel Mansell"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which author wrote 'The Robbers'?",
+    "Answers": [
+      "Friedrich Schiller",
+      "Agatha Christie",
+      "Sebastian Brant",
+      "Rainer Maria Rilke"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What ancient metropolis was built on seven hills, including Viminal and Aventine?",
+    "Answers": ["Rome", "Istanbul", "Jerusalem", "Athens"],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is the marketing slogan of Apple?",
+    "Answers": [
+      "Challenge everything",
+      "Think different",
+      "Make Believe",
+      "Don't Be Evil"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What are commonly believed to be the last words of Julius Caesar?",
+    "Answers": [
+      "Memento Mori?",
+      "Carpe Diem!",
+      "Veni, Vidi, Vici.",
+      "Et tu, Brute?"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Along with wine vinegar and egg yolk, what other ingredient would you find in hollandaise sauce?",
+    "Answers": ["Milk", "Cheese", "Butter�", "Cream"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Dhaka is the capital city of which country?",
+    "Answers": ["Zambia", "Antigua and Barbuda", "Bangladesh", "Costa Rica"],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which film contains the character 'Lt. Col. Bill Kilgore'?",
+    "Answers": [
+      "Pirates of the Caribbean",
+      "Citizen Kane",
+      "Austin Powers: International Man of Mystery",
+      "Apocalypse Now"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which philosopher famously said 'We are too weak to discover the truth by reason alone'?",
+    "Answers": ["Kant", "Spinoza", "Socrates", "St. Augustine"],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which song from 'The Lego Movie' received an Oscar nomination?",
+    "Answers": [
+      "The Power of Imagination",
+      "Little Red Bricks",
+      "Build Something Great",
+      "Everything Is Awesome"
+    ],
+    "Correct_Answer_Index": 3
   }
 ]
