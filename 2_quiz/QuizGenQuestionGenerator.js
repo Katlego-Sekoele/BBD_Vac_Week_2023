@@ -91,10 +91,11 @@ function shuffle(array) {
 
 function populateAllQuizzes(){
     allQuizzes = require('./questions.json');
+    console.log('Amount Quzzes:', allQuizzes.length);
 }
 
 // TEST CODE START
-for (let index = 0; index < 50; index++) {
+for (let index = 0; index < 1; index++) {
     var testQuiz = getQuiz();
     console.log(testQuiz.Question);
     console.log(testQuiz.Answers);
