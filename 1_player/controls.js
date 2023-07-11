@@ -16,24 +16,24 @@ function saveDir(e, dir) {
 }
 
 function sendDirs(){
-    socket.emit("ball_moves", moves)
+    socket.emit("move_ball", moves)
     numberOfMoves = 5
     moves = []
     window.location.assign("quiz.html");
 }
 
 document.getElementById("up").addEventListener('click', (e) => {
-    saveDir(e, 0);
+    saveDir(e, 1);
 });
 
 document.getElementById("left").addEventListener('click', (e) => {
-    saveDir(e, 270);
+    saveDir(e, 271);
 });
 
 document.getElementById("down").addEventListener('click', (e) => {
-    saveDir(e, 180);
+    saveDir(e, 181);
 });
 
 document.getElementById("right").addEventListener('click', (e) => {
-    saveDir(e, 90);
+    saveDir(e, 91);
 });

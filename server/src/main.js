@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
     socket.emit('startGame');
   });
 
-  socket.on("ball_moves", (msg) => {
+  socket.on("move_ball", (msg) => {
     console.log(msg);
     socket.emit("response", "ball moved!");
     for(const socket of allSockets) {
