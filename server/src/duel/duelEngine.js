@@ -115,6 +115,19 @@ function calcStraightLine(x1, y1, x2, y2)
     return coordinatesArray;
 }
 
+//function that finds which player can currently play and returns their index, else return -1
+function getPlayerDuel(arrPlayerScores){
+    var playerDistances = initiateDuel(arrPlayerScores)
+    
+    for (i = 0; i < player.length; i++){
+        if (playerDistances[i] != 0){
+            return i
+        }
+    }
+    return -1
+}
+
+
 //Determine if a player is allowed to duel
 function initiateDuel(playerScores){
     const streakVal = 3;
@@ -349,10 +362,84 @@ function convertImageCoOrdToGrid(coOrdinatesArray){
     map = mapGrid
 }
 
+//function to convert the json to and array
+function populateObjectArray(){
+    //objects = require('./../controller/') //path to the .json file [NEEDS TO BE FINISHED]
+    //jason layout can be found in branch 4_experimental, in the readME under "src/camera"
+    //initialise object array as empty
+    objectsArray = []
+
+    //temporary object
+    const objects = {
+        ball: {x: 10, y: 20},
+        cones: {
+            Player1: {x: 30, y: 40},
+            Player2: {x: 50, y: 60},
+            Player3: {x: 70, y: 80},
+            Player4: {x: 90, y: 100}
+        },
+        dimension: {width: 500, height: 300}
+    };
+    
+    array = Object.entries(objects)
+    // store the width and the height of what the camera can see
+    dimensions = array[2]
+    xDimension = dimensions[1].width
+    yDimension = dimensions[1].height
+    
+    //get all the information about the ball
+    let sphero = array[0]
+    xSphero = sphero[1].x
+    ySphero = sphero[1].y
+
+    // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
+    xFinal = Math.round((xSphero / xDimension) * 100)
+    yFinal = Math.round((ySphero / yDimension) * 100)
+
+    //push the ball information into the object array
+    objectsArray.push(["B", xFinal, yFinal])
+
+    playersInformationObject = (array[1])[1]
+
+    playersInformation = Object.entries(playersInformationObject)
+
+    for (let playerIndex = 0; playerIndex < playersInformation.length; playerIndex++){
+        //get the current players co-ordinates
+        playerNumber = (playerIndex + 1).toString()
+
+        currentPlayerCoOrds = playersInformation[playerIndex]
+
+        playerX = currentPlayerCoOrds[1].x
+        playerY = currentPlayerCoOrds[1].y
+
+        //check if the player is actually on the map, if they are process the information and store it
+        if ((playerX != -1) && (playerY != -1)){         
+
+            // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
+            xFinal = Math.round((playerX / xDimension) * 100)
+            yFinal = Math.round((playerY / yDimension) * 100)
+
+            //push the players information to the array that stores the information
+            objectsArray.push([playerNumber, xFinal, yFinal])
+            }
+    }
+    //return the array of objects
+    return objectsArray
+}
+
+function softResetScores(playerScores, moverIndex){
+    for(let i = 0; i < playerScores.length; i++){
+        if(playerScores[i] != 0){
+            playerScores[i] -= 1
+        }
+    }
+    playerScores[moverIndex] = 0
+    return playerScores;
+}
 
 //console.log(initializeMap(4));
 //console.log(initiateDuel(test));
 //console.log(getPlayerWin())
+populateObjectArray()
 
-
-module.exports = {initializeMap}
+module.exports = { initializeMap, initiateDuel, getPlayerDuel, softResetScores }
