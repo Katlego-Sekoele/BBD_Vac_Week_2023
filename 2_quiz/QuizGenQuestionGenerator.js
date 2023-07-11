@@ -120,8 +120,9 @@ function populateAllQuizzes() {
 
 // TEST CODE START
 if (DEBUG) {
-    for (let index = 0; index < 50; index++) {
+    for (let index = 0; index < 1; index++) {
         var testQuiz = getQuiz();
+        console.log(allQuizzes.length);
         console.log(testQuiz.Question);
         console.log(testQuiz.Answers);
         console.log(testQuiz.Correct_Answer_Index);
