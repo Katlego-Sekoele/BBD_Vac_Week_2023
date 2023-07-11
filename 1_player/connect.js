@@ -1,45 +1,38 @@
-import "./socket.io/client-dist/socket.io.js";
+const SERVER_URL = "http://localhost:3000";
+let socket = io.connect(SERVER_URL);
+// manager connects to socket server
 
-const SERVER_URL = "http://localhost:3001";
-let socket; // manager connects to socket server
-
-function connectToLobby() {
-	console.log("Hier");
-
+document.getElementById("connectBtn").onclick = () => {
 	// establish connection to socket server
-	socket = io.connect(SERVER_URL);
 
-	var username = document.getElementById("usernameInput").value;
-	var gameCode = document.getElementById("gameCodeInput").value;
+	let username = document.getElementById("usernameInput").value;
+	let gameCode = document.getElementById("gameCodeInput").value;
 
 	if (
-		username == "" ||
-		gameCode == "" ||
-		username == null ||
-		gameCode == null
+		username === "" ||
+		gameCode === "" ||
+		username === null ||
+		gameCode === null
 	) {
 		alert("Input fields cannot be empty");
 		return;
 	}
 
 	//create json object to send username and gamecode
-	var connectJSON =
-		'{"username": ' + username + ', "gamecode" : ' + gameCode + "}";
+	let connectObject = {"username": username  , "gamecode" : gameCode};
 
-	console.log(username + " " + gameCode);
+	socket.emit("join_lobby", connectObject)
 
-	var result = "Success";
-
-	//check whether request was successful
-	if (result == "Success") {
-		//redirect to lobby
-		window.location.assign("lobby.html");
-	} else {
-		alert("Error connecting. Please try again.");
-	}
+	socket.on("joined_lobby", (data) => {
+		//check whether a userId was received
+		if (data) {
+			//redirect to lobby
+			window.location.assign("lobby.html");
+		} else {
+			alert("Error connecting. Please try again.");
+		}
+	})
 }
-
-document.getElementById("connectBtn").onclick = connectToLobby;
 
 socket.on("connect", () => {
 	// connect event
