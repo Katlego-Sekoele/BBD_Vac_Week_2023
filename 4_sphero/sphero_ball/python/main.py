@@ -1,10 +1,10 @@
 import socketio
 from spherov2 import scanner
 from spherov2.sphero_edu import SpheroEduAPI
+import time
 
 sio = socketio.Client()
 toy = None
-
 
 @sio.event
 def connect():
@@ -20,19 +20,28 @@ def on_ball_control(data):
     data = int(data) + 1
     print(data)
     print(type(data))
-    # input()
+
+
     if toy==None:
         print("No ball")
     try:
         with SpheroEduAPI(toy) as api:
-            speed = 255
+            terminalSpeed = 100
             api.set_speed(0)
             print('rolling')
-            api.roll(data, 255, 1)
+            api.set_heading(data)
+            api.set_speed(terminalSpeed)
+            time.sleep(0.2)
+            for k in range(terminalSpeed, 0, -5):
+                api.set_speed(k)
+                time.sleep(0.005)
+            api.set_speed(0)
+            print("Done")
+            return
     except:
         print("Error")
         pass
-    print("Done")
+    print("Done wrong somehow")
 
 @sio.event
 def sendMessage():
@@ -47,6 +56,6 @@ if __name__ == '__main__':
         print("No toy found")
     else:
         print(f"Toy: {toy.name} found")
-
-    sio.connect('https://server-bbd-vac-week.onrender.com')
-    sio.wait()
+        busyRunning = False
+        sio.connect('https://server-bbd-vac-week.onrender.com')
+        sio.wait()
