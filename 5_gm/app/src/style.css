@@ -1,0 +1,6 @@
+.set-up-game-container,
+.QR-screen-main-box,
+.question-page-main-box,
+.map-container {
+    display: none;
+}
