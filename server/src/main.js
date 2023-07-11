@@ -44,7 +44,7 @@ io.on('connection', (socket) => {
 
     for (let i = 0; i < lobbies.length; i++){
       if (lobbies[i].gamecode === data.gamecode){
-        lobbies[i].players.push(data.username)
+        lobbies[i].players.push({username: data.username})
       }
     }
 
