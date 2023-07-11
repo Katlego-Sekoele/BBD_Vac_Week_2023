@@ -1,6 +1,6 @@
 const SERVER_URL = "http://localhost:3000";
 let socket = io.connect(SERVER_URL);
-// manager connects to socket server
+
 
 document.getElementById("connectBtn").onclick = () => {
 	// establish connection to socket server
@@ -12,27 +12,18 @@ document.getElementById("connectBtn").onclick = () => {
 		username === "" ||
 		gameCode === "" ||
 		username === null ||
-		gameCode === null
+		gameCode === null || socket === undefined
 	) {
 		alert("Input fields cannot be empty");
 		return;
 	}
 
 	//create json object to send username and gamecode
-	let connectObject = {"gamecode" : gameCode};
+	let connectObject = {"gamecode" : gameCode, username: username};
 
 	// request to join lobby
 	socket.emit("join_lobby", connectObject)
 
-	socket.on("joined_lobby", (data) => {
-		//check whether a userId was received
-		if (data) {
-			//redirect to lobby
-			window.location.assign("lobby.html");
-		} else {
-			alert("Error connecting. Please try again.");
-		}
-	})
 }
 
 socket.on("connect", () => {
@@ -47,6 +38,20 @@ socket.on("connect", () => {
 		// called for each packet sent
 	});
 });
+
+socket.on("joined_lobby", (data) => {
+	//check whether a userId was received
+	if (data) {
+		//redirect to lobby
+		window.location.assign("/lobby");
+	} else {
+		alert("Error connecting. Please try again.");
+	}
+})
+
+socket.on("lobby_full", () => {
+	alert("The lobby is full")
+})
 
 // disconnect event
 socket.on("disconnect", () => {});

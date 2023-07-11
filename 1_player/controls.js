@@ -1,5 +1,4 @@
 const SERVER_URL = "http://localhost:3000";
-
 const socket = io.connect(SERVER_URL);
 
 function sendDir(e, dir) {

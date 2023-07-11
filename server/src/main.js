@@ -55,36 +55,41 @@ io.on("connection", (socket) => {
 			return;
 		}
 
-		if (!(data.gamecode in lobbies)) {
-			// lobby does not exist
-			return;
-		}
-
 		for (let i = 0; i < lobbies.length; i++) {
-			if (lobbies[i].gamecode === data.gamecode) {
+			if (+lobbies[i].gamecode === +data.gamecode) {
+
+				if (lobbies[i].numPlayers >= lobbies[i].lobbySize){
+					socket.emit("lobby_full", {response: "lobby full"})
+					console.log("lobby full")
+					return;
+				}
+
 				lobbies[i].players.push({
 					score: 0,
 					playerNumber: lobbies[i].numPlayers,
 				});
 				lobbies[i].numPlayers++;
+
+
+				console.log("join_lobby: ", data);
+				//assumes that the users lobby code is correct
+
+				// server response to game master to notifying that a player has joined
+				socket.emit("player_joined", lobbies[i]);
+
+				// game master response confirming receipt of player_joined event
+				socket.on("player_in_lobby", () => {
+					// server response to client notifying them that they are in the lobby
+					socket.emit("joined_lobby", { response: "success" });
+				});
+
 			}
 		}
 
-		console.log("join_lobby: ", data);
-		//assumes that the users lobby code is correct
-
-		// server response to game master to notifying that a player has joined
-		socket.emit("player_joined", { ...data });
-
-		// game master response confirming receipt of player_joined event
-		socket.on("player_in_lobby", () => {
-			// server response to client notifying them that they are in the lobby
-			socket.emit("joined_lobby", { response: "success" });
-		});
 	});
 
 	socket.on("create_lobby", (data) => {
-		let gamecode = Math.floor(Math.random() * 10000) + 10000;
+		let gamecode = Math.floor(Math.random() * 1000) + 1000;
 
 		lobbies.push({
 			gamecode,
@@ -93,6 +98,7 @@ io.on("connection", (socket) => {
 			numPlayers: 0,
 		});
 
+		console.log(lobbies)
 		socket.emit("created_lobby");
 	});
 
