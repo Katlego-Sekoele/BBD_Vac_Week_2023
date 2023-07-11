@@ -5,7 +5,7 @@ const http = require("http");
 
 // Controller, Quiz, Duel connections ---------------------------------
 BallCamController = require("./controller/main.controller");
-CamController = require('../../server/src/camera/camera')
+CamController = require('../../5_gm/app/src/camera/camera')
 // BallCamController.mainMoveLeft(1000);
 
 DuelEngine = require("./duel/duelEngine");
@@ -14,29 +14,30 @@ DuelEngine = require("./duel/duelEngine");
 QuizEngine = require("../../2_quiz/QuizGenQuestionGenerator");
 
 
-app.use(function (req, res, next) {
-	const allowedOrigins = [
-		"http://localhost:3000",
-		"address of our hosted frontend",
-	];
-	const origin = req.headers.origin;
-	if (allowedOrigins.includes(origin)) {
-		res.setHeader("Access-Control-Allow-Origin", origin);
-	}
-	res.header(
-		"Access-Control-Allow-Headers",
-		"Origin, X-Requested-With, Content-Type, Accept, Authorization"
-	);
-	res.header("Access-Control-Allow-credentials", true);
-	res.header(
-		"Access-Control-Allow-Methods",
-		"GET, POST, PUT, DELETE, UPDATE"
-	);
-	next();
-});
+// app.use(function (req, res, next) {
+// 	const allowedOrigins = [
+// 		"http://localhost:3000",
+// 		"address of our hosted frontend",
+// 	];
+// 	const origin = req.headers.origin;
+// 	if (allowedOrigins.includes(origin)) {
+// 		res.setHeader("Access-Control-Allow-Origin", origin);
+// 	}
+// 	res.header(
+// 		"Access-Control-Allow-Headers",
+// 		"Origin, X-Requested-With, Content-Type, Accept, Authorization"
+// 	);
+// 	res.header("Access-Control-Allow-credentials", true);
+// 	res.header(
+// 		"Access-Control-Allow-Methods",
+// 		"GET, POST, PUT, DELETE, UPDATE"
+// 	);
+// 	next();
+// });
 
 app.use("/", express.static("../1_player"));
 app.use("/gm", express.static("../5_gm/app"));
+
 
 const server = http.createServer(app);
 const io = require('socket.io')(server, {
@@ -75,7 +76,6 @@ io.on("connection", (socket) => {
 					score: 0,
 					playerNumber: lobbies[i].numPlayers,
 				});
-				lobbies[i].numPlayers++;
 			}
 		}
 
@@ -99,16 +99,15 @@ io.on("connection", (socket) => {
 			gamecode,
 			players: [],
 			lobbySize: data.size,
-			numPlayers: 0,
       gameStarted: false
 		});
 
-		socket.emit("created_lobby");
+		socket.emit("created_lobby", gamecode);
 	});
 
   
 
-  socket.on('update_map', () => {
+  socket.on('update_map', (data) => {
     const map = DuelEngine.initializeMap(4);
     console.log(map);
     socket.emit('updated_map', map);
@@ -178,6 +177,9 @@ socket.on("next_round", () => {
 
 
     // get camera image data, after that all checks
+
+    
+
     // check if someone lost (loop)
     // remove names from leaderboard
 

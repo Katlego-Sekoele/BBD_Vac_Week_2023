@@ -1,6 +1,7 @@
 // Access video, canvas, and coordinate elements
-const video = document.getElementById("video");
-const canvas = document.getElementById("canvas");
+//const video = document.getElementById("video");
+console.log("CamCanvas funky")
+const canvas = document.getElementById("camCanvas");
 const context = canvas.getContext("2d", { willReadFrequently: true });
 
 // Colors
