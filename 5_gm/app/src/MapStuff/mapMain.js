@@ -30,7 +30,7 @@ import Two from '../../node_modules/two.js/src/two.js';
   
 //   // Don’t forget to tell two to draw everything to the screen
 //   two.update();
-const mapData = [
+const mapDataVisual = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
@@ -53,6 +53,17 @@ const mapData = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
+const mapArray = {
+  ball: [12, 10],
+  cone: [[2, 13], [15, 7], [5, 6]],
+  size: [20, 20]
+}
+
+const mapData = Array.from({ length: mapArray.size[0] }, () => Array.from({ length: mapArray.size[1] }).fill(0));
+mapData[mapArray.ball[0]][mapArray.ball[1]] = 2;
+mapArray.cone.forEach((cone) => {
+  mapData[cone[0]][cone[1]] = 1;
+});
   // Function to create the visual map using Two.js
 function createMap(data) {
   const two = new Two({
