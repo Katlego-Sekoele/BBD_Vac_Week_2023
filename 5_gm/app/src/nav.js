@@ -1,12 +1,5 @@
-// Get references to the container elements
-const startGameContainer = document.getElementById('start-game-container');
-const setUpGameContainer = document.getElementById('set-up-game-container');
-const qrScreenMainBox = document.getElementById('QR-screen-main-box');
-const questionPageMainBox = document.getElementById('question-page-main-box');
-const mapContainer = document.getElementById('map-container');
-
 // Function to show the start game container and hide the rest
-function showStartGameContainer() {
+export function showStartGameContainer(startGameContainer, setUpGameContainer, qrScreenMainBox, questionPageMainBox, mapContainer) {
     startGameContainer.style.display = 'block';
     setUpGameContainer.style.display = 'none';
     qrScreenMainBox.style.display = 'none';
@@ -15,7 +8,7 @@ function showStartGameContainer() {
 }
 
 // Function to show the set up game container and hide the rest
-function showSetUpGameContainer() {
+export function showSetUpGameContainer(startGameContainer, setUpGameContainer, qrScreenMainBox, questionPageMainBox, mapContainer) {
     startGameContainer.style.display = 'none';
     setUpGameContainer.style.display = 'block';
     qrScreenMainBox.style.display = 'none';
@@ -24,7 +17,7 @@ function showSetUpGameContainer() {
 }
 
 // Function to show the QR screen main box container and hide the rest
-function showQRScreenMainBox() {
+export function showQRScreenMainBox(startGameContainer, setUpGameContainer, qrScreenMainBox, questionPageMainBox, mapContainer) {
     startGameContainer.style.display = 'none';
     setUpGameContainer.style.display = 'none';
     qrScreenMainBox.style.display = 'block';
@@ -33,7 +26,7 @@ function showQRScreenMainBox() {
 }
 
 // Function to show the question page main box container and hide the rest
-function showQuestionPageMainBox() {
+export function showQuestionPageMainBox(startGameContainer, setUpGameContainer, qrScreenMainBox, questionPageMainBox, mapContainer) {
     startGameContainer.style.display = 'none';
     setUpGameContainer.style.display = 'none';
     qrScreenMainBox.style.display = 'none';
@@ -42,16 +35,10 @@ function showQuestionPageMainBox() {
 }
 
 // Function to show the map container and hide the rest
-function showMapContainer() {
+export function showMapContainer(startGameContainer, setUpGameContainer, qrScreenMainBox, questionPageMainBox, mapContainer) {
     startGameContainer.style.display = 'none';
     setUpGameContainer.style.display = 'none';
     qrScreenMainBox.style.display = 'none';
     questionPageMainBox.style.display = 'none';
     mapContainer.style.display = 'block';
 }
-
-// Event listeners or any other logic to trigger the container changes
-
-document.getElementById("homescreen-start-btn").addEventListener("click", showSetUpGameContainer);
-document.getElementById("nextbutton").addEventListener("click", showQRScreenMainBox);
-document.getElementById("start-game-btn").addEventListener("click", showQuestionPageMainBox);

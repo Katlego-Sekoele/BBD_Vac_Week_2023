@@ -25,7 +25,7 @@ server.listen(3000, () => console.log('listening on http://localhost:3000'));
 BallCamController = require('./controller/main.controller')
 BallCamController.mainMoveLeft(1000)
 
-DuelEngine = require('./duel/DuelEngine')
+DuelEngine = require('./duel/duelEngine')
 DuelEngine.initializeMap()
 
 QuizEngine = require('./quiz/quizEngine')
