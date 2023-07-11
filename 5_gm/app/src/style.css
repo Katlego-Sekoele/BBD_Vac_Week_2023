@@ -19,6 +19,14 @@ body {
     letter-spacing: 0.1em;
 }
 
+.map{
+    background-color: rgb(255, 170, 193);
+}
+
+#camCanvas{
+    display:none;
+}
+
 .title{
     text-align: center;
     font-size: 5em;
