@@ -3,9 +3,22 @@ const mongoose = require("mongoose");
 
 require("dotenv").config();
 
-const app = express();
-
 const database_url = process.env.DATABASE_URL;
+
+mongoose
+  .connect(database_url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    app.listen(3000, () => {
+      console.log(`Server started at ${3000}`);
+    });
+  });
+
+const database = mongoose.connection;
+
+const app = express();
 
 app.use(express.json());
 app.use((req, res, next) => {
@@ -20,19 +33,6 @@ app.use((req, res, next) => {
   );
   next();
 });
-
-mongoose
-  .connect(database_url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    app.listen(3000, () => {
-      console.log(`Server started at ${3000}`);
-    });
-  });
-
-const database = mongoose.connection;
 
 database.on("error", (error) => {
   console.log(error);
