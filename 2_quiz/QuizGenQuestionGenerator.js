@@ -120,7 +120,7 @@ function populateAllQuizzes() {
 
 // TEST CODE START
 if (DEBUG) {
-    for (let index = 0; index < 1; index++) {
+    for (let index = 0; index < 500; index++) {
         var testQuiz = getQuiz();
         console.log(allQuizzes.length);
         console.log(testQuiz.Question);
