@@ -58,6 +58,13 @@ io.on('connection', (socket) => {
     }
   })
 
+  socket.on("return_player_answer", (msg) => {
+    console.log(msg);
+    socket.emit("response", "player answered!");
+    for(const socket of allSockets) {
+      socket.emit("on_player_answered", msg);
+    }
+  })
 });
 
 
