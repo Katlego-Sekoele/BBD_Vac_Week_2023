@@ -1,5 +1,6 @@
 var xLen = 10;
 var yLen = 10;
+var test = [1,3,0];
 var map = new Array(yLen)
 
 function initializeMap(numCones)
@@ -95,6 +96,22 @@ function calcStraightLine(x1, y1, x2, y2)
 
     // Return the result
     return coordinatesArray;
+}
+
+//Determine if a player is allowed to duel
+function initiateDuel(playerScores){
+    const streakVal = 3;
+    const playerDuelStates = new Array(playerScores.length);
+    playerScores.forEach((playerScore,index) => {
+        if (playerScore==streakVal){
+            playerDuelStates[index] = true;
+        }
+        else{
+            playerDuelStates[index] = false;
+        }
+    });
+    //return array of boolean states for each player,true indicates the player can duel
+    return playerDuelStates;
 }
 
 //currentPlayer is an integer based index for the current player
@@ -252,4 +269,5 @@ function checkPlayerLoss(currentPlayer){
 }
 
 
-console.log(initializeMap(4));
+//console.log(initializeMap(4));
+//console.log(initiateDuel(test));
