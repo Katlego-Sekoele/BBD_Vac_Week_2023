@@ -1,26 +1,36 @@
 const SERVER_URL = window.location.host === "server-bbd-vac-week.onrender.com"?  "https://server-bbd-vac-week.onrender.com/":"http://localhost:3000";
 
 const socket = io.connect(SERVER_URL);
+var numberOfMoves = 5;
 
-function sendDir(e, dir) {
+function saveDir(e, dir) {
     e.preventDefault();
-    socket.emit("move_ball", dir);
+    sendDir(dir)
+    numberOfMoves --
+    console.log(dir + ": number of moves left " + numberOfMoves);
+
+    if(numberOfMoves <= 0){
+        numberOfMoves = 5
+        window.location.assign("quiz.html");
+    }
 }
 
-socket.on("response", (msg) => console.log(msg));
+function sendDir(dir){
+    socket.emit("move_ball", dir)
+}
 
 document.getElementById("up").addEventListener('click', (e) => {
-    sendDir(e, 0);
+    saveDir(e, 1);
 });
 
 document.getElementById("left").addEventListener('click', (e) => {
-    sendDir(e, 270);
+    saveDir(e, 271);
 });
 
 document.getElementById("down").addEventListener('click', (e) => {
-    sendDir(e, 180);
+    saveDir(e, 181);
 });
 
 document.getElementById("right").addEventListener('click', (e) => {
-    sendDir(e, 90);
+    saveDir(e, 91);
 });
