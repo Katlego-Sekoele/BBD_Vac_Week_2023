@@ -14,5 +14,6 @@ Format:
     "dimension": [width, height]
 }
 ```
-
-NOTE: If a player has been eliminated, their cone coordinates will be $[-1, -1]$
+# Note
+- If a player has been eliminated, their cone coordinates will be $[-1, -1]$
+- In the case of more/less than 4 players, the json will also be adjusted accordingly.
