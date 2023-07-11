@@ -1,5 +1,5 @@
 function generateQuestions(){
-    console.log("generating questions")
+    console.log("generating")
 }
 
-module.exports = { generateQuestions }
+module.exports = { initMap }
