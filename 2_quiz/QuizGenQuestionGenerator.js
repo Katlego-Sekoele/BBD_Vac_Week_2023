@@ -1,5 +1,5 @@
 // Used as a cache
-var DEBUG = false;
+var DEBUG = true;
 var currQuizzes = new Array();
 var allQuizzes = new Array();
 var amountQuizzes = 20;
@@ -116,19 +116,39 @@ function shuffle(array) {
 
 function populateAllQuizzes() {
     allQuizzes = require('./questions.json');
+    console.log(allQuizzes.length + " with duplicates");
+    const map1 = new Map();
+    const duplicates = [];
+    for (let i = 0; i < allQuizzes.length; i++) {
+        if (map1.has(allQuizzes[i].Question)) {
+            //do nothing
+        }
+        else {
+            map1.set(allQuizzes[i].Question, i);
+            duplicates.push(allQuizzes[i]);
+        }
+    }
+    allQuizzes = duplicates;
+    console.log(allQuizzes.length + " without duplicates")
 }
 
 // TEST CODE START
 if (DEBUG) {
-    for (let index = 0; index < 500; index++) {
+    for (let index = 0; index < 50; index++) {
         var testQuiz = getQuiz();
-        console.log(allQuizzes.length);
+        question = testQuiz.Question;
         console.log(testQuiz.Question);
         console.log(testQuiz.Answers);
         console.log(testQuiz.Correct_Answer_Index);
         console.log('Is 2 the correct index: ', checkAnswer(testQuiz.Question, 2));
         console.log();
     }
+
+    console.log(testQuiz)
+    console.log(checkAnswer(question, 0));
+    console.log(checkAnswer(question, 1));
+    console.log(checkAnswer(question, 2));
+    console.log(checkAnswer(question, 3));
 }
 // TEST CODE END
 module.exports = { checkAnswer, getQuiz };
