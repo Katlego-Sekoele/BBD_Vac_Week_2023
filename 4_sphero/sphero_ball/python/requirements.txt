@@ -1,0 +1,6 @@
+socketio
+bleak
+websocket-client
+requests
+python-socketio
+spherov2
