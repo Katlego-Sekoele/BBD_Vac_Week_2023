@@ -9,7 +9,7 @@ function convertintChar(integer) {
 
 function sendAns(e, dir) {
     e.preventDefault();
-    socket.emit("return_player_answer", dir);
+    socket.emit("return_player_answer", awns);
 }
 
 // Events
