@@ -7968,5 +7968,625 @@
       "Hippopotamus"
     ],
     "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which of the following animals is a marsupial?",
+    "Answers": [
+      "Kangaroo",
+      "Elephant",
+      "Gorilla",
+      "Lion"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is the national bird of the United States?",
+    "Answers": [
+      "Eagle",
+      "Ostrich",
+      "Peacock",
+      "Penguin"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which country won the FIFA World Cup in 2018?",
+    "Answers": [
+      "France",
+      "Brazil",
+      "Germany",
+      "Argentina"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Who holds the record for the most home runs in a single MLB season?",
+    "Answers": [
+      "Babe Ruth",
+      "Barry Bonds",
+      "Mark McGwire",
+      "Sammy Sosa"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which tennis player has won the most Grand Slam titles in history?",
+    "Answers": [
+      "Rafael Nadal",
+      "Roger Federer",
+      "Serena Williams",
+      "Novak Djokovic"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which planet is the largest in our solar system?",
+    "Answers": [
+      "Mars",
+      "Jupiter",
+      "Venus",
+      "Mercury"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which planet is closest to the Sun?",
+    "Answers": [
+      "Mars",
+      "Jupiter",
+      "Venus",
+      "Mercury"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which planet has the most known moons?",
+    "Answers": [
+      "Mars",
+      "Jupiter",
+      "Venus",
+      "Saturn"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which planet is famous for its beautiful rings?",
+    "Answers": [
+      "Mars",
+      "Jupiter",
+      "Venus",
+      "Saturn"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What is the Sun primarily made of?",
+    "Answers": [
+      "Hydrogen",
+      "Oxygen",
+      "Carbon",
+      "Helium"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which layer of the Sun is visible during a solar eclipse?",
+    "Answers": [
+      "Photosphere",
+      "Corona",
+      "Chromosphere",
+      "Core"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What is the approximate temperature at the core of the Sun?",
+    "Answers": [
+      "2,000 degrees Celsius",
+      "10,000 degrees Celsius",
+      "1 million degrees Celsius",
+      "15 million degrees Celsius"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Who is the king of the gods in Greek mythology?",
+    "Answers": [
+      "Apollo",
+      "Zeus",
+      "Hermes",
+      "Poseidon"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who is the goddess of wisdom and warfare in Greek mythology?",
+    "Answers": [
+      "Hera",
+      "Athena",
+      "Aphrodite",
+      "Artemis"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Who is the god of the sea in Greek mythology?",
+    "Answers": [
+      "Hades",
+      "Apollo",
+      "Hermes",
+      "Poseidon"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Who is the god of the underworld in Greek mythology?",
+    "Answers": [
+      "Zeus",
+      "Hades",
+      "Ares",
+      "Dionysus"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "When did apartheid begin in South Africa?",
+    "Answers": [
+      "1945",
+      "1950",
+      "1960",
+      "1948"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What does the term 'apartheid' mean in Afrikaans?",
+    "Answers": [
+      "Separation",
+      "Equality",
+      "Unity",
+      "Freedom"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which racial group held political power during apartheid?",
+    "Answers": [
+      "Black Africans",
+      "White Europeans",
+      "Indian Asians",
+      "Colored Mixed Race"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "In which year was Nelson Mandela born?",
+    "Answers": [
+      "1918",
+      "1925",
+      "1936",
+      "1940"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What was Nelson Mandela's role in the anti-apartheid movement?",
+    "Answers": [
+      "Political leader",
+      "Human rights activist",
+      "Peace negotiator",
+      "All of the above"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "How many years did Nelson Mandela spend in prison?",
+    "Answers": [
+      "18 years",
+      "27 years",
+      "30 years",
+      "35 years"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which of the following is not a type of educational institution?",
+    "Answers": [
+      "University",
+      "Hospital",
+      "College",
+      "School"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What does STEM stand for?",
+    "Answers": [
+      "Science, Technology, Engineering, Mathematics",
+      "Social Studies, Theater, English, Mathematics",
+      "Sports, Technology, Entertainment, Music",
+      "Science, Theater, Engineering, Mathematics"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which of the following is a citrus fruit?",
+    "Answers": [
+      "Apple",
+      "Banana",
+      "Orange",
+      "Grape"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which vegetable is known for its spicy taste?",
+    "Answers": [
+      "Carrot",
+      "Radish",
+      "Broccoli",
+      "Cabbage"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which fruit is commonly used to make guacamole?",
+    "Answers": [
+      "Mango",
+      "Avocado",
+      "Pineapple",
+      "Watermelon"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What is puberty?",
+    "Answers": [
+      "A) The stage of life when a person becomes sexually mature.",
+      "B) The stage of life when a person starts going to school.",
+      "C) The stage of life when a person learns to drive a car.",
+      "D) The stage of life when a person retires from work."
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which of the following is a primary sex characteristic that develops during puberty?",
+    "Answers": [
+      "A) Deepening of the voice in males.",
+      "B) Growth of breasts in females.",
+      "C) Increased height in both males and females.",
+      "D) Development of body odor in both males and females."
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "What hormone is responsible for the changes that occur during puberty?",
+    "Answers": [
+      "A) Estrogen",
+      "B) Progesterone",
+      "C) Testosterone",
+      "D) Insulin"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which of the following is a psychological change that may occur during puberty?",
+    "Answers": [
+      "A) Increased interest in academic studies.",
+      "B) Decreased self-awareness and self-consciousness.",
+      "C) Heightened emotional responses.",
+      "D) Improved decision-making skills."
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What is menstruation?",
+    "Answers": [
+      "A) The release of an egg from the ovary.",
+      "B) The process of fertilization of an egg by sperm.",
+      "C) The shedding of the lining of the uterus.",
+      "D) The growth of breasts in females."
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which of the following is a nutrient-dense fruit?",
+    "Answers": [
+      "a) Banana",
+      "b) Watermelon",
+      "c) Candy",
+      "d) Potato"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which organ is responsible for detoxifying the body?",
+    "Answers": [
+      "a) Liver",
+      "b) Heart",
+      "c) Stomach",
+      "d) Brain"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is the recommended daily water intake for adults?",
+    "Answers": [
+      "a) 2 cups",
+      "b) 4 cups",
+      "c) 8 cups",
+      "d) 12 cups"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What is the primary cause of cavities?",
+    "Answers": [
+      "a) Bacteria",
+      "b) Sugar",
+      "c) Acid",
+      "d) Plaque"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which exercise is good for cardiovascular health?",
+    "Answers": [
+      "a) Running",
+      "b) Weightlifting",
+      "c) Yoga",
+      "d) Stretching"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What does HIV stand for?",
+    "Answers": [
+      "Human Immunodeficiency Virus",
+      "Human Influenza Virus",
+      "Hepatitis Infection Vector",
+      "Hemoglobin Inverse Variation"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "Question": "Which body fluid can transmit HIV?",
+    "Answers": [
+      "Saliva",
+      "Sweat",
+      "Blood",
+      "Urine"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "Question": "Which of the following is NOT a common mode of HIV transmission?",
+    "Answers": [
+      "Unprotected sexual intercourse",
+      "Sharing needles or syringes",
+      "Mosquito bites",
+      "Mother-to-child during childbirth or breastfeeding"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "Question": "What is the most accurate test to diagnose HIV infection?",
+    "Answers": [
+      "Blood test",
+      "Urine test",
+      "X-ray",
+      "Physical examination"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "Question": "What is the term used to describe the stage of HIV infection where the immune system is severely damaged?",
+    "Answers": [
+      "Acute infection",
+      "Latent infection",
+      "Chronic infection",
+      "AIDS"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "Question": "What is the common name for the coronavirus disease?",
+    "Answers": [
+      "COVID-19",
+      "H1N1",
+      "SARS",
+      "Ebola"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "How is the coronavirus primarily transmitted?",
+    "Answers": [
+      "Through mosquito bites",
+      "Through sexual contact",
+      "Through contaminated food",
+      "Through respiratory droplets"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What are the most common symptoms of COVID-19?",
+    "Answers": [
+      "Fever, cough, and shortness of breath",
+      "Headache, dizziness, and fatigue",
+      "Rash, sore throat, and muscle pain",
+      "Nausea, vomiting, and diarrhea"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which age group is considered to be at higher risk of severe illness from COVID-19?",
+    "Answers": [
+      "Children",
+      "Young adults",
+      "Middle-aged adults",
+      "Elderly adults"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What is the recommended way to protect yourself from COVID-19?",
+    "Answers": [
+      "Wearing a mask, practicing social distancing, and washing hands frequently",
+      "Consuming garlic, ginger, and turmeric",
+      "Taking antibiotics regularly",
+      "Avoiding all outdoor activities"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is the capital city of South Africa?",
+    "Answers": [
+      "Cape Town",
+      "Durban",
+      "Johannesburg",
+      "Pretoria"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which of the following languages is NOT one of the official languages of South Africa?",
+    "Answers": [
+      "English",
+      "Afrikaans",
+      "Zulu",
+      "Swahili"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Who was the first black president of South Africa?",
+    "Answers": [
+      "Nelson Mandela",
+      "F. W. de Klerk",
+      "Thabo Mbeki",
+      "Jacob Zuma"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which famous landmark is located in Cape Town, South Africa?",
+    "Answers": [
+      "Table Mountain",
+      "Victoria Falls",
+      "Kruger National Park",
+      "Serengeti National Park"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "Which event brought international attention to South Africa's system of racial segregation?",
+    "Answers": [
+      "Soweto Uprising",
+      "Sharpeville Massacre",
+      "Rivonia Trial",
+      "Freedom Charter"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which year was BBD Software founded?",
+    "Answers": [
+      "a) 2000",
+      "b) 2001",
+      "c) 2002",
+      "d) 2003"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What is the headquarters location of BBD Software?",
+    "Answers": [
+      "a) New York, USA",
+      "b) London, UK",
+      "c) Johannesburg, South Africa",
+      "d) Sydney, Australia"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which of the following services does BBD Software provide?",
+    "Answers": [
+      "a) Data analytics",
+      "b) Software development",
+      "c) Cloud computing",
+      "d) All of the above"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What industry sectors does BBD Software primarily focus on?",
+    "Answers": [
+      "a) Finance",
+      "b) Healthcare",
+      "c) Telecommunications",
+      "d) All of the above"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "What is the mission of BBD Software?",
+    "Answers": [
+      "a) To provide innovative technology solutions",
+      "b) To improve business efficiency",
+      "c) To deliver exceptional client service",
+      "d) All of the above"
+    ],
+    "Correct_Answer_Index": 3
+  },
+  {
+    "Question": "Which of the following is not considered a drug?",
+    "Answers": [
+      "Marijuana",
+      "Cocaine",
+      "Orange juice",
+      "Heroin"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "What is the most commonly abused illicit drug in the United States?",
+    "Answers": [
+      "Marijuana",
+      "Cocaine",
+      "Heroin",
+      "Methamphetamine"
+    ],
+    "Correct_Answer_Index": 0
+  },
+  {
+    "Question": "What is a common street name for MDMA?",
+    "Answers": [
+      "Heroin",
+      "Ecstasy",
+      "LSD",
+      "Crack"
+    ],
+    "Correct_Answer_Index": 1
+  },
+  {
+    "Question": "Which of the following is a long-term effect of heavy alcohol consumption?",
+    "Answers": [
+      "Improved memory",
+      "Decreased risk of liver disease",
+      "Increased risk of cancer",
+      "Enhanced coordination"
+    ],
+    "Correct_Answer_Index": 2
+  },
+  {
+    "Question": "Which drug can cause severe hallucinations and distortions of reality?",
+    "Answers": [
+      "Marijuana",
+      "Heroin",
+      "LSD",
+      "Cocaine"
+    ],
+    "Correct_Answer_Index": 2
   }
 ]
