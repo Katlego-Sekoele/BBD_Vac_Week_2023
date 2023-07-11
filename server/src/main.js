@@ -13,7 +13,6 @@ DuelEngine = require("./duel/duelEngine");
 QuizEngine = require("../../2_quiz/QuizGenQuestionGenerator");
 
 
-
 app.use(function (req, res, next) {
 	const allowedOrigins = [
 		"http://localhost:3000",
@@ -140,7 +139,7 @@ io.on("connection", (socket) => {
 
 
 // Get init map from Duel and give to GM (for cone placement)
-numCones = lobbySize
+numCones = lobbies[0]?.lobbySize || 4
 initialMap = DuelEngine.initializeMap(numCones)
 
 // start game loop!
