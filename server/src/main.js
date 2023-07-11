@@ -36,3 +36,6 @@ io.on("connection", (socket) => {
 });
 
 
+// Controller, Quiz, Duel connections ---------------------------------
+BallCamController = require('./controller/main.controller')
+
