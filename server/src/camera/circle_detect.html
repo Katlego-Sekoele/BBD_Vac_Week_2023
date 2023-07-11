@@ -17,105 +17,11 @@
 </head>
 
 <body>
-  <input type="file" id="fileInput" accept=".jpg, .jpeg, .png">
   <canvas id="canvas"></canvas>
   <div id="output"></div>
   <div id="feedback"></div>
 
-  <script>
-    let src;
-    let gray;
-    let circles;
-
-    // Callback function when OpenCV.js is ready
-    function onOpenCvReady() {
-      document.getElementById('fileInput').addEventListener('change', function (event) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function (event) {
-          const img = new Image();
-          img.onload = function () {
-            processImage(img);
-          };
-          img.src = event.target.result;
-        };
-
-        reader.readAsDataURL(file);
-
-        const feedbackDiv = document.getElementById('feedback');
-        feedbackDiv.textContent = 'Uploading and processing the image...';
-      });
-    }
-
-    // Process the loaded image
-    function processImage(image) {
-      const canvas = document.getElementById('canvas');
-      const context = canvas.getContext('2d');
-      canvas.width = image.width;
-      canvas.height = image.height;
-      context.drawImage(image, 0, 0, canvas.width, canvas.height);
-
-      src = cv.imread(canvas);
-
-      // Convert the image to grayscale
-      gray = new cv.Mat();
-      cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY);
-
-      // Apply HoughCircles algorithm for circle detection
-      circles = new cv.Mat();
-      cv.HoughCircles(
-        gray,
-        circles,
-        cv.HOUGH_GRADIENT,
-        1,
-        20,
-        50,
-        30,
-        0,
-        0
-      );
-
-      drawCircles();
-
-      const feedbackDiv = document.getElementById('feedback');
-      if (circles.cols === 0) {
-        feedbackDiv.textContent = 'No circles detected in the image.';
-      } else {
-        feedbackDiv.textContent = 'Image uploaded and circles detected.';
-      }
-    }
-
-    // Draw the detected circles on the original image
-    function drawCircles() {
-      const canvas = document.getElementById('canvas');
-      const context = canvas.getContext('2d');
-      const numCircles = circles.cols;
-      const data32F = circles.data32F;
-
-      // Draw circles on the image
-      for (let i = 0; i < numCircles; i += 3) {
-        const x = data32F[i];
-        const y = data32F[i + 1];
-        const radius = data32F[i + 2];
-
-        context.beginPath();
-        context.strokeStyle = 'red';
-        context.lineWidth = 2;
-        context.arc(x, y, radius, 0, 2 * Math.PI);
-        context.stroke();
-      }
-
-      // Display the modified image on the webpage
-      const imgData = canvas.toDataURL();
-      const imgElement = document.createElement('img');
-      imgElement.src = imgData;
-
-      const outputDiv = document.getElementById('output');
-      outputDiv.innerHTML = '';
-      outputDiv.appendChild(imgElement);
-    }
-  </script>
+  <script type="text/javascript" src="camera.js></script>
 </body>
 
 </html>
