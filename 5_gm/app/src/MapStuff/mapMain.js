@@ -4,8 +4,8 @@ import Two from '../../node_modules/two.js/src/two.js';
   // Function to create the visual map using Two.js
 export function createMap(data) {
   const two = new Two({
-    width: data[0].length * 30, // Adjust the width based on the number of columns
-    height: data.length * 30, // Adjust the height based on the number of rows
+    width: data[0].length * 10, // Adjust the width based on the number of columns
+    height: data.length * 10, // Adjust the height based on the number of rows
   }).appendTo(document.getElementById('draw-shapes'));
 
   // Loop through the rows of the 2D array
@@ -17,15 +17,15 @@ export function createMap(data) {
       const value = row[j];
 
       // Calculate the position of the shape
-      const x = j * 20 + 10;
-      const y = i * 20 + 10;
+      const x = j * 10 + 5;
+      const y = i * 10 + 5;
       const circle = null;
       const triangle = null;
       const square = null;
       // Create a shape based on the value in the 2D array
       if (value === 'W') { // 0 is a square (empty space)
-        const square = two.makePolygon(x, y, 10, 4);
-        square.fill = 'grey';
+        //const square = two.makePolygon(x, y, 10, 4);
+        //square.fill = 'grey';
       } else if (value === '1' || value === '2' || value === '3' || value === '4') { // 1 is a cone
         const triangle = two.makePolygon(x, y, 10, 3);
         triangle.fill = 'orange';
