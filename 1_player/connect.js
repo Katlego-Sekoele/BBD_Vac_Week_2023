@@ -23,7 +23,7 @@ document.getElementById("connectBtn").onclick = () => {
 
 	socket.emit("join_lobby", JSON.stringify(connectObject))
 
-	socket.on("joined_lobby", (data) => {
+	socket.on("player_joined", (data) => {
 		//check whether a userId was received
 		if (data) {
 			//redirect to lobby
@@ -31,5 +31,9 @@ document.getElementById("connectBtn").onclick = () => {
 		} else {
 			alert("Error connecting. Please try again.");
 		}
+	})
+
+	socket.on("on_error", (data) => {
+		alert(data);
 	})
 }
