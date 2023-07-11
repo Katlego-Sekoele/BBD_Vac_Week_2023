@@ -33,7 +33,7 @@ router.post("/addManyQuestions", async (req, res) => {
 
 router.get("/get20Questions", async (req, res) => {
   try {
-    const data = Question.aggregate([{ $sample: { size: 20 } }]);
+    const data = await Question.aggregate([{ $sample: { size: 20 } }]);
     res.json(data);
   } catch (error) {
     res.status(400).json({ message: error.message });
