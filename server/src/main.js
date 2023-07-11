@@ -114,8 +114,18 @@ BallCamController.mainMoveLeft(1000);
 DuelEngine = require("./duel/duelEngine");
 DuelEngine.initMap();
 
-QuizEngine = require("./quiz/quizEngine");
-QuizEngine.generateQuestions();
+QuizEngine = require("../../2_quiz/QuizGenQuestionGenerator");
+
+const QuizQuestionInfo = QuizEngine.getQuiz();
+var playerChoice = -1
+socket.on("player_answered", (player_answer) => {
+  playerNum = player_answer.playerNum
+  playerChoice = player_answer.choice
+})
+
+correct = QuizEngine.checkAnswer(QuizQuestionInfo.Question, playerChoice)
+
+console.log("correct?", correct)
 
 
 
