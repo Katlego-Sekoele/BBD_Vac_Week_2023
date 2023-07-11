@@ -13,7 +13,7 @@ const port = 3000;
 //   console.log(`Example app listening on port ${port}`);
 // });
 
-
+console.log("here")
 
 io.on("connection", (socket) => {
   console.log("connected to socket", socket.id)
@@ -38,4 +38,10 @@ io.on("connection", (socket) => {
 
 // Controller, Quiz, Duel connections ---------------------------------
 BallCamController = require('./controller/main.controller')
+BallCamController.mainMoveLeft(1000)
 
+DuelEngine = require('./duel/duelEngine')
+DuelEngine.initMap()
+
+QuizEngine = require('./quiz/quizEngine')
+QuizEngine.generateQuestions()
