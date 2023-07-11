@@ -74,6 +74,16 @@ io.on('connection', (socket) => {
 
 });
 
+// Controller, Quiz, Duel connections ---------------------------------
+BallCamController = require('./controller/main.controller')
+BallCamController.mainMoveLeft(1000)
+
+DuelEngine = require('./duel/duelEngine')
+DuelEngine.initMap()
+
+QuizEngine = require('./quiz/quizEngine')
+QuizEngine.generateQuestions()
+
 
 
 
