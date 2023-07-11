@@ -273,4 +273,3 @@ function checkPlayerLoss(currentPlayer){
 //console.log(initiateDuel(test));
 
 module.exports = {initializeMap}
-

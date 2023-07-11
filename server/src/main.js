@@ -21,9 +21,7 @@ const io = require('socket.io')(server, {
 })
 server.listen(3000, () => console.log('listening on http://localhost:3000'));
 
-
-
-
+let lobbies = []
 io.on('connection', (socket) => {
   console.log('a user connected with ID: ' + socket.id);
 
@@ -31,20 +29,65 @@ io.on('connection', (socket) => {
     console.log('a user disconnected with ID: ' + socket.id);
   });
 
+  // player requests to join a lobby
   socket.on('join_lobby', (data) => {
+
+    if (!data) {
+      //empty or null data
+      return;
+    }
+
+    if (!(data.gamecode in lobbies)){
+      // lobby does not exist
+      return;
+    }
+
+    for (let i = 0; i < lobbies.length; i++){
+      if (lobbies[i].gamecode === data.gamecode){
+        lobbies[i].players.push({username: data.username})
+      }
+    }
+
     console.log('join_lobby: ' , data);
     //assumes that the users lobby code is correct
-    socket.emit('joined_lobby', "hey you joined the lobby");
+
+    // server response to game master to notifying that a player has joined
+    socket.emit('player_joined', {...data})
+
+    // game master response confirming receipt of player_joined event
+    socket.on('player_in_lobby', () => {
+
+      // server response to client notifying them that they are in the lobby
+      socket.emit('joined_lobby', {response: "success"});
+    })
+
   });
 
-  socket.on("create_lobby", () => {
-    console.log('lobby created');
+  socket.on("create_lobby", (data) => {
+    let numPlayers = data.size
+    let lobbyCode = 0 // TODO: generate lobby codes
+
+    lobbies.push({lobbyCode, players: []})
+
     socket.emit('created_lobby');
   });
 
 });
 
+// Controller, Quiz, Duel connections ---------------------------------
+BallCamController = require('./controller/main.controller')
+BallCamController.mainMoveLeft(1000)
+
+DuelEngine = require('./duel/duelEngine')
+DuelEngine.initializeMap()
+
+QuizEngine = require('./quiz/quizEngine')
+QuizEngine.generateQuestions()
 
 
+socket.on('update_map', () => {
+  const map = DuelEngine.initializeMap();
+  socket.emit('updated_map', map);
+});
 
 
