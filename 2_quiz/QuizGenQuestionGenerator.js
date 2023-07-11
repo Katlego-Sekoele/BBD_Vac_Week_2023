@@ -7,7 +7,7 @@ function getQuiz(){
     var options = ['6', '7', '8', '9']; // TODO: change to database call
     var ansIndex = 2; // TODO: change to database call
     var quiz = {
-        "Question:": question,
+        "Question": question,
         "Answers": [
             options[0],
             options[1],
@@ -49,6 +49,8 @@ function generateQuestions(numQ){
 }
 
 // TEST CODE START
-var testQuiz = JSON.parse(getQuiz);
-console.log(testQuiz.ansIndex);
+var testQuiz = getQuiz();
+console.log(testQuiz.Correct_Answer_Index);
+console.log(testQuiz.Question);
+console.log(testQuiz.Answers);
 // TEST CODE END
