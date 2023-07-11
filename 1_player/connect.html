@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="text/javascript" src="connect.js"></script>
 </head>
+
 <body>
     <h1>Connect your device:</h1>
-    <br/>
+    <br />
     <label>Username:</label>
-    <input type="text" placeholder="Username..."/>
-    <br/>
-    <br/>
+    <input id="usernameInput" type="text" />
+    <br />
+    <br />
     <label>Game code:</label>
-    <input type="text" placeholder="Game Code..."/>
-    <br/>
-    <br/>
-    <button onclick="connectToServer()">Connect</button>
+    <input id="gameCodeInput" type="text" />
+    <br />
+    <br />
+    <button id="connectBtn">Connect</button>
+    <script type="module" src="connect.js"></script>
+
 </body>
+
 </html>
