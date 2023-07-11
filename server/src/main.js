@@ -109,8 +109,22 @@ io.on("connection", (socket) => {
 BallCamController = require("./controller/main.controller");
 BallCamController.mainMoveLeft(1000);
 
+
+
 DuelEngine = require("./duel/duelEngine");
 DuelEngine.initMap();
 
 QuizEngine = require("./quiz/quizEngine");
 QuizEngine.generateQuestions();
+
+
+
+// socket.emit('sendQuestionData', QuizQuestionInfo)
+
+
+
+// socket.on('sendQuestionData', (data) =>{
+//   currentQuestion = data.currentQuestion
+//   correctAnswer = data.correctAnswer
+//   optionalAnswers = data.answers
+// })
