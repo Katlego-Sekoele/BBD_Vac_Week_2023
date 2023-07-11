@@ -119,16 +119,17 @@ io.on("connection", (socket) => {
     socket.emit('updated_map', map);
   });
 
+});
 
-// Controller, Quiz, Duel connections ---------------------------------
-BallCamController = require('./controller/main.controller')
-BallCamController.mainMoveLeft(1000)
+// // Controller, Quiz, Duel connections ---------------------------------
+// BallCamController = require('./controller/main.controller')
+// BallCamController.mainMoveLeft(1000)
 
-DuelEngine = require('./duel/duelEngine')
-DuelEngine.initMap()
+// DuelEngine = require('./duel/duelEngine')
+// DuelEngine.initMap()
 
-QuizEngine = require('./quiz/quizEngine')
-QuizEngine.generateQuestions()
+// QuizEngine = require('./quiz/quizEngine')
+// QuizEngine.generateQuestions()
 
 
 
