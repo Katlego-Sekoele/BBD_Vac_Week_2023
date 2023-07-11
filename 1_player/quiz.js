@@ -2,9 +2,9 @@ const SERVER_URL = "http://localhost:3000";
 
 const socket = io.connect(SERVER_URL);
 
-function sendDir(e, dir) {
+function sendAwns(e, awns) {
     e.preventDefault();
-    socket.emit("return_player_answer", dir);
+    socket.emit("return_player_answer", awns);
 }
 
 socket.on("controle", (msg) => {
@@ -13,32 +13,21 @@ socket.on("controle", (msg) => {
 });
 
 document.getElementById("A").addEventListener('click', (e) => {
-    sendDir(e, "A");
+    sendAwns(e, "A");
 });
 
 document.getElementById("B").addEventListener('click', (e) => {
-    sendDir(e, "B");
+    sendAwns(e, "B");
 });
 
 document.getElementById("C").addEventListener('click', (e) => {
-    sendDir(e, "C");
+    sendAwns(e, "C");
 });
 
 document.getElementById("D").addEventListener('click', (e) => {
-    sendDir(e, "D");
+    sendAwns(e, "D");
 });
 
-
-
-// function sendAnswer(userInput)
-// {
-//     //create json object to send gameAnswer
-//     var quizJSON = '{"answer": '+ userInput + '}';
-
-//     console.log(userInput);
-// }
-
-function quit()
-{
+function quit(){
     window.location.assign("connect.html");
 }
