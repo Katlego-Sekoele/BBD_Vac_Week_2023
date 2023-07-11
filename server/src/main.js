@@ -25,17 +25,22 @@ server.listen(3000, () => console.log('listening on http://localhost:3000'));
 
 
 io.on('connection', (socket) => {
+  console.log('a user connected with ID: ' + socket.id);
 
   socket.on('disconnect', () => {
-    disconnectHandler(socket);
+    console.log('a user disconnected with ID: ' + socket.id);
   });
 
   socket.on('join_lobby', (data) => {
-    console.log('join_lobby: ' + data);
+    console.log('join_lobby: ' , data);
     //assumes that the users lobby code is correct
     socket.emit('joined_lobby', "hey you joined the lobby");
   });
 
+  socket.on("create_lobby", () => {
+    console.log('lobby created');
+    socket.emit('created_lobby');
+  });
 
 });
 
@@ -43,7 +48,3 @@ io.on('connection', (socket) => {
 
 
 
-// Function removes a player from the activePlayers list.
-function disconnectHandler(socket) {
-  console.log('a user disconnected with ID: ' + socket.id);
-}
