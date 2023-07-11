@@ -1,5 +1,3 @@
-import "./socket.io/client-dist/socket.io.js";
-
 const SERVER_URL = "http://localhost:3000";
 let socket = io.connect(SERVER_URL);
 // manager connects to socket server
