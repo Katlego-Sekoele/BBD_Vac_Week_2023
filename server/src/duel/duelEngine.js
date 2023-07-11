@@ -16,14 +16,14 @@ function initializeMap(numCones)
         }
     }
 
-    // Place the ball in the center (top left center)
+    // Place the ball in the center (bottom right center)
     var centerX = Math.floor(xLen/2);
     var centerY = Math.floor(yLen/2);
     map[centerY][centerX] = 'B';
 
     // Random offset for distance of cones from center
-    var centerOffset = Math.floor(Math.random()*(Math.min(centerX, centerY)-1+1))+1-1;
-    console.log(centerOffset);
+    var centerOffset = Math.floor(Math.random()*(Math.min(centerX, centerY)-1-1))+1;
+    //console.log(centerOffset);
 
     // Place the cones equally around the center
     if (numCones == 3) // Top and bottom two corners
