@@ -1,4 +1,4 @@
-const SERVER_URL = "http://localhost:3000";
+const SERVER_URL = window.location.host === "server-bbd-vac-week.onrender.com"?  "https://server-bbd-vac-week.onrender.com/":"http://localhost:3000";
 let socket = io.connect(SERVER_URL);
 // manager connects to socket server
 
@@ -23,6 +23,7 @@ document.getElementById("connectBtn").onclick = () => {
 
 	// request to join lobby
 	socket.emit("join_lobby", connectObject)
+	// socket.emit("join_lobby", JSON.stringify(connectObject))
 
 	socket.on("joined_lobby", (data) => {
 		//check whether a userId was received
@@ -34,26 +35,3 @@ document.getElementById("connectBtn").onclick = () => {
 		}
 	})
 }
-
-socket.on("connect", () => {
-	// connect event
-	const engine = socket.io.engine;
-
-	engine.on("packet", ({ type, data }) => {
-		// called for each packet received
-	});
-
-	engine.on("packetCreate", ({ type, data }) => {
-		// called for each packet sent
-	});
-});
-
-// disconnect event
-socket.on("disconnect", () => {});
-
-socket.on("generic_event", (data) => {
-	//     TODO: decide on events with server team
-});
-
-// send payload to server and invoke another_generic_event on server side
-// socket.emit("another_generic_event", payload)

@@ -1,21 +1,19 @@
-import "./socket.io/client-dist/socket.io.js";
+const SERVER_URL = "http://localhost:3000";
+let socket = io.connect(SERVER_URL);
 
-const SERVER_URL = "http://localhost:3001";
-let socket; // manager connects to socket server
-
-socket = io.connect(SERVER_URL);
-
-socket.on("StartGame", (res) => {
-    connectToServer(res)
+socket.on("startQuiz", (res) => {
+    connectToGame(res)
 })
 
+socket.emit("start", 1);
 
-function connectToServer(gameSettings)
+
+function connectToGame(gameSettings)
 {
     window.location.assign("quiz.html");
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+/*document.addEventListener("DOMContentLoaded", function() {
     var queuedPlayers = [
         "Player A",
         "Player B",
@@ -34,4 +32,4 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         // Call the function to populate the list
         populatePlayerList();
-});
+});*/
