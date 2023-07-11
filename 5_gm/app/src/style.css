@@ -47,15 +47,20 @@ body {
 
 .settingContainer{
     display: flex;
-    justify-content: baseline;
     flex-direction: row;
     height:1em;
     background-color: red;
     padding: 1em;
     margin: 1em;
+    align-items: baseline;
 }
 
 .settingdescription{
     margin:1em;
     background-color: green;
+}
+
+.inputboxes{
+    height:3em;
+    display: inline;
 }
