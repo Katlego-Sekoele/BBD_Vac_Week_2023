@@ -2,38 +2,42 @@ const SERVER_URL = "http://localhost:3000";
 
 const socket = io.connect(SERVER_URL);
 
-function sendDir(e, dir) {
+function convertintChar(integer) {
+    let character = 'a'.charCodeAt(0);
+    return String.fromCharCode(character + integer);
+}
+
+function sendAns(e, dir) {
     e.preventDefault();
     socket.emit("return_player_answer", dir);
 }
 
-socket.on("response", (msg) => console.log(msg));
+// Events
+socket.on("on_next_question", (msg) => {
+    question_answer = JSON.parse(msg);
+    
+    buttons = "";
+    for (var i = 0; i < question_answer.answers.length; i++) {
+        buttons += `<div>
+            <button id=${convertintChar(i)} class="answer_button">${convertintChar(i).toUpperCase()}</button>
+        </div>`
+    }
 
-document.getElementById("A").addEventListener('click', (e) => {
-    sendDir(e, "A");
+    document.getElementById("btn_container").innerHTML = buttons;
 });
 
-document.getElementById("B").addEventListener('click', (e) => {
-    sendDir(e, "B");
+socket.on("on_answer_status", (msg) => {
+    console.log(msg);
 });
 
-document.getElementById("C").addEventListener('click', (e) => {
-    sendDir(e, "C");
-});
+// Answer options
+for (const node of document.getElementsByClassName("answer_button")) {
+    node.innerHTML = node.id;
 
-document.getElementById("D").addEventListener('click', (e) => {
-    sendDir(e, "D");
-});
-
-
-
-// function sendAnswer(userInput)
-// {
-//     //create json object to send gameAnswer
-//     var quizJSON = '{"answer": '+ userInput + '}';
-
-//     console.log(userInput);
-// }
+    document.getElementById(node.id).addEventListener('click', (e) => {
+        sendAns(e, node.id);
+    })
+}
 
 function quit()
 {
