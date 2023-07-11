@@ -1,12 +1,13 @@
 //import "./socket.io/client-dist/socket.io.js";
 
 const SERVER_URL = "http://localhost:3000";
+const DEFAULT_SIZE = 4
 let socket = io.connect(SERVER_URL);
 // manager connects to socket server
 
 document.getElementById("startBtn").onclick = () => {
 
-	socket.emit("create_lobby");
+	socket.emit("create_lobby", {size: DEFAULT_SIZE});
 
 	socket.on("created_lobby", (data) => {
 		console.log('lobby has been created');
