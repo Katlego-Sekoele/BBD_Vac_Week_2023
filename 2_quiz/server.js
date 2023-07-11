@@ -41,3 +41,6 @@ database.on("error", (error) => {
 database.once("connected", () => {
   console.log("Succesfully connected to the database!");
 });
+
+const questionRoute = require("./routes/questionRoute");
+app.use("/api/question", questionRoute);

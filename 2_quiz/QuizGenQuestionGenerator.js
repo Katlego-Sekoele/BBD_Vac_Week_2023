@@ -206,3 +206,4 @@ for (let index = 0; index < amountQuizzes; index++) {
     console.log();
 }
 // TEST CODE END
+module.exports = { checkAnswer, getQuiz };
