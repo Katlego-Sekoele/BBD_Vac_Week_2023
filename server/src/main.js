@@ -70,7 +70,7 @@ io.on("connection", (socket) => {
 
   socket.on("generate_initial_map", (data) => {
     const map = DuelEngine.initializeMap(players.length); // We have to something here to specify nr of cones
-    console.log(map);
+    //console.log(map);
     socket.emit("on_generated_map", map);
   });
 
