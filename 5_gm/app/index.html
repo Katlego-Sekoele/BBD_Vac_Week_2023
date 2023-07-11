@@ -79,6 +79,7 @@
             <p class="Skip">Skip question</p>
             <p class="Kick">Kick player</p>
             <p class="End">End session</p>
+            <button id="go-to-map-btn" class="go-to-map-btn">Go to map</button>
         </div>
     </div>
     <div id="map-container" class="map-container">
@@ -87,14 +88,18 @@
         </div>
 
         <div class="map">
+            <div class="shape-container">
+                <div id="draw-shapes"></div>
+            </div>
         </div>
         
         <div class="control">
             <p> Seagate has control </p>
         </div>
+        <button id="back-to-game-btn" class="back-to-game-btn">Back</button>
     </div>
     </div>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
-    <script type="module" src="src/connect.js"></script>
+    <script type="module" src="src/main.js"></script>
 </body>
 </html>
