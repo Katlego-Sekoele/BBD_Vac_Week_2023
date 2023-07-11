@@ -1,43 +1,20 @@
 import Two from '../../node_modules/two.js/src/two.js';
-DuelEngine = require('../../../../server/src/duel/DuelEngine.js');
+DuelEngine = require('../../../../server/src/duel/duelEngine.js');
 
 mapArray = DuelEngine.initializeMap();
 
+// const mapArray = {
+//   ball: [12, 10],
+//   cone: [[2, 13], [15, 7], [5, 6]],
+//   size: [20, 20]
+// }
 
-// const mapDataVisual = [
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-// ];
+// const mapData = Array.from({ length: mapArray[0].length }, () => Array.from({ length: mapArray[0].length }).fill(0));
+// mapData[mapArray.ball[0]][mapArray.ball[1]] = 2;
+// mapArray.cone.forEach((cone) => {
+//   mapData[cone[0]][cone[1]] = 1;
+// });
 
-const mapArray = {
-  ball: [12, 10],
-  cone: [[2, 13], [15, 7], [5, 6]],
-  size: [20, 20]
-}
-
-const mapData = Array.from({ length: mapArray.size[0] }, () => Array.from({ length: mapArray.size[1] }).fill(0));
-mapData[mapArray.ball[0]][mapArray.ball[1]] = 2;
-mapArray.cone.forEach((cone) => {
-  mapData[cone[0]][cone[1]] = 1;
-});
   // Function to create the visual map using Two.js
 function createMap(data) {
   const two = new Two({
@@ -60,13 +37,13 @@ function createMap(data) {
       const triangle = null;
       const square = null;
       // Create a shape based on the value in the 2D array
-      if (value === 0) { // 0 is a square (empty space)
+      if (value === 'w') { // 0 is a square (empty space)
         const square = two.makePolygon(x, y, 10, 4);
         square.fill = 'grey';
-      } else if (value === 1) { // 1 is a cone
+      } else if (value === '1' || value === '2' || value === '3' || value === '4') { // 1 is a cone
         const triangle = two.makePolygon(x, y, 10, 3);
         triangle.fill = 'orange';
-      } else if (value === 2) { // 2 is a circle (ball)
+      } else if (value === 'B') { // 2 is a circle (ball)
         const circle = two.makeCircle(x, y, 10);
         circle.fill = 'red';
       }
