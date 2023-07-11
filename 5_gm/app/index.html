@@ -63,25 +63,40 @@
     <div id="question-page-main-box" class="question-page-main-box">
         <h1 class="title">BBD QUIZ CHALLENGE</h1>
         <div class="questions">
-            <h1 class="Question">insert question</h1>
-            <p class="Multiple choice">A</p>
-            <p class="Multiple choice">B</p>
-            <p class="Multiple choice">C</p>
-            <p class="Multiple choice">D</p>
+            <div class="Question" id="question_holder">insert question</div>
+            <button id="answer_1">A</button>
+            <button id="answer_2">B</button>
+            <button id="answer_3">C</button>
+            <button id="answer_4">D</button>
         </div>
-        <div class="Players">
-            <h1 class="Player_font">Players</h1>
-            <p class="Player names">P1</p>
-            <p class="Player names">P2</p>
-            <p class="Player names">P3</p>
-            <p class="Player names">P4</p>
-            <p class="Player names">P5</p>
-        </div>
+        <ul>
+            <li id="username_1">PLAYER 1</li>
+            <li id="username_2">PLAYER 2</li>
+            <li id="username_3">PLAYER 3</li>
+            <li id="username_4">PLAYER 4</li>
+            <li id="username_5">PLAYER 5</li>
+            <li id="username_6">PLAYER 6</li>
+            <li>PLAYER 7</li>
+            <li>PLAYER 7</li>
+        </ul>
+        <ul>
+            <li id="score_1">SCORE 1</li>
+            <li>SCORE 1</li>
+            <li>SCORE 1</li>
+            <li>SCORE 1</li>
+            <li>SCORE 1</li>
+            <li>SCORE 1</li>
+            <li>SCORE 1</li>
+            <li>SCORE 1</li>
+        </ul>
+
         <div class="options">
             <p class="Skip">Skip question</p>
             <p class="Kick">Kick player</p>
             <p class="End">End session</p>
             <button id="go-to-map-btn" class="go-to-map-btn">Go to map</button>
+            <button id="evaluate_btn">REVEAL ANSWER</button>
+            <button id="next_question_btn">NEXT QUESTION</button>
         </div>
     </div>
 
@@ -97,7 +112,7 @@
         </div>
         
         <div class="control">
-            <p> Seagate has control </p>
+            <div id="who_controlling_ball"> Seagate has control</div>
         </div>
         <button id="back-to-game-btn" class="back-to-game-btn">Back</button>
     </div>
