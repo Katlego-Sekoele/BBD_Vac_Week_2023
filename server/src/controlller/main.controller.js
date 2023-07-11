@@ -1,7 +1,5 @@
 const ball = require("./ball.controller.js");
 
-moveBall("up");
-
 function moveBall(direction){
     // Call Ball functions to move here
     console.log("MB " + direction);
@@ -12,4 +10,8 @@ function moveBall(direction){
 function getMap(){
     // Call Map functions to get map here
     return "Map returned";
+}
+
+module.exports = {
+    moveBall, getMap
 }
