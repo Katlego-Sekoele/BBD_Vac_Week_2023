@@ -40,4 +40,15 @@ router.get("/get20Questions", async (req, res) => {
   }
 });
 
+router.get("/getQuestionsSample/:size", async (req, res) => {
+  try {
+    const data = await Question.aggregate([
+      { $sample: { size: req.params.size } },
+    ]);
+    res.json(data);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 module.exports = router;
