@@ -134,7 +134,7 @@ function populateAllQuizzes() {
 
 // TEST CODE START
 if (DEBUG) {
-    for (let index = 0; index < 50; index++) {
+    for (let index = 0; index < 20; index++) {
         var testQuiz = getQuiz();
         question = testQuiz.Question;
         console.log(testQuiz.Question);
