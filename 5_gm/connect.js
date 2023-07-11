@@ -1,6 +1,6 @@
 //import "./socket.io/client-dist/socket.io.js";
 
-const SERVER_URL = "http://localhost:3000";
+const SERVER_URL = window.location.host === "server-bbd-vac-week.onrender.com"?  "https://server-bbd-vac-week.onrender.com/":"http://localhost:3000";
 let socket = io.connect(SERVER_URL);
 // manager connects to socket server
 
