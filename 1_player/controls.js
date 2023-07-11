@@ -2,24 +2,21 @@ const SERVER_URL = "http://localhost:3000";
 
 const socket = io.connect(SERVER_URL);
 var numberOfMoves = 5;
-var moves = [];
 
 function saveDir(e, dir) {
     e.preventDefault();
-    moves.push(dir)
+    sendDir(dir)
     numberOfMoves --
     console.log(dir + ": number of moves left " + numberOfMoves);
 
     if(numberOfMoves <= 0){
-        sendDirs()
+        numberOfMoves = 5
+        window.location.assign("quiz.html");
     }
 }
 
-function sendDirs(){
-    socket.emit("move_ball", moves)
-    numberOfMoves = 5
-    moves = []
-    window.location.assign("quiz.html");
+function sendDir(dir){
+    socket.emit("move_ball", dir)
 }
 
 document.getElementById("up").addEventListener('click', (e) => {
