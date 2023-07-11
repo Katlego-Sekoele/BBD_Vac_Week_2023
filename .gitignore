@@ -1,2 +1,4 @@
 .idea
+# git rm env --cached
+.env
 /node_modules
