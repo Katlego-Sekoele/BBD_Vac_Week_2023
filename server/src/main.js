@@ -15,7 +15,9 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(express.static("../1_player"));
+app.use("/", express.static("../1_player"));
+app.use("/gm", express.static("../5_gm/app"));
+
 const server = http.createServer(app);
 
 const io = require('socket.io')(server, {
@@ -26,8 +28,11 @@ server.listen(3000, () => console.log('listening on http://localhost:3000'));
 
 
 
+const allSockets = [];
 
 io.on('connection', (socket) => {
+  allSockets.push(socket);
+
   console.log('a user connected with ID: ' + socket.id);
 
   socket.on('disconnect', () => {
@@ -48,6 +53,9 @@ io.on('connection', (socket) => {
   socket.on("move_ball", (msg) => {
     console.log(msg);
     socket.emit("response", "ball moved!");
+    for(const socket of allSockets) {
+      socket.emit("on_ball_control", msg);
+    }
   })
 
 });
