@@ -280,6 +280,58 @@ function checkPlayerLoss(currentPlayer){
     return true
 }
 
+//function to find where a particluar object is (such as a ball or cone)
+function findObject(sObject){
+    //sObject should be pssed in as a STRING
+    for (var y = 0; y < yLen; y++)
+    {
+        for (var x = 0; x < xLen; x++)
+        {
+            if (mapGrid == sData){
+                return [x, y]
+            }
+        }
+    }
+}
+
+function convertImageCoOrdToGrid(coOrdinatesArray){
+    //initialise mapGrid with default values
+    var mapGrid = new Array(yLen)
+
+    for (var i = 0; i < yLen; i++)
+    {
+        mapGrid[i] = [];
+        for (var j = 0; j < xLen; j++)
+        {
+            mapGrid[i][j] = 'W';
+        }
+    }
+
+    //place all the items
+    for (var i = 0; i < coOrdinatesArray.length; i++){
+        //store the type (either player number or "B" for ball)
+        sValue = coOrdinatesArray[0]
+        //store the co-ordinates
+        xCoOrd = coOrdinatesArray[1]
+        yCoOrd = coOrdinatesArray[2]
+
+        //assign the value in the grid if it is currently a "W"
+        if (mapGrid[xCoOrd][yCoOrd] == "W"){
+            mapGrid[xCoOrd][yCoOrd] = sValue
+        }
+        else{
+            //f the space is already filled by another object then place it in it's previous spot
+            coOrds = findObject(sValue)
+            xCoOrd = coOrds[0]
+            yCoOrd = coOrds[1]
+
+            mapGrid[xCoOrd][yCoOrd] = sValue
+        }
+    }
+
+    map = mapGrid
+}
+
 
 //console.log(initializeMap(4));
 //console.log(initiateDuel(test));
