@@ -1,125 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="src/style.css">
-</head>
-<body>
-
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
     <div id="start-game-container" class="start-game-container">
-        <h1 class="title">BBD QUIZ CHALLENGE</h1>
-        <div class="startsign">
-            <button id="nextbutton1" class="nextbutton1"> START A NEW GAME </button>
-        </div>
+      <h1 class="title">BBD QUIZ CHALLENGE</h1>
+      <div class="startsign">
+        <button id="homescreen-start-btn" class="nextbutton1">START A NEW GAME</button>
+      </div>
     </div>
 
     <div id="set-up-game-container" class="set-up-game-container">
-        <h1 class="title">BBD QUIZ CHALLENGE</h1>
-       <div class="mainFlex"> 
-            <div class="gameSetUpFlex">
-                <div class="heading">
-                    <p class="gameSetUpHeading"> SET UP YOUR GAME</p>
-                </div>
+      <h1 class="title">BBD QUIZ CHALLENGE</h1>
+      <div class="mainFlex">
+        <div class="gameSetUpFlex">
+          <div class="heading">
+            <p class="gameSetUpHeading">SET UP YOUR GAME</p>
+          </div>
 
-                <div class="specialDiv">
-                    <div class="innercontainer">
-                        <div class="settingContainer">
-                            <p class="settingdescription"> Number of Questions</p>
-                            <input class="inputboxes">
-                        </div>
-                        <div class="settingContainer">
-                            <p class="settingdescription"> Number of Players</p>
-                            <input class="inputboxes">
-                        </div>
-                        <div class="settingContainer"> 
-                            <p class="settingdescription"> Question Genre</p>
-                            <input class="inputboxes">
-                        </div>
-                    </div>
-
-                    <div class="buttonParent">
-                        <button id="nextbutton" class="nextbutton"> Next </button>
-                    </div>
-                </div>
+          <div class="specialDiv">
+            <div class="innercontainer">
+              <div class="settingContainer">
+                <p class="settingdescription">Number of Questions</p>
+                <input class="inputboxes" />
+              </div>
+              <div class="settingContainer">
+                <p class="settingdescription">Number of Players</p>
+                <input class="inputboxes" />
+              </div>
+              <div class="settingContainer">
+                <p class="settingdescription">Question Genre</p>
+                <input class="inputboxes" />
+              </div>
             </div>
-    </div>
+
+            <div class="buttonParent">
+              <button id="nextbutton" class="nextbutton">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="QR-screen-main-box" class="QR-screen-main-box">
-        <h1 class="title">BBD QUIZ CHALLENGE</h1>
-        <h2 class="Player join">PLAYERS JOIN THE GAME NOW!</h2>
-        <div class="QR">
-            <img>
-        </div>
-        <div class="Join">
-            <h1 class="Player join">Joined:</h1>
-            <p class="Players"></p>
-        </div>
-        <div class="START">
-            <button id="start-game-btn" class="start-game-btn">START GAME</button>
-        </div>
+      <h1 class="title">BBD QUIZ CHALLENGE</h1>
+      <h2 class="Player join">PLAYERS JOIN THE GAME NOW!</h2>
+      <div class="QR">
+        <img />
+      </div>
+      <div class="Join">
+        <h1 class="Player join">Joined:</h1>
+        <p class="Players"></p>
+      </div>
+      <div class="START">
+        <button id="start-game-btn" class="start-game-btn">START GAME</button>
+      </div>
     </div>
 
     <div id="question-page-main-box" class="question-page-main-box">
-        <h1 class="title">BBD QUIZ CHALLENGE</h1>
-        <div class="questions">
-            <div class="Question" id="question_holder">insert question</div>
+      <div class="question_page_flex1">
+        <div class="question_page_flex2a">
+          <div class="question_page_flex3a">
+            <div class="Question" id="question_holder">QUESTION HERE Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, facere corporis. Dignissimos deserunt exercitationem sint amet obcaecati error?</div>
+          </div>
+          <div class="question_page_flex3b">
             <button id="answer_1">A</button>
             <button id="answer_2">B</button>
             <button id="answer_3">C</button>
             <button id="answer_4">D</button>
-        </div>
-        <ul>
-            <li id="username_1">PLAYER 1</li>
-            <li id="username_2">PLAYER 2</li>
-            <li id="username_3">PLAYER 3</li>
-            <li id="username_4">PLAYER 4</li>
-            <li id="username_5">PLAYER 5</li>
-            <li id="username_6">PLAYER 6</li>
-            <li>PLAYER 7</li>
-            <li>PLAYER 7</li>
-        </ul>
-        <ul>
-            <li id="score_1">SCORE 1</li>
-            <li>SCORE 1</li>
-            <li>SCORE 1</li>
-            <li>SCORE 1</li>
-            <li>SCORE 1</li>
-            <li>SCORE 1</li>
-            <li>SCORE 1</li>
-            <li>SCORE 1</li>
-        </ul>
-
-        <div class="options">
-            <p class="Skip">Skip question</p>
-            <p class="Kick">Kick player</p>
-            <p class="End">End session</p>
-            <button id="go-to-map-btn" class="go-to-map-btn">Go to map</button>
+          </div>
+          <div class="question_page_flex3c">
             <button id="evaluate_btn">REVEAL ANSWER</button>
             <button id="next_question_btn">NEXT QUESTION</button>
+            <button id="quit_btn">Quit!</button>
+            <button id="restart_btn">Restart Game</button>
+          </div>
         </div>
+        <div class="question_page_flex2b">
+          <div class="question_page_flex4a">
+            <div id="who_controlling_ball">Seagate has control</div>
+          </div>
+          <div class="question_page_flex4b">
+            <div class="map">
+              <div class="shape-container" id="shape-container">
+                <div id="draw-shapes"></div>
+              </div>
+            </div>
+          </div>
+          <div class="question_page_flex4c">
+            <ul>
+                <li>
+                    <h1>PLAYERS</h1>
+                  </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_1">PLAYER 1 </li>
+                  <li id="score_1">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_2">PLAYER 2 </li>
+                  <li id="score_2">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_3">PLAYER 3 </li>
+                  <li id="score_3">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_4">PLAYER 4 </li>
+                  <li id="score_4">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_5">PLAYER 5 </li>
+                  <li id="score_5">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_6">PLAYER 6 </li>
+                  <li id="score_6">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_7">PLAYER 7</li>
+                  <li id="score_7">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_8">PLAYER 8</li>
+                  <li id="score_8">50</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="map-container" class="map-container">
-        <div class="heading">
-            <p> THE BALL IS MOVING! </p>
-        </div>
-        <canvas id="camCanvas"></canvas>
-        <div class="map">
-            <div class="shape-container" id="shape-container">
-                <div id="draw-shapes"></div>
-            </div>
-        </div>
-        
-        <div class="control">
-            <div id="who_controlling_ball"> Seagate has control</div>
-        </div>
-        <button id="back-to-game-btn" class="back-to-game-btn">Back</button>
+      <canvas id="camCanvas"></canvas>
+
+      <div class="control"></div>
+      <button id="back-to-game-btn" class="back-to-game-btn">Back</button>
     </div>
 
-    </div>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script type="module" src="src/main.js"></script>
     <script src="src/MapStuff/mapMain.js"></script>
-</body>
+  </body>
 </html>

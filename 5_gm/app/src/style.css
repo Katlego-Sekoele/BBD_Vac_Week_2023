@@ -5,7 +5,7 @@
     --darkBlue: rgb(5,32,74);
     --borderRadiusVal: 10px;
     --lilac:#E1E2EF;
-    --correctGreen:#9CE27B;
+    --correctGreen:#81C360;
   }
 .set-up-game-container,
 .QR-screen-main-box,
@@ -22,6 +22,8 @@ body {
 
 .map{
     background-color: rgb(255, 170, 193);
+    width: 50em;
+    height: 30em;
 }
 
 #camCanvas{
@@ -140,4 +142,37 @@ body {
     font-weight: bold;
     font-family: 'Lilita One', sans-serif;
     color: var(--lilac);
+}
+
+.question_page_flex1{
+    display:flex;
+    flex-direction: row;
+}
+
+.question_page_flex2a{
+    display: flex;
+    flex-direction: column;
+}
+
+.question_page_flex3b{
+    display: flex;
+    flex-direction: column;
+}
+
+.question_page_flex4c ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.question_page_flex_5{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.Question{
+    width: 20em;
+    font-size: 2em;
 }
