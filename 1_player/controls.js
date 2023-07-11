@@ -24,3 +24,7 @@ document.getElementById("down").addEventListener('click', (e) => {
 document.getElementById("right").addEventListener('click', (e) => {
     sendDir(e, 90);
 });
+
+socket.on("startQuiz", (res) => {
+    window.location.assign("quiz.html");
+})

@@ -21,7 +21,7 @@ document.getElementById("connectBtn").onclick = () => {
 	//create json object to send username and gamecode
 	let connectObject = {"username": username  , "gamecode" : gameCode};
 
-	socket.emit("join_lobby", connectObject)
+	socket.emit("join_lobby", JSON.stringify(connectObject))
 
 	socket.on("joined_lobby", (data) => {
 		//check whether a userId was received
@@ -33,26 +33,3 @@ document.getElementById("connectBtn").onclick = () => {
 		}
 	})
 }
-
-socket.on("connect", () => {
-	// connect event
-	const engine = socket.io.engine;
-
-	engine.on("packet", ({ type, data }) => {
-		// called for each packet received
-	});
-
-	engine.on("packetCreate", ({ type, data }) => {
-		// called for each packet sent
-	});
-});
-
-// disconnect event
-socket.on("disconnect", () => {});
-
-socket.on("generic_event", (data) => {
-	//     TODO: decide on events with server team
-});
-
-// send payload to server and invoke another_generic_event on server side
-// socket.emit("another_generic_event", payload)
