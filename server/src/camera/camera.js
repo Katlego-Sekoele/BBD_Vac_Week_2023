@@ -8,7 +8,7 @@ const Player1 = [170, 239, 61];// Light Green
 const Player2 = [0, 175, 203]; // Light Blue
 const Player3 = [246, 21, 144]; // Light pink/purple
 const Player4 = [225, 255, 0];  // Light yellow
-const Ball = [200, 0, 0]; // Red
+const Ball = [225, 0, 0]; // Red
 
 function absoluteDifference(pixel, color) {
   let ans = 0
@@ -37,28 +37,23 @@ function updatePositions(pixel, x, y, positions) {
   }
 }
 
-// Request access to the webcam
-navigator.mediaDevices
-  .getUserMedia({ video: true })
-  .then((stream) => {
-    video.srcObject = stream;
-    video.play();
-  })
-  .catch((error) => {
-    console.error("Error accessing the webcam: ", error);
-  });
+function getCameraPermission() {
+  // Request access to the webcam
+  navigator.mediaDevices
+    .getUserMedia({ video: true })
+    .then((stream) => {
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch((error) => {
+      console.error("Error accessing the webcam: ", error);
+    });
+}
 
 // Function to track the ball
 function getMap() {
-  trackBallPosition();
+  return trackBallPosition();
 }
-
-function draw() {
-  context.drawImage(video, 0, 0, canvas.width, canvas.height);
-  trackBallPosition();
-  requestAnimationFrame(draw);
-}
-
 
 // Identify the ball position
 function trackBallPosition() {
@@ -87,19 +82,5 @@ function trackBallPosition() {
     updatePositions(pixel, x, y, positions);
   }
 
-  let flag = false;
-
-  flag |= !(positions.ball[0] == -1 && positions.ball[1] == -1);
-  flag |= !(positions.player1[0] == -1 && positions.player1[1] == -1);
-  flag |= !(positions.player2[0] == -1 && positions.player2[1] == -1);
-  flag |= !(positions.player3[0] == -1 && positions.player3[1] == -1);
-  flag |= !(positions.player4[0] == -1 && positions.player4[1] == -1);
-
-  if (!flag) {
-    console.log("No ball found");
-  }
-  else {
-    console.log(positions);
-  }
-
+  return JSON.stringify(positions);
 }
