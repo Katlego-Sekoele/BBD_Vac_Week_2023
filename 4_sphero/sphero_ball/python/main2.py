@@ -55,7 +55,7 @@ if __name__ == '__main__':
                     print("Sent")
                 
                 @sio.event
-                def duel_done():
+                def duel_done(*args):
                     try:
                         print("Received control to stop")
                         api.set_speed(0)
