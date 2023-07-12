@@ -410,8 +410,8 @@ function populateObjectArray(objects){
         playerY = currentPlayerCoOrds[1]
 
         // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
-        xFinal = Math.round((playerX / xDimension) * 100)
-        yFinal = Math.round((playerY / yDimension) * 100)
+        xFinal = Math.floor((playerX / xDimension) * 100)
+        yFinal = Math.floor((playerY / yDimension) * 100)
 
         //store the information in the player information array
         objectsArray.push([sPlayerNumber, xFinal, yFinal])
