@@ -8,8 +8,7 @@ const questionPageMainBox = document.getElementById('question-page-main-box');
 const mapContainer = document.getElementById('map-container');
 
 // Event listeners or any other logic to trigger the container changes
-document.getElementById("homescreen-start-btn").addEventListener("click", showSetUpGameContainer);
-document.getElementById("nextbutton").addEventListener("click", showQRScreenMainBox);
+document.getElementById("homescreen-start-btn").addEventListener("click", showQRScreenMainBox);
 document.getElementById("start-game-btn").addEventListener("click", showQuestionPageMainBox);
 document.getElementById("go-to-map-btn").addEventListener("click", showMapContainer);
 document.getElementById("back-to-game-btn").addEventListener("click", showQuestionPageMainBox);
