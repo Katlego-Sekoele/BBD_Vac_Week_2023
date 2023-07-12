@@ -40,10 +40,10 @@ router.get("/get20Questions", async (req, res) => {
   }
 });
 
-router.get("/getQuestionsSample/:size", async (req, res) => {
+router.get("/getXQuestions/:size", async (req, res) => {
   try {
     const data = await Question.aggregate([
-      { $sample: { size: req.params.size } },
+      { $sample: { size: parseInt(req.params.size) } },
     ]);
     res.json(data);
   } catch (error) {

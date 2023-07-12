@@ -5,10 +5,7 @@ socket.on("startQuiz", (res) => {
     connectToGame(res)
 })
 
-socket.emit("start", 1);
-
-
-function connectToGame(gameSettings)
+function connectToGame()
 {
     window.location.assign("quiz.html");
 }

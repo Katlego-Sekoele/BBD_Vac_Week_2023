@@ -14,6 +14,8 @@ const io = require("socket.io")(server, {
 });
 server.listen(3000, () => console.log("listening on http://localhost:3000"));
 
+const kPointUnit = 10;
+
 let gameIsRunning = false;
 let allSockets = [];
 let players = [];
@@ -23,7 +25,7 @@ let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
 
 function getPlayerWithSocket(socket) {
-  return players.filter((value) => value.socket.id === socket.id);
+  return players.find((value) => value.socketId === socket.id);
 }
 
 io.on("connection", (socket) => {
@@ -35,14 +37,22 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("a user disconnected with ID: " + socket.id);
     allSockets = allSockets.filter((value) => value.id != socket.id);
-    players = players.filter((value) => value.socket.id != socket.id);
+    players = players.filter((value) => value.socketId != socket.id);
+
+    if (players.length === 0) {
+      gameIsRunning = false;
+    }
 
     io.emit("current_players", players);
   });
 
+  socket.on("restart", () => {
+    io.emit("on_game_restart", {});
+  });
+
   // player requests to join a lobby
   socket.on("join_lobby", (data) => {
-    if(gameIsRunning) {
+    if (gameIsRunning) {
       socket.emit("on_error", "Game is already running.");
       return;
     }
@@ -55,8 +65,8 @@ io.on("connection", (socket) => {
     players.push({
       score: 0,
       playerId: players.length,
-      username: data.username,
-      socket: socket,
+      username: `Player ${players.length}`,
+      socketId: socket.id,
       coneNumber: players.length,
     });
 
@@ -70,16 +80,23 @@ io.on("connection", (socket) => {
 
   socket.on("generate_initial_map", (data) => {
     const map = DuelEngine.initializeMap(players.length); // We have to something here to specify nr of cones
-    console.log(map);
+    //console.log(map);
     socket.emit("on_generated_map", map);
   });
 
   socket.on("game_start", () => {
+    if (players.length < 2) {
+      socket.emit("on_error", "Not enough players to start game.");
+      return;
+    }
+
     gameIsRunning = true;
     io.emit("start_quiz", {});
   });
 
   socket.on("make_next_question", () => {
+    console.log(players);
+
     playerWhoAnsweredFirstId = -1;
 
     const playerScores = players.map((el) => el.score);
@@ -95,7 +112,7 @@ io.on("connection", (socket) => {
 
       for (const p of players) {
         if (p.playerId !== duelPlayer.playerId) {
-          p.score = Math.max(0, p.score - 1);
+          p.score = Math.max(0, p.score - kPointUnit);
         }
       }
     }
@@ -111,7 +128,8 @@ io.on("connection", (socket) => {
     if (playerWhoAnsweredFirstId < 0) {
       if (isCorrect) {
         const player = getPlayerWithSocket(socket);
-        player.score += 1;
+        player.score += kPointUnit;
+        console.log("Player answered first", player.username);
         io.emit("current_players", players);
 
         playerWhoAnsweredFirstId = player.playerId;
@@ -119,11 +137,27 @@ io.on("connection", (socket) => {
     }
   });
 
+  socket.on("dev_duel_done", () =>{
+    io.emit("duel_done");
+  });
+  
+  socket.on("dev_duel_start", () =>{
+    io.emit("duel", players[0]);
+  });
+
   socket.on("move_ball", (msg) => {
-    console.log(msg);
-    for (const socket of allSockets) {
-      // TODO: Ensure that only one player can control the ball.
-      socket.emit("on_ball_control", msg);
+    io.emit("on_ball_control", msg);
+
+    // TODO: Get duel remaining players and check if someone was eliminated
+
+    // When duel is done
+    // io.emit("duel_done");
+
+    // Last man standing is the winner
+    if (players.length == 1) {
+      io.emit("on_winner", players[0]);
+      players.length = 0;
+      gameIsRunning = false;
     }
   });
 });

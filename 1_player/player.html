@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <style>   
+        .modal {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.4rem;
+            width: 14em;
+            padding: 1.05rem;
+            min-height: 100px;
+            position: absolute;
+            z-index: 2;
+            top: 37%;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+        }
+
+        .modal .flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal p {
+            font-size: 0.9rem;
+            color: #777;
+            margin: 0.4rem 0 0.2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.4rem;
+            font-weight: 700;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .btn-open {
+            position: absolute;
+            bottom: 150px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            z-index: 1;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="src/player.css">
+
+</head>
+
+<body>
+    <h1 class="title">BBD QUIZ CHALLENGE</h1>
+
+    <div id="join-game-container" class="container join-game-container">
+
+        <div class="gameCodeContainer">
+            <p class="gameCodeDescription">GAME CODE</p>
+            <input id="gameCodeValue" class="gameCodeValue">
+        </div>
+
+        <div class="buttonParent">
+            <button id="joinButton" class="joinButton">JOIN GAME</button>
+        </div>
+
+    </div>
+
+    <div id="lobby-container" class="container lobby-container">
+        <div class="lobbyDescription">
+            Please wait for the game to start...
+        </div>
+
+        <div class="buttonParent">
+            <button id="quitButton" class="quitButton">QUIT GAME</button>
+        </div>
+    </div>
+
+    <div id="quiz-container" class="container quiz-container">
+        <div class="score-container">
+            <!-- <div class="name-label">
+                TEAM NAME
+            </div> -->
+            <div class="name-label" id="playerName">
+                PLAYER NAME
+            </div>
+            <div id="score" class="score-label" >
+                000
+            </div>
+        </div>
+
+        <div  id="answer-container-id" class="answer-container">
+            <div class="buttonParent">
+                <button id="A" disabled class="answer-button">A</button>
+            </div>
+            <div class="buttonParent">
+                <button id="B" disabled class="answer-button">B</button>
+            </div>
+            <div class="buttonParent">
+                <button id="C" disabled class="answer-button">C</button>
+            </div>
+            <div class="buttonParent">
+                <button id="D" disabled class="answer-button">D</button>
+            </div>
+        </div>
+
+        <section class="modal hidden">
+            <div>
+                <p id="modal_text">
+                </p>
+            </div>
+        </section>
+          
+        <div class="overlay hidden"></div>
+    </div>
+
+    <div id="control-container" class="container control-container">
+        <div class="controlDescription">
+            You now have control!
+        </div>
+
+        <div class="controls">
+            <button id="up" class="move-control">UP</button>
+            <button id="left" class="move-control">LEFT</button>
+            <button id="right" class="move-control">RIGHT</button>
+            <button id="down" class="move-control">DOWN</button>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="btn-container">
+
+        <button id="join-game" class="temp-nav">join-game</button>
+
+        <button id="lobby" class="temp-nav">lobby</button>
+
+        <button id="quiz" class="temp-nav">quiz</button>
+
+        <button id="control" class="temp-nav">control</button>
+
+    </div>
+
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
+
+    <script type="module" src="src/player.js"></script>
+
+</body>
+
+</html>
