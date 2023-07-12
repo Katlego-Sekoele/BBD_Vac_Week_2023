@@ -8,6 +8,7 @@ const QuizEngine = require("../../2_quiz/QuizGenQuestionGenerator");
 app.use("/", express.static("../1_player"));
 app.use("/gm", express.static("../5_gm/app"));
 
+app.use(express.static("../1_player"));
 const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: { origin: "*" },
@@ -19,7 +20,6 @@ const kPointUnit = 10;
 let gameIsRunning = false;
 let allSockets = [];
 let players = [];
-const mainGameCode = "abcd";
 
 let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
@@ -27,6 +27,16 @@ let currentQuestion = undefined;
 function getPlayerWithSocket(socket) {
   return players.find((value) => value.socketId === socket.id);
 }
+
+function genCode(){
+  let lobbyID = "";
+  const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for (let i = 0; i < 4; i++){
+    lobbyID += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return lobbyID;
+}
+const mainGameCode = genCode();
 
 io.on("connection", (socket) => {
   allSockets.push(socket);
@@ -65,7 +75,7 @@ io.on("connection", (socket) => {
     players.push({
       score: 0,
       playerId: players.length,
-      username: `Player ${players.length}`,
+      username: data.username,
       socketId: socket.id,
       coneNumber: players.length,
     });

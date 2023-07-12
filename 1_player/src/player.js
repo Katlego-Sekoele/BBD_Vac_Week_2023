@@ -1,3 +1,10 @@
+var answer;
+var question;
+var btn_class = "answer-button"
+var player;
+var is_duel_player = false;
+var userName;
+
 /* Modal */
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
@@ -12,7 +19,7 @@ const closeModal = function () {
 
 // close the modal when the close button and overlay is clicked
 // closeModalBtn.addEventListener("click", closeModal);
-overlay.addEventListener("click", closeModal);
+// overlay.addEventListener("click", closeModal);
 
 // open modal function
 const openModal = function () {
@@ -46,9 +53,6 @@ socket.on("generic_event", (data) => {
     //     TODO: decide on events with server team
 });
 
-
-
-
 // --- FUNCTIONS ---
 // Navigation: Join Game Container
 function showJoinGameContainer() {
@@ -70,12 +74,12 @@ function showLobbyContainer() {
 
 // Navigation: Quiz Container
 function showQuizContainer() {
+    // USer userNme
+    document.getElementById("playerName").innerHTML = userName;
     joinGameContainer.style.display = 'none';
     lobbyContainer.style.display = 'none';
     quizContainer.style.display = 'block';
     controlContainer.style.display = 'none';
-    // USer userNme
-    document.getElementById("playerName").innerHTML = "Player " + (player.playerId+1);
 }
 
 // Navigation: Controller Container
@@ -87,23 +91,33 @@ function showControllerContainer() {
 }
 
 // --- JOIN GAME ---
-
 document.getElementById("joinButton").onclick = () => {
     // establish connection to socket server
 
     let gameCode = document.getElementById("gameCodeValue").value;
-    console.log(gameCode);
+    userName = document.getElementById("userNameValue").value;
+
+    if(userName.length > 10) {
+        document.getElementById("userNameValue").value = "";
+        alert("Username cannot be longer than 10 characters");
+        return;
+    }
 
     if (
         gameCode === "" ||
-        gameCode === null
+        gameCode === null ||
+        userName === "" ||
+        userName === null
     ) {
         alert("Input fields cannot be empty");
         return;
     }
 
     //create json object to send username and gamecode
-    let connectObject = { "gameCode": gameCode };
+    let connectObject = {
+        gameCode: gameCode,
+        username: userName
+      };
 
     // request to join lobby
     socket.emit("join_lobby", connectObject)
@@ -112,8 +126,6 @@ document.getElementById("joinButton").onclick = () => {
     socket.on("player_joined", (data) => {
         //check whether a userId was received
         if (data) {
-            console.log(data);
-            //redirect to lobby
             showLobbyContainer();
         } else {
             alert("Error connecting. Please try again.");
@@ -124,7 +136,6 @@ document.getElementById("joinButton").onclick = () => {
         alert(data);
     })
 }
-
 
 // --- LOBBY ---
 //[commented out because "startQuiz" was constantly emitting]
@@ -139,12 +150,6 @@ function connectToGame()
 }
 
 // --- QUIZ ---
-
-var answer;
-var question;
-var btn_class = "answer-button"
-var player;
-var is_duel_player = false;
 
 function convertintChar(integer) {
     let character = 'a'.charCodeAt(0);
@@ -206,12 +211,10 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
     if (correctAnswerIndex == answer) {
         document.getElementById(convertintChar(answer)).style.background = '#00FF00';
     } else {
-        for (var button of document.getElementsByClassName(btn_class)) {
-            button.style.background = '#FF0000';
-        }
+        document.getElementById(convertintChar(answer)).style.background = '#FF0000';
     }
 
-    //document.getElementById("score").innerHTML = player.score;
+    document.getElementById("score").innerHTML = player.score;
 });
 
 socket.on("duel", (dualPlayer) => {
@@ -223,7 +226,7 @@ socket.on("duel", (dualPlayer) => {
         // Redirect to controls page
         showControllerContainer();
     } else {
-        document.getElementById("modal_text").innerHTML = `Player ${dualPlayer.playerId+1} is duelling.`;
+        document.getElementById("modal_text").innerHTML = `${dualPlayer.username} is duelling.`.toUpperCase();
         openModal();
         //alert(`Player ${player.username} is duelling.`);
     }
@@ -244,21 +247,21 @@ function sendMove(e, dir, speed) {
     document.removeEventListener('touchend', _eventTouched);
 }
 
-document.getElementById("up").addEventListener('click', (e) => {
-    sendMove(e, 1);
-});
+// document.getElementById("up").addEventListener('click', (e) => {
+//     sendMove(e, 1);
+// });
 
-document.getElementById("left").addEventListener('click', (e) => {
-    sendMove(e, 271);
-});
+// document.getElementById("left").addEventListener('click', (e) => {
+//     sendMove(e, 271);
+// });
 
-document.getElementById("down").addEventListener('click', (e) => {
-    sendMove(e, 181);
-});
+// document.getElementById("down").addEventListener('click', (e) => {
+//     sendMove(e, 181);
+// });
 
-document.getElementById("right").addEventListener('click', (e) => {
-    sendMove(e, 91);
-});
+// document.getElementById("right").addEventListener('click', (e) => {
+//     sendMove(e, 91);
+// });
 
 // // Variables to store initial touch position and timestamp
 // let startX, startY, startTime;

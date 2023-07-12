@@ -71,15 +71,14 @@ socket.on('current_players', (currentPlayers) => {
 });
 
 socket.on("lobby_code", lobbyCode => {
-    currentLobbyCode = lobbyCode;
-    // TODO: document.getElementById("lobby_code").innerText = lobbyCode;
+    document.getElementById("lobby_code").innerText = 'LOBBY CODE: ' + lobbyCode;
 });
 
 socket.on('duel', (playerControllingTheBall) => {
     document.getElementById("who_controlling_ball").innerText = playerControllingTheBall.username +" is controlling the ball";
     // TODO: get the info using the camera now to cause map updates
 });
-socket.on('done_duel', () => {
+socket.on('duel_done', () => {
     document.getElementById("who_controlling_ball").innerText = "No one is controlling the ball";
 });
 
@@ -135,7 +134,7 @@ function updateScoreboard(currentPlayers) {
         divScore.innerText = player.score; 
         var lobbyUsername = document.getElementById('lobby_username_' + (i+1));
         lobbyUsername.innerText = player.username;
-        document.getElementById('numJoined').innerText = players.length + "/8 players joined";
+        document.getElementById('numJoined').innerText = players.length + "/8 joined";
       }
 }   
     
@@ -178,6 +177,11 @@ function showQuestionPageMainBox() {
     qrScreenMainBox.style.display = 'none';
     questionPageMainBox.style.display = 'block';
     mapContainer.style.display = 'none';
+    document.getElementById('question_holder').innerText = "Question will appear here";
+    document.getElementById('answer_1').innerText = "A: ";
+    document.getElementById('answer_2').innerText = "B: ";
+    document.getElementById('answer_3').innerText = "C: ";
+    document.getElementById('answer_4').innerText = "D: ";
 }
 
 // Function to show the map container and hide the rest
