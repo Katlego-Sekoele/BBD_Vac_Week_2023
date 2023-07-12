@@ -29,7 +29,7 @@ body {
     row-gap: 5em;
 }
 
-.control-container, .lobby-container, .quiz-container {
+.control-container, .lobby-container, .quiz-container, .errorGameCode, .errorUsername {
     display: none;
 }
 
