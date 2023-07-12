@@ -211,7 +211,7 @@ body {
     margin-left: 1em;
     margin-right: 1em;
     margin-top: 0.5em;
-    font-size: 1.5em;
+    font-size: 1.8em;
 }
 
 .question_page_flex4c ul{
@@ -244,7 +244,7 @@ ul.question_page_flex_5 {
 .Question{
     width: 21em;
     height: 8em;
-    font-size: 2em;
+    font-size: 2.1em;
     background-color: var(--lilac);
     margin-right: 0.5em;
     margin-left: 1em;
