@@ -20,6 +20,7 @@ const kPointUnit = 10;
 let gameIsRunning = false;
 let allSockets = [];
 let players = [];
+let playerCounter = 0;
 
 let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
@@ -46,8 +47,8 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("a user disconnected with ID: " + socket.id);
-    allSockets = allSockets.filter((value) => value.id != socket.id);
-    players = players.filter((value) => value.socketId != socket.id);
+    allSockets = allSockets.filter((value) => value.id !== socket.id);
+    players = players.filter((value) => value.socketId !== socket.id);
 
     if (players.length === 0) {
       gameIsRunning = false;
@@ -74,7 +75,7 @@ io.on("connection", (socket) => {
     if(players.length <= 8){
       players.push({
         score: 0,
-        playerId: players.length,
+        playerId: playerCounter++,
         username: data.username,
         socketId: socket.id,
         coneNumber: players.length,
@@ -130,7 +131,9 @@ io.on("connection", (socket) => {
   });
 
   socket.on("evaluate", (data) => {
-    io.emit("on_correct_answer", currentQuestion.Correct_Answer_Index);
+    if(currentQuestion !== undefined){
+      io.emit("on_correct_answer", currentQuestion.Correct_Answer_Index);
+    }
   });
 
   socket.on("return_player_answer", (data) => {
