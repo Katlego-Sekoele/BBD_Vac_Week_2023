@@ -153,7 +153,6 @@ body {
     border-width: 0.5rem;
     height: 20rem;
     font-size: 7rem;
-    font-weight: bold;
     font-family: 'Lilita One', sans-serif;
     color: var(--lilac);
 }
@@ -305,7 +304,6 @@ ul.question_page_flex_5 {
     border-radius: var(--borderRadiusVal);
     text-align: center;
     font-size: 1.5rem;
-    font-weight: bold;
     font-family: 'Lilita One', sans-serif;
     color: white;
     letter-spacing: 0.1em;
@@ -321,7 +319,6 @@ ul.question_page_flex_5 {
     border-color: var(--purple);
     border-width: 0.4rem;
     font-size: 1.5rem;
-    font-weight: bold;
     font-family: 'Lilita One', sans-serif;
     color: white;
     letter-spacing: 0.1em;
@@ -339,7 +336,6 @@ ul.question_page_flex_5 {
     border-color: var(--lilac);
     border-width: 0.4rem;
     font-size: 1.5rem;
-    font-weight: bold;
     font-family: 'Lilita One', sans-serif;
     color: white;
     letter-spacing: 0.1em;
