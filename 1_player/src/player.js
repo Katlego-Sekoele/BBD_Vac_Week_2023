@@ -276,9 +276,10 @@ socket.on("duel", (dualPlayer) => {
     }
 });
 
-socket.on("duel_done", () => {
+socket.on("duel_done", (dualPlayer) => {
     if (!inLobby) return
-    if (is_duel_player) { showQuizContainer(); }
+    is_duel_player = dualPlayer.socketId === socket.id;
+    if (is_duel_player) { showQuizContainer(); is_duel_player = false;}
     else { closeModal(); }
 });
 
