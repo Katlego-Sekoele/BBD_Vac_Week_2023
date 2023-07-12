@@ -1,4 +1,4 @@
-var answer;
+var answer = null;
 var question;
 var btn_class = "answer-button"
 var player;
@@ -123,7 +123,7 @@ document.getElementById("joinButton").onclick = () => {
     }
     //create json object to send username and gamecode
     let connectObject = {
-        gameCode: gameCode,
+        gameCode: gameCode.toLocaleUpperCase(),
         username: userName
       };
 
@@ -185,18 +185,18 @@ function sendAns(e, ans) {
     if (!inLobby) return
     socket.emit("return_player_answer", { question: question, answer: ans });
     changeBtn(true); // disable after option has been selected
+
     document.getElementById(convertintChar(ans)).style.background = '#E1E2EF';
     document.getElementById(convertintChar(ans)).style.color = '#000000';
 }
 
 // Events
-socket.on("on_next_question", (currentQuestion) => {
-    if (!inLobby) return
-    question = currentQuestion["Question"];
-    console.log(currentQuestion);
-    let no_answers = currentQuestion["Answers"].length;
+function resetButtons() {
+    let no_answers = question["Answers"].length;
 
     let buttons = "";
+    answer = null;
+
     for (var i = 0; i < no_answers; i++) {
         buttons += 
         `<div class="buttonParent">
@@ -207,7 +207,6 @@ socket.on("on_next_question", (currentQuestion) => {
     document.getElementById("answer-container-id").innerHTML = "";
     document.getElementById("answer-container-id").innerHTML = buttons;
 
-    // Answer options
     for (var node of document.getElementsByClassName(btn_class)) {
 
         node.addEventListener('click', (e) => {
@@ -216,6 +215,25 @@ socket.on("on_next_question", (currentQuestion) => {
             sendAns(e, id.charCodeAt(0) - 'A'.charCodeAt(0)); // convert to int
         })
     }
+}
+
+// Events
+socket.on("on_next_question", (currentQuestion) => {
+    if (!inLobby) return
+    question = currentQuestion;
+    console.log(currentQuestion);
+
+    // let buttons = "";
+    // for (var i = 0; i < no_answers; i++) {
+    //     buttons += 
+    //     `<div class="buttonParent">
+    //         <button id="${convertintChar(i).toUpperCase()}" class="${btn_class}">${convertintChar(i).toUpperCase()}</button>
+    //     </div>`
+    // }
+
+    // document.getElementById("answer-container-id").innerHTML = "";
+    // document.getElementById("answer-container-id").innerHTML = buttons;
+    resetButtons();
 });
 
 socket.on("current_players", (players) => {
@@ -229,12 +247,14 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
     if (!inLobby) return
     // Change selected option to green if the user answered correctly else change all options to red
     changeBtn(true);
-    console.log(convertintChar(correctAnswerIndex));
 
-    if (correctAnswerIndex == answer) {
+    if (answer == correctAnswerIndex) {
         document.getElementById(convertintChar(answer)).style.background = '#00FF00';
-    } else {
+    } else if (answer != null) {
         document.getElementById(convertintChar(answer)).style.background = '#FF0000';
+    } else {
+        resetButtons();
+        changeBtn(true);
     }
 
     document.getElementById("score").innerHTML = player.score;
