@@ -75,7 +75,7 @@ function ellipticalDiscToSquare(angle)
     x = 0.5 * Math.sqrt(termx1) - 0.5 * Math.sqrt(termx2);
     y = 0.5 * Math.sqrt(termy1) - 0.5 * Math.sqrt(termy2);
 
-    console.log([x, y])
+    //console.log([x, y])
     return [x, y]
 }
 
@@ -437,6 +437,6 @@ function softResetScores(playerScores, moverIndex){
 //console.log(initiateDuel(test));
 //console.log(getPlayerWin())
 //populateObjectArray()
-initializeMap(6)
+//initializeMap(6)
 
 module.exports = { initializeMap, initiateDuel, getPlayerDuel, softResetScores }
