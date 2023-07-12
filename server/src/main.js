@@ -23,7 +23,7 @@ let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
 
 function getPlayerWithSocket(socket) {
-  return players.filter((value) => value.socket.id === socket.id);
+  return players.filter((value) => value.socketId === socket.id);
 }
 
 io.on("connection", (socket) => {
@@ -35,7 +35,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("a user disconnected with ID: " + socket.id);
     allSockets = allSockets.filter((value) => value.id != socket.id);
-    players = players.filter((value) => value.socket.id != socket.id);
+    players = players.filter((value) => value.socketId != socket.id);
 
     io.emit("current_players", players);
   });
@@ -56,7 +56,7 @@ io.on("connection", (socket) => {
       score: 0,
       playerId: players.length,
       username: data.username,
-      socket: socket,
+      socketId: socket.id,
       coneNumber: players.length,
     });
 
