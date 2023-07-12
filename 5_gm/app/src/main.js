@@ -120,6 +120,8 @@ function updateScoreboard() {
         divUsername.innerText = "";
         var divScore = document.getElementById("score_" + (i + 1));
         divScore.innerText = ""; 
+        var lobbyUsername = document.getElementById('lobby_username_' + (i+1));
+        lobbyUsername.innerText = "";
       }
 
     for (var i = 0; i < players.length; i++) {
@@ -130,6 +132,9 @@ function updateScoreboard() {
         divUsername.innerText = username;
         var divScore = document.getElementById("score_" + (i + 1));
         divScore.innerText = player.score; 
+        var lobbyUsername = document.getElementById('lobby_username_' + (i+1));
+        lobbyUsername.innerText = username;
+        document.getElementById('numJoined').innerText = players.length + "/8 players joined";
       }
 }   
     
@@ -154,6 +159,7 @@ function showSetUpGameContainer() {
 
 // Function to show the QR screen main box container and hide the rest
 function showQRScreenMainBox() {
+    updateScoreboard();
     startGameContainer.style.display = 'none';
     setUpGameContainer.style.display = 'none';
     qrScreenMainBox.style.display = 'block';
