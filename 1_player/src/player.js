@@ -238,9 +238,9 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
 
     console.log(convertintChar(correctAnswerIndex));
 
-    if (correctAnswerIndex == answer) {
+    if (answer == correctAnswerIndex) {
         document.getElementById(convertintChar(answer)).style.background = '#00FF00';
-    } else if (correctAnswerIndex != '') {
+    } else if (answer != '') {
         document.getElementById(convertintChar(answer)).style.background = '#FF0000';
     } else {
         resetButtons();
