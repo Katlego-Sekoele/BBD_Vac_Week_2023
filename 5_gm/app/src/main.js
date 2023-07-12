@@ -1,5 +1,4 @@
 //import "./socket.io/client-dist/socket.io.js";
-import {createMap} from "./MapStuff/mapMain.js";
 // for navigation purposes
 const startGameContainer = document.getElementById('start-game-container');
 const setUpGameContainer = document.getElementById('set-up-game-container');
