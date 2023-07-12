@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="src/player.css">
     <style>   
         .modal {
             display: flex;
@@ -65,8 +66,6 @@
             display: none;
         }
     </style>
-    <link rel="stylesheet" href="src/player.css">
-
 </head>
 
 <body>
@@ -75,37 +74,46 @@
     <div id="join-game-container" class="container join-game-container">
 
         <div class="gameCodeContainer">
+            <p class="gameCodeDescription">USERNAME</p>
+            <input id="userNameValue" class="gameCodeValue">
+        </div>
+
+        <div class="gameCodeContainer">
             <p class="gameCodeDescription">GAME CODE</p>
             <input id="gameCodeValue" class="gameCodeValue">
         </div>
 
-        <div class="buttonParent">
+        <div class="joinQuitButtonParent">
             <button id="joinButton" class="joinButton">JOIN GAME</button>
         </div>
 
     </div>
 
     <div id="lobby-container" class="container lobby-container">
-        <div class="lobbyDescription">
-            Please wait for the game to start...
-        </div>
-
-        <div class="buttonParent">
-            <button id="quitButton" class="quitButton">QUIT GAME</button>
+        <div class="lobby-inner">
+            <div class="lobbyDescription">
+                Please wait for the game to start...
+            </div>
+    
+            <div class="joinQuitButtonParent">
+                <button id="quitButton" class="quitButton">QUIT GAME</button>
+            </div>
         </div>
     </div>
 
     <div id="quiz-container" class="container quiz-container">
-        <div class="score-container">
-            <!-- <div class="name-label">
-                TEAM NAME
-            </div> -->
-            <div class="name-label" id="playerName">
-                PLAYER NAME
-            </div>
-            <div id="score" class="score-label" >
-                000
-            </div>
+        <div class="score-container">	
+            <div class="score-inner">	
+                <div class="name-label" id="playerName">	
+                    PLAYER NUMBER	
+                </div>	
+                <div class="name-label">	
+                    SCORE	
+                </div>	
+                <div class="score-label" id="score">	
+                    000	
+                </div>	
+            </div>	
         </div>
 
         <div  id="answer-container-id" class="answer-container">
@@ -134,15 +142,17 @@
     </div>
 
     <div id="control-container" class="container control-container">
-        <div class="controlDescription">
-            You now have control!
-        </div>
-
-        <div class="controls">
-            <button id="up" class="move-control">UP</button>
-            <button id="left" class="move-control">LEFT</button>
-            <button id="right" class="move-control">RIGHT</button>
-            <button id="down" class="move-control">DOWN</button>
+        <div class="control-inner">
+            <div class="controlDescription">
+                You now have control!
+            </div>
+    
+            <div class="controls">
+                <!-- <button id="up" class="move-control">UP</button>
+                <button id="left" class="move-control">LEFT</button>
+                <button id="right" class="move-control">RIGHT</button>
+                <button id="down" class="move-control">DOWN</button> -->
+            </div>
         </div>
     </div>
 

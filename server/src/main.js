@@ -8,6 +8,7 @@ const QuizEngine = require("../../2_quiz/QuizGenQuestionGenerator");
 app.use("/", express.static("../1_player"));
 app.use("/gm", express.static("../5_gm/app"));
 
+app.use(express.static("../1_player"));
 const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: { origin: "*" },
