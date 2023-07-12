@@ -376,6 +376,10 @@ ul.question_page_flex_5 {
     list-style-type: none;
 }
 
+li{
+    list-style-type: none;
+}
+
 .joinedPlayers h1{
     text-align: center;
     background-color: var(--purple);
