@@ -36,15 +36,11 @@ export function createMap(data) {
       const triangle = null;
       const square = null;
       // Create a shape based on the value in the 2D array
-      if (value === 'W') { // 0 is a square (empty space)
-        const square = two.makePolygon(x, y, 10, 4);
-        square.fill = 'grey';
-      } else if (value === '1' || value === '2' || value === '3' || value === '4') { // 1 is a cone
-        const triangle = two.makePolygon(x, y, 10, 3);
-        console.log("MAKE TRIANGLE");
+      if (value === '1' || value === '2' || value === '3' || value === '4'|| value === '5' || value === '6' || value === '7' || value === '8') { // 1 is a cone
+        const triangle = two.makePolygon(x, y, 20, 3);
         triangle.fill = 'orange';
       } else if (value === 'B') { // 2 is a circle (ball)
-        const circle = two.makeCircle(x, y, 10);
+        const circle = two.makeCircle(x, y, 20);
         circle.fill = 'red';
       }
 
@@ -56,46 +52,6 @@ export function createMap(data) {
   // Render the scene
   two.update();
 }
-
-export function createMap2(mapData){
-  const containerWidth = document.getElementById("pixel_map_container").offsetWidth;
-    const containerHeight = document.getElementById("pixel_map_container").offsetHeight;
-    const cellSize = Math.min(containerWidth / mapData[0].length, containerHeight / mapData.length);
-
-    // Create the Two.js instance
-    const two = new Two({
-      width: cellSize * mapData[0].length,
-      height: cellSize * mapData.length,
-      autostart: true
-    }).appendTo(document.getElementById("pixel_map_container"));
-
-    // Create shapes based on the map data
-    for (let i = 0; i < mapData.length; i++) {
-      for (let j = 0; j < mapData[i].length; j++) {
-        let value = '';
-        mapData[i] = value;
-        const circle = null;
-        const triangle = null;
-        const square = null;
-
-        const x = j * cellSize + cellSize / 2;
-        const y = i * cellSize + cellSize / 2;
-        // Create a shape based on the value in the 2D array
-        if (value === 'W') { // 0 is a square (empty space)
-        square = two.makePolygon(x, y, 10, 4);
-        square.fill = 'grey';
-        } else if (value === '1' || value === '2' || value === '3' || value === '4') { // 1 is a cone
-          triangle = two.makePolygon(x, y, 10, 3);
-          triangle.fill = 'orange';
-        } else if (value === 'B') { // 2 is a circle (ball)
-          circle = two.makeCircle(x, y, 10);
-          circle.fill = 'red';
-        }
-        two.add(circle || triangle || square);
-        }
-      }
-      two.update();
-    }
 
 // Call the createMap function with the mapData array
 //createMap(mapData);
