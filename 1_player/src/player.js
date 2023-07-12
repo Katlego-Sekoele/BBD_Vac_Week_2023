@@ -92,27 +92,33 @@ function showControllerContainer() {
 
 // --- JOIN GAME ---
 document.getElementById("joinButton").onclick = () => {
+    // Clear error messages
+    document.getElementById("errorGameCode").classList.add("hidden");
+    document.getElementById("errorUsername").classList.add("hidden");
+
     // establish connection to socket server
 
     let gameCode = document.getElementById("gameCodeValue").value;
     userName = document.getElementById("userNameValue").value;
 
-    if(userName.length > 10) {
-        document.getElementById("userNameValue").value = "";
-        alert("Username cannot be longer than 10 characters");
+    if ( gameCode === "" ||
+    gameCode === null ||  userName === "" ||
+    userName === null) {
+        if (
+            gameCode === "" ||
+            gameCode === null
+        ) {
+            document.getElementById("errorGameCode").innerHTML = "Please enter a value for the game code";
+            document.getElementById("errorGameCode").classList.remove("hidden");
+        }
+
+        if ( userName === "" ||
+        userName === null) {
+            document.getElementById("errorUsername").innerHTML = "Please enter a value for the username";
+            document.getElementById("errorUsername").classList.remove("hidden");
+        }
         return;
     }
-
-    if (
-        gameCode === "" ||
-        gameCode === null ||
-        userName === "" ||
-        userName === null
-    ) {
-        alert("Input fields cannot be empty");
-        return;
-    }
-
     //create json object to send username and gamecode
     let connectObject = {
         gameCode: gameCode,
@@ -120,7 +126,7 @@ document.getElementById("joinButton").onclick = () => {
       };
 
     // request to join lobby
-    socket.emit("join_lobby", connectObject)
+    socket.emit("join_lobby", connectObject);
     // socket.emit("join_lobby", JSON.stringify(connectObject))
 
     socket.on("player_joined", (data) => {
@@ -128,13 +134,15 @@ document.getElementById("joinButton").onclick = () => {
         if (data) {
             showLobbyContainer();
         } else {
-            alert("Error connecting. Please try again.");
+            document.getElementById("errorGameCode").innerHTML = "Error connecting. Please try again.";
+            document.getElementById("errorGameCode").classList.remove("hidden");
         }
-    })
+    });
 
     socket.on("on_error", (data) => {
-        alert(data);
-    })
+        document.getElementById("errorGameCode").innerHTML = data;
+        document.getElementById("errorGameCode").classList.remove("hidden");
+    });
 }
 
 // --- LOBBY ---
@@ -143,6 +151,10 @@ document.getElementById("joinButton").onclick = () => {
 socket.on("start_quiz", (res) => {
     connectToGame(res)
 })
+
+document.getElementById("quitButton").addEventListener("click", () => {
+    window.location.reload();
+});
 
 function connectToGame()
 {
