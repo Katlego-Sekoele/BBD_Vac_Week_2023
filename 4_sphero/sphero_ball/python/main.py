@@ -7,51 +7,48 @@ from spherov2.types import Color
 from spherov2.sphero_edu import IntEnum
 
 
+
 sio = socketio.Client()
 toy = None
 
-@sio.event
-def connect():
-    print('Connected to server')
-    sendMessage()
+# @sio.event
+# def connect():
+#     print('Connected to server')
+#     sendMessage()
 
-@sio.event
-def disconnect():
-    print('Disconnected from server')
+# @sio.event
+# def disconnect():
+#     print('Disconnected from server')
 
-@sio.event
-def on_ball_control(data):
-    data = int(data) + 1
-    print(data)
-    print(type(data))
+# @sio.event
+# def on_ball_control(data):
+#     data = int(data) + 1
+#     print(data)
+#     print(type(data))
 
 
-    if toy==None:
-        print("No ball")
-    try:
-        with SpheroEduAPI(toy) as api:
-            terminalSpeed = 100
-            api.set_speed(0)
-            print('rolling')
-            api.set_heading(data)
-            api.set_speed(terminalSpeed)
-            time.sleep(0.2)
-            for k in range(terminalSpeed, 0, -5):
-                api.set_speed(k)
-                time.sleep(0.005)
-            api.set_speed(0)
-            print("Done")
-            return
-    except:
-        print("Error")
-        pass
-    print("Done wrong somehow")
+#     if toy==None:
+#         print("No ball")
+#     try:
+#         # with SpheroEduAPI(toy) as api:
+#         terminalSpeed = 100
+#         api.set_speed(0)
+#         print('rolling')
+#         api.set_heading(data)
+#         api.set_speed(terminalSpeed)
+#         time.sleep(0.2)
+#         for k in range(terminalSpeed, 0, -5):
+#             api.set_speed(k)
+#             time.sleep(0.005)
+#         api.set_speed(0)
+#         print("Done")
+#         return
+#     except:
+#         print("Error")
+#         pass
+#     print("Done wrong somehow")
 
-@sio.event
-def sendMessage():
-    print("Sending")
-    sio.emit('move_ball', '1')
-    print("Sent")
+
 
 
 def setColour(api, color):
@@ -81,12 +78,13 @@ def playAnim(int):
 
 def on_collision(api):
     try:
-        setColour(api, Color(r= 255, g= 255, b= 255))
-        api.play_animation(IntEnum.EMOTE_ALARM)
+        # setColour(api, Color(r= 255, g= 255, b= 255))
+        # api.play_animation(IntEnum.EMOTE_ALARM)
+        print("Collisions detected")
 
     except:
         print("Collion fail")
-        
+    
 
 
 if __name__ == '__main__':
@@ -95,7 +93,54 @@ if __name__ == '__main__':
         print("No toy found")
     else:
         print(f"Toy: {toy.name} found")
-        SpheroEduAPI(toy).register_event(EventType.on_collision, on_collision)
-        busyRunning = False
-        sio.connect('https://server-bbd-vac-week.onrender.com')
-        sio.wait()
+        # SpheroEduAPI(toy).register_event(EventType.on_collision, on_collision)
+        with SpheroEduAPI(toy) as api:
+            api.register_event(EventType.on_collision, on_collision)
+            @sio.event
+            def connect():
+                print('Connected to server')
+                sendMessage()
+
+            @sio.event
+            def disconnect():
+                print('Disconnected from server')
+
+            @sio.event
+            def sendMessage():
+                print("Sending")
+                # sio.emit('move_ball', '1')
+                print("Sent")
+
+            @sio.event
+            def on_ball_control(data):
+                print("Starting control")
+                data = int(data) + 1
+                print(data)
+                print(type(data))
+
+
+                if toy==None:
+                    print("No ball")
+                try:
+                    # with SpheroEduAPI(toy) as api:
+                    terminalSpeed = 100
+                    api.set_speed(0)
+                    print('rolling')
+                    api.roll(data, terminalSpeed, 5)
+                    # api.set_heading(data)
+                    # api.set_speed(terminalSpeed)
+                    # time.sleep(0.2)
+                    # for k in range(terminalSpeed, 0, -5):
+                    #     api.set_speed(k)
+                    #     time.sleep(0.005)
+                    # api.set_speed(0)
+                    print("Done")
+                except Exception as e:
+                    # print(e.)
+                    print(f"Done wrong somehow: {e.with_traceback}")
+                    pass
+                
+
+            print("Connecting")
+            sio.connect('https://server-bbd-vac-week.onrender.com')
+            sio.wait()
