@@ -211,9 +211,7 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
     if (correctAnswerIndex == answer) {
         document.getElementById(convertintChar(answer)).style.background = '#00FF00';
     } else {
-        for (var button of document.getElementsByClassName(btn_class)) {
-            button.style.background = '#FF0000';
-        }
+        document.getElementById(convertintChar(answer)).style.background = '#FF0000';
     }
 
     document.getElementById("score").innerHTML = player.score;
