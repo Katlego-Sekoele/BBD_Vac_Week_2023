@@ -29,10 +29,10 @@ function getPlayerWithSocket(socket) {
   return players.find((value) => value.socketId === socket.id);
 }
 
-function genCode(){
+function genCode() {
   let lobbyID = "";
   const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  for (let i = 0; i < 4; i++){
+  for (let i = 0; i < 4; i++) {
     lobbyID += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return lobbyID;
@@ -72,7 +72,7 @@ io.on("connection", (socket) => {
       socket.emit("on_error", "Invalid game code.");
       return;
     }
-    if(players.length <= 8){
+    if (players.length <= 7) {
       players.push({
         score: 0,
         playerId: playerCounter++,
@@ -80,10 +80,10 @@ io.on("connection", (socket) => {
         socketId: socket.id,
         coneNumber: players.length,
       });
-  } else {
-    socket.emit("on_error", "Lobby is full.");
-    return;
-  }
+    } else {
+      socket.emit("on_error", "Lobby is full.");
+      return;
+    }
 
     console.log("join_lobby: ", data);
     //assumes that the users lobby code is correct
@@ -91,6 +91,11 @@ io.on("connection", (socket) => {
     // server response to game master to notifying that a player has joined
     socket.emit("player_joined", players[players.length - 1]);
     io.emit("current_players", players);
+  });
+
+  socket.on('game_master_quit_game', () => {
+    io.emit('game_is_quit');
+    players = [];
   });
 
   socket.on("generate_initial_map", (data) => {
@@ -113,8 +118,8 @@ io.on("connection", (socket) => {
     console.log(players);
     playerWhoAnsweredFirstId = -1;
 
-    const playersThatCanDuel = players.filter(el => el.score === 3*kPointUnit);
-    if(playersThatCanDuel.length > 0) {
+    const playersThatCanDuel = players.filter(el => el.score === 3 * kPointUnit);
+    if (playersThatCanDuel.length > 0) {
       const duelPlayer = playersThatCanDuel[0];
       duelPlayer.score = 0;
       io.emit("duel", duelPlayer);
@@ -127,34 +132,39 @@ io.on("connection", (socket) => {
     } else {
       currentQuestion = QuizEngine.getQuiz();
       io.emit("on_next_question", currentQuestion);
-    } 
+    }
   });
 
   socket.on("evaluate", (data) => {
-    if(currentQuestion !== undefined){
+    if (currentQuestion !== undefined) {
       io.emit("on_correct_answer", currentQuestion.Correct_Answer_Index);
     }
   });
 
   socket.on("return_player_answer", (data) => {
-    const isCorrect = QuizEngine.checkAnswer(data.question, data.answer);
+    try {
+      const isCorrect = QuizEngine.checkAnswer(data.question, data.answer);
+    
+      if (playerWhoAnsweredFirstId < 0) {
+        if (isCorrect) {
+          const player = getPlayerWithSocket(socket);
+          players[players.indexOf(player)].score ++
+          io.emit("current_players", players);
 
-    if (playerWhoAnsweredFirstId < 0) {
-      if (isCorrect) {
-        const player = getPlayerWithSocket(socket);
-        players[players.indexOf(player)].score ++;
-        io.emit("current_players", players);
-
-        playerWhoAnsweredFirstId = player.playerId;
+          playerWhoAnsweredFirstId = player.playerId;
+        }
       }
+    }
+    catch (e) {
+      console.log(e);
     }
   });
 
-  socket.on("dev_duel_done", () =>{
+  socket.on("dev_duel_done", () => {
     io.emit("duel_done");
   });
-  
-  socket.on("dev_duel_start", () =>{
+
+  socket.on("dev_duel_start", () => {
     io.emit("duel", players[0]);
   });
 

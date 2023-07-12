@@ -4,6 +4,7 @@ var btn_class = "answer-button"
 var player;
 var is_duel_player = false;
 var userName;
+var inLobby = false;
 
 /* Modal */
 const modal = document.querySelector(".modal");
@@ -50,6 +51,7 @@ let socket = io.connect(SERVER_URL);
 
 // 
 socket.on("generic_event", (data) => {
+    if (!inLobby) return
     //     TODO: decide on events with server team
 });
 
@@ -132,6 +134,7 @@ document.getElementById("joinButton").onclick = () => {
     socket.on("player_joined", (data) => {
         //check whether a userId was received
         if (data) {
+            inLobby = true;
             showLobbyContainer();
         } else {
             document.getElementById("errorGameCode").innerHTML = "Error connecting. Please try again.";
@@ -140,6 +143,7 @@ document.getElementById("joinButton").onclick = () => {
     });
 
     socket.on("on_error", (data) => {
+        if (!inLobby) return
         document.getElementById("errorGameCode").innerHTML = data;
         document.getElementById("errorGameCode").classList.remove("hidden");
     });
@@ -149,6 +153,7 @@ document.getElementById("joinButton").onclick = () => {
 //[commented out because "startQuiz" was constantly emitting]
 
 socket.on("start_quiz", (res) => {
+    if (!inLobby) return
     connectToGame(res)
 })
 
@@ -177,6 +182,7 @@ function changeBtn(disable) {
 function sendAns(e, ans) {
     answer = ans;
     e.preventDefault();
+    if (!inLobby) return
     socket.emit("return_player_answer", { question: question, answer: ans });
     changeBtn(true); // disable after option has been selected
 
@@ -211,6 +217,7 @@ function resetButtons() {
 
 // Events
 socket.on("on_next_question", (currentQuestion) => {
+    if (!inLobby) return
     question = currentQuestion;
     console.log(currentQuestion);
 
@@ -228,12 +235,14 @@ socket.on("on_next_question", (currentQuestion) => {
 });
 
 socket.on("current_players", (players) => {
+    if (!inLobby) return
     const currentPlayer = players.find((player) => player.socketId == socket.id);
     player = currentPlayer; // get score
     console.log(players);
 })
 
 socket.on("on_correct_answer", (correctAnswerIndex) => {
+    if (!inLobby) return
     // Change selected option to green if the user answered correctly else change all options to red
     changeBtn(true);
 
@@ -250,6 +259,7 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
 });
 
 socket.on("duel", (dualPlayer) => {
+    if (!inLobby) return
     is_duel_player = dualPlayer.socketId === socket.id;
     if (is_duel_player) {
         // Get score
@@ -265,6 +275,7 @@ socket.on("duel", (dualPlayer) => {
 });
 
 socket.on("duel_done", () => {
+    if (!inLobby) return
     if (is_duel_player) { showQuizContainer(); }
     else { closeModal(); }
 });
@@ -273,6 +284,7 @@ socket.on("duel_done", () => {
 
 function sendMove(e, dir) {
     e.preventDefault();
+    if (!inLobby) return
     socket.emit("move_ball", {"dir": dir})
     // document.removeEventListener('touchstart', _eventTouchStart);
     // document.removeEventListener('touchend', _eventTouched);
