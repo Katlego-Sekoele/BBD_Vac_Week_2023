@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const http = require("http");
+const {Queue} = require("@datastructures-js/queue");
 
 const DuelEngine = require("./duel/duelEngine");
 const QuizEngine = require("../../2_quiz/QuizGenQuestionGenerator");
@@ -24,6 +25,7 @@ let playerCounter = 0;
 
 let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
+const labelQueue = new Queue();
 
 function getPlayerWithSocket(socket) {
   return players.find((value) => value.socketId === socket.id);
@@ -170,6 +172,13 @@ io.on("connection", (socket) => {
   socket.on("dev_duel_start", () => {
     io.emit("duel", players[0]);
   });
+
+  socket.on("get_labels", (lables) => {
+    if(labelQueue.size() === 10) {
+      labelQueue.pop();
+    }
+    labelQueue.enqueue(lables);
+  })
 
   socket.on("move_ball", (msg) => {
     io.emit("on_ball_control", msg);
