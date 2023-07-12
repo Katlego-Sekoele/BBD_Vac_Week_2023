@@ -129,73 +129,7 @@ function updateScoreboard() {
         var divScore = document.getElementById("score_" + (i + 1));
         divScore.innerText = player.score; 
       }
-}
-
-
-socket.on("lobby_code", lobbyCode => {
-    currentLobbyCode = lobbyCode;
-    // TODO: document.getElementById("lobby_code").innerText = lobbyCode;
-});
-
-socket.on('duel', (playerControllingTheBall) => {
-    document.getElementById("who_controlling_ball").innerText = playerControllingTheBall.username +" is controlling the ball";
-    // TODO: get the info using the camera now to cause map updates
-});
-socket.on('done_duel', () => {
-    document.getElementById("who_controlling_ball").innerText = "No one is controlling the ball";
-});
-
-
-socket.on('on_next_question', (question) => {
-    //update the question and answers
-    document.getElementById("question_holder").innerText = question.question;
-    document.getElementById("answer_1").innerText = question.answers[0]; //TODO: idk how the question object is structured
-    document.getElementById("answer_2").innerText = question.answers[1];
-    document.getElementById("answer_3").innerText = question.answers[2];
-    document.getElementById("answer_4").innerText = question.answers[3];
-    
-    document.getElementById("answer_1").style.backgroundColor = "pink";
-    document.getElementById("answer_2").style.backgroundColor = "pink";
-    document.getElementById("answer_3").style.backgroundColor = "pink";
-    document.getElementById("answer_4").style.backgroundColor = "pink";
-});
-
-// TODO: add the code so when the next question button is pressed then the socket.emit is called
-document.getElementById("next_question_btn").onclick = () => {
-	socket.emit("make_next_question"); //I don't think there is data to this event
-};
-
-//TODO: add the code so when the 'evaluate' button is pressed then the socket.emit is called
-document.getElementById("evaluate_btn").onclick = () => {
-    socket.emit("evaluate");
-};
-
-socket.on('on_correct_answer', (indexOfCorrectAnswer) => {
-    document.getElementById("answer_" + (indexOfCorrectAnswer + 1)).style.backgroundColor = "green";
-    updateScoreboard();
-});
-
-
-function updateScoreboard() {
-    for (var i = 1; i < 9; i++) { // this is added so that if the number of players decreases then the others will be removed
-        // Update div content with usernames and score
-        var divUsername = document.getElementById("username_" + (i + 1));
-        divUsername.innerText = "";
-        var divScore = document.getElementById("score_" + (i + 1));
-        divScore.innerText = ""; 
-      }
-
-    for (var i = 1; i < players.length; i++) {
-        var player = players[i];
-  
-        // Update div content with usernames and score
-        var divUsername = document.getElementById("username_" + (i + 1));
-        divUsername.innerText = username;
-        var divScore = document.getElementById("score_" + (i + 1));
-        divScore.innerText = player.score; 
-      }
-    }
-    
+}   
     
     //nav functions
     function showStartGameContainer() {
