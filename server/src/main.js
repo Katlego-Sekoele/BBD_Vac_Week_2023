@@ -71,14 +71,18 @@ io.on("connection", (socket) => {
       socket.emit("on_error", "Invalid game code.");
       return;
     }
-
-    players.push({
-      score: 0,
-      playerId: players.length,
-      username: data.username,
-      socketId: socket.id,
-      coneNumber: players.length,
-    });
+    if(players.length <= 8){
+      players.push({
+        score: 0,
+        playerId: players.length,
+        username: data.username,
+        socketId: socket.id,
+        coneNumber: players.length,
+      });
+  } else {
+    socket.emit("on_error", "Lobby is full.");
+    return;
+  }
 
     console.log("join_lobby: ", data);
     //assumes that the users lobby code is correct
