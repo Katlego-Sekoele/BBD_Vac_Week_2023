@@ -29,8 +29,8 @@ body {
 }
 
 .pixelMap{
-    width: 55vw;
-    height: 59vh;
+    width: 100%;
+    height: 100%;
     background-color: rgb(255, 228, 228);
 }
 
@@ -153,7 +153,6 @@ body {
     border-width: 0.5rem;
     height: 20rem;
     font-size: 7rem;
-    font-weight: bold;
     font-family: 'Lilita One', sans-serif;
     color: var(--lilac);
 }
@@ -172,16 +171,19 @@ body {
     border-width: 0.2rem;
     height: 4rem;
     font-size: 1.5rem;
-    font-weight: bold;
     font-family: 'Lilita One', sans-serif;
     color: var(--lilac);
     letter-spacing: 0.1em;
     margin: 0.5em;
+    text-align: center;
+
 }
+
 
 .button:hover{
     background-color: var(--lilac);
     color: var(--purple);
+    cursor:pointer;
 }
 .question_page_flex1{
     display:flex;
@@ -211,10 +213,11 @@ body {
     margin-left: 1em;
     margin-right: 1em;
     margin-top: 0.5em;
-    font-size: 1.5em;
+    font-size: 1.8em;
+    width: 46.5rem;
 }
 
-.question_page_flex4c ul{
+.question_page_flex4c{
     list-style-type: none;
     display: flex;
     flex-direction: row;
@@ -222,11 +225,10 @@ body {
     background-color: var(--purple);
     border-radius: var(--borderRadiusVal);
     padding: 1em;
+    width: 64em;
+    margin-top:3em;
 }
-.question_page_flex4c{
-    width: 66em;
-    height: 19rem;
-}
+
 
 
 
@@ -238,13 +240,16 @@ ul.question_page_flex_5 {
     color: var(--darkBlue);
     margin: 0.5em;
     font-size:1.5em;
+    width: 5em;
+    height: 2.5em;
+    border-radius: var(--borderRadiusVal);
 }
 
 
 .Question{
-    width: 21em;
+    width: 44rem;
     height: 8em;
-    font-size: 2em;
+    font-size: 2.1em;
     background-color: var(--lilac);
     margin-right: 0.5em;
     margin-left: 1em;
@@ -254,15 +259,16 @@ ul.question_page_flex_5 {
 }
 
 .QRContainer{
-    background-color: red;
+    /*background-color: red;*/
     height: 20rem;
     width: 70rem;
     display: flex;
     flex-direction: row;
+    margin-top: 2rem;
 }
 
 .QR{
-    background-color: var(--purple);
+    background-color: var(--lilac);
     width: 25rem;
     height: 20rem;
     border-radius: var(--borderRadiusVal);
@@ -270,7 +276,7 @@ ul.question_page_flex_5 {
 }
 
 .joinContainer1{
-    background-color: green;
+    /*background-color: green;*/
     height: 20rem;
     width: 45rem;
     display: flex;
@@ -281,13 +287,12 @@ ul.question_page_flex_5 {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color:deeppink;
+    /*background-color:deeppink;*/
     height: 11rem;
 }
 
 .playerJoin{
-    background-color: blue;
-    /*justify-content: center;*/
+    /*background-color: blue;*/
     height: 4rem;
     margin-bottom: 1rem;
     
@@ -295,10 +300,13 @@ ul.question_page_flex_5 {
 
 .playerJoin div{
     background-color: var(--purple);
-    margin-right: -50%;
-    width: 15rem;
     height: 100%;
     border-radius: var(--borderRadiusVal);
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'Lilita One', sans-serif;
+    color: white;
+    letter-spacing: 0.1em;
 }
 
 .Join{
@@ -308,14 +316,15 @@ ul.question_page_flex_5 {
     width: 30%;
     border-style: solid;
     border-radius: var(--borderRadiusVal);
-    border-color: var(--lilac);
+    border-color: var(--purple);
     border-width: 0.4rem;
     font-size: 1.5rem;
-    font-weight: bold;
     font-family: 'Lilita One', sans-serif;
-    color: var(--lilac);
+    color: white;
     letter-spacing: 0.1em;
+    text-align: center;
 }
+
 
 .Start{
     margin-left: 0.2rem;
@@ -327,10 +336,15 @@ ul.question_page_flex_5 {
     border-color: var(--lilac);
     border-width: 0.4rem;
     font-size: 1.5rem;
-    font-weight: bold;
     font-family: 'Lilita One', sans-serif;
-    color: var(--lilac);
+    color: white;
     letter-spacing: 0.1em;
+}
+
+.Start:hover{
+    background-color: var(--lilac);
+    border-color: var(--lilac);
+    color: var(--purple);
 }
 
 .controlBox{

@@ -10,7 +10,9 @@ const mapContainer = document.getElementById('map-container');
 // Event listeners or any other logic to trigger the container changes
 document.getElementById("homescreen-start-btn").addEventListener("click", showQRScreenMainBox);
 document.getElementById("start-game-btn").addEventListener("click", showQuestionPageMainBox);
+document.getElementById('quit_btn').addEventListener("click", showStartGameContainer)
 
+document.getElementById('pixel_map_container').innerHTML = ""; 
 // Socket.io stuff
 const SERVER_URL = "http://localhost:3000";
 const DEFAULT_SIZE = 4
@@ -133,7 +135,8 @@ function updateScoreboard() {
     
     //nav functions
     function showStartGameContainer() {
-        startGameContainer.style.display = 'block';
+     document.getElementById('pixel_map_container').innerHTML = "";   
+    startGameContainer.style.display = 'block';
     setUpGameContainer.style.display = 'none';
     qrScreenMainBox.style.display = 'none';
     questionPageMainBox.style.display = 'none';
