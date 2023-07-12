@@ -135,6 +135,10 @@ io.on("connection", (socket) => {
   socket.on("dev_duel_done", () =>{
     io.emit("duel_done");
   });
+  
+  socket.on("dev_duel_start", () =>{
+    io.emit("duel");
+  });
 
   socket.on("move_ball", (msg) => {
     io.emit("on_ball_control", msg);
