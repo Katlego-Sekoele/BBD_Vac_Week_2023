@@ -10,7 +10,7 @@ const mapContainer = document.getElementById('map-container');
 // Event listeners or any other logic to trigger the container changes
 document.getElementById("homescreen-start-btn").addEventListener("click", showQRScreenMainBox);
 document.getElementById("start-game-btn").addEventListener("click", showQuestionPageMainBox);
-document.getElementById("go-to-map-btn").addEventListener("click", showMapContainer);
+// document.getElementById("go-to-map-btn").addEventListener("click", showMapContainer);
 document.getElementById("back-to-game-btn").addEventListener("click", showQuestionPageMainBox);
 
 // Socket.io stuff
@@ -59,7 +59,7 @@ socket.on("player_join", (data) => {
 //socket.emit("another_generic_event", payload)
 
 socket.emit('generate_initial_map');
-socket.on('updated_map', (data) => {
+socket.on('on_generated_map', (data) => {
 	console.log(data);
 	createMap(data);
 });
@@ -86,10 +86,10 @@ socket.on('done_duel', () => {
 socket.on('on_next_question', (question) => {
     //update the question and answers
     document.getElementById("question_holder").innerText = question.Question;
-    document.getElementById("answer_1").innerText = question.Answers[0]; //TODO: idk how the question object is structured
-    document.getElementById("answer_2").innerText = question.Answers[1];
-    document.getElementById("answer_3").innerText = question.Answers[2];
-    document.getElementById("answer_4").innerText = question.Answers[3];
+    document.getElementById("answer_1").innerText = "A: " + question.Answers[0]; //TODO: idk how the question object is structured
+    document.getElementById("answer_2").innerText = "B: " + question.Answers[1];
+    document.getElementById("answer_3").innerText = "C: " + question.Answers[2];
+    document.getElementById("answer_4").innerText = "D: " + question.Answers[3];
 
     document.getElementById("answer_1").style.backgroundColor = "pink";
     document.getElementById("answer_2").style.backgroundColor = "pink";
@@ -114,7 +114,7 @@ socket.on('on_correct_answer', (indexOfCorrectAnswer) => {
 
 
 function updateScoreboard() {
-    for (var i = 1; i < 9; i++) { // this is added so that if the number of players decreases then the others will be removed
+    for (var i = 0; i < 8; i++) { // this is added so that if the number of players decreases then the others will be removed
         // Update div content with usernames and score
         var divUsername = document.getElementById("username_" + (i + 1));
         divUsername.innerText = "";
@@ -122,7 +122,7 @@ function updateScoreboard() {
         divScore.innerText = ""; 
       }
 
-    for (var i = 1; i < players.length; i++) {
+    for (var i = 0; i < players.length; i++) {
         var player = players[i];
   
         // Update div content with usernames and score
@@ -163,6 +163,7 @@ function showQRScreenMainBox() {
 
 // Function to show the question page main box container and hide the rest
 function showQuestionPageMainBox() {
+    updateScoreboard();
     startGameContainer.style.display = 'none';
     setUpGameContainer.style.display = 'none';
     qrScreenMainBox.style.display = 'none';

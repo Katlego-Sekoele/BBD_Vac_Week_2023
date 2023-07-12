@@ -1,5 +1,5 @@
 // Used as a cache
-var DEBUG = true;
+var DEBUG = false;
 var currQuizzes = new Array();
 var allQuizzes = new Array();
 var amountQuizzes = 20;

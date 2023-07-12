@@ -80,6 +80,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("make_next_question", () => {
+    console.log(players);
+
     playerWhoAnsweredFirstId = -1;
 
     const playerScores = players.map((el) => el.score);
