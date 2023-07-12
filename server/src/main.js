@@ -148,7 +148,7 @@ io.on("connection", (socket) => {
       if (playerWhoAnsweredFirstId < 0) {
         if (isCorrect) {
           const player = getPlayerWithSocket(socket);
-          players[players.indexOf(player[0])].score ++
+          players[players.indexOf(player)].score += kPointUnit;
           io.emit("current_players", players);
 
           playerWhoAnsweredFirstId = player.playerId;
