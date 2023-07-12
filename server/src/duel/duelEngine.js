@@ -154,7 +154,7 @@ function initiateDuel(playerScores){
 //takes in the player currently controlling the ball and returns a value between 1 and maxMultiplier
 function calculateMulitplier(currentPlayer){
     //the max value of the multiplier, max will be at the edge of the game map
-    maxMultiplier = 3
+    let maxMultiplier = 3
     currentPlayer += 1
     //store the current player as a string
     let sCurrentPlayer = currentPlayer.toString()
@@ -182,23 +182,23 @@ function calculateMulitplier(currentPlayer){
 
     //find the shortest distance to an edge
     if (coOrdinate.x <= (map.length / 2)){
-        xDistanceToEdge = coOrdinate.x
+        let xDistanceToEdge = coOrdinate.x
     }
     else{
-        xDistanceToEdge = map.length - coOrdinate.x - 1
+        let xDistanceToEdge = map.length - coOrdinate.x - 1
     }
     if (coOrdinate.y <= (map.length / 2)){
-        yDistanceToEdge = coOrdinate.y
+        let yDistanceToEdge = coOrdinate.y
     }
     else{
-        yDistanceToEdge = map.length - coOrdinate.y - 1
+        let yDistanceToEdge = map.length - coOrdinate.y - 1
     }
 
     if (xDistanceToEdge > yDistanceToEdge){
-        shortestDistanceToEdge = yDistanceToEdge
+        let shortestDistanceToEdge = yDistanceToEdge
     }
     else{
-        shortestDistanceToEdge = xDistanceToEdge
+        let shortestDistanceToEdge = xDistanceToEdge
     }
 
     // final calculation of multiplier
@@ -208,7 +208,7 @@ function calculateMulitplier(currentPlayer){
 function checkIfBallHasLeftPlayingZone(){
 
     //initialise the ball being found as false
-    ballFound = false
+    let ballFound = false
 
     //loop through all the rows and columns of the array and try find the ball, if you cannot find it then call handle ball loss
     map.forEach(row => {
@@ -226,7 +226,7 @@ function replaceBallInCentre(){
     
     //if the ball has not been found then handle the reset
     if (ballFound){
-        centreCoOrdinate = Math.floor(map.length / 2)
+        let centreCoOrdinate = Math.floor(map.length / 2)
 
         //check if the centre cell is occupied by anythin, if it is not then fill it otherwise find a different suitable location
         if (map[centreCoOrdinate][centreCoOrdinate] == "W"){
@@ -235,17 +235,17 @@ function replaceBallInCentre(){
         }
 
         //otherwise generate a random co-ordinate near the centre
-        notFound = true
+        let notFound = true
 
         while (notFound) {
             //calculate the min and max bound of the minimum 
-            min = -Math.ceil(map.length / 10)
-            max = Math.ceil(map.length / 10) + 1
+            let min = -Math.ceil(map.length / 10)
+            let max = Math.ceil(map.length / 10) + 1
 
             
             //generate a random distance from the centre and find that co-ordinate
-            x = centreCoOrdinate + (Math.floor(Math.random() * (max - min) ) + min)
-            y = centreCoOrdinate + (Math.floor(Math.random() * (max - min) ) + min)
+            let x = centreCoOrdinate + (Math.floor(Math.random() * (max - min) ) + min)
+            let y = centreCoOrdinate + (Math.floor(Math.random() * (max - min) ) + min)
 
             if (map[x][y] == "W"){
                 notFound = false
@@ -341,10 +341,10 @@ function convertImageCoOrdToGrid(coOrdinatesArray){
     //place all the items
     for (var i = 0; i < coOrdinatesArray.length; i++){
         //store the type (either player number or "B" for ball)
-        sValue = coOrdinatesArray[0]
+        let sValue = coOrdinatesArray[0]
         //store the co-ordinates
-        xCoOrd = coOrdinatesArray[1]
-        yCoOrd = coOrdinatesArray[2]
+        let xCoOrd = coOrdinatesArray[1]
+        let yCoOrd = coOrdinatesArray[2]
 
         //assign the value in the grid if it is currently a "W"
         if (mapGrid[xCoOrd][yCoOrd] == "W"){
@@ -352,7 +352,7 @@ function convertImageCoOrdToGrid(coOrdinatesArray){
         }
         else{
             //f the space is already filled by another object then place it in it's previous spot
-            coOrds = findObject(sValue)
+            let coOrds = findObject(sValue)
             xCoOrd = coOrds[0]
             yCoOrd = coOrds[1]
 
@@ -368,7 +368,7 @@ function populateObjectArray(objects){
     //objects = require('./../controller/') //path to the .json file [NEEDS TO BE FINISHED]
     //jason layout can be found in branch 4_experimental, in the readME under "src/camera"
     //initialise object array as empty
-    objectsArray = []
+    let objectsArray = []
 
     /*temporary object
     const objects = {
@@ -380,34 +380,34 @@ function populateObjectArray(objects){
         dimension: [500, 300]
     };*/
     
-    array = Object.entries(objects)
+    let array = Object.entries(objects)
     // store the width and the height of what the camera can see
-    dimensions = objects.dimension
+    let dimensions = objects.dimension
 
-    xDimension = dimensions[0]
-    yDimension = dimensions[1]
+    let xDimension = dimensions[0]
+    let yDimension = dimensions[1]
     
     //get all the information about the ball
     let sphero = (array[0])[1]
-    xSphero = sphero[0]
-    ySphero = sphero[1]
+    let xSphero = sphero[0]
+    let ySphero = sphero[1]
 
     // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
-    xFinal = Math.round((xSphero / xDimension) * 100)
-    yFinal = Math.round((ySphero / yDimension) * 100)
+    let xFinal = Math.floor((xSphero / xDimension) * 100)
+    let yFinal = Math.floor((ySphero / yDimension) * 100)
 
     //push the ball information into the object array
     objectsArray.push(["B", xFinal, yFinal])
 
     for (let playerIndex = 1; playerIndex < (array.length - 1); playerIndex++){
-        sPlayerNumber = playerIndex.toString()
+        let sPlayerNumber = playerIndex.toString()
 
         //store the co-ordinates array
-        currentPlayerCoOrds = array[playerIndex][1]
+        let currentPlayerCoOrds = array[playerIndex][1]
 
         //store the X and Y
-        playerX = currentPlayerCoOrds[0]
-        playerY = currentPlayerCoOrds[1]
+        let playerX = currentPlayerCoOrds[0]
+        let playerY = currentPlayerCoOrds[1]
 
         // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
         xFinal = Math.floor((playerX / xDimension) * 100)
@@ -436,6 +436,6 @@ function softResetScores(playerScores, moverIndex){
 //console.log(initiateDuel(test));
 //console.log(getPlayerWin())
 //populateObjectArray()
-initializeMap(6)
+//initializeMap(6)
 
 module.exports = { initializeMap, initiateDuel, getPlayerDuel, softResetScores }
