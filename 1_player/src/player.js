@@ -3,6 +3,7 @@ var question;
 var btn_class = "answer-button"
 var player;
 var is_duel_player = false;
+var userName;
 
 /* Modal */
 const modal = document.querySelector(".modal");
@@ -74,13 +75,11 @@ function showLobbyContainer() {
 // Navigation: Quiz Container
 function showQuizContainer() {
     // USer userNme
-    document.getElementById("playerName").innerHTML = player.username;
+    document.getElementById("playerName").innerHTML = userName;
     joinGameContainer.style.display = 'none';
     lobbyContainer.style.display = 'none';
     quizContainer.style.display = 'block';
     controlContainer.style.display = 'none';
-    // USer userNme
-    document.getElementById("playerName").innerHTML =  player.userName;
 }
 
 // Navigation: Controller Container
@@ -96,7 +95,7 @@ document.getElementById("joinButton").onclick = () => {
     // establish connection to socket server
 
     let gameCode = document.getElementById("gameCodeValue").value;
-    let userName = document.getElementById("userNameValue").value;
+    userName = document.getElementById("userNameValue").value;
 
     if(userName.length > 10) {
         document.getElementById("userNameValue").value = "";
