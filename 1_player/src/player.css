@@ -106,13 +106,24 @@ button {
     height: 10rem;
     font-size: 6rem;
     align-items: center;
-    text-align: left;
+    text-align: center;
     padding: 0rem 2rem;
 }
 
 .answer-button:disabled {
     background-color:#A296AF;
 }
+
+.answer-button:hover {
+    background-color: var(--lilac);
+    color: black;
+}
+
+.button:active {
+    background-color: var(--purple);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
 
 .gameCodeDescription {
     font-size: 5.5rem;
