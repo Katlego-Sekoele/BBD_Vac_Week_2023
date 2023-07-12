@@ -75,12 +75,14 @@
 
         <div class="gameCodeContainer">
             <p class="gameCodeDescription">USERNAME</p>
-            <input id="userNameValue" class="gameCodeValue" maxlength="6">
+            <input id="userNameValue" class="gameCodeValue" maxlength="7">
+            <p id="errorUsername" class="errorUsername hidden"></p>
         </div>
 
         <div class="gameCodeContainer">
             <p class="gameCodeDescription">GAME CODE</p>
             <input id="gameCodeValue" class="gameCodeValue">
+            <p id="errorGameCode" class="errorGameCode hidden"></p>
         </div>
 
         <div class="joinQuitButtonParent">
@@ -111,7 +113,7 @@
                     SCORE	
                 </div>	
                 <div class="score-label" id="score">	
-                    000	
+                    0	
                 </div>	
             </div>	
         </div>
@@ -148,16 +150,16 @@
             </div>
     
             <div class="controls">
-                <!-- <button id="up" class="move-control">UP</button>
+                <button id="up" class="move-control">UP</button>
                 <button id="left" class="move-control">LEFT</button>
                 <button id="right" class="move-control">RIGHT</button>
-                <button id="down" class="move-control">DOWN</button> -->
+                <button id="down" class="move-control">DOWN</button>
             </div>
         </div>
     </div>
 
     <br>
-
+<!-- 
     <div class="btn-container">
 
         <button id="join-game" class="temp-nav">join-game</button>
@@ -168,7 +170,7 @@
 
         <button id="control" class="temp-nav">control</button>
 
-    </div>
+    </div> -->
 
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
         integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
