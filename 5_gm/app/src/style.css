@@ -18,12 +18,13 @@ body {
     background-color: var(--darkBlue);
     color: white;
     letter-spacing: 0.1em;
+    overflow-y: hidden;
 }
 
 .map{
     background-color: rgb(255, 170, 193);
-    width: 50em;
-    height: 30em;
+    width: 66em;
+    height: 34em;
 }
 
 #camCanvas{
@@ -155,6 +156,26 @@ body {
     color: var(--purple);
 }
 
+.button{
+    background-color: var(--purple);
+    width: 11rem;
+    border-style: solid;
+    border-radius: var(--borderRadiusVal);
+    border-color: var(--lilac);
+    border-width: 0.2rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Lilita One', sans-serif;
+    color: var(--lilac);
+    letter-spacing: 0.1em;
+    margin: 0.5em;
+}
+
+.button:hover{
+    background-color: var(--lilac);
+    color: var(--purple);
+}
 .question_page_flex1{
     display:flex;
     flex-direction: row;
@@ -169,17 +190,35 @@ body {
     display: flex;
     flex-direction: column;
 }
+.question_page_flex3c{
+    display: flex;
+}
+
+.answer-box{
+    background-color: var(--purple);
+    border-radius: var(--borderRadiusVal);
+    height: 5rem;
+    padding: 1rem;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 0.5em;
+    font-size: 1.5em;
+}
 
 .question_page_flex4c ul{
     list-style-type: none;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width:60%;
     background-color: var(--purple);
     border-radius: var(--borderRadiusVal);
     padding: 1em;
 }
+.question_page_flex4c{
+    width: 66em;
+    height: 20rem;
+}
+
 
 
 ul.question_page_flex_5 {
@@ -188,12 +227,20 @@ ul.question_page_flex_5 {
     background-color: var(--lilac);
     color: var(--darkBlue);
     margin: 0.5em;
+    font-size:1.5em;
 }
 
 
 .Question{
-    width: 20em;
+    width: 21em;
+    height: 8em;
     font-size: 2em;
+    background-color: var(--lilac);
+    margin-right: 0.5em;
+    margin-left: 1em;
+    padding: 1em;
+    color:var(--darkBlue);
+    border-radius: var(--borderRadiusVal);
 }
 
 .QRContainer{
@@ -227,7 +274,7 @@ ul.question_page_flex_5 {
 .controlBox{
     font-size: 3.5em;
     background-color: var(--purple);
-    width: 14.3em;
+    width: 19em;
     text-align: center;
     margin-bottom:0.5em;
     border-radius: var(--borderRadiusVal);

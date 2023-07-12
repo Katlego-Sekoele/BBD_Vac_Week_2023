@@ -74,7 +74,6 @@ function showStartGameContainer() {
 
 // Function to show the set up game container and hide the rest
 function showSetUpGameContainer() {
-    console.log("showSetUpGameContainer");
     startGameContainer.style.display = 'none';
     setUpGameContainer.style.display = 'block';
     qrScreenMainBox.style.display = 'none';
