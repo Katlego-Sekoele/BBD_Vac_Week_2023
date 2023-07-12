@@ -22,9 +22,8 @@ function initializeMap(numCones)
     var centerY = Math.floor(yLen/2);
     map[centerY][centerX] = 'B';
 
-    // Random offset for distance of cones from center
-    //var centerOffset = Math.floor(Math.random()*(Math.min(centerX, centerY)-1-1))+1;
-    var centerOffset = Math.floor(((yLen / 2) - centerY) * .25)
+    // offset for distance of cones from centre
+    var centerOffset = Math.floor(.25*(Math.min(centerX, centerY)-1-1))+1;
     //console.log(centerOffset);
 
     // Place the cones equally around
@@ -437,6 +436,6 @@ function softResetScores(playerScores, moverIndex){
 //console.log(initiateDuel(test));
 //console.log(getPlayerWin())
 //populateObjectArray()
-//initializeMap(6)
+initializeMap(6)
 
 module.exports = { initializeMap, initiateDuel, getPlayerDuel, softResetScores }
