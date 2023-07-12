@@ -75,7 +75,7 @@ function showQuizContainer() {
     quizContainer.style.display = 'block';
     controlContainer.style.display = 'none';
     // USer userNme
-    document.getElementById("playerName").innerHTML = "Player " + (player.playerId+1);
+    document.getElementById("playerName").innerHTML =  player.userName;
 }
 
 // Navigation: Controller Container
@@ -92,18 +92,29 @@ document.getElementById("joinButton").onclick = () => {
     // establish connection to socket server
 
     let gameCode = document.getElementById("gameCodeValue").value;
-    console.log(gameCode);
+    let userName = document.getElementById("userNameValue").value;
+
+    if(userName.length > 10) {
+        document.getElementById("userNameValue").value = "";
+        alert("Username cannot be longer than 10 characters");
+        return;
+    }
 
     if (
         gameCode === "" ||
-        gameCode === null
+        gameCode === null ||
+        userName === "" ||
+        userName === null
     ) {
         alert("Input fields cannot be empty");
         return;
     }
 
     //create json object to send username and gamecode
-    let connectObject = { "gameCode": gameCode };
+    let connectObject = {
+        gameCode: gameCode,
+        username: userName
+      };
 
     // request to join lobby
     socket.emit("join_lobby", connectObject)
@@ -112,8 +123,6 @@ document.getElementById("joinButton").onclick = () => {
     socket.on("player_joined", (data) => {
         //check whether a userId was received
         if (data) {
-            console.log(data);
-            //redirect to lobby
             showLobbyContainer();
         } else {
             alert("Error connecting. Please try again.");
