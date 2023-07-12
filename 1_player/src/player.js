@@ -78,6 +78,9 @@ function showLobbyContainer() {
 function showQuizContainer() {
     // USer userNme
     document.getElementById("playerName").innerHTML = userName;
+    if(player){
+        document.getElementById("score").innerHTML = player.score;
+    }
     joinGameContainer.style.display = 'none';
     lobbyContainer.style.display = 'none';
     quizContainer.style.display = 'block';
@@ -217,6 +220,10 @@ function resetButtons() {
     }
 }
 
+socket.on("game_is_quit", () => {
+    window.location.reload();
+})
+
 // Events
 socket.on("on_next_question", (currentQuestion) => {
     if (!inLobby) return
@@ -276,9 +283,10 @@ socket.on("duel", (dualPlayer) => {
     }
 });
 
-socket.on("duel_done", () => {
+socket.on("duel_done", (dualPlayer) => {
     if (!inLobby) return
-    if (is_duel_player) { showQuizContainer(); }
+    is_duel_player = dualPlayer.socketId === socket.id;
+    if (is_duel_player) { showQuizContainer(); is_duel_player = false;}
     else { closeModal(); }
 });
 
@@ -296,21 +304,21 @@ socket.on("game_is_quit", () => {
     window.location.reload();
 })
 
-// document.getElementById("up").addEventListener('click', (e) => {
-//     sendMove(e, 1);
-// });
+document.getElementById("up").addEventListener('click', (e) => {
+    sendMove(e, 1);
+});
 
-// document.getElementById("left").addEventListener('click', (e) => {
-//     sendMove(e, 271);
-// });
+document.getElementById("left").addEventListener('click', (e) => {
+    sendMove(e, 271);
+});
 
-// document.getElementById("down").addEventListener('click', (e) => {
-//     sendMove(e, 181);
-// });
+document.getElementById("down").addEventListener('click', (e) => {
+    sendMove(e, 181);
+});
 
-// document.getElementById("right").addEventListener('click', (e) => {
-//     sendMove(e, 91);
-// });
+document.getElementById("right").addEventListener('click', (e) => {
+    sendMove(e, 91);
+});
 
 // // Variables to store initial touch position and timestamp
 // let startX, startY, startTime;
