@@ -145,8 +145,8 @@ io.on("connection", (socket) => {
 
     // TODO: Get duel remaining players and check if someone was eliminated
 
-    // when duel is done
-    io.emit("duel_done");
+    // When duel is done
+    // io.emit("duel_done");
 
     // Last man standing is the winner
     if (players.length == 1) {
