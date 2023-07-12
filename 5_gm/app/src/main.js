@@ -17,7 +17,7 @@ document.getElementById('quit_btn').addEventListener("click", showStartGameConta
 
 document.getElementById('pixel_map_container').innerHTML = ""; 
 // Socket.io stuff
-const SERVER_URL = "http://localhost:3000";
+const SERVER_URL = window.location.host === "server-bbd-vac-week.onrender.com" ? "https://server-bbd-vac-week.onrender.com/" : "http://localhost:3000";
 const DEFAULT_SIZE = 4
 let socket = io.connect(SERVER_URL);
 // manager connects to socket server
