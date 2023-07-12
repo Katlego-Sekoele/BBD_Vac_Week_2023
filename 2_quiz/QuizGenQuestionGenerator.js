@@ -130,11 +130,12 @@ function populateAllQuizzes() {
     }
     allQuizzes = duplicates;
     console.log(allQuizzes.length + " without duplicates")
+    shuffle(allQuizzes);
 }
 
 // TEST CODE START
 if (DEBUG) {
-    for (let index = 0; index < 20; index++) {
+    for (let index = 0; index < 1; index++) {
         var testQuiz = getQuiz();
         question = testQuiz.Question;
         console.log(testQuiz.Question);
