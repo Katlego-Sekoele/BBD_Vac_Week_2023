@@ -130,6 +130,14 @@ io.on("connection", (socket) => {
   socket.on("move_ball", (msg) => {
     io.emit("on_ball_control", msg);
     setTimeout(()=> io.emit("duel_done", {}), 3000);
+    // TODO: Get duel remianing players
+
+    // Last man standing is the winner
+    if(players.length == 1) {
+      io.emit("on_winner", players[0]);
+      players.length = 0;
+      gameIsRunning = false;
+    }
   });
 });
 
