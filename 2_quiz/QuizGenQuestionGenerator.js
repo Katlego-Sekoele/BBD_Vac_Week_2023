@@ -3,9 +3,11 @@ var DEBUG = true;
 var currQuizzes = new Array();
 var allQuizzes = new Array();
 var techQuizzes = new Array();
-var amountQuizzes = 20;
+var amountQuizzes = 15;
+var amountTechQuizzes = 5;
 var counter = amountQuizzes;
 var totalQuizCounter = 0;
+var techCounter = 0;
 
 /**
  * Quiz refers to question and set of answers
@@ -77,7 +79,7 @@ function getXQuizzes() {
     var retrieved = new Array();
 
     // Checks if the end is reached
-    if (totalQuizCounter + amountQuizzes > allQuizzes.length) {
+    if (totalQuizCounter + amountQuizzes >= allQuizzes.length) {
         totalQuizCounter = 0;
     }
 
@@ -85,9 +87,16 @@ function getXQuizzes() {
     for (var i = 0; i < amountQuizzes; i++)
         retrieved[i] = allQuizzes[totalQuizCounter + i];
 
+    // Checks if the end is reached
+    if (techCounter + amountTechQuizzes >= techQuizzes.length) {
+        techCounter = 0;
+    }
+    for(var i = 0; i< amountTechQuizzes; i++)
+        retrieved.push(techQuizzes[techCounter + i]);
+    totalQuizCounter += amountQuizzes;
+
     shuffle(retrieved);
 
-    totalQuizCounter += amountQuizzes;
     return retrieved;
 }
 
@@ -117,20 +126,10 @@ function shuffle(array) {
 
 function populateAllQuizzes() {
     allQuizzes = require('./questions.json');
-    console.log(allQuizzes.length + " with duplicates");
-    const map1 = new Map();
-    const duplicates = [];
-    for (let i = 0; i < allQuizzes.length; i++) {
-        if (map1.has(allQuizzes[i].Question)) {
-            //do nothing
-        }
-        else {
-            map1.set(allQuizzes[i].Question, i);
-            duplicates.push(allQuizzes[i]);
-        }
-    }
-    allQuizzes = duplicates;
-    console.log(allQuizzes.length + " without duplicates")
+    techQuizzes = require('./techQuestions.json');
+
+    allQuizzes = shuffle(allQuizzes);
+    techQuizzes = shuffle(techQuizzes);
 }
 
 // TEST CODE START
