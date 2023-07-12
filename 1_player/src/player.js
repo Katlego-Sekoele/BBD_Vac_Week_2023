@@ -1,3 +1,26 @@
+/* Modal */
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const openModalBtn = document.querySelector(".btn-open");
+// const closeModalBtn = document.querySelector(".btn-close");
+
+// close modal function
+const closeModal = function () {
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+};
+
+// close the modal when the close button and overlay is clicked
+// closeModalBtn.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
+
+// open modal function
+const openModal = function () {
+    modal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+    //setTimeout(closeModal, 1200);
+};
+
 // --- NAVIGATION ELEMENTS ---
 const joinGameContainer = document.getElementById('join-game-container');
 const controlContainer = document.getElementById('control-container');
@@ -122,6 +145,7 @@ var answer;
 var question;
 var btn_class = "answer-button"
 var player;
+var is_duel_player = false;
 
 function convertintChar(integer) {
     let character = 'a'.charCodeAt(0);
@@ -144,16 +168,28 @@ function sendAns(e, ans) {
 // Events
 socket.on("on_next_question", (currentQuestion) => {
     question = currentQuestion["Question"];
-    var no_answers = question["Answers"].length;
+    let no_answers = currentQuestion["Answers"].length;
 
-    var buttons = "";
+    let buttons = "";
     for (var i = 0; i < no_answers; i++) {
-        buttons += `<div>
-            <button id=${convertintChar(i)} class=${btn_class}>${convertintChar(i).toUpperCase()}</button>
+        buttons += 
+        `<div class="buttonParent">
+            <button id="${convertintChar(i).toUpperCase()}" class="${btn_class}">${convertintChar(i).toUpperCase()}</button>
         </div>`
     }
 
-    document.getElementById("btn_container").innerHTML = buttons;
+    document.getElementById("answer-container-id").innerHTML = "";
+    document.getElementById("answer-container-id").innerHTML = buttons;
+
+    // Answer options
+    for (var node of document.getElementsByClassName(btn_class)) {
+
+        node.addEventListener('click', (e) => {
+            console.log(node.id);
+            var id = e.currentTarget.id;
+            sendAns(e, id.charCodeAt(0) - 'A'.charCodeAt(0)); // convert to int
+        })
+    }
 });
 
 socket.on("current_players", (players) => {
@@ -180,28 +216,24 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
 });
 
 socket.on("duel", (dualPlayer) => {
-    if (player.socketId == socket.id) {
+    is_duel_player = player.socketId == socket.id;
+    if (is_duel_player) {
         // Get score
         player.score = dualPlayer.score;
 
         // Redirect to controls page
-        showControllerContainer()
+        showControllerContainer();
     } else {
-        alert(`Player ${player.username} is duelling.`);
+        openModal();
+        //alert(`Player ${player.username} is duelling.`);
     }
 });
 
 // TODO: Respond to duel done event
-
-// Answer options
-for (var node of document.getElementsByClassName(btn_class)) {
-    node.innerHTML = node.id;
-
-    document.getElementById(node.id).addEventListener('click', (e) => {
-        var id = e.currentTarget.id;
-        sendAns(e, id.charCodeAt(0) - 'A'.charCodeAt(0)); // convert to int
-    })
-}
+socket.on("duel_done", () => {
+    if (is_duel_player) { showQuizContainer(); }
+    else { closeModal(); }
+});
 
 // --- CONTROLLER ---
 
@@ -210,51 +242,66 @@ function sendMove(e, dir, speed) {
     socket.emit("move_ball", {"dir": dir, "speed": speed})
     document.removeEventListener('touchstart', _eventTouchStart);
     document.removeEventListener('touchend', _eventTouched);
-    showQuizContainer();
 }
 
-// Variables to store initial touch position and timestamp
-let startX, startY, startTime;
+document.getElementById("up").addEventListener('click', (e) => {
+    sendMove(e, 1);
+});
 
-// Constants for angle calculation
-const RAD_TO_DEG = 180 / Math.PI;
+document.getElementById("left").addEventListener('click', (e) => {
+    sendMove(e, 271);
+});
 
-function AddControlListeners() {
-    // Event listener for touch start
-    document.addEventListener('touchstart', _eventTouchStart);
+document.getElementById("down").addEventListener('click', (e) => {
+    sendMove(e, 181);
+});
 
-    // Event listener for touch end
-    document.addEventListener('touchend', _eventTouched);
-}
+document.getElementById("right").addEventListener('click', (e) => {
+    sendMove(e, 91);
+});
 
-var _eventTouchStart = function(event) {
-    // Store initial touch position and timestamp
-    startX = event.touches[0].clientX;
-    startY = event.touches[0].clientY;
-    startTime = Date.now();
-}
+// // Variables to store initial touch position and timestamp
+// let startX, startY, startTime;
 
-var _eventTouched = function(event) {
-    // Calculate drag distance
-    const endX = event.changedTouches[0].clientX;
-    const endY = event.changedTouches[0].clientY;
-    const distanceX = endX - startX;
-    const distanceY = endY - startY;
+// // Constants for angle calculation
+// const RAD_TO_DEG = 180 / Math.PI;
 
-    // Calculate angle in degrees
-    const angle = Math.atan2(distanceY, distanceX) * RAD_TO_DEG;
+// function AddControlListeners() {
+//     // Event listener for touch start
+//     document.addEventListener('touchstart', _eventTouchStart);
 
-    // Calculate drag speed
-    const endTime = Date.now();
-    const duration = endTime - startTime;
-    const speed = Math.sqrt((distanceX * distanceX + distanceY * distanceY)) / duration;
+//     // Event listener for touch end
+//     document.addEventListener('touchend', _eventTouched);
+// }
 
-    // Output the calculated values
-    console.log('Angle: ' + angle + ' degrees');
-    console.log('Speed: ' + speed + ' pixels per millisecond');
+// var _eventTouchStart = function(event) {
+//     // Store initial touch position and timestamp
+//     startX = event.touches[0].clientX;
+//     startY = event.touches[0].clientY;
+//     startTime = Date.now();
+// }
 
-    sendMove(event, angle, speed);
-}
+// var _eventTouched = function(event) {
+//     // Calculate drag distance
+//     const endX = event.changedTouches[0].clientX;
+//     const endY = event.changedTouches[0].clientY;
+//     const distanceX = endX - startX;
+//     const distanceY = endY - startY;
+
+//     // Calculate angle in degrees
+//     const angle = Math.atan2(distanceY, distanceX) * RAD_TO_DEG;
+
+//     // Calculate drag speed
+//     const endTime = Date.now();
+//     const duration = endTime - startTime;
+//     const speed = Math.sqrt((distanceX * distanceX + distanceY * distanceY)) / duration;
+
+//     // Output the calculated values
+//     console.log('Angle: ' + angle + ' degrees');
+//     console.log('Speed: ' + speed + ' pixels per millisecond');
+
+//     sendMove(event, angle, speed);
+// }
 
 /*
 document.getElementById("up").addEventListener('click', (e) => {
