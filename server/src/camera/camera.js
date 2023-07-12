@@ -4,14 +4,14 @@ const context = canvas.getContext("2d", { willReadFrequently: true });
 
 // Ball colour followed by player colours
 const CONFIG = [
-    [200, 0, 0],
-    [170, 239, 61],
-    [0, 175, 203],
-    [246, 21, 144],
-    [225, 225, 0]
+    [222, 176, 89],
+    [30, 166, 220],
+    [191, 233, 212],
+    [223, 215, 90],
+    [76, 89, 173]
 ];
 
-const THRESHOLD = 75;
+const THRESHOLD = 25;
 const NO_CLASS = -1;
 
 function getAveragePosition(pos1, pos2) {
@@ -78,11 +78,13 @@ function getObjectPositions() {
         finalPositions[i] = getAveragePosition(bottomRightPositions[i], topLeftPositions[i]);
     }
 
-    context.beginPath();
-    context.fillStyle = "green";
     // This will put a dot at the centre of player 2's colour
-    context.arc(finalPositions[0][0], finalPositions[0][1], 5, 0, Math.PI * 2, true);
-    context.fill();
+    for (let i = 0; i < CONFIG.length; ++i) {
+        context.beginPath();
+        context.fillStyle = "green";
+        context.arc(finalPositions[i][0], finalPositions[i][1], 5, 0, Math.PI * 2, true);
+        context.fill();
+    }
 
     jsonObj = {
         ball: finalPositions[0]
@@ -110,18 +112,18 @@ navigator.mediaDevices
     });
 
 // Use this function for simply returning the JSON object
-// function getMap() {
-//     context.drawImage(video, 0, 0, canvas.width, canvas.height);
-//     return getObjectPositions();
-// }
+function getMap() {
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    return getObjectPositions();
+}
 
 // This implementation will redraw the image with highlighting the found ball with a green dot
-function getMap() {
-    function draw() {
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        getObjectPositions();
-        requestAnimationFrame(getMap);
-    }
+// function getMap() {
+//     function draw() {
+//         context.drawImage(video, 0, 0, canvas.width, canvas.height);
+//         getObjectPositions();
+//         requestAnimationFrame(getMap);
+//     }
 
-    draw();
-}
+//     draw();
+// }
