@@ -81,21 +81,18 @@ function getObjectPositions() {
     context.beginPath();
     context.fillStyle = "green";
     // This will put a dot at the centre of player 2's colour
-    context.arc(finalPositions[2][0], finalPositions[2][1], 5, 0, Math.PI * 2, true);
+    context.arc(finalPositions[0][0], finalPositions[0][1], 5, 0, Math.PI * 2, true);
     context.fill();
 
     jsonObj = {
         ball: finalPositions[0]
     };
 
-    cones = {};
-
     for (let i = 1; i < CONFIG.length; ++i) {
         let key = "Player" + i.toString();
-        cones[key] = finalPositions[i];
+        jsonObj[key] = finalPositions[i];
     }
 
-    jsonObj.cones = cones;
     jsonObj.dimension = [canvas.width, canvas.height];
 
     return JSON.stringify(jsonObj);

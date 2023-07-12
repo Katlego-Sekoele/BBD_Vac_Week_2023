@@ -5,12 +5,10 @@ Format:
 ```json
 {
     "ball": [x, y],
-    "cones": {
-        "Player1": [x, y],
-        "Player2": [x, y],
-        "Player3": [x, y],
-        "Player4": [x, y]
-    },
+    "Player1": [x, y],
+    "Player2": [x, y],
+    "Player3": [x, y],
+    "Player4": [x, y],
     "dimension": [width, height]
 }
 ```
