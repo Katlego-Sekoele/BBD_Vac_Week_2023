@@ -363,34 +363,33 @@ function convertImageCoOrdToGrid(coOrdinatesArray){
 }
 
 //function to convert the json to and array
-function populateObjectArray(){
+function populateObjectArray(objects){
     //objects = require('./../controller/') //path to the .json file [NEEDS TO BE FINISHED]
     //jason layout can be found in branch 4_experimental, in the readME under "src/camera"
     //initialise object array as empty
     objectsArray = []
 
-    //temporary object
+    /*temporary object
     const objects = {
-        ball: {x: 10, y: 20},
-        cones: {
-            Player1: {x: 30, y: 40},
-            Player2: {x: 50, y: 60},
-            Player3: {x: 70, y: 80},
-            Player4: {x: 90, y: 100}
-        },
-        dimension: {width: 500, height: 300}
-    };
+        ball: [10, 20],
+        Player1: [30, 40],
+        Player2: [50, 60],
+        Player3: [70, 80],
+        Player4: [90, 10],
+        dimension: [500, 300]
+    };*/
     
     array = Object.entries(objects)
     // store the width and the height of what the camera can see
-    dimensions = array[2]
-    xDimension = dimensions[1].width
-    yDimension = dimensions[1].height
+    dimensions = objects.dimension
+
+    xDimension = dimensions[0]
+    yDimension = dimensions[1]
     
     //get all the information about the ball
-    let sphero = array[0]
-    xSphero = sphero[1].x
-    ySphero = sphero[1].y
+    let sphero = (array[0])[1]
+    xSphero = sphero[0]
+    ySphero = sphero[1]
 
     // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
     xFinal = Math.round((xSphero / xDimension) * 100)
@@ -399,32 +398,29 @@ function populateObjectArray(){
     //push the ball information into the object array
     objectsArray.push(["B", xFinal, yFinal])
 
-    playersInformationObject = (array[1])[1]
+    for (let playerIndex = 1; playerIndex < (array.length - 1); playerIndex++){
+        sPlayerNumber = playerIndex.toString()
 
-    playersInformation = Object.entries(playersInformationObject)
+        //store the co-ordinates array
+        currentPlayerCoOrds = array[playerIndex][1]
 
-    for (let playerIndex = 0; playerIndex < playersInformation.length; playerIndex++){
-        //get the current players co-ordinates
-        playerNumber = (playerIndex + 1).toString()
+        //store the X and Y
+        playerX = currentPlayerCoOrds[0]
+        playerY = currentPlayerCoOrds[1]
 
-        currentPlayerCoOrds = playersInformation[playerIndex]
+        // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
+        xFinal = Math.round((playerX / xDimension) * 100)
+        yFinal = Math.round((playerY / yDimension) * 100)
 
-        playerX = currentPlayerCoOrds[1].x
-        playerY = currentPlayerCoOrds[1].y
-
-        //check if the player is actually on the map, if they are process the information and store it
-        if ((playerX != -1) && (playerY != -1)){         
-
-            // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
-            xFinal = Math.round((playerX / xDimension) * 100)
-            yFinal = Math.round((playerY / yDimension) * 100)
-
-            //push the players information to the array that stores the information
-            objectsArray.push([playerNumber, xFinal, yFinal])
-            }
+        //store the information in the player information array
+        objectsArray.push([sPlayerNumber, xFinal, yFinal])
     }
+    
+console.log(objectsArray)
+
     //return the array of objects
-    return objectsArray
+    //return objectsArray
+    
 }
 
 function softResetScores(playerScores, moverIndex){
