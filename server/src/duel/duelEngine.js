@@ -103,15 +103,31 @@ function initiateDuel(playerScores){
     const streakVal = 3;
     const playerDuelStates = new Array(playerScores.length);
     playerScores.forEach((playerScore,index) => {
+        const multiplier = calculateMulitplier(index);
         if (playerScore==streakVal){
-            playerDuelStates[index] = true;
+            //playerDuelStates[index] = true;
+            playerDuelStates[index] = 10*multiplier;
         }
         else{
-            playerDuelStates[index] = false;
+            //playerDuelStates[index] = false;
+            playerDuelStates[index] = 0;
         }
     });
-    //return array of boolean states for each player,true indicates the player can duel
+    //return array of states to determine if a player can duel.
+
     return playerDuelStates;
+}
+
+//function that finds which player can currently play and returns their index, else return -1
+function getPlayerDuel(arrPlayerScores){
+    var playerDistances = initiateDuel(arrPlayerScores)
+    
+    for (i = 0; i < player.length; i++){
+        if (playerDistances[i] != 0){
+            return i
+        }
+    }
+    return -1
 }
 
 //currentPlayer is an integer based index for the current player
@@ -119,7 +135,7 @@ function initiateDuel(playerScores){
 function calculateMulitplier(currentPlayer){
     //the max value of the multiplier, max will be at the edge of the game map
     maxMultiplier = 3
-
+    currentPlayer += 1
     //store the current player as a string
     let sCurrentPlayer = currentPlayer.toString()
 
@@ -141,7 +157,7 @@ function calculateMulitplier(currentPlayer){
 
     //if there has been an error log it to the console
     if ((coOrdinate.x < 0) || (coOrdinate.y < 0)){
-        console.log("FATAL ERROR! PLAYER CONE NOT FOUND. ENSURE THAT PLAYER IS REPRESENTED AS A NUMBER FROM 1 - 5")
+        console.log("ERROR! PLAYER CONE NOT FOUND. ENSURE THAT PLAYER IS REPRESENTED AS A NUMBER FROM 1 - 8 AND THE MAP IS PROPERLY INITIALISED")
     }
 
     //find the shortest distance to an edge
@@ -249,6 +265,13 @@ function checkWin(){
         return true
     }
     return false
+
+    //if this function returns a true then use getPlayerWin to find which player has won
+}
+
+function getPlayerWin(){
+    //call when checkWin is true to get who won the game
+    return parseInt(findRemainingPlayers()[0])
 }
 
 //hand in integer that indexes the current player,creturns true if the player has lost, returns false if they have not lost
@@ -268,8 +291,18 @@ function checkPlayerLoss(currentPlayer){
     return true
 }
 
-
+function softResetScores(playerScores, moverIndex){
+    for(let i = 0; i < playerScores.length; i++){
+        if(playerScores[i] != 0){
+            playerScores[i] -= 1
+        }
+    }
+    playerScores[moverIndex] = 0
+    return playerScores;
+}
 //console.log(initializeMap(4));
 //console.log(initiateDuel(test));
+//console.log(getPlayerWin())
 
-module.exports = {initializeMap}
+
+module.exports = { initializeMap, initiateDuel, getPlayerDuel, softResetScores }

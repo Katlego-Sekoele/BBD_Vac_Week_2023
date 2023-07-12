@@ -232,6 +232,7 @@ body {
 
 ul.question_page_flex_5 {
     display: flex;
+    column-gap: 0.4em;
     flex-direction: row;
     background-color: var(--lilac);
     color: var(--darkBlue);

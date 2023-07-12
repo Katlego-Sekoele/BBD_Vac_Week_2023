@@ -1,4 +1,5 @@
 //import "./socket.io/client-dist/socket.io.js";
+import {createMap} from "./MapStuff/mapMain.js";
 // for navigation purposes
 const startGameContainer = document.getElementById('start-game-container');
 const setUpGameContainer = document.getElementById('set-up-game-container');
@@ -7,15 +8,19 @@ const questionPageMainBox = document.getElementById('question-page-main-box');
 const mapContainer = document.getElementById('map-container');
 
 // Event listeners or any other logic to trigger the container changes
-document.getElementById("homescreen-start-btn").addEventListener("click", showSetUpGameContainer);
-document.getElementById("nextbutton").addEventListener("click", showQRScreenMainBox);
+document.getElementById("homescreen-start-btn").addEventListener("click", showQRScreenMainBox);
 document.getElementById("start-game-btn").addEventListener("click", showQuestionPageMainBox);
+// document.getElementById("go-to-map-btn").addEventListener("click", showMapContainer);
+document.getElementById("back-to-game-btn").addEventListener("click", showQuestionPageMainBox);
 
 // Socket.io stuff
 const SERVER_URL = "http://localhost:3000";
 const DEFAULT_SIZE = 4
 let socket = io.connect(SERVER_URL);
 // manager connects to socket server
+
+const players = [];
+let currentLobbyCode = null;
 
 document.getElementById("start-game-btn").onclick = () => {
 
@@ -53,9 +58,8 @@ socket.on("player_join", (data) => {
 //send payload to server and invoke another_generic_event on server side
 //socket.emit("another_generic_event", payload)
 
-import {createMap} from "./MapStuff/mapMain.js";
-socket.emit('update_map');
-socket.on('updated_map', (data) => {
+socket.emit('generate_initial_map');
+socket.on('on_generated_map', (data) => {
 	console.log(data);
 	createMap(data);
 });
@@ -81,16 +85,16 @@ socket.on('done_duel', () => {
 
 socket.on('on_next_question', (question) => {
     //update the question and answers
-    document.getElementById("question_holder").innerText = question.question;
-    document.getElementById("answer_1").innerText = question.answers[0]; //TODO: idk how the question object is structured
-    document.getElementById("answer_2").innerText = question.answers[1];
-    document.getElementById("answer_3").innerText = question.answers[2];
-    document.getElementById("answer_4").innerText = question.answers[3];
-    
-    document.getElementById("answer_1").style.backgroundColor = "pink";
-    document.getElementById("answer_2").style.backgroundColor = "pink";
-    document.getElementById("answer_3").style.backgroundColor = "pink";
-    document.getElementById("answer_4").style.backgroundColor = "pink";
+    document.getElementById("question_holder").innerText = question.Question;
+    document.getElementById("answer_1").innerText = "A: " + question.Answers[0]; //TODO: idk how the question object is structured
+    document.getElementById("answer_2").innerText = "B: " + question.Answers[1];
+    document.getElementById("answer_3").innerText = "C: " + question.Answers[2];
+    document.getElementById("answer_4").innerText = "D: " + question.Answers[3];
+
+    document.getElementById("answer_1").style.backgroundColor = "var(--purple)";
+    document.getElementById("answer_2").style.backgroundColor = "var(--purple)";
+    document.getElementById("answer_3").style.backgroundColor = "var(--purple)";
+    document.getElementById("answer_4").style.backgroundColor = "var(--purple)";
 });
 
 // TODO: add the code so when the next question button is pressed then the socket.emit is called
@@ -104,13 +108,13 @@ document.getElementById("evaluate_btn").onclick = () => {
 };
 
 socket.on('on_correct_answer', (indexOfCorrectAnswer) => {
-    document.getElementById("answer_" + (indexOfCorrectAnswer + 1)).style.backgroundColor = "green";
+    document.getElementById("answer_" + (indexOfCorrectAnswer + 1)).style.backgroundColor = "var(--correctGreen)";
     updateScoreboard();
 });
 
 
 function updateScoreboard() {
-    for (var i = 1; i < 9; i++) { // this is added so that if the number of players decreases then the others will be removed
+    for (var i = 0; i < 8; i++) { // this is added so that if the number of players decreases then the others will be removed
         // Update div content with usernames and score
         var divUsername = document.getElementById("username_" + (i + 1));
         divUsername.innerText = "";
@@ -118,7 +122,7 @@ function updateScoreboard() {
         divScore.innerText = ""; 
       }
 
-    for (var i = 1; i < players.length; i++) {
+    for (var i = 0; i < players.length; i++) {
         var player = players[i];
   
         // Update div content with usernames and score
@@ -127,12 +131,12 @@ function updateScoreboard() {
         var divScore = document.getElementById("score_" + (i + 1));
         divScore.innerText = player.score; 
       }
-    }
-    
-    
-    //nav functions
-    function showStartGameContainer() {
-        startGameContainer.style.display = 'block';
+}
+
+
+//nav functions
+function showStartGameContainer() {
+    startGameContainer.style.display = 'block';
     setUpGameContainer.style.display = 'none';
     qrScreenMainBox.style.display = 'none';
     questionPageMainBox.style.display = 'none';
@@ -159,7 +163,8 @@ function showQRScreenMainBox() {
 
 // Function to show the question page main box container and hide the rest
 function showQuestionPageMainBox() {
-    socket.emit('generate_initial_map', 4);
+    updateScoreboard();
+    document.getElementById("who_controlling_ball").innerText = "No one is controlling the ball";
     startGameContainer.style.display = 'none';
     setUpGameContainer.style.display = 'none';
     qrScreenMainBox.style.display = 'none';
