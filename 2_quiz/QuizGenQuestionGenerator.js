@@ -2,6 +2,7 @@
 var DEBUG = true;
 var currQuizzes = new Array();
 var allQuizzes = new Array();
+var techQuizzes = new Array();
 var amountQuizzes = 20;
 var counter = amountQuizzes;
 var totalQuizCounter = 0;
