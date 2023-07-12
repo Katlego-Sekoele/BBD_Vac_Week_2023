@@ -65,7 +65,6 @@ if __name__ == '__main__':
                         api.set_speed(50)
                     except concurrent.futures._base.TimeoutError:
                         print("qwertyuiop")
-                        continue
 
 
                 api.spin(360, 1)
