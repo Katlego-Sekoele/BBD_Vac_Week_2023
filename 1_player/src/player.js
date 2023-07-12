@@ -187,7 +187,7 @@ function sendAns(e, ans) {
 function resetButtons() {
     let no_answers = question["Answers"].length;
     let buttons = "";
-    answer = '';
+    answer = null;
 
     for (var i = 0; i < no_answers; i++) {
         buttons += 
@@ -237,13 +237,10 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
     // Change selected option to green if the user answered correctly else change all options to red
     changeBtn(true);
 
-    console.log("Correct Answer: " + convertintChar(correctAnswerIndex));
-    console.log("Answer: " + answer);
-
     if (answer == correctAnswerIndex) {
-        document.getElementById(convertintChar(convertintChar(answer))).style.background = '#00FF00';
+        document.getElementById(convertintChar(answer)).style.background = '#00FF00';
     } else if (answer != null) {
-        document.getElementById(convertintChar(conveertintChar(answer))).style.background = '#FF0000';
+        document.getElementById(convertintChar(answer)).style.background = '#FF0000';
     } else {
         resetButtons();
         changeBtn(true);
