@@ -239,7 +239,7 @@ body {
 ul.question_page_flex_5 {
     display: flex;
     column-gap: 0.4em;
-    flex-direction: row;
+    flex-direction: column;
     background-color: var(--lilac);
     color: var(--darkBlue);
     margin: 0.5em;
@@ -248,6 +248,11 @@ ul.question_page_flex_5 {
     height: 2.5em;
     border-radius: var(--borderRadiusVal);
 }
+
+.userNameHolder{
+    margin-left: -2rem;
+}
+
 
 
 .Question{
