@@ -79,7 +79,7 @@ document.getElementById("joinButton").onclick = () => {
     }
 
     //create json object to send username and gamecode
-    let connectObject = { "gamecode": gameCode };
+    let connectObject = { "gameCode": gameCode };
 
     // request to join lobby
     socket.emit("join_lobby", connectObject)
@@ -88,8 +88,9 @@ document.getElementById("joinButton").onclick = () => {
     socket.on("player_joined", (data) => {
         //check whether a userId was received
         if (data) {
+            console.log(data);
             //redirect to lobby
-            window.location.assign("lobby.html");
+            showLobbyContainer();
         } else {
             alert("Error connecting. Please try again.");
         }
@@ -104,14 +105,14 @@ document.getElementById("joinButton").onclick = () => {
 // --- LOBBY ---
 //[commented out because "startQuiz" was constantly emitting]
 
-// socket.on("startQuiz", (res) => {
-//     connectToGame(res)
-// })
+socket.on("start_quiz", (res) => {
+    connectToGame(res)
+})
 
-// function connectToGame()
-// {
-//     showQuizContainer();
-// }
+function connectToGame()
+{
+    showQuizContainer();
+}
 
 // --- QUIZ ---
 
@@ -154,7 +155,10 @@ socket.on("on_next_question", (currentQuestion) => {
 });
 
 socket.on("current_players", (players) => {
-    currentPlayer = players.find((player) => player.socket.id == socket.socket.sessionid);
+    console.log(players);
+    console.log(socket.id );
+
+    const currentPlayer = players.find((player) => player.socketId == socket.id);
     playerScore = currentPlayer.score; // get score
 })
 
