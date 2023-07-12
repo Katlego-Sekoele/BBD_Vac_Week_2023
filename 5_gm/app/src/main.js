@@ -85,11 +85,11 @@ socket.on('done_duel', () => {
 
 socket.on('on_next_question', (question) => {
     //update the question and answers
-    document.getElementById("question_holder").innerText = question.question;
-    document.getElementById("answer_1").innerText = question.answers[0]; //TODO: idk how the question object is structured
-    document.getElementById("answer_2").innerText = question.answers[1];
-    document.getElementById("answer_3").innerText = question.answers[2];
-    document.getElementById("answer_4").innerText = question.answers[3];
+    document.getElementById("question_holder").innerText = question.Question;
+    document.getElementById("answer_1").innerText = question.Answers[0]; //TODO: idk how the question object is structured
+    document.getElementById("answer_2").innerText = question.Answers[1];
+    document.getElementById("answer_3").innerText = question.Answers[2];
+    document.getElementById("answer_4").innerText = question.Answers[3];
 
     document.getElementById("answer_1").style.backgroundColor = "pink";
     document.getElementById("answer_2").style.backgroundColor = "pink";
