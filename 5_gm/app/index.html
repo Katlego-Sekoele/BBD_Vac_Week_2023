@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <div id="start-game-container" class="start-game-container">
+      <h1 class="title">BBD QUIZ CHALLENGE</h1>
+      <div class="startsign">
+        <button id="homescreen-start-btn" class="nextbutton1">START GAME</button>
+      </div>
+    </div>
+
+    <div id="set-up-game-container" class="set-up-game-container">
+      <h1 class="title">BBD QUIZ CHALLENGE</h1>
+      <div class="mainFlex">
+        <div class="gameSetUpFlex">
+          <div class="heading">
+            <p class="gameSetUpHeading">SET UP YOUR GAME</p>
+          </div>
+
+          <div class="specialDiv">
+            <div class="innercontainer">
+              <div class="settingContainer">
+                <p class="settingdescription">Number of Questions</p>
+                <input type="number" class="inputboxes" />
+              </div>
+              <div class="settingContainer">
+                <p class="settingdescription">Number of Players</p>
+                <input type="number" class="inputboxes" />
+              </div>
+              <div class="settingContainer">
+                <p class="settingdescription">Question Genre</p>
+                <input type="number" class="inputboxes" />
+              </div>
+            </div>
+
+            <div class="buttonParent">
+              <button id="nextbutton" class="nextbutton">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="QR-screen-main-box" class="QR-screen-main-box">
+      <h1 class="title">BBD QUIZ CHALLENGE</h1>
+      <div class="QRContainer">
+        <div class="QR">
+          <img />
+        </div>
+        <div class="joinContainer1">
+            <div class="playerJoin">
+            <div>PLAYERS JOIN NOW!</div>
+            </div>
+            <div class="joinContainer2">
+                <div class="Join">
+                    <p id ="numJoined">0/8 JOINED</p>
+                </div>
+                <button id="start-game-btn" class="Start">START GAME</button>
+            </div>
+        </div>
+      </div>
+      <div class="joinedPlayers">
+        <h1>PLAYERS JOINED</h1>
+        <ul class="lobbyJoinList">
+          <li>
+            <ul class="lobbyJoinItems">
+              <li id="lobby_username_1">PLAYER 1</li>
+            </ul>
+          </li>
+          <li>
+            <ul class="lobbyJoinItems">
+              <li id="lobby_username_2">PLAYER 2</li>
+            </ul>
+          </li>
+          <li>
+            <ul class="lobbyJoinItems">
+              <li id="lobby_username_3">PLAYER 3</li>
+            </ul>
+          </li>
+          <li>
+            <ul class="lobbyJoinItems">
+              <li id="lobby_username_4">PLAYER 4</li>
+            </ul>
+          </li>
+          <li>
+            <ul class="lobbyJoinItems">
+              <li id="lobby_username_5">PLAYER 5</li>
+            </ul>
+          </li>
+          <li>
+            <ul class="lobbyJoinItems">
+              <li id="lobby_username_6">PLAYER 6</li>
+            </ul>
+          </li>
+          <li>
+            <ul class="lobbyJoinItems">
+              <li id="lobby_username_7">PLAYER 7</li>
+            </ul>
+          </li>
+          <li>
+            <ul class="lobbyJoinItems">
+              <li id="lobby_username_8">PLAYER 8</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="question-page-main-box" class="question-page-main-box">
+      <div class="question_page_flex1">
+        <div class="question_page_flex2a">
+          <div class="question_page_flex3a">
+            <div class="Question" id="question_holder">
+              QUESTION HERE Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, facere corporis.
+              Dignissimos deserunt exercitationem sint amet obcaecati error?
+            </div>
+          </div>
+          <div class="question_page_flex3b">
+            <div class="answer-box" id="answer_1">A lorem lorem lorem lorem lorem lorem lorem lorem</div>
+            <div class="answer-box" id="answer_2">B lorem lorem lorem lorem lorem lorem lorem lorem</div>
+            <div class="answer-box" id="answer_3">C lorem lorem lorem lorem lorem lorem lorem lorem</div>
+            <div class="answer-box" id="answer_4">D lorem lorem lorem lorem lorem lorem lorem lorem</div>
+          </div>
+          <div class="question_page_flex3c">
+            <div id="evaluate_btn" class="button">REVEAL ANSWER</div>
+            <div id="next_question_btn" class="button">NEXT QUESTION</div>
+            <div id="quit_btn" class="button"><p>QUIT!</p></div>
+          </div>
+        </div>
+        <div class="question_page_flex2b">
+          <div class="question_page_flex4a">
+            <div id="who_controlling_ball" class="controlBox">Seagate has control</div>
+          </div>
+          <div class="question_page_flex4b">
+            <div class="map">
+              <div id="pixel_map_container" class="pixelMap">
+                <div class="shape-container" id="shape-container">
+                  <div id="draw-shapes"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div >
+            <ul class="question_page_flex4c">
+              <li>
+                <h1>PLAYERS</h1>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_1">PLAYER 1</li>
+                  <li id="score_1">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_2">PLAYER 2</li>
+                  <li id="score_2">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_3">PLAYER 3</li>
+                  <li id="score_3">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_4">PLAYER 4</li>
+                  <li id="score_4">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_5">PLAYER 5</li>
+                  <li id="score_5">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_6">PLAYER 6</li>
+                  <li id="score_6">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_7">PLAYER 7</li>
+                  <li id="score_7">50</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="question_page_flex_5">
+                  <li id="username_8">PLAYER 8</li>
+                  <li id="score_8">50</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="map-container" class="map-container">
+      <canvas id="camCanvas"></canvas>
+
+      <div class="control"></div>
+      <button id="back-to-game-btn" class="back-to-game-btn">Back</button>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script type="module" src="src/main.js"></script>
+    <script src="src/MapStuff/mapMain.js"></script>
+  </body>
+</html>

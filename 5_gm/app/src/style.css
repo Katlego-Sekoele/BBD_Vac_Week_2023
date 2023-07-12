@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css?family=Lilita+One&display=swap');
+
+:root {
+    --purple: #9d85b7;
+    --darkBlue: rgb(5,32,74);
+    --borderRadiusVal: 10px;
+    --lilac:#E1E2EF;
+    --correctGreen:#81C360;
+  }
+.set-up-game-container,
+.QR-screen-main-box,
+.question-page-main-box,
+.map-container {
+    display: none;
+}
+body {
+    font-family: 'Lilita One', sans-serif;
+    background-color: var(--darkBlue);
+    color: white;
+    letter-spacing: 0.1em;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.map{
+    background-color: var(--lilac);
+    width: 66em;
+    height: 34em;
+}
+
+.pixelMap{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 228, 228);
+}
+
+#camCanvas{
+    display:none;
+}
+
+.title{
+    text-align: center;
+    font-size: 5em;
+    margin:0;
+}
+
+.gameSetUpFlex{
+    display:flex;
+    flex-direction: column;
+    padding: 2em;
+}
+
+.gameSetUpHeading{
+    font-size:4rem;
+    background-color: var(--purple);
+    width: 35rem;
+    text-align: center;
+    border-radius:var(--borderRadiusVal);
+    padding: 0.05em;
+}
+
+.innercontainer{
+    font-size:2em;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.settingContainer{
+    display: flex;
+    flex-direction: row;
+    height:1em;
+    padding: 1em;
+    /*margin: 1em;*/
+    align-items: baseline;
+}
+
+
+.settingdescription{
+    /*margin:1em;*/
+    /*margin-top: -1.1rem;*/
+    margin-right: 2rem;
+    height: 3rem;
+    width: 22rem;
+    background-color:var(--purple);
+    position: relative;
+    border-radius: var(--borderRadiusVal);
+    border-style: solid;
+    border-color: var(--lilac);
+    border-width: 0.5rem;
+}
+
+
+
+.inputboxes{
+    /*margin-top=-1.1rem;*/
+    height:3rem;
+    /*display: inline;*/
+    /*position: relative;*/
+    background-color: var(--lilac);
+    border-radius: var(--borderRadiusVal);
+    border-style: solid;
+    border-color: var(--purple);
+    border-width: 0.5rem;
+    font-size:larger;
+    font-weight: bold;
+    font-family: 'Lilita One', sans-serif;
+
+}
+
+.mainFlex{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.buttonParent{
+    margin-left: 3rem;
+    width: 2rem;
+}
+
+.nextbutton{
+    background-color: var(--purple);
+    width: 20rem;
+    border-style: solid;
+    border-radius: var(--borderRadiusVal);
+    border-color: var(--lilac);
+    border-width: 0.5rem;
+    height: 20rem;
+    font-size: 7rem;
+    font-weight: bold;
+    font-family: 'Lilita One', sans-serif;
+    color: var(--lilac);
+}
+.nextbutton:hover{
+    background-color: var(--lilac);
+    color: var(--purple);
+}
+
+.specialDiv{
+    /*background-color: red;*/
+    display: flex;
+    flex-direction: row;
+}
+
+.nextbutton1{
+    display: flex;
+    background-color: var(--purple);
+    width: 40rem;
+    border-style: solid;
+    border-radius: var(--borderRadiusVal);
+    border-color: var(--lilac);
+    border-width: 0.5rem;
+    height: 20rem;
+    font-size: 7rem;
+    font-family: 'Lilita One', sans-serif;
+    color: var(--lilac);
+}
+
+.nextbutton1:hover{
+    background-color: var(--lilac);
+    color: var(--purple);
+}
+
+.button{
+    background-color: var(--purple);
+    width: 11rem;
+    border-style: solid;
+    border-radius: var(--borderRadiusVal);
+    border-color: var(--lilac);
+    border-width: 0.2rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    font-family: 'Lilita One', sans-serif;
+    color: var(--lilac);
+    letter-spacing: 0.1em;
+    margin: 0.5em;
+    text-align: center;
+
+}
+
+
+.button:hover{
+    background-color: var(--lilac);
+    color: var(--purple);
+    cursor:pointer;
+}
+.question_page_flex1{
+    display:flex;
+    flex-direction: row;
+}
+
+.question_page_flex2a{
+    display: flex;
+    flex-direction: column;
+}
+
+.question_page_flex3b{
+    display: flex;
+    flex-direction: column;
+}
+.question_page_flex3c{
+    display: flex;
+    width: 90%;
+    margin-left:1em;
+}
+
+.answer-box{
+    background-color: var(--purple);
+    border-radius: var(--borderRadiusVal);
+    height: 5rem;
+    padding: 1rem;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 0.5em;
+    font-size: 1.8em;
+    width: 46.5rem;
+}
+
+.question_page_flex4c{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: var(--purple);
+    border-radius: var(--borderRadiusVal);
+    padding: 1em;
+    width: 64em;
+    margin-top:3em;
+}
+
+
+
+
+ul.question_page_flex_5 {
+    display: flex;
+    column-gap: 0.4em;
+    flex-direction: row;
+    background-color: var(--lilac);
+    color: var(--darkBlue);
+    margin: 0.5em;
+    font-size:1.5em;
+    width: 5em;
+    height: 2.5em;
+    border-radius: var(--borderRadiusVal);
+}
+
+
+.Question{
+    width: 44rem;
+    height: 8em;
+    font-size: 2.1em;
+    background-color: var(--lilac);
+    margin-right: 0.5em;
+    margin-left: 1em;
+    padding: 1em;
+    color:var(--darkBlue);
+    border-radius: var(--borderRadiusVal);
+}
+
+.QRContainer{
+    /*background-color: red;*/
+    height: 20rem;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.QR{
+    background-color: var(--lilac);
+    width: 25rem;
+    height: 20rem;
+    border-radius: var(--borderRadiusVal);
+    margin-right: 1rem;
+}
+
+.joinContainer1{
+    /*background-color: green;*/
+    height: 20rem;
+    width: 45rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.joinContainer2{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*background-color:deeppink;*/
+    height: 11rem;
+}
+
+.playerJoin{
+    /*background-color: blue;*/
+    height: 4rem;
+    margin-bottom: 1rem;
+    
+}
+
+.playerJoin div{
+    background-color: var(--purple);
+    height: 100%;
+    border-radius: var(--borderRadiusVal);
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Lilita One', sans-serif;
+    color: white;
+    letter-spacing: 0.1em;
+}
+
+.Join{
+    margin-right: 0.2rem;
+    background-color: var(--purple);
+    height: 100%;
+    width: 30%;
+    border-style: solid;
+    border-radius: var(--borderRadiusVal);
+    border-color: var(--purple);
+    border-width: 0.4rem;
+    font-size: 3rem;
+    font-family: 'Lilita One', sans-serif;
+    color: white;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+.Join p{
+    margin-top: 2.1rem;
+}
+
+
+.Start{
+    margin-left: 0.2rem;
+    background-color: var(--purple);
+    height: 108%;
+    width: 30%;
+    border-style: solid;
+    border-radius: var(--borderRadiusVal);
+    border-color: var(--lilac);
+    border-width: 0.4rem;
+    font-size: 3rem;
+    font-family: 'Lilita One', sans-serif;
+    color: white;
+    letter-spacing: 0.1em;
+}
+
+.Start:hover{
+    background-color: var(--lilac);
+    border-color: var(--lilac);
+    color: var(--purple);
+}
+
+.controlBox{
+    font-size: 3.5em;
+    background-color: var(--purple);
+    width: 19em;
+    text-align: center;
+    margin-bottom:0.5em;
+    border-radius: var(--borderRadiusVal);
+}
+
+.startsign{
+    display: flex;
+    justify-content: center;
+    margin-top:3rem;
+}
+
+.joinedPlayers{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.joinedPlayers li{
+    list-style-type: none;
+}
+
+li{
+    list-style-type: none;
+}
+
+.joinedPlayers h1{
+    text-align: center;
+    background-color: var(--purple);
+    padding: 0.5rem;
+    border-radius: var(--borderRadiusVal);
+}
+
+.lobbyJoinList{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1em;
+    width: 64em;
+    margin-top:3em;
+    margin-top: -1rem;
+}
+
+.lobbyJoinItems{
+    display: flex;
+    column-gap: 0.4em;
+    flex-direction: row;
+    background-color: var(--lilac);
+    color: var(--darkBlue);
+    margin: 0.5em;
+    font-size:1.5em;
+    width: 5em;
+    height: 2.5em;
+    border-radius: var(--borderRadiusVal);
+    text-align: center;
+}
