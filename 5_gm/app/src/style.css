@@ -254,15 +254,16 @@ ul.question_page_flex_5 {
 }
 
 .QRContainer{
-    background-color: red;
+    /*background-color: red;*/
     height: 20rem;
     width: 70rem;
     display: flex;
     flex-direction: row;
+    margin-top: 2rem;
 }
 
 .QR{
-    background-color: var(--purple);
+    background-color: var(--lilac);
     width: 25rem;
     height: 20rem;
     border-radius: var(--borderRadiusVal);
@@ -270,7 +271,7 @@ ul.question_page_flex_5 {
 }
 
 .joinContainer1{
-    background-color: green;
+    /*background-color: green;*/
     height: 20rem;
     width: 45rem;
     display: flex;
@@ -281,13 +282,12 @@ ul.question_page_flex_5 {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color:deeppink;
+    /*background-color:deeppink;*/
     height: 11rem;
 }
 
 .playerJoin{
-    background-color: blue;
-    /*justify-content: center;*/
+    /*background-color: blue;*/
     height: 4rem;
     margin-bottom: 1rem;
     
@@ -295,10 +295,14 @@ ul.question_page_flex_5 {
 
 .playerJoin div{
     background-color: var(--purple);
-    margin-right: -50%;
-    width: 15rem;
     height: 100%;
     border-radius: var(--borderRadiusVal);
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Lilita One', sans-serif;
+    color: white;
+    letter-spacing: 0.1em;
 }
 
 .Join{
@@ -308,14 +312,15 @@ ul.question_page_flex_5 {
     width: 30%;
     border-style: solid;
     border-radius: var(--borderRadiusVal);
-    border-color: var(--lilac);
+    border-color: var(--purple);
     border-width: 0.4rem;
     font-size: 1.5rem;
     font-weight: bold;
     font-family: 'Lilita One', sans-serif;
-    color: var(--lilac);
+    color: white;
     letter-spacing: 0.1em;
 }
+
 
 .Start{
     margin-left: 0.2rem;
@@ -329,8 +334,14 @@ ul.question_page_flex_5 {
     font-size: 1.5rem;
     font-weight: bold;
     font-family: 'Lilita One', sans-serif;
-    color: var(--lilac);
+    color: white;
     letter-spacing: 0.1em;
+}
+
+.Start:hover{
+    background-color: var(--lilac);
+    border-color: var(--lilac);
+    color: var(--purple);
 }
 
 .controlBox{
