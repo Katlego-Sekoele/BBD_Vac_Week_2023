@@ -10,19 +10,10 @@ app.use("/gm", express.static("../5_gm/app"));
 
 app.use(express.static("../1_player"));
 const server = http.createServer(app);
-<<<<<<< HEAD
 const io = require("socket.io")(server, {
   cors: { origin: "*" },
 });
 server.listen(3000, () => console.log("listening on http://localhost:3000"));
-=======
-
-const io = require('socket.io')(server, {
-  cors: {origin: '*'}
-});
-
-server.listen(3000, () => console.log('listening on http://localhost:3000'));
->>>>>>> d04af5c (Changed server/main.js and 1_player/controls.js)
 
 let gameIsRunning = false;
 let allSockets = [];
@@ -92,7 +83,6 @@ io.on("connection", (socket) => {
     socket.emit("on_generated_map", map);
   });
 
-<<<<<<< HEAD
   socket.on("game_start", () => {
     if (players.length < 2) {
       socket.emit("on_error", "Not enough players to start game.");
@@ -166,13 +156,6 @@ io.on("connection", (socket) => {
       gameIsRunning = false;
     }
   });
-=======
-  socket.on("move_ball", (msg) => {
-    console.log(msg);
-    socket.emit("response", "ball moved!");
-  })
-
->>>>>>> d04af5c (Changed server/main.js and 1_player/controls.js)
 });
 
 // ALL GAME LOGIC BELOW
