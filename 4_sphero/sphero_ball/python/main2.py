@@ -37,10 +37,12 @@ if __name__ == '__main__':
     while True:
         print("Connecting to ball:")
         bot = scanner.find_BB8()
+        # bot = scanner.find_Mini()
         print(f"BB8: {bot.name} found")
 
         with SpheroEduAPI(bot) as api:
             try:
+                print("connected")
                 @sio.event
                 def connect():
                     print('Connected to server')
@@ -57,20 +59,17 @@ if __name__ == '__main__':
                 @sio.event
                 def on_ball_control(angleData, speedData):
                     try:
-                        maxSpeed = 141
-                        maxPossibleSpeed = 255
+                        print("Received data: ", data, f"of {type(data)}" )
 
-                        speed = int(speedData * maxPossibleSpeed/maxSpeed)
-
-                        print("Received control: ", angleData)
-                        angleData = int(angleData)
-                        print(angleData)
+                        print("Received direction: ", data['dir'])
+                        data = int(data['dir'])
+                        print(data)
                         # api.spin(data, 1)
-                        api.set_heading(angleData)
-                        api.set_speed(speed)
+                        api.set_heading(data)
+                        api.set_speed(255)
                     except concurrent.futures._base.TimeoutError:
                         print("qwertyuiop")
-                        continue
+                        # continue
 
 
                 api.spin(360, 1)
