@@ -25,6 +25,20 @@ let playerCounter = 0;
 let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
 
+let initialMap = undefined;
+let currentMapState = undefined;
+
+function getAssignableLabels(mapState) {
+  const assignableLabels = [];
+  for(let key of Object.keys(mapState)) {
+    if(mapState[key][0] !== -1) {
+      assignableLabels.push(key);
+    }
+  }
+
+  return assignableLabels;
+}
+
 function getPlayerWithSocket(socket) {
   return players.find((value) => value.socketId === socket.id);
 }
@@ -79,6 +93,7 @@ io.on("connection", (socket) => {
         username: data.username,
         socketId: socket.id,
         coneNumber: players.length,
+        label: "",
       });
     } else {
       socket.emit("on_error", "Lobby is full.");
@@ -111,6 +126,7 @@ io.on("connection", (socket) => {
     }
 
     gameIsRunning = true;
+    initialMap = undefined;
     io.emit("start_quiz", {});
   });
 
@@ -122,7 +138,18 @@ io.on("connection", (socket) => {
     if (playersThatCanDuel.length > 0) {
       const duelPlayer = playersThatCanDuel[0];
       io.emit("duel", duelPlayer);
-      setTimeout(function() {io.emit('duel_done', duelPlayer)}, 10000);
+
+      setTimeout(function() {
+        io.emit('duel_done', duelPlayer);
+        
+        const assignableLabels = getAssignableLabels(currentMapState);
+        for(let player of players) {
+          const matches = assignableLabels.filter(label => label === player.label);
+          if(matches.length === 0) {
+            players = players.filter((p) => p.label !== player.label);
+          }
+        }
+      }, 10000);  
       for (const p of players) {
         if (p.playerId !== duelPlayer.playerId) {
           p.score = Math.max(0, p.score - kPointUnit);
@@ -169,6 +196,23 @@ io.on("connection", (socket) => {
 
   socket.on("dev_duel_start", () => {
     io.emit("duel", players[0]);
+  });
+
+  socket.on("on_map_state", (mapState) => {
+    delete mapState.ball;
+    delete mapState.dimension;
+    const assignableLabels = getAssignableLabels(mapState);
+
+    if(initialMap === undefined) {
+      initialMap = mapState;
+
+      for(let iii = 0; iii < players.length; iii++) {
+        const player = players[iii];
+        player.label = assignableLabels[iii];
+      }
+    } else {
+      currentMapState = mapState;
+    }
   });
 
   socket.on("move_ball", (msg) => {
