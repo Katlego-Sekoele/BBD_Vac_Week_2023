@@ -12,6 +12,7 @@ document.getElementById("homescreen-start-btn").addEventListener("click", showQR
 document.getElementById("start-game-btn").addEventListener("click", showQuestionPageMainBox);
 document.getElementById('quit_btn').addEventListener("click", showStartGameContainer)
 
+document.getElementById('pixel_map_container').innerHTML = ""; 
 // Socket.io stuff
 const SERVER_URL = "http://localhost:3000";
 const DEFAULT_SIZE = 4
