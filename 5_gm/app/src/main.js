@@ -14,6 +14,9 @@ let currentLobbyCode = null;
 document.getElementById("homescreen-start-btn").addEventListener("click", showQRScreenMainBox);
 document.getElementById("start-game-btn").addEventListener("click", emitTheSocket);
 document.getElementById('quit_btn').addEventListener("click", showStartGameContainer)
+document.getElementById("videoToggle").addEventListener("click",toggleCamera);
+document.getElementById("videoToggle1").addEventListener("click",toggleCamera);
+
 
 document.getElementById('pixel_map_container').innerHTML = ""; 
 // Socket.io stuff
@@ -71,8 +74,7 @@ socket.on('current_players', (currentPlayers) => {
 });
 
 socket.on("lobby_code", lobbyCode => {
-    currentLobbyCode = lobbyCode;
-    // TODO: document.getElementById("lobby_code").innerText = lobbyCode;
+    document.getElementById("lobby_code").innerText = 'LOBBY CODE: ' + lobbyCode;
 });
 
 socket.on('duel', (playerControllingTheBall) => {
@@ -81,7 +83,7 @@ socket.on('duel', (playerControllingTheBall) => {
 
     beginMapUpdate();
 });
-socket.on('done_duel', () => {
+socket.on('duel_done', () => {
     document.getElementById("who_controlling_ball").innerText = "No one is controlling the ball";
     endMapUpdate()
 });
@@ -138,12 +140,30 @@ function updateScoreboard(currentPlayers) {
         divScore.innerText = player.score; 
         var lobbyUsername = document.getElementById('lobby_username_' + (i+1));
         lobbyUsername.innerText = player.username;
-        document.getElementById('numJoined').innerText = players.length + "/8 players joined";
+        document.getElementById('numJoined').innerText = players.length + "/8 joined";
       }
 }   
+
+let cameraOn = true;
+ function toggleCamera(){
+    if(cameraOn){
+        document.getElementById("video").style.display = "none";
+        cameraOn = false;
+        document.getElementById("videoToggle").innerHTML = "TOGGLE CAMERA ON"
+        document.getElementById("videoToggle1").innerHTML = "TOGGLE CAMERA ON"
+
+    }else{
+        document.getElementById("video").style.display = "block";
+        cameraOn = true;
+        document.getElementById("videoToggle").innerHTML = "TOGGLE CAMERA OFF"
+        document.getElementById("videoToggle1").innerHTML = "TOGGLE CAMERA OFF"
+    }
+
+ }
     
     //nav functions
     function showStartGameContainer() {
+    socket.emit("game_master_quit_game");
      document.getElementById('pixel_map_container').innerHTML = "";   
     startGameContainer.style.display = 'block';
     setUpGameContainer.style.display = 'none';
@@ -181,6 +201,11 @@ function showQuestionPageMainBox() {
     qrScreenMainBox.style.display = 'none';
     questionPageMainBox.style.display = 'block';
     mapContainer.style.display = 'none';
+    document.getElementById('question_holder').innerText = "Question will appear here";
+    document.getElementById('answer_1').innerText = "A: ";
+    document.getElementById('answer_2').innerText = "B: ";
+    document.getElementById('answer_3').innerText = "C: ";
+    document.getElementById('answer_4').innerText = "D: ";
 }
 
 // Function to show the map container and hide the rest

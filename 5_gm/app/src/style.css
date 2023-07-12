@@ -13,6 +13,10 @@
 .map-container {
     display: none;
 }
+.QR{
+    display: flex;
+    flex-direction: column;
+}
 body {
     font-family: 'Lilita One', sans-serif;
     background-color: var(--darkBlue);
@@ -235,7 +239,7 @@ body {
 ul.question_page_flex_5 {
     display: flex;
     column-gap: 0.4em;
-    flex-direction: row;
+    flex-direction: column;
     background-color: var(--lilac);
     color: var(--darkBlue);
     margin: 0.5em;
@@ -244,6 +248,15 @@ ul.question_page_flex_5 {
     height: 2.5em;
     border-radius: var(--borderRadiusVal);
 }
+.cameraControls{
+    display: flex;
+    flex-direction: row;
+}
+
+.userNameHolder{
+    margin-left: -2rem;
+}
+
 
 
 .Question{
@@ -259,20 +272,36 @@ ul.question_page_flex_5 {
 }
 
 .QRContainer{
-    /*background-color: red;*/
     height: 20rem;
     display: flex;
     flex-direction: row;
     margin-top: 2rem;
     justify-content: center;
+    align-items: center;
 }
 
-.QR{
-    background-color: var(--lilac);
-    width: 25rem;
-    height: 20rem;
-    border-radius: var(--borderRadiusVal);
+.QR img{
     margin-right: 1rem;
+    height: 20rem;
+    width: 20rem;
+    border-radius: var(--borderRadiusVal);
+}
+
+
+.qr_and_code{
+    display: flex;
+    flex-direction: column;
+}
+
+.lobbyCode{
+    background-color: var(--purple);
+    border-radius: var(--borderRadiusVal);
+    font-size: 3rem;
+    width: 20rem;
+    height: 5rem;
+    padding: 1em;
+    text-align: center;
+    margin: 0.8rem;
 }
 
 .joinContainer1{

@@ -1,3 +1,11 @@
+var answer = null;
+var question;
+var btn_class = "answer-button"
+var player;
+var is_duel_player = false;
+var userName;
+var inLobby = false;
+
 /* Modal */
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
@@ -12,7 +20,7 @@ const closeModal = function () {
 
 // close the modal when the close button and overlay is clicked
 // closeModalBtn.addEventListener("click", closeModal);
-overlay.addEventListener("click", closeModal);
+// overlay.addEventListener("click", closeModal);
 
 // open modal function
 const openModal = function () {
@@ -30,10 +38,10 @@ const quizContainer = document.getElementById('quiz-container');
 // --- EVENT LISTENERS ---
 // ...
 // TEMP NAV
-document.getElementById("join-game").addEventListener("click", showJoinGameContainer);
-document.getElementById("lobby").addEventListener("click", showLobbyContainer);
-document.getElementById("quiz").addEventListener("click", showQuizContainer);
-document.getElementById("control").addEventListener("click", showControllerContainer);
+// document.getElementById("join-game").addEventListener("click", showJoinGameContainer);
+// document.getElementById("lobby").addEventListener("click", showLobbyContainer);
+// document.getElementById("quiz").addEventListener("click", showQuizContainer);
+// document.getElementById("control").addEventListener("click", showControllerContainer);
 
 // --- SOCKET.IO ---
 // Socket connection
@@ -43,11 +51,9 @@ let socket = io.connect(SERVER_URL);
 
 // 
 socket.on("generic_event", (data) => {
+    if (!inLobby) return
     //     TODO: decide on events with server team
 });
-
-
-
 
 // --- FUNCTIONS ---
 // Navigation: Join Game Container
@@ -70,12 +76,12 @@ function showLobbyContainer() {
 
 // Navigation: Quiz Container
 function showQuizContainer() {
+    // USer userNme
+    document.getElementById("playerName").innerHTML = userName;
     joinGameContainer.style.display = 'none';
     lobbyContainer.style.display = 'none';
     quizContainer.style.display = 'block';
     controlContainer.style.display = 'none';
-    // USer userNme
-    document.getElementById("playerName").innerHTML = "Player " + (player.playerId+1);
 }
 
 // Navigation: Controller Container
@@ -87,51 +93,73 @@ function showControllerContainer() {
 }
 
 // --- JOIN GAME ---
-
 document.getElementById("joinButton").onclick = () => {
+    // Clear error messages
+    document.getElementById("errorGameCode").classList.add("hidden");
+    document.getElementById("errorUsername").classList.add("hidden");
+
     // establish connection to socket server
 
     let gameCode = document.getElementById("gameCodeValue").value;
-    console.log(gameCode);
+    userName = document.getElementById("userNameValue").value;
 
-    if (
-        gameCode === "" ||
-        gameCode === null
-    ) {
-        alert("Input fields cannot be empty");
+    if ( gameCode === "" ||
+    gameCode === null ||  userName === "" ||
+    userName === null) {
+        if (
+            gameCode === "" ||
+            gameCode === null
+        ) {
+            document.getElementById("errorGameCode").innerHTML = "Please enter a value for the game code";
+            document.getElementById("errorGameCode").classList.remove("hidden");
+        }
+
+        if ( userName === "" ||
+        userName === null) {
+            document.getElementById("errorUsername").innerHTML = "Please enter a value for the username";
+            document.getElementById("errorUsername").classList.remove("hidden");
+        }
         return;
     }
-
     //create json object to send username and gamecode
-    let connectObject = { "gameCode": gameCode };
+    let connectObject = {
+        gameCode: gameCode.toLocaleUpperCase(),
+        username: userName
+      };
 
     // request to join lobby
-    socket.emit("join_lobby", connectObject)
+    socket.emit("join_lobby", connectObject);
     // socket.emit("join_lobby", JSON.stringify(connectObject))
 
     socket.on("player_joined", (data) => {
         //check whether a userId was received
         if (data) {
-            console.log(data);
-            //redirect to lobby
+            inLobby = true;
             showLobbyContainer();
         } else {
-            alert("Error connecting. Please try again.");
+            document.getElementById("errorGameCode").innerHTML = "Error connecting. Please try again.";
+            document.getElementById("errorGameCode").classList.remove("hidden");
         }
-    })
+    });
 
     socket.on("on_error", (data) => {
-        alert(data);
-    })
+        if (!inLobby) return
+        document.getElementById("errorGameCode").innerHTML = data;
+        document.getElementById("errorGameCode").classList.remove("hidden");
+    });
 }
-
 
 // --- LOBBY ---
 //[commented out because "startQuiz" was constantly emitting]
 
 socket.on("start_quiz", (res) => {
+    if (!inLobby) return
     connectToGame(res)
 })
+
+document.getElementById("quitButton").addEventListener("click", () => {
+    window.location.reload();
+});
 
 function connectToGame()
 {
@@ -139,12 +167,6 @@ function connectToGame()
 }
 
 // --- QUIZ ---
-
-var answer;
-var question;
-var btn_class = "answer-button"
-var player;
-var is_duel_player = false;
 
 function convertintChar(integer) {
     let character = 'a'.charCodeAt(0);
@@ -160,17 +182,21 @@ function changeBtn(disable) {
 function sendAns(e, ans) {
     answer = ans;
     e.preventDefault();
+    if (!inLobby) return
     socket.emit("return_player_answer", { question: question, answer: ans });
     changeBtn(true); // disable after option has been selected
+
+    document.getElementById(convertintChar(ans)).style.background = '#E1E2EF';
+    document.getElementById(convertintChar(ans)).style.color = '#000000';
 }
 
 // Events
-socket.on("on_next_question", (currentQuestion) => {
-    question = currentQuestion["Question"];
-    console.log(currentQuestion);
-    let no_answers = currentQuestion["Answers"].length;
+function resetButtons() {
+    let no_answers = question["Answers"].length;
 
     let buttons = "";
+    answer = null;
+
     for (var i = 0; i < no_answers; i++) {
         buttons += 
         `<div class="buttonParent">
@@ -181,7 +207,6 @@ socket.on("on_next_question", (currentQuestion) => {
     document.getElementById("answer-container-id").innerHTML = "";
     document.getElementById("answer-container-id").innerHTML = buttons;
 
-    // Answer options
     for (var node of document.getElementsByClassName(btn_class)) {
 
         node.addEventListener('click', (e) => {
@@ -190,31 +215,53 @@ socket.on("on_next_question", (currentQuestion) => {
             sendAns(e, id.charCodeAt(0) - 'A'.charCodeAt(0)); // convert to int
         })
     }
+}
+
+// Events
+socket.on("on_next_question", (currentQuestion) => {
+    if (!inLobby) return
+    question = currentQuestion;
+    console.log(currentQuestion);
+
+    // let buttons = "";
+    // for (var i = 0; i < no_answers; i++) {
+    //     buttons += 
+    //     `<div class="buttonParent">
+    //         <button id="${convertintChar(i).toUpperCase()}" class="${btn_class}">${convertintChar(i).toUpperCase()}</button>
+    //     </div>`
+    // }
+
+    // document.getElementById("answer-container-id").innerHTML = "";
+    // document.getElementById("answer-container-id").innerHTML = buttons;
+    resetButtons();
 });
 
 socket.on("current_players", (players) => {
+    if (!inLobby) return
     const currentPlayer = players.find((player) => player.socketId == socket.id);
     player = currentPlayer; // get score
     console.log(players);
 })
 
 socket.on("on_correct_answer", (correctAnswerIndex) => {
+    if (!inLobby) return
     // Change selected option to green if the user answered correctly else change all options to red
     changeBtn(true);
-    console.log(convertintChar(correctAnswerIndex));
 
-    if (correctAnswerIndex == answer) {
+    if (answer == correctAnswerIndex) {
         document.getElementById(convertintChar(answer)).style.background = '#00FF00';
+    } else if (answer != null) {
+        document.getElementById(convertintChar(answer)).style.background = '#FF0000';
     } else {
-        for (var button of document.getElementsByClassName(btn_class)) {
-            button.style.background = '#FF0000';
-        }
+        resetButtons();
+        changeBtn(true);
     }
 
-    //document.getElementById("score").innerHTML = player.score;
+    document.getElementById("score").innerHTML = player.score;
 });
 
 socket.on("duel", (dualPlayer) => {
+    if (!inLobby) return
     is_duel_player = dualPlayer.socketId === socket.id;
     if (is_duel_player) {
         // Get score
@@ -223,42 +270,47 @@ socket.on("duel", (dualPlayer) => {
         // Redirect to controls page
         showControllerContainer();
     } else {
-        document.getElementById("modal_text").innerHTML = `Player ${dualPlayer.playerId+1} is duelling.`;
+        document.getElementById("modal_text").innerHTML = `${dualPlayer.username} is duelling.`.toUpperCase();
         openModal();
         //alert(`Player ${player.username} is duelling.`);
     }
 });
 
-// TODO: Respond to duel done event
 socket.on("duel_done", () => {
+    if (!inLobby) return
     if (is_duel_player) { showQuizContainer(); }
     else { closeModal(); }
 });
 
 // --- CONTROLLER ---
 
-function sendMove(e, dir, speed) {
+function sendMove(e, dir) {
     e.preventDefault();
-    socket.emit("move_ball", {"dir": dir, "speed": speed})
-    document.removeEventListener('touchstart', _eventTouchStart);
-    document.removeEventListener('touchend', _eventTouched);
+    if (!inLobby) return
+    socket.emit("move_ball", {"dir": dir})
+    // document.removeEventListener('touchstart', _eventTouchStart);
+    // document.removeEventListener('touchend', _eventTouched);
 }
 
-document.getElementById("up").addEventListener('click', (e) => {
-    sendMove(e, 1);
-});
+socket.on("game_is_quit", () => {
+    window.location.reload();
+})
 
-document.getElementById("left").addEventListener('click', (e) => {
-    sendMove(e, 271);
-});
+// document.getElementById("up").addEventListener('click', (e) => {
+//     sendMove(e, 1);
+// });
 
-document.getElementById("down").addEventListener('click', (e) => {
-    sendMove(e, 181);
-});
+// document.getElementById("left").addEventListener('click', (e) => {
+//     sendMove(e, 271);
+// });
 
-document.getElementById("right").addEventListener('click', (e) => {
-    sendMove(e, 91);
-});
+// document.getElementById("down").addEventListener('click', (e) => {
+//     sendMove(e, 181);
+// });
+
+// document.getElementById("right").addEventListener('click', (e) => {
+//     sendMove(e, 91);
+// });
 
 // // Variables to store initial touch position and timestamp
 // let startX, startY, startTime;

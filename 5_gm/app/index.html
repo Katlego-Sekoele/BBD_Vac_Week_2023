@@ -9,7 +9,6 @@
       <h1 class="title">BBD QUIZ CHALLENGE</h1>
       <div class="startsign">
         <!-- Here is the video to hide -->
-        <video id="video" width="640" height="480" autoplay></video> 
         <button id="homescreen-start-btn" class="nextbutton1">START GAME</button>
       </div>
     </div>
@@ -49,9 +48,11 @@
     <div id="QR-screen-main-box" class="QR-screen-main-box">
       <h1 class="title">BBD QUIZ CHALLENGE</h1>
       <div class="QRContainer">
+        <div class="qr_and_code">
         <div class="QR">
-          <img />
+          <img src="qr_code.png" />
         </div>
+      </div>
         <div class="joinContainer1">
             <div class="playerJoin">
             <div>PLAYERS JOIN NOW!</div>
@@ -63,13 +64,14 @@
                 <button id="start-game-btn" class="Start">START GAME</button>
             </div>
         </div>
+        <div id="lobby_code" class="lobbyCode">LOBBY CODE: ABCD</div>
       </div>
       <div class="joinedPlayers">
         <h1>PLAYERS JOINED</h1>
         <ul class="lobbyJoinList">
           <li>
             <ul class="lobbyJoinItems">
-              <li id="lobby_username_1">PLAYER 1</li>
+              <li id="lobby_username_1">12345678911</li>
             </ul>
           </li>
           <li>
@@ -130,6 +132,7 @@
             <div id="evaluate_btn" class="button">REVEAL ANSWER</div>
             <div id="next_question_btn" class="button">NEXT QUESTION</div>
             <div id="quit_btn" class="button"><p>QUIT!</p></div>
+            <div class="button" id="videoToggle1">TOGGLE CAMERA ON</div>
           </div>
         </div>
         <div class="question_page_flex2b">
@@ -152,49 +155,49 @@
               </li>
               <li>
                 <ul class="question_page_flex_5">
-                  <li id="username_1">PLAYER 1</li>
+                  <li class="userNameHolder" id="username_1">PLAYER 1</li>
                   <li id="score_1">50</li>
                 </ul>
               </li>
               <li>
                 <ul class="question_page_flex_5">
-                  <li id="username_2">PLAYER 2</li>
+                  <li class="userNameHolder" id="username_2">PLAYER 2</li>
                   <li id="score_2">50</li>
                 </ul>
               </li>
               <li>
                 <ul class="question_page_flex_5">
-                  <li id="username_3">PLAYER 3</li>
+                  <li class="userNameHolder" id="username_3">PLAYER 3</li>
                   <li id="score_3">50</li>
                 </ul>
               </li>
               <li>
                 <ul class="question_page_flex_5">
-                  <li id="username_4">PLAYER 4</li>
+                  <li class="userNameHolder" id="username_4">PLAYER 4</li>
                   <li id="score_4">50</li>
                 </ul>
               </li>
               <li>
                 <ul class="question_page_flex_5">
-                  <li id="username_5">PLAYER 5</li>
+                  <li class="userNameHolder" id="username_5">PLAYER 5</li>
                   <li id="score_5">50</li>
                 </ul>
               </li>
               <li>
                 <ul class="question_page_flex_5">
-                  <li id="username_6">PLAYER 6</li>
+                  <li class="userNameHolder" id="username_6">PLAYER 6</li>
                   <li id="score_6">50</li>
                 </ul>
               </li>
               <li>
                 <ul class="question_page_flex_5">
-                  <li id="username_7">PLAYER 7</li>
+                  <li class="userNameHolder" id="username_7">PLAYER 7</li>
                   <li id="score_7">50</li>
                 </ul>
               </li>
               <li>
                 <ul class="question_page_flex_5">
-                  <li id="username_8">PLAYER 8</li>
+                  <li class="userNameHolder" id="username_8">PLAYER 8</li>
                   <li id="score_8">50</li>
                 </ul>
               </li>
@@ -207,11 +210,14 @@
     <div id="map-container" class="map-container">
       <canvas id="camCanvas"></canvas>
       
-      <canvas id="canvas" width="640" height="480" style="visibility: hidden;"></canvas>
       <div class="control"></div>
       <button id="back-to-game-btn" class="back-to-game-btn">Back</button>
     </div>
-
+    <div class="cameraControls">
+    <video id="video" width="640" height="480" autoplay></video> 
+    <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+    <div class="button" id="videoToggle">TOGGLE CAMERA ON</div>
+    </div>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script src="./src/camera/camera.js"></script>   
     <script type="module" src="src/main.js"></script>
