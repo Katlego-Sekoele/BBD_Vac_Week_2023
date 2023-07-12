@@ -10,7 +10,7 @@ function sendDir(e, dir) {
 socket.on("response", (msg) => console.log(msg));
 
 function sendMoveNoEvent(dir, speed) {
-	socket.emit("move_ball", dir, speed);
+	socket.emit("move_ball", {dir, speed});
 }
 
 let joystick = new JoyStick("joyDiv");
@@ -33,7 +33,6 @@ setInterval(() => {
 
 	mag = Math.floor(mag);
 	dir = Math.floor(dir);
-	console.log(mag, dir);
 	sendMoveNoEvent(dir, mag);
 }, 200);
 

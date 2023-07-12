@@ -237,28 +237,57 @@ socket.on("duel_done", () => {
 
 // --- CONTROLLER ---
 
-function sendMove(e, dir, speed) {
-    e.preventDefault();
+// function sendMove(e, dir, speed) {
+//     e.preventDefault();
+//     socket.emit("move_ball", {"dir": dir, "speed": speed})
+//     document.removeEventListener('touchstart', _eventTouchStart);
+//     document.removeEventListener('touchend', _eventTouched);
+// }
+//
+//
+//
+// document.getElementById("up").addEventListener('click', (e) => {
+//     sendMove(e, 1);
+// });
+//
+// document.getElementById("left").addEventListener('click', (e) => {
+//     sendMove(e, 271);
+// });
+//
+// document.getElementById("down").addEventListener('click', (e) => {
+//     sendMove(e, 181);
+// });
+//
+// document.getElementById("right").addEventListener('click', (e) => {
+//     sendMove(e, 91);
+// });
+
+function sendMove(dir, speed) {
     socket.emit("move_ball", {"dir": dir, "speed": speed})
-    document.removeEventListener('touchstart', _eventTouchStart);
-    document.removeEventListener('touchend', _eventTouched);
 }
 
-document.getElementById("up").addEventListener('click', (e) => {
-    sendMove(e, 1);
-});
+let joystick = new JoyStick("joyDiv");
+let dirX, dirY;
+let mag, dir;
+setInterval(() => {
+    dirX = joystick.GetX();
+    dirY = joystick.GetY();
 
-document.getElementById("left").addEventListener('click', (e) => {
-    sendMove(e, 271);
-});
+    if (dirX !== 0) {
+        mag = Math.sqrt(Math.pow(dirX, 2) + Math.pow(dirY, 2));
 
-document.getElementById("down").addEventListener('click', (e) => {
-    sendMove(e, 181);
-});
+        let vector = math.complex(dirX, dirY);
+        dir = (vector.arg() * 180) / 3.14;
+        dir = Math.abs(dir - 90);
+    } else {
+        mag = Math.abs(dirY);
+        dir = dirY < 0 ? 180 : 0;
+    }
 
-document.getElementById("right").addEventListener('click', (e) => {
-    sendMove(e, 91);
-});
+    mag = Math.floor(mag);
+    dir = Math.floor(dir);
+    sendMoveNoEvent(dir, mag);
+}, 200);
 
 // // Variables to store initial touch position and timestamp
 // let startX, startY, startTime;

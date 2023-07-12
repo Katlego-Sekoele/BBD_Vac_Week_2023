@@ -10,19 +10,12 @@ app.use("/gm", express.static("../5_gm/app"));
 
 app.use(express.static("../1_player"));
 const server = http.createServer(app);
-<<<<<<< HEAD
+
 const io = require("socket.io")(server, {
-  cors: { origin: "*" },
+	cors: { origin: "*" },
 });
+
 server.listen(3000, () => console.log("listening on http://localhost:3000"));
-=======
-
-const io = require('socket.io')(server, {
-  cors: {origin: '*'}
-});
-
-server.listen(3000, () => console.log('listening on http://localhost:3000'));
->>>>>>> d04af5c (Changed server/main.js and 1_player/controls.js)
 
 let gameIsRunning = false;
 let allSockets = [];
@@ -33,146 +26,138 @@ let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
 
 function getPlayerWithSocket(socket) {
-  return players.filter((value) => value.socketId === socket.id);
+	return players.filter((value) => value.socketId === socket.id);
 }
 
 io.on("connection", (socket) => {
-  allSockets.push(socket);
-  socket.emit("lobby_code", mainGameCode);
+	allSockets.push(socket);
+	socket.emit("lobby_code", mainGameCode);
 
-  console.log("a user connected with ID: " + socket.id);
+	console.log("a user connected with ID: " + socket.id);
 
-  socket.on("disconnect", () => {
-    console.log("a user disconnected with ID: " + socket.id);
-    allSockets = allSockets.filter((value) => value.id != socket.id);
-    players = players.filter((value) => value.socketId != socket.id);
+	socket.on("disconnect", () => {
+		console.log("a user disconnected with ID: " + socket.id);
+		allSockets = allSockets.filter((value) => value.id != socket.id);
+		players = players.filter((value) => value.socketId != socket.id);
 
-    if (players.length === 0) {
-      gameIsRunning = false;
-    }
+		if (players.length === 0) {
+			gameIsRunning = false;
+		}
 
-    io.emit("current_players", players);
-  });
+		io.emit("current_players", players);
+	});
 
-  socket.on("restart", () => {
-    io.emit("on_game_restart", {});
-  });
+	socket.on("restart", () => {
+		io.emit("on_game_restart", {});
+	});
 
-  // player requests to join a lobby
-  socket.on("join_lobby", (data) => {
-    if (gameIsRunning) {
-      socket.emit("on_error", "Game is already running.");
-      return;
-    }
+	// player requests to join a lobby
+	socket.on("join_lobby", (data) => {
+		if (gameIsRunning) {
+			socket.emit("on_error", "Game is already running.");
+			return;
+		}
 
-    if (data.gameCode !== mainGameCode) {
-      socket.emit("on_error", "Invalid game code.");
-      return;
-    }
+		if (data.gameCode !== mainGameCode) {
+			socket.emit("on_error", "Invalid game code.");
+			return;
+		}
 
-    players.push({
-      score: 0,
-      playerId: players.length,
-      username: data.username,
-      socketId: socket.id,
-      coneNumber: players.length,
-    });
+		players.push({
+			score: 0,
+			playerId: players.length,
+			username: data.username,
+			socketId: socket.id,
+			coneNumber: players.length,
+		});
 
-    console.log("join_lobby: ", data);
-    //assumes that the users lobby code is correct
+		console.log("join_lobby: ", data);
+		//assumes that the users lobby code is correct
 
-    // server response to game master to notifying that a player has joined
-    socket.emit("player_joined", players[players.length - 1]);
-    io.emit("current_players", players);
-  });
+		// server response to game master to notifying that a player has joined
+		socket.emit("player_joined", players[players.length - 1]);
+		io.emit("current_players", players);
+	});
 
-  socket.on("generate_initial_map", (data) => {
-    const map = DuelEngine.initializeMap(players.length); // We have to something here to specify nr of cones
-    console.log(map);
-    socket.emit("on_generated_map", map);
-  });
+	socket.on("generate_initial_map", (data) => {
+		const map = DuelEngine.initializeMap(players.length); // We have to something here to specify nr of cones
+		console.log(map);
+		socket.emit("on_generated_map", map);
+	});
 
-<<<<<<< HEAD
-  socket.on("game_start", () => {
-    if (players.length < 2) {
-      socket.emit("on_error", "Not enough players to start game.");
-      return;
-    }
+	socket.on("game_start", () => {
+		if (players.length < 2) {
+			socket.emit("on_error", "Not enough players to start game.");
+			return;
+		}
 
-    gameIsRunning = true;
-    io.emit("start_quiz", {});
-  });
+		gameIsRunning = true;
+		io.emit("start_quiz", {});
+	});
 
-  socket.on("make_next_question", () => {
-    playerWhoAnsweredFirstId = -1;
+	socket.on("make_next_question", () => {
+		playerWhoAnsweredFirstId = -1;
 
-    const playerScores = players.map((el) => el.score);
-    // const playerThatCanDuel = DuelEngine.getPlayerDuel(playerScores);
-    const playerThatCanDuel = -1;
-    if (playerThatCanDuel < 0) {
-      currentQuestion = QuizEngine.getQuiz();
-      io.emit("on_next_question", currentQuestion);
-    } else {
-      const duelPlayer = players[playerThatCanDuel];
-      duelPlayer.score = 0;
-      io.emit("duel", duelPlayer);
+		const playerScores = players.map((el) => el.score);
+		// const playerThatCanDuel = DuelEngine.getPlayerDuel(playerScores);
+		const playerThatCanDuel = -1;
+		if (playerThatCanDuel < 0) {
+			currentQuestion = QuizEngine.getQuiz();
+			io.emit("on_next_question", currentQuestion);
+		} else {
+			const duelPlayer = players[playerThatCanDuel];
+			duelPlayer.score = 0;
+			io.emit("duel", duelPlayer);
 
-      for (const p of players) {
-        if (p.playerId !== duelPlayer.playerId) {
-          p.score = Math.max(0, p.score - 1);
-        }
-      }
-    }
-  });
+			for (const p of players) {
+				if (p.playerId !== duelPlayer.playerId) {
+					p.score = Math.max(0, p.score - 1);
+				}
+			}
+		}
+	});
 
-  socket.on("evaluate", (data) => {
-    io.emit("on_correct_answer", currentQuestion.Correct_Answer_Index);
-  });
+	socket.on("evaluate", (data) => {
+		io.emit("on_correct_answer", currentQuestion.Correct_Answer_Index);
+	});
 
-  socket.on("return_player_answer", (data) => {
-    const isCorrect = QuizEngine.checkAnswer(data.question, data.answer);
+	socket.on("return_player_answer", (data) => {
+		const isCorrect = QuizEngine.checkAnswer(data.question, data.answer);
 
-    if (playerWhoAnsweredFirstId < 0) {
-      if (isCorrect) {
-        const player = getPlayerWithSocket(socket);
-        player.score += 1;
-        io.emit("current_players", players);
+		if (playerWhoAnsweredFirstId < 0) {
+			if (isCorrect) {
+				const player = getPlayerWithSocket(socket);
+				player.score += 1;
+				io.emit("current_players", players);
 
-        playerWhoAnsweredFirstId = player.playerId;
-      }
-    }
-  });
+				playerWhoAnsweredFirstId = player.playerId;
+			}
+		}
+	});
 
-  socket.on("dev_duel_done", () =>{
-    io.emit("duel_done");
-  });
-  
-  socket.on("dev_duel_start", () =>{
-    io.emit("duel", players[0]);
-  });
+	socket.on("dev_duel_done", () => {
+		io.emit("duel_done");
+	});
 
-  socket.on("move_ball", (msg) => {
-    io.emit("on_ball_control", msg);
+	socket.on("dev_duel_start", () => {
+		io.emit("duel", players[0]);
+	});
 
-    // TODO: Get duel remaining players and check if someone was eliminated
+	socket.on("move_ball", (msg) => {
+		io.emit("on_ball_control", msg);
 
-    // When duel is done
-    // io.emit("duel_done");
+		// TODO: Get duel remaining players and check if someone was eliminated
 
-    // Last man standing is the winner
-    if (players.length == 1) {
-      io.emit("on_winner", players[0]);
-      players.length = 0;
-      gameIsRunning = false;
-    }
-  });
-=======
-  socket.on("move_ball", (msg) => {
-    console.log(msg);
-    socket.emit("response", "ball moved!");
-  })
+		// When duel is done
+		// io.emit("duel_done");
 
->>>>>>> d04af5c (Changed server/main.js and 1_player/controls.js)
+		// Last man standing is the winner
+		if (players.length == 1) {
+			io.emit("on_winner", players[0]);
+			players.length = 0;
+			gameIsRunning = false;
+		}
+	});
 });
 
 // ALL GAME LOGIC BELOW
