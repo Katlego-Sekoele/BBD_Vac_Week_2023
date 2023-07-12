@@ -248,6 +248,10 @@ ul.question_page_flex_5 {
     height: 2.5em;
     border-radius: var(--borderRadiusVal);
 }
+.cameraControls{
+    display: flex;
+    flex-direction: row;
+}
 
 .userNameHolder{
     margin-left: -2rem;

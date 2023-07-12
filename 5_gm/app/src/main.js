@@ -14,6 +14,9 @@ let currentLobbyCode = null;
 document.getElementById("homescreen-start-btn").addEventListener("click", showQRScreenMainBox);
 document.getElementById("start-game-btn").addEventListener("click", emitTheSocket);
 document.getElementById('quit_btn').addEventListener("click", showStartGameContainer)
+document.getElementById("videoToggle").addEventListener("click",toggleCamera);
+document.getElementById("videoToggle1").addEventListener("click",toggleCamera);
+
 
 document.getElementById('pixel_map_container').innerHTML = ""; 
 // Socket.io stuff
@@ -137,6 +140,23 @@ function updateScoreboard(currentPlayers) {
         document.getElementById('numJoined').innerText = players.length + "/8 joined";
       }
 }   
+
+let cameraOn = true;
+ function toggleCamera(){
+    if(cameraOn){
+        document.getElementById("video").style.display = "none";
+        cameraOn = false;
+        document.getElementById("videoToggle").innerHTML = "TOGGLE CAMERA ON"
+        document.getElementById("videoToggle1").innerHTML = "TOGGLE CAMERA ON"
+
+    }else{
+        document.getElementById("video").style.display = "block";
+        cameraOn = true;
+        document.getElementById("videoToggle").innerHTML = "TOGGLE CAMERA OFF"
+        document.getElementById("videoToggle1").innerHTML = "TOGGLE CAMERA OFF"
+    }
+
+ }
     
     //nav functions
     function showStartGameContainer() {
