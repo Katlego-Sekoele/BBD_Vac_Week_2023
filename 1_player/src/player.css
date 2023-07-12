@@ -221,7 +221,6 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 2rem;
 
     display: grid;
     grid-column-gap: 0;
