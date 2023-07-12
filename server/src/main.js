@@ -23,7 +23,7 @@ let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
 
 function getPlayerWithSocket(socket) {
-  return players.filter((value) => value.socketId === socket.id);
+  return players.find((value) => value.socketId === socket.id);
 }
 
 io.on("connection", (socket) => {
@@ -63,7 +63,7 @@ io.on("connection", (socket) => {
     players.push({
       score: 0,
       playerId: players.length,
-      username: data.username,
+      username: `Player ${players.length}`,
       socketId: socket.id,
       coneNumber: players.length,
     });
@@ -126,6 +126,7 @@ io.on("connection", (socket) => {
     if (playerWhoAnsweredFirstId < 0) {
       if (isCorrect) {
         const player = getPlayerWithSocket(socket);
+        console.log("Player answered first: ", player.username);
         player.score += 1;
         io.emit("current_players", players);
 

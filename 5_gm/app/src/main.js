@@ -7,9 +7,12 @@ const qrScreenMainBox = document.getElementById('QR-screen-main-box');
 const questionPageMainBox = document.getElementById('question-page-main-box');
 const mapContainer = document.getElementById('map-container');
 
+let players = [];
+let currentLobbyCode = null;
+
 // Event listeners or any other logic to trigger the container changes
 document.getElementById("homescreen-start-btn").addEventListener("click", showQRScreenMainBox);
-document.getElementById("start-game-btn").addEventListener("click", showQuestionPageMainBox);
+document.getElementById("start-game-btn").addEventListener("click", emitTheSocket);
 document.getElementById('quit_btn').addEventListener("click", showStartGameContainer)
 
 document.getElementById('pixel_map_container').innerHTML = ""; 
@@ -19,17 +22,8 @@ const DEFAULT_SIZE = 4
 let socket = io.connect(SERVER_URL);
 // manager connects to socket server
 
-const players = [];
-let currentLobbyCode = null;
 
-document.getElementById("start-game-btn").onclick = () => {
 
-	socket.emit("create_lobby", {size: DEFAULT_SIZE});
-
-	socket.on("created_lobby", (data) => {
-		console.log('lobby has been created');
-	});
-}
 
 socket.on("connect", () => {
 	// connect event
@@ -42,6 +36,13 @@ socket.on("connect", () => {
 	engine.on("packetCreate", ({ type, data }) => {
 		// called for each packet sent
 	});
+});
+
+socket.on('start_quiz', () => {
+    showQuestionPageMainBox();
+});
+socket.on('on_error', (error) => {
+    alert(error);
 });
 
 // disconnect event
@@ -66,7 +67,7 @@ socket.on('on_generated_map', (data) => {
 
 socket.on('current_players', (currentPlayers) => {
     players = currentPlayers;
-    updateScoreboard();
+    updateScoreboard(players);
 });
 
 socket.on("lobby_code", lobbyCode => {
@@ -109,11 +110,11 @@ document.getElementById("evaluate_btn").onclick = () => {
 
 socket.on('on_correct_answer', (indexOfCorrectAnswer) => {
     document.getElementById("answer_" + (indexOfCorrectAnswer + 1)).style.backgroundColor = "var(--correctGreen)";
-    updateScoreboard();
+    updateScoreboard(players);
 });
 
 
-function updateScoreboard() {
+function updateScoreboard(currentPlayers) {
     for (var i = 0; i < 8; i++) { // this is added so that if the number of players decreases then the others will be removed
         // Update div content with usernames and score
         var divUsername = document.getElementById("username_" + (i + 1));
@@ -124,16 +125,16 @@ function updateScoreboard() {
         lobbyUsername.innerText = "";
       }
 
-    for (var i = 0; i < players.length; i++) {
-        var player = players[i];
+    for (var i = 0; i < currentPlayers.length; i++) {
+        var player = currentPlayers[i];
   
         // Update div content with usernames and score
         var divUsername = document.getElementById("username_" + (i + 1));
-        divUsername.innerText = username;
+        divUsername.innerText = player.username;
         var divScore = document.getElementById("score_" + (i + 1));
         divScore.innerText = player.score; 
         var lobbyUsername = document.getElementById('lobby_username_' + (i+1));
-        lobbyUsername.innerText = username;
+        lobbyUsername.innerText = player.username;
         document.getElementById('numJoined').innerText = players.length + "/8 players joined";
       }
 }   
@@ -159,7 +160,7 @@ function showSetUpGameContainer() {
 
 // Function to show the QR screen main box container and hide the rest
 function showQRScreenMainBox() {
-    updateScoreboard();
+    updateScoreboard(players);
     startGameContainer.style.display = 'none';
     setUpGameContainer.style.display = 'none';
     qrScreenMainBox.style.display = 'block';
@@ -169,7 +170,7 @@ function showQRScreenMainBox() {
 
 // Function to show the question page main box container and hide the rest
 function showQuestionPageMainBox() {
-    updateScoreboard();
+    updateScoreboard(players);
     document.getElementById("who_controlling_ball").innerText = "No one is controlling the ball";
     socket.emit('generate_initial_map', 4);
     startGameContainer.style.display = 'none';
@@ -187,3 +188,8 @@ function showMapContainer() {
     questionPageMainBox.style.display = 'none';
     mapContainer.style.display = 'block';
 }
+
+function emitTheSocket(){
+    socket.emit("game_start");
+}
+
