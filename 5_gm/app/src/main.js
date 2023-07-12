@@ -17,6 +17,16 @@ document.getElementById('quit_btn').addEventListener("click", showStartGameConta
 document.getElementById("videoToggle").addEventListener("click",toggleCamera);
 document.getElementById("videoToggle1").addEventListener("click",toggleCamera);
 
+document.getElementById("username_1").onclick=function(){removeFromGame("1")};
+document.getElementById("username_2").onclick=function(){removeFromGame("2")};
+document.getElementById("username_3").onclick=function(){removeFromGame("3")};
+document.getElementById("username_4").onclick=function(){removeFromGame("4")};
+document.getElementById("username_5").onclick=function(){removeFromGame("5")};
+document.getElementById("username_6").onclick=function(){removeFromGame("6")};
+document.getElementById("username_7").onclick=function(){removeFromGame("7")};
+document.getElementById("username_8").onclick=function(){removeFromGame("8")};
+
+
 
 document.getElementById('pixel_map_container').innerHTML = ""; 
 // Socket.io stuff
@@ -215,5 +225,10 @@ function showMapContainer() {
 
 function emitTheSocket(){
     socket.emit("game_start");
+}
+
+function removeFromGame(index){
+    document.getElementById("username_" + index + "_class").style.backgroundColor = ("var(--removedColour)");
+    //do more stuff here
 }
 
