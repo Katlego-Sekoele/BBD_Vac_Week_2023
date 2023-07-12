@@ -177,6 +177,11 @@ function showQuestionPageMainBox() {
     qrScreenMainBox.style.display = 'none';
     questionPageMainBox.style.display = 'block';
     mapContainer.style.display = 'none';
+    document.getElementById('question_holder').innerText = "Question will appear here";
+    document.getElementById('answer_1').innerText = "A: ";
+    document.getElementById('answer_2').innerText = "B: ";
+    document.getElementById('answer_3').innerText = "C: ";
+    document.getElementById('answer_4').innerText = "D: ";
 }
 
 // Function to show the map container and hide the rest
