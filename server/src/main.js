@@ -144,19 +144,19 @@ io.on("connection", (socket) => {
   socket.on("return_player_answer", (data) => {
     try {
       const isCorrect = QuizEngine.checkAnswer(data.question, data.answer);
+    
+      if (playerWhoAnsweredFirstId < 0) {
+        if (isCorrect) {
+          const player = getPlayerWithSocket(socket);
+          players[players.indexOf(player[0])].score ++
+          io.emit("current_players", players);
+
+          playerWhoAnsweredFirstId = player.playerId;
+        }
+      }
     }
     catch (e) {
       console.log(e);
-    }
-
-    if (playerWhoAnsweredFirstId < 0) {
-      if (isCorrect) {
-        const player = getPlayerWithSocket(socket);
-        players[players.indexOf(player[0])].score ++
-        io.emit("current_players", players);
-
-        playerWhoAnsweredFirstId = player.playerId;
-      }
     }
   });
 
