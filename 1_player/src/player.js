@@ -84,7 +84,6 @@ function showControllerContainer() {
     lobbyContainer.style.display = 'none';
     quizContainer.style.display = 'none';
     controlContainer.style.display = 'block';
-    AddControlListeners();
 }
 
 // --- JOIN GAME ---
@@ -216,7 +215,7 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
 });
 
 socket.on("duel", (dualPlayer) => {
-    is_duel_player = player.socketId == socket.id;
+    is_duel_player = dualPlayer.socketId === socket.id;
     if (is_duel_player) {
         // Get score
         player.score = dualPlayer.score;

@@ -25,7 +25,7 @@ let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
 
 function getPlayerWithSocket(socket) {
-  return players.filter((value) => value.socketId === socket.id);
+  return players.find((value) => value.socketId === socket.id);
 }
 
 io.on("connection", (socket) => {
@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
     players.push({
       score: 0,
       playerId: players.length,
-      username: data.username,
+      username: `Player ${players.length}`,
       socketId: socket.id,
       coneNumber: players.length,
     });
@@ -80,7 +80,7 @@ io.on("connection", (socket) => {
 
   socket.on("generate_initial_map", (data) => {
     const map = DuelEngine.initializeMap(players.length); // We have to something here to specify nr of cones
-    console.log(map);
+    //console.log(map);
     socket.emit("on_generated_map", map);
   });
 
@@ -95,6 +95,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("make_next_question", () => {
+    console.log(players);
+
     playerWhoAnsweredFirstId = -1;
 
     const playerScores = players.map((el) => el.score);
@@ -127,6 +129,7 @@ io.on("connection", (socket) => {
       if (isCorrect) {
         const player = getPlayerWithSocket(socket);
         player.score += kPointUnit;
+        console.log("Player answered first", player.username);
         io.emit("current_players", players);
 
         playerWhoAnsweredFirstId = player.playerId;
