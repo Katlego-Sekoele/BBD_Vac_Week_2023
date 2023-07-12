@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lilita+One&display=swap');
 
 :root {
-    --purple: #B497D6;
+    --purple: #9d85b7;
     --darkBlue: rgb(5,32,74);
     --borderRadiusVal: 10px;
     --lilac:#E1E2EF;
@@ -19,12 +19,19 @@ body {
     color: white;
     letter-spacing: 0.1em;
     overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .map{
-    background-color: rgb(255, 170, 193);
+    background-color: var(--lilac);
     width: 66em;
     height: 34em;
+}
+
+.pixelMap{
+    width: 55vw;
+    height: 59vh;
+    background-color: rgb(255, 228, 228);
 }
 
 #camCanvas{
@@ -216,7 +223,7 @@ body {
 }
 .question_page_flex4c{
     width: 66em;
-    height: 20rem;
+    height: 19rem;
 }
 
 
