@@ -304,21 +304,21 @@ socket.on("game_is_quit", () => {
     window.location.reload();
 })
 
-// document.getElementById("up").addEventListener('click', (e) => {
-//     sendMove(e, 1);
-// });
+document.getElementById("up").addEventListener('click', (e) => {
+    sendMove(e, 1);
+});
 
-// document.getElementById("left").addEventListener('click', (e) => {
-//     sendMove(e, 271);
-// });
+document.getElementById("left").addEventListener('click', (e) => {
+    sendMove(e, 271);
+});
 
-// document.getElementById("down").addEventListener('click', (e) => {
-//     sendMove(e, 181);
-// });
+document.getElementById("down").addEventListener('click', (e) => {
+    sendMove(e, 181);
+});
 
-// document.getElementById("right").addEventListener('click', (e) => {
-//     sendMove(e, 91);
-// });
+document.getElementById("right").addEventListener('click', (e) => {
+    sendMove(e, 91);
+});
 
 // // Variables to store initial touch position and timestamp
 // let startX, startY, startTime;
