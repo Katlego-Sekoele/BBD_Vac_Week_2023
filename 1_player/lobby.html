@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>lobby page</title>
+   <!--<style> 
+     ul{
+        list-style-type: noone;
+        padding: 0
+     }
+
+     li{
+        margin-bottom: 100px;
+        padding: 5px;
+        border: 1px solid #ccc;
+     }
+   </style> -->
+
+</head>
+
+<body>
+    <h1>Players Queue </h1>
+    
+    <ol id="player-list"> 
+        <!--list of players will be dynamically added here-->
+        
+    </ol>
+
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", function() {
+        var queuedPlayers = [
+            "Player A",
+            "Player B",
+            "Player C",
+            "Player D"
+        ];
+          var queuedPlayerListElement = document.getElementById("player-list");
+          
+         // Function to populate the list with players
+            function populatePlayerList() {
+                queuedPlayers.forEach(function(player) {
+                    var listItem = document.createElement("li");
+                    listItem.textContent = player;
+                    queuedPlayerListElement.appendChild(listItem);
+                });
+            }
+            // Call the function to populate the list
+            populatePlayerList();
+        });
+
+
+    </script>
+    
+</body>
+</html>
+
+
+
+
