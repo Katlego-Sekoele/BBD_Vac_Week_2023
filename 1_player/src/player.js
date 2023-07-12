@@ -215,6 +215,10 @@ function resetButtons() {
     }
 }
 
+socket.on("game_is_quit", () => {
+    window.location.reload();
+})
+
 // Events
 socket.on("on_next_question", (currentQuestion) => {
     if (!inLobby) return
