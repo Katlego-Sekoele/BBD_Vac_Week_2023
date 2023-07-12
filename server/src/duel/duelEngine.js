@@ -120,7 +120,7 @@ function calcStraightLine(x1, y1, x2, y2)
 function getPlayerDuel(arrPlayerScores){
     var playerDistances = initiateDuel(arrPlayerScores)
     
-    for (i = 0; i < player.length; i++){
+    for (i = 0; i < arrPlayerScores.length; i++){
         if (playerDistances[i] != 0){
             return i
         }
@@ -135,7 +135,7 @@ function initiateDuel(playerScores){
     const playerDuelStates = new Array(playerScores.length);
     playerScores.forEach((playerScore,index) => {
         const multiplier = calculateMulitplier(index);
-        if (playerScore==streakVal){
+        if (playerScore >= streakVal){
             //playerDuelStates[index] = true;
             playerDuelStates[index] = 10*multiplier;
         }
