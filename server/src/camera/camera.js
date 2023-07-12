@@ -4,14 +4,18 @@ const context = canvas.getContext("2d", { willReadFrequently: true });
 
 // Ball colour followed by player colours
 const CONFIG = [
-    [222, 176, 89],
-    [30, 166, 220],
-    [191, 233, 212],
-    [223, 215, 90],
-    [76, 89, 173]
+    [188, 211, 229], // White
+    [240, 63, 81], // Red
+    [119, 231, 254], // Blue
+    [254, 233, 252], // Pink
+    [239, 218, 7], // Yellow
+    [214, 252, 184], // Green
+    [254, 173, 53], // Orange
+    [175, 101, 215], // Purple
+    [28, 31, 37] // Black
 ];
 
-const THRESHOLD = 25;
+const THRESHOLD = 30;
 const NO_CLASS = -1;
 
 function getAveragePosition(pos1, pos2) {
@@ -75,7 +79,8 @@ function getObjectPositions() {
     const finalPositions = new Array(CONFIG.length).fill([-1, -1]);
 
     for (let i = 0; i < CONFIG.length; ++i) {
-        finalPositions[i] = getAveragePosition(bottomRightPositions[i], topLeftPositions[i]);
+        finalPositions[i] = bottomRightPositions[i];
+        // finalPositions[i] = getAveragePosition(bottomRightPositions[i], topLeftPositions[i]);
     }
 
     // This will put a dot at the centre of player 2's colour
@@ -112,18 +117,18 @@ navigator.mediaDevices
     });
 
 // Use this function for simply returning the JSON object
-function getMap() {
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    return getObjectPositions();
-}
+// function getMap() {
+//     context.drawImage(video, 0, 0, canvas.width, canvas.height);
+//     return getObjectPositions();
+// }
 
 // This implementation will redraw the image with highlighting the found ball with a green dot
-// function getMap() {
-//     function draw() {
-//         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-//         getObjectPositions();
-//         requestAnimationFrame(getMap);
-//     }
+function getMap() {
+    function draw() {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        getObjectPositions();
+        requestAnimationFrame(getMap);
+    }
 
-//     draw();
-// }
+    draw();
+}
