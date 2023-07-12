@@ -93,6 +93,11 @@ io.on("connection", (socket) => {
     io.emit("current_players", players);
   });
 
+  socket.on('game_master_quit_game', () => {
+    io.emit('game_is_quit');
+    players = [];
+  });
+
   socket.on("generate_initial_map", (data) => {
     const map = DuelEngine.initializeMap(players.length); // We have to something here to specify nr of cones
     //console.log(map);
