@@ -37,12 +37,20 @@ io.on("connection", (socket) => {
     allSockets = allSockets.filter((value) => value.id != socket.id);
     players = players.filter((value) => value.socketId != socket.id);
 
+    if (players.length === 0) {
+      gameIsRunning = false;
+    }
+
     io.emit("current_players", players);
+  });
+
+  socket.on("restart", () => {
+    io.emit("on_game_restart", {});
   });
 
   // player requests to join a lobby
   socket.on("join_lobby", (data) => {
-    if(gameIsRunning) {
+    if (gameIsRunning) {
       socket.emit("on_error", "Game is already running.");
       return;
     }
@@ -75,6 +83,11 @@ io.on("connection", (socket) => {
   });
 
   socket.on("game_start", () => {
+    if (players.length < 2) {
+      socket.emit("on_error", "Not enough players to start game.");
+      return;
+    }
+
     gameIsRunning = true;
     io.emit("start_quiz", {});
   });
@@ -119,11 +132,23 @@ io.on("connection", (socket) => {
     }
   });
 
+  socket.io("dev_duel_done", () =>{
+    io.emit("duel_done");
+  });
+
   socket.on("move_ball", (msg) => {
-    console.log(msg);
-    for (const socket of allSockets) {
-      // TODO: Ensure that only one player can control the ball.
-      socket.emit("on_ball_control", msg);
+    io.emit("on_ball_control", msg);
+
+    // TODO: Get duel remaining players and check if someone was eliminated
+
+    // when duel is done
+    io.emit("duel_done");
+
+    // Last man standing is the winner
+    if (players.length == 1) {
+      io.emit("on_winner", players[0]);
+      players.length = 0;
+      gameIsRunning = false;
     }
   });
 });
