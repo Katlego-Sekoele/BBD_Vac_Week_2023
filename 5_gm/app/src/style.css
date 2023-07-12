@@ -63,6 +63,10 @@ body {
     padding: 0.05em;
 }
 
+.canvasCamera{
+    display: hidden;
+}
+
 .innercontainer{
     font-size:2em;
     display: flex;
@@ -244,8 +248,8 @@ ul.question_page_flex_5 {
     color: var(--darkBlue);
     margin: 0.5em;
     font-size:1.5em;
-    width: 5em;
-    height: 2.5em;
+    width: 6em;
+    height: 2.8em;
     border-radius: var(--borderRadiusVal);
 }
 
