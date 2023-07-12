@@ -152,8 +152,7 @@ io.on("connection", (socket) => {
     if (playerWhoAnsweredFirstId < 0) {
       if (isCorrect) {
         const player = getPlayerWithSocket(socket);
-        player.score += kPointUnit;
-        console.log("Player answered first", player.username);
+        players[players.indexOf(player[0])].score ++
         io.emit("current_players", players);
 
         playerWhoAnsweredFirstId = player.playerId;

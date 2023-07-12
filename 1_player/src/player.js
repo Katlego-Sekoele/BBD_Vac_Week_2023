@@ -37,10 +37,10 @@ const quizContainer = document.getElementById('quiz-container');
 // --- EVENT LISTENERS ---
 // ...
 // TEMP NAV
-document.getElementById("join-game").addEventListener("click", showJoinGameContainer);
-document.getElementById("lobby").addEventListener("click", showLobbyContainer);
-document.getElementById("quiz").addEventListener("click", showQuizContainer);
-document.getElementById("control").addEventListener("click", showControllerContainer);
+// document.getElementById("join-game").addEventListener("click", showJoinGameContainer);
+// document.getElementById("lobby").addEventListener("click", showLobbyContainer);
+// document.getElementById("quiz").addEventListener("click", showQuizContainer);
+// document.getElementById("control").addEventListener("click", showControllerContainer);
 
 // --- SOCKET.IO ---
 // Socket connection
@@ -92,27 +92,33 @@ function showControllerContainer() {
 
 // --- JOIN GAME ---
 document.getElementById("joinButton").onclick = () => {
+    // Clear error messages
+    document.getElementById("errorGameCode").classList.add("hidden");
+    document.getElementById("errorUsername").classList.add("hidden");
+
     // establish connection to socket server
 
     let gameCode = document.getElementById("gameCodeValue").value;
     userName = document.getElementById("userNameValue").value;
 
-    if(userName.length > 10) {
-        document.getElementById("userNameValue").value = "";
-        alert("Username cannot be longer than 10 characters");
+    if ( gameCode === "" ||
+    gameCode === null ||  userName === "" ||
+    userName === null) {
+        if (
+            gameCode === "" ||
+            gameCode === null
+        ) {
+            document.getElementById("errorGameCode").innerHTML = "Please enter a value for the game code";
+            document.getElementById("errorGameCode").classList.remove("hidden");
+        }
+
+        if ( userName === "" ||
+        userName === null) {
+            document.getElementById("errorUsername").innerHTML = "Please enter a value for the username";
+            document.getElementById("errorUsername").classList.remove("hidden");
+        }
         return;
     }
-
-    if (
-        gameCode === "" ||
-        gameCode === null ||
-        userName === "" ||
-        userName === null
-    ) {
-        alert("Input fields cannot be empty");
-        return;
-    }
-
     //create json object to send username and gamecode
     let connectObject = {
         gameCode: gameCode,
@@ -120,7 +126,7 @@ document.getElementById("joinButton").onclick = () => {
       };
 
     // request to join lobby
-    socket.emit("join_lobby", connectObject)
+    socket.emit("join_lobby", connectObject);
     // socket.emit("join_lobby", JSON.stringify(connectObject))
 
     socket.on("player_joined", (data) => {
@@ -128,13 +134,15 @@ document.getElementById("joinButton").onclick = () => {
         if (data) {
             showLobbyContainer();
         } else {
-            alert("Error connecting. Please try again.");
+            document.getElementById("errorGameCode").innerHTML = "Error connecting. Please try again.";
+            document.getElementById("errorGameCode").classList.remove("hidden");
         }
-    })
+    });
 
     socket.on("on_error", (data) => {
-        alert(data);
-    })
+        document.getElementById("errorGameCode").innerHTML = data;
+        document.getElementById("errorGameCode").classList.remove("hidden");
+    });
 }
 
 // --- LOBBY ---
@@ -143,6 +151,10 @@ document.getElementById("joinButton").onclick = () => {
 socket.on("start_quiz", (res) => {
     connectToGame(res)
 })
+
+document.getElementById("quitButton").addEventListener("click", () => {
+    window.location.reload();
+});
 
 function connectToGame()
 {
@@ -167,6 +179,8 @@ function sendAns(e, ans) {
     e.preventDefault();
     socket.emit("return_player_answer", { question: question, answer: ans });
     changeBtn(true); // disable after option has been selected
+    document.getElementById(convertintChar(ans)).style.background = '#E1E2EF';
+    document.getElementById(convertintChar(ans)).style.color = '#000000';
 }
 
 // Events
@@ -232,7 +246,6 @@ socket.on("duel", (dualPlayer) => {
     }
 });
 
-// TODO: Respond to duel done event
 socket.on("duel_done", () => {
     if (is_duel_player) { showQuizContainer(); }
     else { closeModal(); }
@@ -240,11 +253,11 @@ socket.on("duel_done", () => {
 
 // --- CONTROLLER ---
 
-function sendMove(e, dir, speed) {
+function sendMove(e, dir) {
     e.preventDefault();
-    socket.emit("move_ball", {"dir": dir, "speed": speed})
-    document.removeEventListener('touchstart', _eventTouchStart);
-    document.removeEventListener('touchend', _eventTouched);
+    socket.emit("move_ball", {"dir": dir})
+    // document.removeEventListener('touchstart', _eventTouchStart);
+    // document.removeEventListener('touchend', _eventTouched);
 }
 
 // document.getElementById("up").addEventListener('click', (e) => {
