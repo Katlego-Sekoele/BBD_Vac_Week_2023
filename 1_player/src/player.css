@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css?family=Lilita+One&display=swap');
+
+:root {
+    --purple: #B497D6;
+    --darkBlue: rgb(5, 32, 74);
+    --borderRadiusVal: 20px;
+    --lilac: #E1E2EF;
+}
+
+body {
+    font-family: 'Lilita One', sans-serif;
+    background-color: var(--darkBlue);
+    color: white;
+    letter-spacing: 0.1em;
+}
+
+.container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 5em;
+}
+
+.control-container, .lobby-container, .quiz-container {
+    display: none;
+}
+
+
+.title {
+    text-align: center;
+    font-size: 6em;
+    margin: 0;
+}
+
+.gameCodeValue {
+    /*margin-top: -1.1rem;*/
+    height: 7rem;
+    /*display: inline;*/
+    /*position: relative;*/
+    background-color: var(--lilac);
+    border-radius: var(--borderRadiusVal);
+    border-style: solid;
+    border-color: var(--purple);
+    border-width: 1rem;
+    font-size: 4.5rem;
+    font-family: 'Lilita One', sans-serif;
+    width: 50rem;
+    margin-bottom: 10rem;
+}
+
+/* .buttonParent {
+    margin-left: 3rem;
+    width: 2rem;
+} */
+
+button {
+    background-color: var(--purple);
+    font-family: 'Lilita One', sans-serif;
+    color: var(--lilac);
+    border-radius: var(--borderRadiusVal);
+}
+
+
+.joinButton,
+.quitButton {
+
+    width: 35rem;
+    height: 10rem;
+    font-size: 5.5rem;
+    align-items: center;
+    border-style: solid;
+    border-color: var(--lilac);
+    border-width: 1rem;
+}
+
+.answer-container {
+    margin-top: 2rem;
+}
+
+.answer-button {
+    width: 50rem;
+    height: 8rem;
+    font-size: 4rem;
+    align-items: center;
+    text-align: left;
+    padding: 0rem 2rem;
+}
+
+.gameCodeContainer {
+    align-items: center;
+}
+
+.gameCodeDescription {
+    font-size: 5.5rem;
+    margin-bottom: 2rem;
+    margin-left: 14rem;
+    width: 35rem;
+    height: 8rem;
+    background-color: var(--purple);
+    border-radius: var(--borderRadiusVal);
+}
+
+.lobbyDescription {
+    font-size: 4rem;
+    margin-top: 5rem;
+    margin-bottom: 20rem;
+}
+
+.score-container {
+    background-color: var(--lilac);
+    border-radius: var(--borderRadiusVal);
+    width: 40rem;
+    height: 20rem;
+    margin-left: 10rem;
+    margin-top: 1rem;
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 0.4em;
+}
+
+.name-label,
+.score-label {
+    background-color: var(--purple);
+    border-radius: var(--borderRadiusVal);
+}
+
+.name-label {
+    width: 11em;
+
+}
+
+.score-label {
+    width: 4em;
+    color: black;
+}
+
+.controlDescription {
+    font-size: 4rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.controls {
+    background-color: var(--lilac);
+    border-radius: var(--borderRadiusVal);
+    width: 45rem;
+    height: 45rem;
+    margin-left: 5rem;
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+
+    display: grid;
+    grid-column-gap: 0;
+    align-self: end;
+}
+
+.move-control {
+    width: 13rem;
+    height: 8rem;
+    font-size: 3rem;
+    align-items: center;
+    margin: 1rem;
+    padding: 0rem 2rem;
+}
+
+#up {
+    grid-column-start: 2;
+}
+
+#left {
+    grid-column-start: 1;
+}
+
+#down {
+    grid-column-start: 2;
+}
+
+#right {
+    grid-column-start: 3;
+}
+
+
+
+
+
+/* TEMPORARY!!!!!!!!!!!!!!!! */
+.temp-nav {
+    width: 10rem;
+    height: 8rem;
+    font-size: 3rem;
+    align-items: center;
+}
