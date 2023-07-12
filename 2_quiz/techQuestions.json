@@ -15,7 +15,7 @@
     "Correct_Answer_Index": 1
   },
   {
-    "Question": "Moore&#039;s law originally stated that the number of transistors on a microprocessor chip would double every...",
+    "Question": "Moore's law originally stated that the number of transistors on a microprocessor chip would double every...",
     "Answers": ["Year", "Eight Years", "Two Years", "Four Years"],
     "Correct_Answer_Index": 0
   },
@@ -25,12 +25,12 @@
     "Correct_Answer_Index": 2
   },
   {
-    "Question": "The programming language &#039;Swift&#039; was created to replace what other programming language?",
+    "Question": "The programming language 'Swift' was created to replace what other programming language?",
     "Answers": ["Ruby", "Objective-C", "C#", "C++"],
     "Correct_Answer_Index": 1
   },
   {
-    "Question": "Which internet company began life as an online bookstore called &#039;Cadabra&#039;?",
+    "Question": "Which internet company began life as an online bookstore called 'Cadabra'?",
     "Answers": ["Shopify", "Amazon", "Overstock", "eBay"],
     "Correct_Answer_Index": 1
   },
@@ -72,8 +72,8 @@
   {
     "Question": "What does the Prt Sc button do?",
     "Answers": [
-      "Saves a .png file of what&#039;s on the screen in your screenshots folder in photos",
-      "Captures what&#039;s on the screen and copies it to your clipboard",
+      "Saves a .png file of what's on the screen in your screenshots folder in photos",
+      "Captures what's on the screen and copies it to your clipboard",
       "Closes all windows",
       "Nothing"
     ],
@@ -105,7 +105,7 @@
     "Correct_Answer_Index": 2
   },
   {
-    "Question": "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn&#039;t get modified?",
+    "Question": "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
     "Answers": ["Public", "Static", "Final", "Private"],
     "Correct_Answer_Index": 2
   },
@@ -255,13 +255,8 @@
     "Correct_Answer_Index": 3
   },
   {
-    "Question": "According to DeMorgan&#039;s Theorem, the Boolean expression (AB)&#039; is equivalent to:",
-    "Answers": [
-      "A&#039;B&#039;",
-      "A&#039; + B&#039;",
-      "AB&#039; + AB",
-      "A&#039;B + B&#039;A"
-    ],
+    "Question": "According to DeMorgan's Theorem, the Boolean expression (AB)' is equivalent to:",
+    "Answers": ["A'B'", "A' + B'", "AB' + AB", "A'B + B'A"],
     "Correct_Answer_Index": 1
   },
   {
@@ -325,7 +320,7 @@
     "Correct_Answer_Index": 2
   },
   {
-    "Question": "If you were to code software in this language you&#039;d only be able to type 0&#039;s and 1&#039;s.",
+    "Question": "If you were to code software in this language you'd only be able to type 0's and 1's.",
     "Answers": ["Binary", "C++", "JavaScript", "Python"],
     "Correct_Answer_Index": 0
   },
@@ -370,7 +365,7 @@
       "Germany",
       "United States",
       "Taiwan",
-      "China (People&#039;s Republic of)"
+      "China (People's Republic of)"
     ],
     "Correct_Answer_Index": 2
   },
@@ -475,7 +470,7 @@
     "Correct_Answer_Index": 1
   },
   {
-    "Question": "Released in 2001, the first edition of Apple&#039;s Mac OS X operating system (version 10.0) was given what animal code name?",
+    "Question": "Released in 2001, the first edition of Apple's Mac OS X operating system (version 10.0) was given what animal code name?",
     "Answers": ["Leopard", "Cheetah", "Tiger", "Puma"],
     "Correct_Answer_Index": 1
   },
@@ -492,7 +487,7 @@
   {
     "Question": "Unix Time is defined as the number of seconds that have elapsed since when?",
     "Answers": [
-      "Midnight on the creator of Unix&#039;s birthday",
+      "Midnight on the creator of Unix's birthday",
       "Midnight, July 4, 1976",
       "Midnight, January 1, 1970",
       "Midnight, July 4, 1980"
@@ -527,10 +522,10 @@
   {
     "Question": "In any programming language, what is the most common way to iterate through an array?",
     "Answers": [
-      "&#039;For&#039; loops",
-      "&#039;Do-while&#039; loops",
-      "&#039;While&#039; loops",
-      "&#039;If&#039; Statements"
+      "'For' loops",
+      "'Do-while' loops",
+      "'While' loops",
+      "'If' Statements"
     ],
     "Correct_Answer_Index": 0
   },
@@ -540,7 +535,7 @@
     "Correct_Answer_Index": 1
   },
   {
-    "Question": "Lenovo acquired IBM&#039;s personal computer division, including the ThinkPad line of laptops and tablets, in what year?",
+    "Question": "Lenovo acquired IBM's personal computer division, including the ThinkPad line of laptops and tablets, in what year?",
     "Answers": ["2008", "2002", "1999", "2005"],
     "Correct_Answer_Index": 3
   },
