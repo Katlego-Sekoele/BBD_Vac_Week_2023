@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
     allSockets = allSockets.filter((value) => value.id != socket.id);
     players = players.filter((value) => value.socketId != socket.id);
 
-    if(players.length === 0) {
+    if (players.length === 0) {
       gameIsRunning = false;
     }
 
@@ -46,11 +46,11 @@ io.on("connection", (socket) => {
 
   socket.on("restart", () => {
     io.emit("on_game_restart", {});
-  })
+  });
 
   // player requests to join a lobby
   socket.on("join_lobby", (data) => {
-    if(gameIsRunning) {
+    if (gameIsRunning) {
       socket.emit("on_error", "Game is already running.");
       return;
     }
@@ -83,7 +83,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("game_start", () => {
-    if(players.length < 2) {
+    if (players.length < 2) {
       socket.emit("on_error", "Not enough players to start game.");
       return;
     }
@@ -132,13 +132,20 @@ io.on("connection", (socket) => {
     }
   });
 
+  socket.io("dev_duel_done", () =>{
+    io.emit("duel_done");
+  });
+
   socket.on("move_ball", (msg) => {
     io.emit("on_ball_control", msg);
-    setTimeout(()=> io.emit("duel_done", {}), 3000);
-    // TODO: Get duel remianing players
+
+    // TODO: Get duel remaining players and check if someone was eliminated
+
+    // when duel is done
+    io.emit("duel_done");
 
     // Last man standing is the winner
-    if(players.length == 1) {
+    if (players.length == 1) {
       io.emit("on_winner", players[0]);
       players.length = 0;
       gameIsRunning = false;
