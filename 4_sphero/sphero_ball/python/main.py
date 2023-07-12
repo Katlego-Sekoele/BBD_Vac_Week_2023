@@ -2,6 +2,10 @@ import socketio
 from spherov2 import scanner
 from spherov2.sphero_edu import SpheroEduAPI
 import time
+from spherov2.sphero_edu import EventType
+from spherov2.types import Color
+from spherov2.sphero_edu import IntEnum
+
 
 sio = socketio.Client()
 toy = None
@@ -50,12 +54,48 @@ def sendMessage():
     print("Sent")
 
 
+def setColour(api, color):
+    try:
+    
+        api.set_main_led(color)
+    
+    except:
+        print("Cant set colour")
+
+
+def spinnySpin(api, angle, duration):
+    try:
+        with SpheroEduAPI(toy) as api:
+            api.spin(angle, duration)
+    
+    except:
+        print("Cant spin")
+
+def playAnim(int):
+    try:
+        with SpheroEduAPI(toy) as api:
+            api.play_animation(IntEnum.EMOTE_ALARM)
+
+    except:
+        print("Cant play anim")
+
+def on_collision(api):
+    try:
+        setColour(api, Color(r= 255, g= 255, b= 255))
+        api.play_animation(IntEnum.EMOTE_ALARM)
+
+    except:
+        print("Collion fail")
+        
+
+
 if __name__ == '__main__':
     toy = scanner.find_BB8()
     if toy == None:
         print("No toy found")
     else:
         print(f"Toy: {toy.name} found")
+        SpheroEduAPI(toy).register_event(EventType.on_collision, on_collision)
         busyRunning = False
         sio.connect('https://server-bbd-vac-week.onrender.com')
         sio.wait()
