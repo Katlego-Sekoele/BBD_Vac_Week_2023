@@ -23,7 +23,8 @@ function initializeMap(numCones)
     map[centerY][centerX] = 'B';
 
     // Random offset for distance of cones from center
-    var centerOffset = Math.floor(Math.random()*(Math.min(centerX, centerY)-1-1))+1;
+    //var centerOffset = Math.floor(Math.random()*(Math.min(centerX, centerY)-1-1))+1;
+    var centerOffset = Math.floor(((yLen / 2) - centerY) * .25)
     //console.log(centerOffset);
 
     // Place the cones equally around
@@ -37,7 +38,7 @@ function initializeMap(numCones)
         var correctedY = Math.round(newCoord[0]*centerOffset)+centerY
         var correctedX = Math.round(newCoord[1]*centerOffset)+centerX
 
-        map[correctedY][correctedX] = i.toString();
+        map[correctedY][correctedX] = (i + 1).toString();
     }
 
 
@@ -74,6 +75,7 @@ function ellipticalDiscToSquare(angle)
     x = 0.5 * Math.sqrt(termx1) - 0.5 * Math.sqrt(termx2);
     y = 0.5 * Math.sqrt(termy1) - 0.5 * Math.sqrt(termy2);
 
+    //console.log([x, y])
     return [x, y]
 }
 
@@ -416,11 +418,9 @@ function populateObjectArray(objects){
         objectsArray.push([sPlayerNumber, xFinal, yFinal])
     }
     
-console.log(objectsArray)
 
     //return the array of objects
-    //return objectsArray
-    
+    return objectsArray
 }
 
 function softResetScores(playerScores, moverIndex){
@@ -433,9 +433,10 @@ function softResetScores(playerScores, moverIndex){
     return playerScores;
 }
 
-//console.log(initializeMap(4));
+//console.log(initializeMap(6));
 //console.log(initiateDuel(test));
 //console.log(getPlayerWin())
-populateObjectArray()
+//populateObjectArray()
+//initializeMap(6)
 
 module.exports = { initializeMap, initiateDuel, getPlayerDuel, softResetScores }
