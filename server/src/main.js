@@ -83,6 +83,11 @@ io.on("connection", (socket) => {
   });
 
   socket.on("game_start", () => {
+    if(players.length < 2) {
+      socket.emit("on_error", "Not enough players to start game.");
+      return;
+    }
+
     gameIsRunning = true;
     io.emit("start_quiz", {});
   });
