@@ -14,6 +14,8 @@ const io = require("socket.io")(server, {
 });
 server.listen(3000, () => console.log("listening on http://localhost:3000"));
 
+const kPointUnit = 10;
+
 let gameIsRunning = false;
 let allSockets = [];
 let players = [];
@@ -108,7 +110,7 @@ io.on("connection", (socket) => {
 
       for (const p of players) {
         if (p.playerId !== duelPlayer.playerId) {
-          p.score = Math.max(0, p.score - 1);
+          p.score = Math.max(0, p.score - kPointUnit);
         }
       }
     }
@@ -124,7 +126,7 @@ io.on("connection", (socket) => {
     if (playerWhoAnsweredFirstId < 0) {
       if (isCorrect) {
         const player = getPlayerWithSocket(socket);
-        player.score += 1;
+        player.score += kPointUnit;
         io.emit("current_players", players);
 
         playerWhoAnsweredFirstId = player.playerId;
