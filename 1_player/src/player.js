@@ -246,7 +246,6 @@ socket.on("duel", (dualPlayer) => {
     }
 });
 
-// TODO: Respond to duel done event
 socket.on("duel_done", () => {
     if (is_duel_player) { showQuizContainer(); }
     else { closeModal(); }
@@ -254,11 +253,11 @@ socket.on("duel_done", () => {
 
 // --- CONTROLLER ---
 
-function sendMove(e, dir, speed) {
+function sendMove(e, dir) {
     e.preventDefault();
-    socket.emit("move_ball", {"dir": dir, "speed": speed})
-    document.removeEventListener('touchstart', _eventTouchStart);
-    document.removeEventListener('touchend', _eventTouched);
+    socket.emit("move_ball", {"dir": dir})
+    // document.removeEventListener('touchstart', _eventTouchStart);
+    // document.removeEventListener('touchend', _eventTouched);
 }
 
 document.getElementById("up").addEventListener('click', (e) => {
