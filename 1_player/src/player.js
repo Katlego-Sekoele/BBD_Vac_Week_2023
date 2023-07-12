@@ -167,6 +167,8 @@ function sendAns(e, ans) {
     e.preventDefault();
     socket.emit("return_player_answer", { question: question, answer: ans });
     changeBtn(true); // disable after option has been selected
+    document.getElementById(convertintChar(ans)).style.background = '#E1E2EF';
+    document.getElementById(convertintChar(ans)).style.color = '#000000';
 }
 
 // Events
