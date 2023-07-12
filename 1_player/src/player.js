@@ -149,7 +149,7 @@ var is_duel_player = false;
 
 function convertintChar(integer) {
     let character = 'a'.charCodeAt(0);
-    return String.fromCharCode(character + integer);
+    return String.fromCharCode(character + integer).toLocaleUpperCase();
 }
 
 function changeBtn(disable) {
@@ -168,6 +168,7 @@ function sendAns(e, ans) {
 // Events
 socket.on("on_next_question", (currentQuestion) => {
     question = currentQuestion["Question"];
+    console.log(currentQuestion);
     let no_answers = currentQuestion["Answers"].length;
 
     let buttons = "";
@@ -185,34 +186,33 @@ socket.on("on_next_question", (currentQuestion) => {
     for (var node of document.getElementsByClassName(btn_class)) {
 
         node.addEventListener('click', (e) => {
-            console.log(node.id);
             var id = e.currentTarget.id;
+            console.log(id);
             sendAns(e, id.charCodeAt(0) - 'A'.charCodeAt(0)); // convert to int
         })
     }
 });
 
 socket.on("current_players", (players) => {
-    console.log(players);
-    console.log(socket.id );
-
     const currentPlayer = players.find((player) => player.socketId == socket.id);
     player = currentPlayer; // get score
+    console.log(players);
 })
 
 socket.on("on_correct_answer", (correctAnswerIndex) => {
     // Change selected option to green if the user answered correctly else change all options to red
     changeBtn(true);
+    console.log(convertintChar(correctAnswerIndex));
 
     if (correctAnswerIndex == answer) {
-        document.getElementById(answer).style.background = '#00FF00';
+        document.getElementById(convertintChar(answer)).style.background = '#00FF00';
     } else {
         for (var button of document.getElementsByClassName(btn_class)) {
             button.style.background = '#FF0000';
         }
     }
 
-    document.getElementById("score").innerHTML = player.score;
+    //document.getElementById("score").innerHTML = player.score;
 });
 
 socket.on("duel", (dualPlayer) => {
@@ -224,6 +224,7 @@ socket.on("duel", (dualPlayer) => {
         // Redirect to controls page
         showControllerContainer();
     } else {
+        document.getElementById("modal_text").innerHTML = `Player ${dualPlayer.playerId+1} is duelling.`;
         openModal();
         //alert(`Player ${player.username} is duelling.`);
     }
