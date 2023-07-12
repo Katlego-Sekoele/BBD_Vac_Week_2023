@@ -71,7 +71,7 @@ socket.on('current_players', (currentPlayers) => {
 });
 
 socket.on("lobby_code", lobbyCode => {
-    document.getElementById("lobby_code").innerText = lobbyCode;
+    document.getElementById("lobby_code").innerText = 'LOBBY CODE: ' + lobbyCode;
 });
 
 socket.on('duel', (playerControllingTheBall) => {
