@@ -149,6 +149,8 @@ io.on("connection", (socket) => {
             players = players.filter((p) => p.label !== player.label);
           }
         }
+
+        io.emit('current_players', players);
       }, 10000);  
       for (const p of players) {
         if (p.playerId !== duelPlayer.playerId) {
