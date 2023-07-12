@@ -75,7 +75,7 @@ body {
 }
 
 .joinQuitButtonParent {
-    margin-top: 5rem;
+    margin-top: 1rem;
 }
 
 button {
@@ -151,8 +151,8 @@ button {
 
 .lobbyDescription {
     font-size: 6rem;
-    margin-top: 20rem;
-    margin-bottom: 20rem;
+    margin-top: 10rem;
+    margin-bottom: 5rem;
 }
 
 .score-container {
