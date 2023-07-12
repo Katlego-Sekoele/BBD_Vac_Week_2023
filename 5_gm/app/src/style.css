@@ -172,16 +172,19 @@ body {
     border-width: 0.2rem;
     height: 4rem;
     font-size: 1.5rem;
-    font-weight: bold;
     font-family: 'Lilita One', sans-serif;
     color: var(--lilac);
     letter-spacing: 0.1em;
     margin: 0.5em;
+    text-align: center;
+
 }
+
 
 .button:hover{
     background-color: var(--lilac);
     color: var(--purple);
+    cursor:pointer;
 }
 .question_page_flex1{
     display:flex;
@@ -212,9 +215,10 @@ body {
     margin-right: 1em;
     margin-top: 0.5em;
     font-size: 1.8em;
+    width: 46.5rem;
 }
 
-.question_page_flex4c ul{
+.question_page_flex4c{
     list-style-type: none;
     display: flex;
     flex-direction: row;
@@ -222,11 +226,10 @@ body {
     background-color: var(--purple);
     border-radius: var(--borderRadiusVal);
     padding: 1em;
+    width: 64em;
+    margin-top:3em;
 }
-.question_page_flex4c{
-    width: 66em;
-    height: 19rem;
-}
+
 
 
 
@@ -238,11 +241,14 @@ ul.question_page_flex_5 {
     color: var(--darkBlue);
     margin: 0.5em;
     font-size:1.5em;
+    width: 5em;
+    height: 2.5em;
+    border-radius: var(--borderRadiusVal);
 }
 
 
 .Question{
-    width: 21em;
+    width: 44rem;
     height: 8em;
     font-size: 2.1em;
     background-color: var(--lilac);
