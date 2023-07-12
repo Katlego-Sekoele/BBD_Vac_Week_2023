@@ -164,6 +164,7 @@ function showQRScreenMainBox() {
 // Function to show the question page main box container and hide the rest
 function showQuestionPageMainBox() {
     updateScoreboard();
+    document.getElementById("who_controlling_ball").innerText = "No one is controlling the ball";
     startGameContainer.style.display = 'none';
     setUpGameContainer.style.display = 'none';
     qrScreenMainBox.style.display = 'none';
