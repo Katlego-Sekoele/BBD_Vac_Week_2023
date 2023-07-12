@@ -33,6 +33,12 @@ body {
     display: none;
 }
 
+.errorUsername, .errorGameCode {
+    color: red;
+    font-size: 2rem;
+    margin: 0;
+}
+
 .lobby-inner {
     display: flex;
     align-items: center;
@@ -64,7 +70,8 @@ body {
     font-size: 4.5rem;
     font-family: 'Lilita One', sans-serif;
     width: 50rem;
-    margin-bottom: 10rem;
+    margin-bottom: 1rem;
+
 }
 
 .joinQuitButtonParent {
