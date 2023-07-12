@@ -244,6 +244,7 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
         document.getElementById(convertintChar(answer)).style.background = '#FF0000';
     } else {
         resetButtons();
+        changeBtn(true);
     }
 
     document.getElementById("score").innerHTML = player.score;
