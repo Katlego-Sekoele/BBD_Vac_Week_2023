@@ -91,10 +91,10 @@ socket.on('on_next_question', (question) => {
     document.getElementById("answer_3").innerText = "C: " + question.Answers[2];
     document.getElementById("answer_4").innerText = "D: " + question.Answers[3];
 
-    document.getElementById("answer_1").style.backgroundColor = "pink";
-    document.getElementById("answer_2").style.backgroundColor = "pink";
-    document.getElementById("answer_3").style.backgroundColor = "pink";
-    document.getElementById("answer_4").style.backgroundColor = "pink";
+    document.getElementById("answer_1").style.backgroundColor = "var(--purple)";
+    document.getElementById("answer_2").style.backgroundColor = "var(--purple)";
+    document.getElementById("answer_3").style.backgroundColor = "var(--purple)";
+    document.getElementById("answer_4").style.backgroundColor = "var(--purple)";
 });
 
 // TODO: add the code so when the next question button is pressed then the socket.emit is called
@@ -108,7 +108,7 @@ document.getElementById("evaluate_btn").onclick = () => {
 };
 
 socket.on('on_correct_answer', (indexOfCorrectAnswer) => {
-    document.getElementById("answer_" + (indexOfCorrectAnswer + 1)).style.backgroundColor = "green";
+    document.getElementById("answer_" + (indexOfCorrectAnswer + 1)).style.backgroundColor = "var(--correctGreen)";
     updateScoreboard();
 });
 
