@@ -23,7 +23,7 @@ let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
 
 function getPlayerWithSocket(socket) {
-  return players.filter((value) => value.socket.id === socket.id);
+  return players.filter((value) => value.socketId === socket.id);
 }
 
 io.on("connection", (socket) => {
@@ -35,14 +35,22 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("a user disconnected with ID: " + socket.id);
     allSockets = allSockets.filter((value) => value.id != socket.id);
-    players = players.filter((value) => value.socket.id != socket.id);
+    players = players.filter((value) => value.socketId != socket.id);
+
+    if (players.length === 0) {
+      gameIsRunning = false;
+    }
 
     io.emit("current_players", players);
   });
 
+  socket.on("restart", () => {
+    io.emit("on_game_restart", {});
+  });
+
   // player requests to join a lobby
   socket.on("join_lobby", (data) => {
-    if(gameIsRunning) {
+    if (gameIsRunning) {
       socket.emit("on_error", "Game is already running.");
       return;
     }
@@ -56,7 +64,7 @@ io.on("connection", (socket) => {
       score: 0,
       playerId: players.length,
       username: data.username,
-      socket: socket,
+      socketId: socket.id,
       coneNumber: players.length,
     });
 
@@ -75,6 +83,11 @@ io.on("connection", (socket) => {
   });
 
   socket.on("game_start", () => {
+    if (players.length < 2) {
+      socket.emit("on_error", "Not enough players to start game.");
+      return;
+    }
+
     gameIsRunning = true;
     io.emit("start_quiz", {});
   });
@@ -121,11 +134,27 @@ io.on("connection", (socket) => {
     }
   });
 
+  socket.on("dev_duel_done", () =>{
+    io.emit("duel_done");
+  });
+  
+  socket.on("dev_duel_start", () =>{
+    io.emit("duel", players[0]);
+  });
+
   socket.on("move_ball", (msg) => {
-    console.log(msg);
-    for (const socket of allSockets) {
-      // TODO: Ensure that only one player can control the ball.
-      socket.emit("on_ball_control", msg);
+    io.emit("on_ball_control", msg);
+
+    // TODO: Get duel remaining players and check if someone was eliminated
+
+    // When duel is done
+    // io.emit("duel_done");
+
+    // Last man standing is the winner
+    if (players.length == 1) {
+      io.emit("on_winner", players[0]);
+      players.length = 0;
+      gameIsRunning = false;
     }
   });
 });
