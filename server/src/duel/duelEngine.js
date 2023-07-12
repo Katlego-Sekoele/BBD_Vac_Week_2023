@@ -318,7 +318,7 @@ function findObject(sObject){
     {
         for (var x = 0; x < xLen; x++)
         {
-            if (mapGrid == sData){
+            if (map[x][y] == sObject){
                 return [x, y]
             }
         }
@@ -341,22 +341,24 @@ function convertImageCoOrdToGrid(coOrdinatesArray){
     //place all the items
     for (var i = 0; i < coOrdinatesArray.length; i++){
         //store the type (either player number or "B" for ball)
-        let sValue = coOrdinatesArray[0]
+        let sValue = coOrdinatesArray[i][0]
         //store the co-ordinates
-        let xCoOrd = coOrdinatesArray[1]
-        let yCoOrd = coOrdinatesArray[2]
+        let xCoOrd = coOrdinatesArray[i][1]
+        let yCoOrd = coOrdinatesArray[i][2]
+        console.log(xCoOrd)
+        if ((xCoOrd != -1) && (yCoOrd != -1)){
+            //assign the value in the grid if it is currently a "W"
+            if (mapGrid[xCoOrd][yCoOrd] == "W"){
+                mapGrid[xCoOrd][yCoOrd] = sValue
+            }
+            else{
+                //f the space is already filled by another object then place it in it's previous spot
+                let coOrds = findObject(sValue)
+                xCoOrd = coOrds[0]
+                yCoOrd = coOrds[1]
 
-        //assign the value in the grid if it is currently a "W"
-        if (mapGrid[xCoOrd][yCoOrd] == "W"){
-            mapGrid[xCoOrd][yCoOrd] = sValue
-        }
-        else{
-            //f the space is already filled by another object then place it in it's previous spot
-            let coOrds = findObject(sValue)
-            xCoOrd = coOrds[0]
-            yCoOrd = coOrds[1]
-
-            mapGrid[xCoOrd][yCoOrd] = sValue
+                mapGrid[xCoOrd][yCoOrd] = sValue
+            }
         }
     }
 
