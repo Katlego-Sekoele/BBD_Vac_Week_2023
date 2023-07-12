@@ -51,6 +51,8 @@ function showQuizContainer() {
     lobbyContainer.style.display = 'none';
     quizContainer.style.display = 'block';
     controlContainer.style.display = 'none';
+    // USer userNme
+    document.getElementById("playerName").innerHTML = "Player " + (player.playerId+1);
 }
 
 // Navigation: Controller Container
@@ -119,7 +121,7 @@ function connectToGame()
 var answer;
 var question;
 var btn_class = "answer-button"
-var playerScore = 0;
+var player;
 
 function convertintChar(integer) {
     let character = 'a'.charCodeAt(0);
@@ -159,7 +161,7 @@ socket.on("current_players", (players) => {
     console.log(socket.id );
 
     const currentPlayer = players.find((player) => player.socketId == socket.id);
-    playerScore = currentPlayer.score; // get score
+    player = currentPlayer; // get score
 })
 
 socket.on("on_correct_answer", (correctAnswerIndex) => {
@@ -174,20 +176,22 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
         }
     }
 
-    document.getElementById("score").innerHTML = playerScore;
+    document.getElementById("score").innerHTML = player.score;
 });
 
-socket.on("duel", (player) => {
-    if (player.socket.id == socket.socket.sessionid) {
+socket.on("duel", (dualPlayer) => {
+    if (player.socketId == socket.id) {
         // Get score
-        playerScore = player.score;
+        player.score = dualPlayer.score;
 
         // Redirect to controls page
-        window.location.assign("controls.html");
+        showControllerContainer()
     } else {
         alert(`Player ${player.username} is duelling.`);
     }
 });
+
+// TODO: Respond to duel done event
 
 // Answer options
 for (var node of document.getElementsByClassName(btn_class)) {
@@ -203,7 +207,7 @@ for (var node of document.getElementsByClassName(btn_class)) {
 
 function sendMove(e, dir, speed) {
     e.preventDefault();
-    socket.emit("move_ball", dir, speed)
+    socket.emit("move_ball", {"dir": dir, "speed": speed})
     document.removeEventListener('touchstart', _eventTouchStart);
     document.removeEventListener('touchend', _eventTouched);
     showQuizContainer();
