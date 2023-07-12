@@ -78,6 +78,9 @@ function showLobbyContainer() {
 function showQuizContainer() {
     // USer userNme
     document.getElementById("playerName").innerHTML = userName;
+    if(player){
+        document.getElementById("score").innerHTML = player.score;
+    }
     joinGameContainer.style.display = 'none';
     lobbyContainer.style.display = 'none';
     quizContainer.style.display = 'block';
@@ -216,6 +219,10 @@ function resetButtons() {
         })
     }
 }
+
+socket.on("game_is_quit", () => {
+    window.location.reload();
+})
 
 // Events
 socket.on("on_next_question", (currentQuestion) => {
