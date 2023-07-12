@@ -22,28 +22,22 @@ function initializeMap(numCones)
     var centerY = Math.floor(yLen/2);
     map[centerY][centerX] = 'B';
 
-    // Random offset for distance of cones from center
-    var centerOffset = Math.floor(Math.random()*(Math.min(centerX, centerY)-1-1))+1;
+    // offset for distance of cones from centre
+    var centerOffset = Math.floor(.25*(Math.min(centerX, centerY)-1-1))+1;
     //console.log(centerOffset);
 
-    // Place the cones equally around the center
-    if (numCones == 3) // Top and bottom two corners
+    // Place the cones equally around
+    if (numCones < 2 || numCones > 8)
+        numCones = 2;
+    for (var i = 0; i < numCones; i++)
     {
-        map[centerY-centerOffset][centerX] = '1';
-        map[centerY+centerOffset][centerX-centerOffset] = '2';
-        map[centerY+centerOffset][centerX+centerOffset] = '3';
-    }
-    else if (numCones == 4) // Above, below, left, right
-    {
-        map[centerY-centerOffset][centerX] = '1';
-        map[centerY+centerOffset][centerX] = '2';
-        map[centerY][centerX-centerOffset] = '3';
-        map[centerY][centerX+centerOffset] = '4';
-    }
-    else // Above and below center, default option
-    {
-        map[centerY-centerOffset][centerX] = '1';
-        map[centerY+centerOffset][centerX] = '2';
+        var angle = (360/numCones)*Math.PI/180*i;
+        //console.log(angle);
+        var newCoord = ellipticalDiscToSquare(angle);
+        var correctedY = Math.round(newCoord[0]*centerOffset)+centerY
+        var correctedX = Math.round(newCoord[1]*centerOffset)+centerX
+
+        map[correctedY][correctedX] = (i + 1).toString();
     }
 
 
@@ -59,6 +53,30 @@ function initializeMap(numCones)
     return map;
 }
 
+// Elliptical Grid mapping
+// mapping a circular disc to a square region
+// input: angle in circle
+// output: (x,y) coordinates in the square
+function ellipticalDiscToSquare(angle)
+{
+    u = Math.cos(angle);
+    v = Math.sin(angle);
+
+    var u2 = u * u;
+    var v2 = v * v;
+    var twosqrt2 = 2.0 * Math.sqrt(2.0);
+    var subtermx = 2.0 + u2 - v2;
+    var subtermy = 2.0 - u2 + v2;
+    var termx1 = Math.abs(subtermx + u * twosqrt2);
+    var termx2 = Math.abs(subtermx - u * twosqrt2);
+    var termy1 = Math.abs(subtermy + v * twosqrt2);
+    var termy2 = Math.abs(subtermy - v * twosqrt2);
+    x = 0.5 * Math.sqrt(termx1) - 0.5 * Math.sqrt(termx2);
+    y = 0.5 * Math.sqrt(termy1) - 0.5 * Math.sqrt(termy2);
+
+    //console.log([x, y])
+    return [x, y]
+}
 
 // Takes in two coordinate pairs and returns a minimal traced
 // line between the two using the Bresenham algorithm
@@ -98,6 +116,19 @@ function calcStraightLine(x1, y1, x2, y2)
     return coordinatesArray;
 }
 
+//function that finds which player can currently play and returns their index, else return -1
+function getPlayerDuel(arrPlayerScores){
+    var playerDistances = initiateDuel(arrPlayerScores)
+    
+    for (i = 0; i < player.length; i++){
+        if (playerDistances[i] != 0){
+            return i
+        }
+    }
+    return -1
+}
+
+
 //Determine if a player is allowed to duel
 function initiateDuel(playerScores){
     const streakVal = 3;
@@ -118,17 +149,6 @@ function initiateDuel(playerScores){
     return playerDuelStates;
 }
 
-//function that finds which player can currently play and returns their index, else return -1
-function getPlayerDuel(arrPlayerScores){
-    var playerDistances = initiateDuel(arrPlayerScores)
-    
-    for (i = 0; i < player.length; i++){
-        if (playerDistances[i] != 0){
-            return i
-        }
-    }
-    return -1
-}
 
 //currentPlayer is an integer based index for the current player
 //takes in the player currently controlling the ball and returns a value between 1 and maxMultiplier
@@ -291,6 +311,117 @@ function checkPlayerLoss(currentPlayer){
     return true
 }
 
+//function to find where a particluar object is (such as a ball or cone)
+function findObject(sObject){
+    //sObject should be pssed in as a STRING
+    for (var y = 0; y < yLen; y++)
+    {
+        for (var x = 0; x < xLen; x++)
+        {
+            if (mapGrid == sData){
+                return [x, y]
+            }
+        }
+    }
+}
+
+function convertImageCoOrdToGrid(coOrdinatesArray){
+    //initialise mapGrid with default values
+    var mapGrid = new Array(yLen)
+
+    for (var i = 0; i < yLen; i++)
+    {
+        mapGrid[i] = [];
+        for (var j = 0; j < xLen; j++)
+        {
+            mapGrid[i][j] = 'W';
+        }
+    }
+
+    //place all the items
+    for (var i = 0; i < coOrdinatesArray.length; i++){
+        //store the type (either player number or "B" for ball)
+        sValue = coOrdinatesArray[0]
+        //store the co-ordinates
+        xCoOrd = coOrdinatesArray[1]
+        yCoOrd = coOrdinatesArray[2]
+
+        //assign the value in the grid if it is currently a "W"
+        if (mapGrid[xCoOrd][yCoOrd] == "W"){
+            mapGrid[xCoOrd][yCoOrd] = sValue
+        }
+        else{
+            //f the space is already filled by another object then place it in it's previous spot
+            coOrds = findObject(sValue)
+            xCoOrd = coOrds[0]
+            yCoOrd = coOrds[1]
+
+            mapGrid[xCoOrd][yCoOrd] = sValue
+        }
+    }
+
+    map = mapGrid
+}
+
+//function to convert the json to and array
+function populateObjectArray(objects){
+    //objects = require('./../controller/') //path to the .json file [NEEDS TO BE FINISHED]
+    //jason layout can be found in branch 4_experimental, in the readME under "src/camera"
+    //initialise object array as empty
+    objectsArray = []
+
+    /*temporary object
+    const objects = {
+        ball: [10, 20],
+        Player1: [30, 40],
+        Player2: [50, 60],
+        Player3: [70, 80],
+        Player4: [90, 10],
+        dimension: [500, 300]
+    };*/
+    
+    array = Object.entries(objects)
+    // store the width and the height of what the camera can see
+    dimensions = objects.dimension
+
+    xDimension = dimensions[0]
+    yDimension = dimensions[1]
+    
+    //get all the information about the ball
+    let sphero = (array[0])[1]
+    xSphero = sphero[0]
+    ySphero = sphero[1]
+
+    // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
+    xFinal = Math.round((xSphero / xDimension) * 100)
+    yFinal = Math.round((ySphero / yDimension) * 100)
+
+    //push the ball information into the object array
+    objectsArray.push(["B", xFinal, yFinal])
+
+    for (let playerIndex = 1; playerIndex < (array.length - 1); playerIndex++){
+        sPlayerNumber = playerIndex.toString()
+
+        //store the co-ordinates array
+        currentPlayerCoOrds = array[playerIndex][1]
+
+        //store the X and Y
+        playerX = currentPlayerCoOrds[0]
+        playerY = currentPlayerCoOrds[1]
+
+        // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
+        xFinal = Math.round((playerX / xDimension) * 100)
+        yFinal = Math.round((playerY / yDimension) * 100)
+
+        //store the information in the player information array
+        objectsArray.push([sPlayerNumber, xFinal, yFinal])
+    }
+    
+
+    //return the array of objects
+    return objectsArray
+}
+
 function softResetScores(playerScores, moverIndex){
     for(let i = 0; i < playerScores.length; i++){
         if(playerScores[i] != 0){
@@ -300,9 +431,11 @@ function softResetScores(playerScores, moverIndex){
     playerScores[moverIndex] = 0
     return playerScores;
 }
-//console.log(initializeMap(4));
+
+//console.log(initializeMap(6));
 //console.log(initiateDuel(test));
 //console.log(getPlayerWin())
-
+//populateObjectArray()
+initializeMap(6)
 
 module.exports = { initializeMap, initiateDuel, getPlayerDuel, softResetScores }

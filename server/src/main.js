@@ -15,17 +15,28 @@ const io = require("socket.io")(server, {
 });
 server.listen(3000, () => console.log("listening on http://localhost:3000"));
 
+const kPointUnit = 10;
+
 let gameIsRunning = false;
 let allSockets = [];
 let players = [];
-const mainGameCode = "abcd";
 
 let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
 
 function getPlayerWithSocket(socket) {
-  return players.filter((value) => value.socketId === socket.id);
+  return players.find((value) => value.socketId === socket.id);
 }
+
+function genCode(){
+  let lobbyID = "";
+  const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for (let i = 0; i < 4; i++){
+    lobbyID += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return lobbyID;
+}
+const mainGameCode = genCode();
 
 io.on("connection", (socket) => {
   allSockets.push(socket);
@@ -60,14 +71,18 @@ io.on("connection", (socket) => {
       socket.emit("on_error", "Invalid game code.");
       return;
     }
-
-    players.push({
-      score: 0,
-      playerId: players.length,
-      username: data.username,
-      socketId: socket.id,
-      coneNumber: players.length,
-    });
+    if(players.length <= 8){
+      players.push({
+        score: 0,
+        playerId: players.length,
+        username: data.username,
+        socketId: socket.id,
+        coneNumber: players.length,
+      });
+  } else {
+    socket.emit("on_error", "Lobby is full.");
+    return;
+  }
 
     console.log("join_lobby: ", data);
     //assumes that the users lobby code is correct
@@ -79,7 +94,7 @@ io.on("connection", (socket) => {
 
   socket.on("generate_initial_map", (data) => {
     const map = DuelEngine.initializeMap(players.length); // We have to something here to specify nr of cones
-    console.log(map);
+    //console.log(map);
     socket.emit("on_generated_map", map);
   });
 
@@ -94,25 +109,24 @@ io.on("connection", (socket) => {
   });
 
   socket.on("make_next_question", () => {
+    console.log(players);
     playerWhoAnsweredFirstId = -1;
 
-    const playerScores = players.map((el) => el.score);
-    // const playerThatCanDuel = DuelEngine.getPlayerDuel(playerScores);
-    const playerThatCanDuel = -1;
-    if (playerThatCanDuel < 0) {
-      currentQuestion = QuizEngine.getQuiz();
-      io.emit("on_next_question", currentQuestion);
-    } else {
-      const duelPlayer = players[playerThatCanDuel];
+    const playersThatCanDuel = players.filter(el => el.score === 3*kPointUnit);
+    if(playersThatCanDuel.length > 0) {
+      const duelPlayer = playersThatCanDuel[0];
       duelPlayer.score = 0;
       io.emit("duel", duelPlayer);
 
       for (const p of players) {
         if (p.playerId !== duelPlayer.playerId) {
-          p.score = Math.max(0, p.score - 1);
+          p.score = Math.max(0, p.score - kPointUnit);
         }
       }
-    }
+    } else {
+      currentQuestion = QuizEngine.getQuiz();
+      io.emit("on_next_question", currentQuestion);
+    } 
   });
 
   socket.on("evaluate", (data) => {
