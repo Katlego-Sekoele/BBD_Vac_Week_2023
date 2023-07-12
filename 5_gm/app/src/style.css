@@ -200,6 +200,7 @@ body {
 .question_page_flex3c{
     display: flex;
     width: 90%;
+    margin-left:1em;
 }
 
 .answer-box{
