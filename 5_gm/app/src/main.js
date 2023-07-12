@@ -10,6 +10,59 @@ const mapContainer = document.getElementById('map-container');
 let players = [];
 let currentLobbyCode = null;
 
+let videoCapture;
+let canvas;
+let sketch;
+let detector;
+
+let mapWidth = 640;
+let mapHeight = 480;
+
+function gotDetections(error, result) {
+    if(error) {
+        console.log(error);
+    }
+
+    // Draw bounding boxes
+    const objects = [];
+    for(let object of result) {
+        sketch.fill(0, 255, 0, 125 * object.confidence);
+        sketch.rect(object.x, object.y, object.width, object.height);
+
+        objects.push({
+            label: object.label,
+            x: object.x,
+            y: object.y,
+        });
+    }
+
+    socket.emit("on_labels", objects);
+    
+    detector.detect(videoCapture, gotDetections);
+}
+
+function preload(sk) {
+    sketch = sk; 
+    detector = ml5.objectDetector('cocossd');
+}
+
+function setup(sketch) {    
+    canvas = sketch.createCanvas(mapWidth, mapHeight);
+
+    canvas.parent('pixel_map_container');
+    videoCapture = sketch.createCapture(sketch.VIDEO);
+    detector.detect(videoCapture, gotDetections);
+
+    videoCapture.size(mapWidth, mapHeight);
+    videoCapture.hide();
+}
+
+function draw(sketch) {
+    sketch.background(255);
+    sketch.image(videoCapture, 0, 0, mapWidth, mapHeight);
+}
+
+
 // Event listeners or any other logic to trigger the container changes
 document.getElementById("homescreen-start-btn").addEventListener("click", showQRScreenMainBox);
 document.getElementById("start-game-btn").addEventListener("click", emitTheSocket);
@@ -26,8 +79,6 @@ let socket = io.connect(SERVER_URL);
 // manager connects to socket server
 
 
-
-
 socket.on("connect", () => {
 	// connect event
 	const engine = socket.io.engine;
@@ -42,6 +93,18 @@ socket.on("connect", () => {
 });
 
 socket.on('start_quiz', () => {
+    const parent = document.getElementById("pixel_map_container");
+    parent.innerHTML = "";
+
+    const sk = (sketch) => {
+        sketch.preload = () => preload(sketch);
+        sketch.setup = () => setup(sketch);
+        sketch.draw = () => draw(sketch);
+    }
+    
+    new p5(sk);
+
+    canvas.parent("pixel_map_container");
     showQuestionPageMainBox();
 });
 socket.on('on_error', (error) => {
