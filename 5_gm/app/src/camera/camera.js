@@ -117,18 +117,19 @@ navigator.mediaDevices
     });
 
 // Use this function for simply returning the JSON object
-// function getMap() {
-//     context.drawImage(video, 0, 0, canvas.width, canvas.height);
-//     return getObjectPositions();
-// }
+function getMap() {
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    return getObjectPositions();
+}
 
 // This implementation will redraw the image with highlighting the found ball with a green dot
-function getMap() {
-    function draw() {
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        getObjectPositions();
-        requestAnimationFrame(getMap);
-    }
+// function getMap() {
+//     function draw() {
+//         context.drawImage(video, 0, 0, canvas.width, canvas.height);
+//         const map = getObjectPositions();
+//         requestAnimationFrame(getMap);
+//         return map;
+//     }
 
-    draw();
-}
+//     return draw();
+// }

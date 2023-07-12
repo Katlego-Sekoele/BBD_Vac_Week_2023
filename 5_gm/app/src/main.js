@@ -78,9 +78,12 @@ socket.on("lobby_code", lobbyCode => {
 socket.on('duel', (playerControllingTheBall) => {
     document.getElementById("who_controlling_ball").innerText = playerControllingTheBall.username +" is controlling the ball";
     // TODO: get the info using the camera now to cause map updates
+
+    beginMapUpdate();
 });
 socket.on('done_duel', () => {
     document.getElementById("who_controlling_ball").innerText = "No one is controlling the ball";
+    endMapUpdate()
 });
 
 
@@ -187,6 +190,119 @@ function showMapContainer() {
     qrScreenMainBox.style.display = 'none';
     questionPageMainBox.style.display = 'none';
     mapContainer.style.display = 'block';
+}
+
+function convertImageCoOrdToGrid(coOrdinatesArray){
+    //initialise mapGrid with default values
+    var mapGrid = new Array(yLen)
+
+    for (var i = 0; i < yLen; i++)
+    {
+        mapGrid[i] = [];
+        for (var j = 0; j < xLen; j++)
+        {
+            mapGrid[i][j] = 'W';
+        }
+    }
+
+    //place all the items
+    for (var i = 0; i < coOrdinatesArray.length; i++){
+        //store the type (either player number or "B" for ball)
+        sValue = coOrdinatesArray[0]
+        //store the co-ordinates
+        xCoOrd = coOrdinatesArray[1]
+        yCoOrd = coOrdinatesArray[2]
+
+        //assign the value in the grid if it is currently a "W"
+        if (mapGrid[xCoOrd][yCoOrd] == "W"){
+            mapGrid[xCoOrd][yCoOrd] = sValue
+        }
+        else{
+            //f the space is already filled by another object then place it in it's previous spot
+            coOrds = findObject(sValue)
+            xCoOrd = coOrds[0]
+            yCoOrd = coOrds[1]
+
+            mapGrid[xCoOrd][yCoOrd] = sValue
+        }
+    }
+
+    map = mapGrid
+}
+
+
+function populateObjectArray(objects){
+    //objects = require('./../controller/') //path to the .json file [NEEDS TO BE FINISHED]
+    //jason layout can be found in branch 4_experimental, in the readME under "src/camera"
+    //initialise object array as empty
+    objectsArray = []
+
+    /*temporary object
+    const objects = {
+        ball: [10, 20],
+        Player1: [30, 40],
+        Player2: [50, 60],
+        Player3: [70, 80],
+        Player4: [90, 10],
+        dimension: [500, 300]
+    };*/
+    
+    array = Object.entries(objects)
+    // store the width and the height of what the camera can see
+    dimensions = objects.dimension
+
+    xDimension = dimensions[0]
+    yDimension = dimensions[1]
+    
+    //get all the information about the ball
+    let sphero = (array[0])[1]
+    xSphero = sphero[0]
+    ySphero = sphero[1]
+
+    // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
+    xFinal = Math.round((xSphero / xDimension) * 100)
+    yFinal = Math.round((ySphero / yDimension) * 100)
+
+    //push the ball information into the object array
+    objectsArray.push(["B", xFinal, yFinal])
+
+    for (let playerIndex = 1; playerIndex < (array.length - 1); playerIndex++){
+        sPlayerNumber = playerIndex.toString()
+
+        //store the co-ordinates array
+        currentPlayerCoOrds = array[playerIndex][1]
+
+        //store the X and Y
+        playerX = currentPlayerCoOrds[0]
+        playerY = currentPlayerCoOrds[1]
+
+        // calculate the balls true x and y co-ordinate, convert it to a 100-by-100 grid
+        xFinal = Math.round((playerX / xDimension) * 100)
+        yFinal = Math.round((playerY / yDimension) * 100)
+
+        //store the information in the player information array
+        objectsArray.push([sPlayerNumber, xFinal, yFinal])
+    }
+    
+
+    //return the array of objects
+    return objectsArray
+}
+
+
+let intervalId = -1;
+
+function beginMapUpdate(){
+    intervalId = setInterval(()=> {
+        const map = getMap();
+        const objectArray = populateObjectArray(map);
+        const convertedMap = convertImageCoOrdToGrid(objectArray);
+        createMap(convertedMap);
+    }, 1000);
+}
+
+function endMapUpdate() {
+    clearInterval(intervalId);
 }
 
 function emitTheSocket(){
