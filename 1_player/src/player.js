@@ -1,3 +1,9 @@
+var answer;
+var question;
+var btn_class = "answer-button"
+var player;
+var is_duel_player = false;
+
 /* Modal */
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
@@ -46,9 +52,6 @@ socket.on("generic_event", (data) => {
     //     TODO: decide on events with server team
 });
 
-
-
-
 // --- FUNCTIONS ---
 // Navigation: Join Game Container
 function showJoinGameContainer() {
@@ -70,12 +73,12 @@ function showLobbyContainer() {
 
 // Navigation: Quiz Container
 function showQuizContainer() {
+    // USer userNme
+    document.getElementById("playerName").innerHTML = player.username;
     joinGameContainer.style.display = 'none';
     lobbyContainer.style.display = 'none';
     quizContainer.style.display = 'block';
     controlContainer.style.display = 'none';
-    // USer userNme
-    document.getElementById("playerName").innerHTML = "Player " + (player.playerId+1);
 }
 
 // Navigation: Controller Container
@@ -87,7 +90,6 @@ function showControllerContainer() {
 }
 
 // --- JOIN GAME ---
-
 document.getElementById("joinButton").onclick = () => {
     // establish connection to socket server
 
@@ -125,7 +127,6 @@ document.getElementById("joinButton").onclick = () => {
     })
 }
 
-
 // --- LOBBY ---
 //[commented out because "startQuiz" was constantly emitting]
 
@@ -139,12 +140,6 @@ function connectToGame()
 }
 
 // --- QUIZ ---
-
-var answer;
-var question;
-var btn_class = "answer-button"
-var player;
-var is_duel_player = false;
 
 function convertintChar(integer) {
     let character = 'a'.charCodeAt(0);
@@ -211,7 +206,7 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
         }
     }
 
-    //document.getElementById("score").innerHTML = player.score;
+    document.getElementById("score").innerHTML = player.score;
 });
 
 socket.on("duel", (dualPlayer) => {
@@ -223,7 +218,7 @@ socket.on("duel", (dualPlayer) => {
         // Redirect to controls page
         showControllerContainer();
     } else {
-        document.getElementById("modal_text").innerHTML = `Player ${dualPlayer.playerId+1} is duelling.`;
+        document.getElementById("modal_text").innerHTML = `${dualPlayer.username} is duelling.`.toUpperCase();
         openModal();
         //alert(`Player ${player.username} is duelling.`);
     }
