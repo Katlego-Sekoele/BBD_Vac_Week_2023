@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>Controls</title>
-        <link rel="stylesheet" type="text/css" href="controls.css">
-        <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
-        <script type="module" src="controls.js"></script>
-    </head>
-    <body>
-        <div class="container">
-            <div class="controls">
-                <button id="up" class="movements_control">UP</button>
-                <button id="left" class="movements_control">LEFT</button>
-                <button id="right" class="movements_control">RIGHT</button>
-                <button id="down" class="movements_control">DOWN</button>
-            </div>
-        </div>
-<<<<<<< HEAD:1_player/separated/controls.html
-=======
-        <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
-        <script type="module" src="controls.js"></script>
->>>>>>> d04af5c (Changed server/main.js and 1_player/controls.js):1_player/controls.html
-    </body>
-</html>
 
-  
+<head>
+    <title>Controls</title>
+    <link rel="stylesheet" type="text/css" href="controls.css">
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.2/math.js"></script>
+    <script type="module" src="controls.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="joyDiv" style="width:200px;height:200px;margin-bottom:20px;"></div>
+        <!--            <div class="controls">-->
+        <!--                <button id="up" class="movements_control">UP</button>-->
+        <!--                <button id="left" class="movements_control">LEFT</button>-->
+        <!--                <button id="right" class="movements_control">RIGHT</button>-->
+        <!--                <button id="down" class="movements_control">DOWN</button>-->
+        <!--            </div>-->
+    </div>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
+    <script src="joy.min.js"></script>
+    <script type="module" src="controls.js"></script>
+</body>
+
+</html>
