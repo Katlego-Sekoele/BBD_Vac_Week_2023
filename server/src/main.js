@@ -19,7 +19,6 @@ const kPointUnit = 10;
 let gameIsRunning = false;
 let allSockets = [];
 let players = [];
-const mainGameCode = "abcd";
 
 let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
@@ -27,6 +26,16 @@ let currentQuestion = undefined;
 function getPlayerWithSocket(socket) {
   return players.find((value) => value.socketId === socket.id);
 }
+
+function genCode(){
+  let lobbyID = "";
+  const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for (let i = 0; i < 4; i++){
+    lobbyID += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return lobbyID;
+}
+const mainGameCode = genCode();
 
 io.on("connection", (socket) => {
   allSockets.push(socket);
