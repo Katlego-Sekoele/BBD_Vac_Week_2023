@@ -37,10 +37,10 @@ const quizContainer = document.getElementById('quiz-container');
 // --- EVENT LISTENERS ---
 // ...
 // TEMP NAV
-document.getElementById("join-game").addEventListener("click", showJoinGameContainer);
-document.getElementById("lobby").addEventListener("click", showLobbyContainer);
-document.getElementById("quiz").addEventListener("click", showQuizContainer);
-document.getElementById("control").addEventListener("click", showControllerContainer);
+// document.getElementById("join-game").addEventListener("click", showJoinGameContainer);
+// document.getElementById("lobby").addEventListener("click", showLobbyContainer);
+// document.getElementById("quiz").addEventListener("click", showQuizContainer);
+// document.getElementById("control").addEventListener("click", showControllerContainer);
 
 // --- SOCKET.IO ---
 // Socket connection
