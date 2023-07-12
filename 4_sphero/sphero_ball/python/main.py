@@ -6,7 +6,8 @@ from spherov2.sphero_edu import EventType
 from spherov2.types import Color
 from spherov2.sphero_edu import IntEnum
 
-
+import sys
+import subprocess
 
 sio = socketio.Client()
 toy = None
@@ -88,41 +89,42 @@ def on_collision(api):
 
 
 if __name__ == '__main__':
-    toy = scanner.find_BB8()
-    if toy == None:
-        print("No toy found")
-    else:
-        print(f"Toy: {toy.name} found")
-        # SpheroEduAPI(toy).register_event(EventType.on_collision, on_collision)
-        with SpheroEduAPI(toy) as api:
-            api.register_event(EventType.on_collision, on_collision)
-            @sio.event
-            def connect():
-                print('Connected to server')
-                sendMessage()
+    try:
+        toy = scanner.find_BB8()
+        if toy == None:
+            print("No toy found")
+        else:
+            print(f"Toy: {toy.name} found")
+            # SpheroEduAPI(toy).register_event(EventType.on_collision, on_collision)
+            with SpheroEduAPI(toy) as api:
+                api.register_event(EventType.on_collision, on_collision)
+                @sio.event
+                def connect():
+                    print('Connected to server')
+                    sendMessage()
 
-            @sio.event
-            def disconnect():
-                print('Disconnected from server')
+                @sio.event
+                def disconnect():
+                    print('Disconnected from server')
 
-            @sio.event
-            def sendMessage():
-                print("Sending")
-                # sio.emit('move_ball', '1')
-                print("Sent")
+                @sio.event
+                def sendMessage():
+                    print("Sending")
+                    # sio.emit('move_ball', '1')
+                    print("Sent")
 
-            @sio.event
-            def on_ball_control(data):
-                print("Starting control")
-                data = int(data) + 1
-                print(data)
-                print(type(data))
+                @sio.event
+                def on_ball_control(data):
+                    print("Starting control")
+                    data = int(data) + 1
+                    print(data)
+                    print(type(data))
 
 
-                if toy==None:
-                    print("No ball")
-                try:
-                    # with SpheroEduAPI(toy) as api:
+                    if toy==None:
+                        print("No ball")
+                    # try:
+                        # with SpheroEduAPI(toy) as api:
                     terminalSpeed = 100
                     api.set_speed(0)
                     print('rolling')
@@ -135,12 +137,19 @@ if __name__ == '__main__':
                     #     time.sleep(0.005)
                     # api.set_speed(0)
                     print("Done")
-                except Exception as e:
-                    # print(e.)
-                    print(f"Done wrong somehow: {e.with_traceback}")
+                    # except Exception as e:
+                        # print(e.)
+                    print(f"Lost connection...")
+                    subprocess.Popen([sys.executable] + sys.argv)
+                    sys.exit()
                     pass
-                
+                    
 
-            print("Connecting")
-            sio.connect('https://server-bbd-vac-week.onrender.com')
-            sio.wait()
+                print("Connecting")
+                sio.connect('https://server-bbd-vac-week.onrender.com')
+                sio.wait()
+    except:
+        print("Mega connection lost")
+        subprocess.Popen([sys.executable] + sys.argv)
+        sys.exit()
+
