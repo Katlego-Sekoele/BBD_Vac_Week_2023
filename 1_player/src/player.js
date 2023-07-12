@@ -1,4 +1,4 @@
-var answer;
+var answer = null;
 var question;
 var btn_class = "answer-button"
 var player;
@@ -179,6 +179,7 @@ function sendAns(e, ans) {
     e.preventDefault();
     socket.emit("return_player_answer", { question: question, answer: ans });
     changeBtn(true); // disable after option has been selected
+
     document.getElementById(convertintChar(ans)).style.background = '#E1E2EF';
     document.getElementById(convertintChar(ans)).style.color = '#000000';
 }
@@ -240,9 +241,9 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
     console.log("Answer: " + answer);
 
     if (answer == correctAnswerIndex) {
-        document.getElementById(convertintChar(answer)).style.background = '#00FF00';
-    } else if (answer != '') {
-        document.getElementById(convertintChar(answer)).style.background = '#FF0000';
+        document.getElementById(convertintChar(convertintChar(answer))).style.background = '#00FF00';
+    } else if (answer != null) {
+        document.getElementById(convertintChar(conveertintChar(answer))).style.background = '#FF0000';
     } else {
         resetButtons();
         changeBtn(true);
