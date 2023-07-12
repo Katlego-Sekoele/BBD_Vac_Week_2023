@@ -132,7 +132,7 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.io("dev_duel_done", () =>{
+  socket.on("dev_duel_done", () =>{
     io.emit("duel_done");
   });
 
