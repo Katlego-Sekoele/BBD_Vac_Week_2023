@@ -102,15 +102,17 @@ button {
 }
 
 .answer-container {
-    margin-top: 8rem;
+    margin-top: 2rem;
     display: flex;
-    flex-direction: column;
-    gap: 3rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .answer-button {
-    width: 50rem;
-    height: 10rem;
+    width: 20rem;
+    height: 20rem;
+    margin: 0.1em;
     font-size: 6rem;
     align-items: center;
     text-align: center;
@@ -163,7 +165,6 @@ button {
     height: 40rem;
     
     margin: auto;
-    margin-top: 8rem;
 
     font-size: 6rem;
     display: flex;
