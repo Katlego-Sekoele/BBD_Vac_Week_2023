@@ -1,5 +1,5 @@
 // Used as a cache
-var DEBUG = false;
+var DEBUG = true;
 var currQuizzes = new Array();
 var allQuizzes = new Array();
 var amountQuizzes = 20;
@@ -134,16 +134,16 @@ function populateAllQuizzes() {
 
 // TEST CODE START
 if (DEBUG) {
-    var question = "";
-    for (let index = 0; index < 50; index++) {
+    for (let index = 0; index < 20; index++) {
         var testQuiz = getQuiz();
         question = testQuiz.Question;
-        // console.log(testQuiz.Question);
-        // console.log(testQuiz.Answers);
-        // console.log(testQuiz.Correct_Answer_Index);
-        // console.log('Is 2 the correct index: ', checkAnswer(testQuiz.Question, 2));
-        // console.log();
+        console.log(testQuiz.Question);
+        console.log(testQuiz.Answers);
+        console.log(testQuiz.Correct_Answer_Index);
+        console.log('Is 2 the correct index: ', checkAnswer(testQuiz.Question, 2));
+        console.log();
     }
+
     console.log(testQuiz)
     console.log(checkAnswer(question, 0));
     console.log(checkAnswer(question, 1));
