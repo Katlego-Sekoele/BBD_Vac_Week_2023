@@ -183,13 +183,11 @@ function sendAns(e, ans) {
     document.getElementById(convertintChar(ans)).style.color = '#000000';
 }
 
-// Events
-socket.on("on_next_question", (currentQuestion) => {
-    question = currentQuestion["Question"];
-    console.log(currentQuestion);
-    let no_answers = currentQuestion["Answers"].length;
-
+function resetButtons() {
+    let no_answers = question["Answers"].length;
     let buttons = "";
+    answer = '';
+
     for (var i = 0; i < no_answers; i++) {
         buttons += 
         `<div class="buttonParent">
@@ -200,7 +198,6 @@ socket.on("on_next_question", (currentQuestion) => {
     document.getElementById("answer-container-id").innerHTML = "";
     document.getElementById("answer-container-id").innerHTML = buttons;
 
-    // Answer options
     for (var node of document.getElementsByClassName(btn_class)) {
 
         node.addEventListener('click', (e) => {
@@ -209,6 +206,24 @@ socket.on("on_next_question", (currentQuestion) => {
             sendAns(e, id.charCodeAt(0) - 'A'.charCodeAt(0)); // convert to int
         })
     }
+}
+
+// Events
+socket.on("on_next_question", (currentQuestion) => {
+    question = currentQuestion;
+    console.log(currentQuestion);
+
+    // let buttons = "";
+    // for (var i = 0; i < no_answers; i++) {
+    //     buttons += 
+    //     `<div class="buttonParent">
+    //         <button id="${convertintChar(i).toUpperCase()}" class="${btn_class}">${convertintChar(i).toUpperCase()}</button>
+    //     </div>`
+    // }
+
+    // document.getElementById("answer-container-id").innerHTML = "";
+    // document.getElementById("answer-container-id").innerHTML = buttons;
+    resetButtons();
 });
 
 socket.on("current_players", (players) => {
@@ -220,12 +235,15 @@ socket.on("current_players", (players) => {
 socket.on("on_correct_answer", (correctAnswerIndex) => {
     // Change selected option to green if the user answered correctly else change all options to red
     changeBtn(true);
+
     console.log(convertintChar(correctAnswerIndex));
 
     if (correctAnswerIndex == answer) {
         document.getElementById(convertintChar(answer)).style.background = '#00FF00';
-    } else {
+    } else if (correctAnswerIndex != '') {
         document.getElementById(convertintChar(answer)).style.background = '#FF0000';
+    } else {
+        resetButtons();
     }
 
     document.getElementById("score").innerHTML = player.score;
