@@ -121,14 +121,17 @@ io.on("connection", (socket) => {
     const playersThatCanDuel = players.filter(el => el.score === 3 * kPointUnit);
     if (playersThatCanDuel.length > 0) {
       const duelPlayer = playersThatCanDuel[0];
-      duelPlayer.score = 0;
       io.emit("duel", duelPlayer);
-      setTimeout(function() {io.emit('duel_done', duelPlayer)}, 3000);
+      setTimeout(function() {io.emit('duel_done', duelPlayer)}, 10000);
       for (const p of players) {
         if (p.playerId !== duelPlayer.playerId) {
           p.score = Math.max(0, p.score - kPointUnit);
         }
+        else{
+          p.score = 0;
+        }
       }
+      io.emit('current_players', players);
     } else {
       currentQuestion = QuizEngine.getQuiz();
       io.emit("on_next_question", currentQuestion);
