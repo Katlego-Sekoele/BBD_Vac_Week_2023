@@ -15,11 +15,22 @@ var question = currentQuestion.Question;
 // Pull the 4 options from the object
 var possibleAnswers = QuizGen.getQuiz().Answers;
 
-// Question is a string, answer index is a integer
-for(let i=0; i<players.length;i+) {
-    if(QuizGen.checkAnswer(question, answerIndex))
-        // Streaking logic
+// Question is a string, answer index is a integer, returns boolean
+let boolFeedback = QuizGen.checkAnswer(question, answerIndex)
+```
+
+# JSON format 
+```js
+{
+    Question: "How many provinces are there in South Africa?",
+    Answers: [
+            9,
+            8,
+            7,
+            6
+        ],
+    Correct_Ans_Index: 0
 }
 ```
-## Rulesa
+## Rules
 - main branch for this team should be `2_main`
