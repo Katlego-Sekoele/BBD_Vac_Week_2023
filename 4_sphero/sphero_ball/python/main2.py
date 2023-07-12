@@ -57,7 +57,8 @@ if __name__ == '__main__':
                     print("Sent")
 
                 @sio.event
-                def on_ball_control(angleData, speedData):
+                # def on_ball_control(angleData, speedData):
+                def on_ball_control(data):
                     try:
                         print("Received data: ", data, f"of {type(data)}" )
 
