@@ -292,6 +292,10 @@ function sendMove(e, dir) {
     // document.removeEventListener('touchend', _eventTouched);
 }
 
+socket.on("game_is_quit", () => {
+    window.location.reload();
+})
+
 // document.getElementById("up").addEventListener('click', (e) => {
 //     sendMove(e, 1);
 // });
