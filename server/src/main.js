@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const http = require("http");
+const {Queue} = require("@datastructures-js/queue");
 
 const DuelEngine = require("./duel/duelEngine");
 const QuizEngine = require("../../2_quiz/QuizGenQuestionGenerator");
@@ -24,6 +25,8 @@ let playerCounter = 0;
 
 let playerWhoAnsweredFirstId = -1;
 let currentQuestion = undefined;
+const labelQueue = new Queue();
+let currentMapState = undefined;
 
 function getPlayerWithSocket(socket) {
   return players.find((value) => value.socketId === socket.id);
@@ -171,6 +174,18 @@ io.on("connection", (socket) => {
     io.emit("duel", players[0]);
   });
 
+  socket.on("get_labels", (lables) => {
+    // if(labelQueue.size() === 10) {
+    //   labelQueue.pop();
+    // }
+    // labelQueue.enqueue(lables);
+    // // console.log(labelQueue)
+    // const labelsObject = mapLabelsToObject();
+    // console.log(labelsObject);
+    currentMapState = lables;
+    console.log(currentMapState);
+  })
+
   socket.on("move_ball", (msg) => {
     io.emit("on_ball_control", msg);
 
@@ -187,6 +202,17 @@ io.on("connection", (socket) => {
     }
   });
 });
+
+// function mapLabelsToObject(){
+//   const labels = labelQueue.toArray();
+//   const labelsObject = {};
+//   for(const item of labels){
+//     for(const label of item){
+//       labelsObject[label] = 0;
+//     }
+//   }
+//   return labelsObject;
+// }
 
 // ALL GAME LOGIC BELOW
 
