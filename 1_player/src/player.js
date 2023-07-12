@@ -121,7 +121,7 @@ document.getElementById("joinButton").onclick = () => {
     }
     //create json object to send username and gamecode
     let connectObject = {
-        gameCode: gameCode,
+        gameCode: gameCode.toLocaleUpperCase(),
         username: userName
       };
 
@@ -236,7 +236,8 @@ socket.on("on_correct_answer", (correctAnswerIndex) => {
     // Change selected option to green if the user answered correctly else change all options to red
     changeBtn(true);
 
-    console.log(convertintChar(correctAnswerIndex));
+    console.log("Correct Answer: " + convertintChar(correctAnswerIndex));
+    console.log("Answer: " + answer);
 
     if (answer == correctAnswerIndex) {
         document.getElementById(convertintChar(answer)).style.background = '#00FF00';
