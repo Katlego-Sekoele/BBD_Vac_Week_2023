@@ -55,22 +55,18 @@ if __name__ == '__main__':
                     print("Sent")
 
                 @sio.event
-                def on_ball_control(angleData, speedData):
+                def move_ball(data):
+                # def on_ball_control(data):
                     try:
-                        maxSpeed = 141
-                        maxPossibleSpeed = 255
-
-                        speed = int(speedData * maxPossibleSpeed/maxSpeed)
+                        angleData = int(data)
 
                         print("Received control: ", angleData)
                         angleData = int(angleData)
                         print(angleData)
-                        # api.spin(data, 1)
                         api.set_heading(angleData)
-                        api.set_speed(speed)
+                        api.set_speed(150)
                     except concurrent.futures._base.TimeoutError:
                         print("qwertyuiop")
-                        continue
 
 
                 api.spin(360, 1)
