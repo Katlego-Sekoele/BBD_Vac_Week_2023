@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lilita+One&display=swap');
 
 :root {
-    --purple: #B497D6;
+    --purple: #9d85b7;
     --darkBlue: rgb(5,32,74);
     --borderRadiusVal: 10px;
     --lilac:#E1E2EF;
@@ -19,12 +19,19 @@ body {
     color: white;
     letter-spacing: 0.1em;
     overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .map{
-    background-color: rgb(255, 170, 193);
+    background-color: var(--lilac);
     width: 66em;
     height: 34em;
+}
+
+.pixelMap{
+    width: 55vw;
+    height: 59vh;
+    background-color: rgb(255, 228, 228);
 }
 
 #camCanvas{
@@ -192,6 +199,8 @@ body {
 }
 .question_page_flex3c{
     display: flex;
+    width: 90%;
+    margin-left:1em;
 }
 
 .answer-box{
@@ -216,7 +225,7 @@ body {
 }
 .question_page_flex4c{
     width: 66em;
-    height: 20rem;
+    height: 19rem;
 }
 
 
@@ -256,6 +265,8 @@ ul.question_page_flex_5 {
     background-color: var(--purple);
     width: 25rem;
     height: 20rem;
+    border-radius: var(--borderRadiusVal);
+    margin-right: 1rem;
 }
 
 .joinContainer1{
@@ -274,18 +285,52 @@ ul.question_page_flex_5 {
     height: 11rem;
 }
 
+.playerJoin{
+    background-color: blue;
+    /*justify-content: center;*/
+    height: 4rem;
+    margin-bottom: 1rem;
+    
+}
+
+.playerJoin div{
+    background-color: var(--purple);
+    margin-right: -50%;
+    width: 15rem;
+    height: 100%;
+    border-radius: var(--borderRadiusVal);
+}
+
 .Join{
     margin-right: 0.2rem;
     background-color: var(--purple);
     height: 100%;
     width: 30%;
+    border-style: solid;
+    border-radius: var(--borderRadiusVal);
+    border-color: var(--lilac);
+    border-width: 0.4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Lilita One', sans-serif;
+    color: var(--lilac);
+    letter-spacing: 0.1em;
 }
 
 .Start{
     margin-left: 0.2rem;
     background-color: var(--purple);
-    height: 100%;
+    height: 108%;
     width: 30%;
+    border-style: solid;
+    border-radius: var(--borderRadiusVal);
+    border-color: var(--lilac);
+    border-width: 0.4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Lilita One', sans-serif;
+    color: var(--lilac);
+    letter-spacing: 0.1em;
 }
 
 .controlBox{
