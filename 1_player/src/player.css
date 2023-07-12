@@ -118,7 +118,7 @@ button {
 }
 
 .answer-button:disabled {
-    background-color:#A296AF;
+    background-color: var(--purple); 
 }
 
 .answer-button:hover {
@@ -128,7 +128,7 @@ button {
 
 .button:active {
     background-color: var(--purple);
-    box-shadow: 0 5px #666;
+    box-shadow: 0 5px var(--lilac);;
     transform: translateY(4px);
   }
 
