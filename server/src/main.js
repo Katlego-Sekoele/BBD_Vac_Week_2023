@@ -75,7 +75,7 @@ io.on("connection", (socket) => {
     players.push({
       score: 0,
       playerId: players.length,
-      username: `Player ${players.length}`,
+      username: data.username,
       socketId: socket.id,
       coneNumber: players.length,
     });
