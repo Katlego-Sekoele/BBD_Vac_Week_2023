@@ -15,7 +15,7 @@ document.getElementById("homescreen-start-btn").addEventListener("click", showQR
 document.getElementById("start-game-btn").addEventListener("click", emitTheSocket);
 document.getElementById('quit_btn').addEventListener("click", showStartGameContainer)
 document.getElementById("videoToggle").addEventListener("click",toggleCamera);
-document.getElementById("videoToggle1").addEventListener("click",toggleCamera);
+//document.getElementById("videoToggle1").addEventListener("click",toggleCamera);
 
 document.getElementById("username_1").onclick=function(){removeFromGame("1")};
 document.getElementById("username_2").onclick=function(){removeFromGame("2")};

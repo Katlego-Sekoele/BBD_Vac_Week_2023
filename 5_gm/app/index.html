@@ -132,7 +132,10 @@
             <div id="evaluate_btn" class="button">REVEAL ANSWER</div>
             <div id="next_question_btn" class="button">NEXT QUESTION</div>
             <div id="quit_btn" class="button"><p>QUIT!</p></div>
-            <div class="button" id="videoToggle1">TOGGLE CAMERA ON</div>
+            <div class="cameraControls">
+              <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+              <div class="button" id="videoToggle">TOGGLE CAMERA ON</div>
+              </div>
           </div>
         </div>
         <div class="question_page_flex2b">
@@ -208,10 +211,6 @@
       
       <div class="control"></div>
       <button id="back-to-game-btn" class="back-to-game-btn">Back</button>
-    </div>
-    <div class="cameraControls">
-    <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
-    <div class="button" id="videoToggle">TOGGLE CAMERA ON</div>
     </div>
     <div id="pixel_map_container" class="pixelMap">
       <div class="shape-container" id="shape-container">
