@@ -186,7 +186,11 @@ document.getElementById("joinButton").onclick = () => {
 socket.on("start_quiz", (res) => {
     if (!inLobby) return
     connectToGame(res)
-})
+});
+
+socket.on('disconnect', () => {
+    showJoinGameContainer();
+});
 
 document.getElementById("quitButton").addEventListener("click", () => {
     window.location.reload();
