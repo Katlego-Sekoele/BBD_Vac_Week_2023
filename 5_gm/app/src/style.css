@@ -28,7 +28,6 @@ body {
 }
 
 .map{
-    background-color: var(--lilac);
     width: 66em;
     height: 34em;
 }
@@ -259,7 +258,7 @@ ul.question_page_flex_5 {
 
 .videoClass
 {
-    margin-top: -2em;
+    margin-top: -3em;
 }
 
 canvas.canvasClass{
