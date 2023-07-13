@@ -170,6 +170,7 @@ let cameraOn = true;
     
     //nav functions
     function showStartGameContainer() {
+    socket.emit("game_master_quit_game");
      document.getElementById('pixel_map_container').innerHTML = "";   
     startGameContainer.style.display = 'block';
     setUpGameContainer.style.display = 'none';

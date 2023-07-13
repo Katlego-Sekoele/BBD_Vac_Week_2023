@@ -53,22 +53,35 @@ if __name__ == '__main__':
                 def sendMessage():
                     print("Sending")
                     print("Sent")
+                
+                @sio.event
+                def duel_done():
+                    try:
+                        print("Received control to stop")
+                        api.set_speed(0)
+                    except concurrent.futures._base.TimeoutError:
+                        print("qwertyuiop stop")
 
                 @sio.event
                 def on_ball_control(data):
                     try:
                         print("Received control: ", data)
-                        data = int(data)
+                        data = int(data["dir"])
                         print(data)
                         # api.spin(data, 1)
                         api.set_heading(data)
                         api.set_speed(50)
                     except concurrent.futures._base.TimeoutError:
                         print("qwertyuiop")
-                        continue
+
+                # @sio.server.on('*')
+                @sio.event
+                def catch_all(event, sid, *args):
+                    print(f"Caught all:\nevent: {event} with arguments: {args}")
 
 
                 api.spin(360, 1)
+                print("Ready")
                 sio.wait()
             except concurrent.futures._base.TimeoutError:
                 print("reconnecting to the ball.")

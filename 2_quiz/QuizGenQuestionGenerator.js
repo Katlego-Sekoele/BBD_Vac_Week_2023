@@ -54,7 +54,8 @@ function findQuestion(searchQuestion) {
  */
 function checkAnswer(searchQuestion, givenIndex) {
     var questionIndex = counter - 1;
-
+    console.log('Question index is ', questionIndex);
+    console.log('Search question is ', searchQuestion);
     if (questionIndex < amountQuizzes && questionIndex >= 0 && !searchQuestion === currQuizzes[questionIndex].Question) {
         // If the question is not the most recent used question, then search for it
         questionIndex = findQuestion(searchQuestion);

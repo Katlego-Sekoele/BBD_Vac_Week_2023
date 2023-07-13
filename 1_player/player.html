@@ -9,13 +9,16 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center; /* Add this line */
             gap: 0.4rem;
-            width: 14em;
+            width: 80em; /* Increase the width to make the modal bigger */
             padding: 1.05rem;
-            min-height: 100px;
-            position: absolute;
+            min-height: 150px; /* Adjust the minimum height as needed */
+            position: fixed; /* Use fixed position */
             z-index: 2;
-            top: 37%;
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Center using transform */
             background-color: white;
             border: 1px solid #ddd;
             border-radius: 15px;
@@ -28,7 +31,7 @@
         }
 
         .modal p {
-            font-size: 0.9rem;
+            font-size: 2rem;
             color: #777;
             margin: 0.4rem 0 0.2rem;
         }
@@ -150,10 +153,10 @@
             </div>
     
             <div class="controls">
-                <button id="up" class="move-control">UP</button>
-                <button id="left" class="move-control">LEFT</button>
-                <button id="right" class="move-control">RIGHT</button>
-                <button id="down" class="move-control">DOWN</button>
+                <button id="up" class="move-control">&bigtriangleup;</button>
+                <button id="left" class="move-control">&#5130;</button>
+                <button id="right" class="move-control">&#5125;</button>
+                <button id="down" class="move-control">&#5121;</button>
             </div>
         </div>
     </div>
