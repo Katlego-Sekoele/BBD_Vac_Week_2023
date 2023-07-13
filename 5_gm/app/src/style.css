@@ -6,6 +6,7 @@
     --borderRadiusVal: 10px;
     --lilac:#E1E2EF;
     --correctGreen:#81C360;
+    --removedColour: #ec5454;
   }
 .set-up-game-container,
 .QR-screen-main-box,
@@ -33,6 +34,7 @@ body {
 }
 
 .pixelMap{
+    display: none;
     width: 100%;
     height: 100%;
     background-color: rgb(255, 228, 228);
