@@ -18,6 +18,7 @@ server.listen(3000, () => console.log("listening on http://localhost:3000"));
 const kPointUnit = 10;
 
 let gameIsRunning = false;
+let quizRunning = false;
 let allSockets = [];
 let players = [];
 let playerCounter = 0;
@@ -28,6 +29,11 @@ let currentQuestion = undefined;
 function getPlayerWithSocket(socket) {
   return players.find((value) => value.socketId === socket.id);
 }
+
+function removePlayer(player) {
+  players = players.filter((value) => value.socketId !== player.socketId);
+}
+
 
 function genCode() {
   let lobbyID = "";
@@ -65,6 +71,10 @@ io.on("connection", (socket) => {
   socket.on("join_lobby", (data) => {
     if (gameIsRunning) {
       socket.emit("on_error", "Game is already running.");
+      return;
+    }
+    if(quizRunning){
+      socket.emit("on_error_lobby", "Quiz is already running.");
       return;
     }
 
@@ -115,6 +125,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("make_next_question", () => {
+    quizRunning = true;
     console.log(players);
     playerWhoAnsweredFirstId = -1;
 
@@ -162,6 +173,20 @@ io.on("connection", (socket) => {
       console.log(e);
     }
   });
+
+  socket.on("player_eliminated", (playerToEliminate) => {
+    removePlayer(playerToEliminate);
+    io.emit("current_players", players);
+    io.emit('player_is_eliminated', playerToEliminate);
+    console.log("player_eliminated: ", playerToEliminate);
+    console.log("players: ", players);
+    if(players.length === 1){
+      io.emit('player_has_won', players[0]);
+      players = [];
+      gameIsRunning = false;
+    }
+  });
+
 
   socket.on("dev_duel_done", () => {
     io.emit("duel_done");

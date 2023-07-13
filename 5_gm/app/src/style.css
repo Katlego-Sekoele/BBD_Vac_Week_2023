@@ -6,6 +6,7 @@
     --borderRadiusVal: 10px;
     --lilac:#E1E2EF;
     --correctGreen:#81C360;
+    --removedColour: #ec5454;
   }
 .set-up-game-container,
 .QR-screen-main-box,
@@ -27,12 +28,12 @@ body {
 }
 
 .map{
-    background-color: var(--lilac);
     width: 66em;
     height: 34em;
 }
 
 .pixelMap{
+    display: none;
     width: 100%;
     height: 100%;
     background-color: rgb(255, 228, 228);
@@ -251,6 +252,14 @@ ul.question_page_flex_5 {
 .cameraControls{
     display: flex;
     flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+
+canvas.canvasClass{
+    width: 1500px;
+    height: 1500px;
 }
 
 .userNameHolder{

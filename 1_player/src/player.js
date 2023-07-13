@@ -34,6 +34,8 @@ const joinGameContainer = document.getElementById('join-game-container');
 const controlContainer = document.getElementById('control-container');
 const lobbyContainer = document.getElementById('lobby-container');
 const quizContainer = document.getElementById('quiz-container');
+const eliminationContainer = document.getElementById('elimination-container');
+const winContainer = document.getElementById('win-container');
 
 // --- EVENT LISTENERS ---
 // ...
@@ -63,6 +65,8 @@ function showJoinGameContainer() {
     lobbyContainer.style.display = 'none';
     quizContainer.style.display = 'none';
     controlContainer.style.display = 'none';
+    eliminationContainer.style.display = 'none';
+    winContainer.style.display = 'none';
 }
 
 // Navigation: Lobby Container
@@ -72,6 +76,8 @@ function showLobbyContainer() {
     lobbyContainer.style.display = 'block';
     quizContainer.style.display = 'none';
     controlContainer.style.display = 'none';
+    eliminationContainer.style.display = 'none';
+    winContainer.style.display = 'none';
 }
 
 // Navigation: Quiz Container
@@ -85,6 +91,8 @@ function showQuizContainer() {
     lobbyContainer.style.display = 'none';
     quizContainer.style.display = 'block';
     controlContainer.style.display = 'none';
+    eliminationContainer.style.display = 'none';
+    winContainer.style.display = 'none';
 }
 
 // Navigation: Controller Container
@@ -93,6 +101,26 @@ function showControllerContainer() {
     lobbyContainer.style.display = 'none';
     quizContainer.style.display = 'none';
     controlContainer.style.display = 'block';
+    eliminationContainer.style.display = 'none';
+    winContainer.style.display = 'none';
+}
+
+function showEliminatedContainer() {
+    joinGameContainer.style.display = 'none';
+    lobbyContainer.style.display = 'none';
+    quizContainer.style.display = 'none';
+    controlContainer.style.display = 'none';
+    eliminationContainer.style.display = 'block';
+    winContainer.style.display = 'none';
+}
+
+function showWinContain() {
+    joinGameContainer.style.display = 'none';
+    lobbyContainer.style.display = 'none';
+    quizContainer.style.display = 'none';
+    controlContainer.style.display = 'none';
+    eliminationContainer.style.display = 'none';
+    winContainer.style.display = 'block';
 }
 
 // --- JOIN GAME ---
@@ -140,14 +168,13 @@ document.getElementById("joinButton").onclick = () => {
             inLobby = true;
             showLobbyContainer();
         } else {
-            document.getElementById("errorGameCode").innerHTML = "Error connecting. Please try again.";
+            document.getElementById("errorGameCode").innerText = "Error connecting. Please try again.";
             document.getElementById("errorGameCode").classList.remove("hidden");
         }
     });
 
     socket.on("on_error", (data) => {
-        if (!inLobby) return
-        document.getElementById("errorGameCode").innerHTML = data;
+        document.getElementById("errorGameCode").innerText = data;
         document.getElementById("errorGameCode").classList.remove("hidden");
     });
 }
@@ -158,9 +185,21 @@ document.getElementById("joinButton").onclick = () => {
 socket.on("start_quiz", (res) => {
     if (!inLobby) return
     connectToGame(res)
-})
+});
+
+// socket.on('disconnect', () => {
+//     showJoinGameContainer();
+// });
 
 document.getElementById("quitButton").addEventListener("click", () => {
+    window.location.reload();
+});
+
+document.getElementById("quitButtonElimination").addEventListener("click", () => {
+    window.location.reload();
+});
+
+document.getElementById("quitButtonWin").addEventListener("click", () => {
     window.location.reload();
 });
 
@@ -222,7 +261,23 @@ function resetButtons() {
 
 socket.on("game_is_quit", () => {
     window.location.reload();
-})
+});
+
+socket.on('player_is_eliminated', (player) => {
+    if (!inLobby) return
+    if (player.socketId === socket.id) {
+        showEliminatedContainer();
+        inLobby = false;
+    }
+});
+
+socket.on('player_has_won', (player) => {
+    if (!inLobby) return
+    if (player.socketId === socket.id) {
+        showWinContain();
+        inLobby = false;
+    }
+});
 
 // Events
 socket.on("on_next_question", (currentQuestion) => {
