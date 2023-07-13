@@ -28,7 +28,6 @@ body {
 }
 
 .map{
-    background-color: var(--lilac);
     width: 66em;
     height: 34em;
 }
@@ -253,6 +252,18 @@ ul.question_page_flex_5 {
 .cameraControls{
     display: flex;
     flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.videoClass
+{
+    margin-top: -3em;
+}
+
+canvas.canvasClass{
+    width: 1500px;
+    height: 1500px;
 }
 
 .userNameHolder{

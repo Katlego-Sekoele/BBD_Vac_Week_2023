@@ -229,7 +229,6 @@ function emitTheSocket(){
 }
 
 function removeFromGame(index){
-    document.getElementById("username_" + index + "_class").style.backgroundColor = ("var(--removedColour)");
-    //do more stuff here
+    socket.emit("player_eliminated", players[index-1]);
 }
 
