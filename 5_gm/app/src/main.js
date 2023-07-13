@@ -1,5 +1,71 @@
 //import "./socket.io/client-dist/socket.io.js";
 import {createMap} from "./MapStuff/mapMain.js";
+
+import {
+    createTrack,
+    enableAudio,
+    getActiveTrackPath,
+    getAudioBuffer,
+    getAudioTime,
+    setActiveTrack,
+    setActiveTrackTrate,
+    stopActiveTrack,
+} from "./audio.js";
+
+const audioBuffers = new Map();
+const backgroundMusic = "bg_audio.mp3";
+const startDuelMusic = "start_duel.mp3";
+const endDuelMusic = "end_duel.mp3";
+const onNewQuestionMusic = "on_new_question.mp3";
+
+const allAudioTracks = [];
+
+const audioFiles = [backgroundMusic, startDuelMusic, endDuelMusic, onNewQuestionMusic];
+
+async function preloadAllAudio(){
+    for (const song of audioFiles) {
+        const url = `${window.location.protocol}//${window.location.host}/gm/audio/${song}`;
+        const audioBuffer = await getAudioBuffer(url);
+        audioBuffers.set(song, audioBuffer);
+    }
+}
+
+function stopAllAudioTracks() {
+    for (let track of allAudioTracks) {
+        track.stop();
+    }
+}
+
+export async function playPreloadedSong(songPath, loop) {
+    const lastSlashIndex = songPath.lastIndexOf("/");
+    if (lastSlashIndex != -1) {
+      songPath = songPath.substring(lastSlashIndex + 1);
+    }
+  
+    for (const songFile of audioBuffers.keys()) {
+      if (songFile === songPath) {
+        const songBuffer = audioBuffers.get(songFile);
+        const track = await createTrack(songBuffer, loop);
+  
+        track.start();
+        allAudioTracks.push(track);
+        console.log("Song started ", songPath);
+      }
+    }
+}
+
+export async function playDuelMusic() {
+    stopAllAudioTracks();
+    await playPreloadedSong(startDuelMusic, true);
+}
+
+export async function playBackgroundMusic() {
+    stopAllAudioTracks();
+    await playPreloadedSong(backgroundMusic, true);    
+}
+
+window.onload = preloadAllAudio;
+
 // for navigation purposes
 const startGameContainer = document.getElementById('start-game-container');
 const setUpGameContainer = document.getElementById('set-up-game-container');
@@ -11,7 +77,12 @@ let players = [];
 let currentLobbyCode = null;
 
 // Event listeners or any other logic to trigger the container changes
-document.getElementById("homescreen-start-btn").addEventListener("click", showQRScreenMainBox);
+document.getElementById("homescreen-start-btn").addEventListener("click", async () => {
+    showQRScreenMainBox();
+    await enableAudio();
+    await playBackgroundMusic();
+    console.log("Sound enabled");
+});
 document.getElementById("start-game-btn").addEventListener("click", emitTheSocket);
 document.getElementById('quit_btn').addEventListener("click", showStartGameContainer)
 document.getElementById("videoToggle").addEventListener("click",toggleCamera);
@@ -53,6 +124,7 @@ socket.on("connect", () => {
 
 socket.on('start_quiz', () => {
     showQuestionPageMainBox();
+    playPreloadedSong(backgroundMusic);
 });
 socket.on('on_error', (error) => {
     alert(error);
@@ -90,9 +162,15 @@ socket.on("lobby_code", lobbyCode => {
 socket.on('duel', (playerControllingTheBall) => {
     document.getElementById("who_controlling_ball").innerText = playerControllingTheBall.username +" is controlling the ball";
     // TODO: get the info using the camera now to cause map updates
+
+    playDuelMusic();
 });
 socket.on('duel_done', () => {
     document.getElementById("who_controlling_ball").innerText = "No one is controlling the ball";
+
+    stopAllAudioTracks();
+    playPreloadedSong(endDuelMusic, false);
+    playPreloadedSong(backgroundMusic, true);
 });
 
 
@@ -108,6 +186,8 @@ socket.on('on_next_question', (question) => {
     document.getElementById("answer_2").style.backgroundColor = "var(--purple)";
     document.getElementById("answer_3").style.backgroundColor = "var(--purple)";
     document.getElementById("answer_4").style.backgroundColor = "var(--purple)";
+
+    playPreloadedSong(onNewQuestionMusic, false);
 });
 
 // TODO: add the code so when the next question button is pressed then the socket.emit is called

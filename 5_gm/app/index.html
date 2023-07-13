@@ -132,10 +132,7 @@
             <div id="evaluate_btn" class="button">REVEAL ANSWER</div>
             <div id="next_question_btn" class="button">NEXT QUESTION</div>
             <div id="quit_btn" class="button"><p>QUIT!</p></div>
-            <div class="cameraControls">
-              <canvas class="canvasClass" id="canvas" style="display: none;"></canvas>
-              <div class="button" id="videoToggle">TOGGLE CAMERA ON</div>
-              </div>
+            <div class="button" id="videoToggle1">TOGGLE CAMERA ON</div>
           </div>
         </div>
         <div class="question_page_flex2b">
@@ -154,50 +151,50 @@
                 <h1>PLAYERS</h1>
               </li>
               <li>
-                <ul class="question_page_flex_5" id="username_1_class">
-                  <div class="userNameHolder" id="username_1">PLAYER 1</div>
+                <ul class="question_page_flex_5">
+                  <li class="userNameHolder" id="username_1">PLAYER 1</li>
                   <li id="score_1">50</li>
                 </ul>
               </li>
               <li>
-                <ul class="question_page_flex_5" id="username_2_class">
-                  <div class="userNameHolder" id="username_2">PLAYER 2</div>
+                <ul class="question_page_flex_5">
+                  <li class="userNameHolder" id="username_2">PLAYER 2</li>
                   <li id="score_2">50</li>
                 </ul>
               </li>
               <li>
-                <ul class="question_page_flex_5" id="username_3_class">
-                  <div class="userNameHolder " id="username_3">PLAYER 3</div>
+                <ul class="question_page_flex_5">
+                  <li class="userNameHolder" id="username_3">PLAYER 3</li>
                   <li id="score_3">50</li>
                 </ul>
               </li>
               <li>
-                <ul class="question_page_flex_5" id="username_4_class">
-                  <div class="userNameHolder username_4_class" id="username_4">PLAYER 4</div>
+                <ul class="question_page_flex_5">
+                  <li class="userNameHolder" id="username_4">PLAYER 4</li>
                   <li id="score_4">50</li>
                 </ul>
               </li>
               <li>
-                <ul class="question_page_flex_5" id="username_5_class">
-                  <div class="userNameHolder" id="username_5">PLAYER 5</div>
+                <ul class="question_page_flex_5">
+                  <li class="userNameHolder" id="username_5">PLAYER 5</li>
                   <li id="score_5">50</li>
                 </ul>
               </li>
               <li>
-                <ul class="question_page_flex_5" id="username_6_class">
-                  <div class="userNameHolder" id="username_6">PLAYER 6</div>
+                <ul class="question_page_flex_5">
+                  <li class="userNameHolder" id="username_6">PLAYER 6</li>
                   <li id="score_6">50</li>
                 </ul>
               </li>
               <li>
-                <ul class="question_page_flex_5" id="username_7_class">
-                  <div class="userNameHolder" id="username_7">PLAYER 7</div>
+                <ul class="question_page_flex_5">
+                  <li class="userNameHolder" id="username_7">PLAYER 7</li>
                   <li id="score_7">50</li>
                 </ul>
               </li>
               <li>
-                <ul class="question_page_flex_5" id="username_8_class" >
-                  <div class="userNameHolder" id="username_8">PLAYER 8</div>
+                <ul class="question_page_flex_5">
+                  <li class="userNameHolder" id="username_8">PLAYER 8</li>
                   <li id="score_8">50</li>
                 </ul>
               </li>
@@ -208,17 +205,22 @@
     </div>
 
     <div id="map-container" class="map-container">
-      <canvas id="camCanvas"></canvas>
+      <div id="aiCamCanvasParent"></div>
+      <canvas id="camCanvas" style="display: none;"></canvas>
       
       <div class="control"></div>
       <button id="back-to-game-btn" class="back-to-game-btn">Back</button>
     </div>
-    <div id="pixel_map_container" class="pixelMap">
-      <div class="shape-container" id="shape-container">
-        <div id="draw-shapes"></div>
-      </div>
+    <div class="cameraControls">
+
+    <video id="video" width="640" height="480" autoplay></video> 
+    <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+    <div class="button" id="videoToggle">TOGGLE CAMERA ON</div>
     </div>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5.capture@1.4.1/dist/p5.capture.umd.min.js"></script>
+    <script src="https://unpkg.com/ml5@0.7.1/dist/ml5.min.js"></script>
     <script src="./src/camera/camera.js"></script>   
     <script type="module" src="src/main.js"></script>
     <script src="src/MapStuff/mapMain.js"></script>
