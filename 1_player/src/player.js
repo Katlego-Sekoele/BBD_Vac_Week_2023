@@ -168,14 +168,13 @@ document.getElementById("joinButton").onclick = () => {
             inLobby = true;
             showLobbyContainer();
         } else {
-            document.getElementById("errorGameCode").innerHTML = "Error connecting. Please try again.";
+            document.getElementById("errorGameCode").innerText = "Error connecting. Please try again.";
             document.getElementById("errorGameCode").classList.remove("hidden");
         }
     });
 
     socket.on("on_error", (data) => {
-        if (!inLobby) return
-        document.getElementById("errorGameCode").innerHTML = data;
+        document.getElementById("errorGameCode").innerText = data;
         document.getElementById("errorGameCode").classList.remove("hidden");
     });
 }
@@ -186,7 +185,11 @@ document.getElementById("joinButton").onclick = () => {
 socket.on("start_quiz", (res) => {
     if (!inLobby) return
     connectToGame(res)
-})
+});
+
+// socket.on('disconnect', () => {
+//     showJoinGameContainer();
+// });
 
 document.getElementById("quitButton").addEventListener("click", () => {
     window.location.reload();

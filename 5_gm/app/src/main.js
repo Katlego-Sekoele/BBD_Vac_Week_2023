@@ -229,6 +229,9 @@ function updateScoreboard(currentPlayers) {
         lobbyUsername.innerText = player.username;
         document.getElementById('numJoined').innerText = players.length + "/8 joined";
       }
+      if(players.length === 0){
+        document.getElementById('numJoined').innerText = players.length + "/8 joined";
+      }
 }   
 
 let cameraOn = true;
@@ -312,3 +315,202 @@ function removeFromGame(index){
     socket.emit("player_eliminated", players[index-1]);
 }
 
+//Camera Stuff below
+const canvas = document.getElementById("canvas2");
+const video = document.getElementById("video");
+const context = canvas.getContext("2d", { willReadFrequently: true });
+
+// Ball colour followed by player colours
+const CONFIG = [
+    [200, 0, 0],
+    [170, 239, 61],
+    [0, 175, 203],
+    [246, 21, 144],
+    [225, 225, 0],
+    [225, 225, 0],
+    [225, 225, 0],
+    [225, 225, 0],
+    [225, 225, 0]
+];
+const rgbThresholds = [150, 200, 200];
+const sameCount = [0];
+const Black = [100, 100, 100];
+const whiteThresh = 200;
+const diffThresh = 62;
+const THRESHOLD = 75;
+const NO_CLASS = -1;
+
+function getAveragePosition(pos1, pos2) {
+    result = [0, 0];
+    result[0] = Math.floor((pos1[0] + pos2[0]) / 2);
+    result[1] = Math.floor((pos1[1] + pos2[1]) / 2);
+    return result;
+}
+
+function getColourSimilarity(pixel, color) {
+    let ans = Math.abs(pixel[0] - color[0]);
+    ans += Math.abs(pixel[1] - color[1]);
+    ans += Math.abs(pixel[2] - color[2]);
+    return ans;
+}
+
+function getColourClass(pixelValue) {
+    for (let i = 0; i < CONFIG.length; ++i) {
+        if (getColourSimilarity(pixelValue, CONFIG[i]) <= THRESHOLD) {
+            return i;
+        }
+    }
+
+    return NO_CLASS;
+}
+
+function assignMatchingColour(image, index, positions) {
+    let red = image[index];
+    let green = image[index + 1];
+    let blue = image[index + 2];
+
+    let x = (index / 4) % canvas.width;
+    let y = Math.floor((index / 4) / canvas.width);
+    let pixelLocation = [x, y];
+
+    let pixelValue = [red, green, blue];
+    let colourClass = getColourClass(pixelValue);
+
+    if (colourClass == NO_CLASS)
+        return;
+
+    positions[colourClass] = pixelLocation;
+}
+
+
+function getObjectPositions() {
+    const image = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    let rGreat = [[0,0,0],-1,-1];
+    let gGreat = [[0,0,0],-1,-1];
+    let bGreat = [[0,0,0],-1,-1];
+    let bottomRightPositions = new Array(CONFIG.length).fill([-1, -1]);
+    let topLeftPositions = new Array(CONFIG.length).fill([-1, -1]);
+
+    // Loop through each pixel of the canvas
+    
+    for (let i = 0; i < image.length; i += 4) 
+    {
+      const rgDiff = image[i] - image[i+1];
+      const gbDiff = image[i+1] - image[i+2];
+      const brDiff = image[i+2] - image[i];
+      if(image[i]>rGreat[0][0] && image[i] >= rgbThresholds[0] && rgDiff > diffThresh && brDiff < -diffThresh)
+      {
+        rGreat[0][0] = image[i];
+        rGreat[0][1] = image[i+1];
+        rGreat[0][2] = image[i+2];
+        rGreat[1] = (i / 4) % canvas.width;
+        rGreat[2] = (i/ 4) / canvas.width;
+      }
+      if(image[i+1]>gGreat[0][1] && image[i+1] >= rgbThresholds[1] && rgDiff < -diffThresh && gbDiff < diffThresh)
+      {
+        gGreat[0][0] = image[i];
+        gGreat[0][1] = image[i+1];
+        gGreat[0][2] = image[i+2];
+        gGreat[1] = (i / 4) % canvas.width;
+        gGreat[2] = (i/ 4) / canvas.width;
+      }
+      if(image[i+2]>bGreat[0][2] && image[i+2] >= rgbThresholds[2] && gbDiff < -diffThresh && brDiff > diffThresh)
+      {
+        bGreat[0][0] = image[i];
+        bGreat[0][1] = image[i+1];
+        bGreat[0][2] = image[i+2];
+        bGreat[1] = (i / 4) % canvas.width;
+        bGreat[2] = (i / 4) / canvas.width;
+      }
+    //   else if(image[i] < Black[0] && image[i+1] < Black[1] && image[i+2] < Black[2])
+    //   {
+    //     // jsonObj.ball[0] =  (i / 4) % canvas.width;
+    //     // jsonObj.ball[1] =   (i / 4) / canvas.width;
+    //   }
+    }
+    console.log("Red: ", rGreat);
+    console.log("Green: ", gGreat);
+    console.log("Blue: ", bGreat);
+
+    const finalPositions = new Array(CONFIG.length).fill([-1, -1]);
+
+    context.beginPath();
+    context.fillStyle = "red";
+    // This will put a dot at the centre of player 2's colour
+    context.arc(rGreat[1], rGreat[2], 25, 0, Math.PI * 2, true);
+    context.fill();
+    context.beginPath();
+    context.fillStyle = "green";
+    // This will put a dot at the centre of player 2's colour
+    context.arc(gGreat[1], gGreat[2], 25, 0, Math.PI * 2, true);
+    context.fill();
+    context.beginPath();
+    context.fillStyle = "blue";
+    // This will put a dot at the centre of player 2's colour
+    context.arc(bGreat[1], bGreat[2], 25, 0, Math.PI * 2, true);
+    context.fill();
+
+    // for (let i = 1; i < CONFIG.length; ++i) {
+    //     let key = "Player" + i.toString();
+    //     jsonObj[key] = finalPositions[i];
+    // }
+    // jsonObj.Player1 = [rGreat[1], rGreat[2]];
+    // jsonObj.Player2 = [gGreat[1], gGreat[2]];
+    // jsonObj.Player3 = [bGreat[1], bGreat[2]];
+
+    // jsonObj.dimension = [canvas.width, canvas.height];
+    // temp = JSON.stringify(jsonObj)
+    // return temp;
+}
+
+// Request access to the webcam
+navigator.mediaDevices
+    .getUserMedia({ video: true })
+    .then((stream) => {
+        video.srcObject = stream;
+        video.play();
+    })
+    .catch((error) => {
+        console.error("Error accessing the webcam: ", error);
+    });
+
+// Use this function for simply returning the JSON object
+// function getMap() {
+//     context.drawImage(video, 0, 0, canvas.width, canvas.height);
+//     return getObjectPositions();
+// }
+
+// This implementation will redraw the image with highlighting the found ball with a green dot
+function getMap() {
+    console.log("getMap called");
+    function draw() {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        getObjectPositions();
+        requestAnimationFrame(getMap);
+    }
+    draw();
+}
+
+function errorHandle(jobj, image)
+{
+  let tempPos = [-1,-1];
+  let error = false;
+  let positions = jobj;
+  let count = 0;
+  console.log(JSON.stringify(positions));
+  for(let key in positions)
+  {
+    tempPos = key;
+    let index = tempPos[1]*canvas.width*4+4*tempPos[0];
+    let tempRGB = [image[index],image[index+1], image[index+2]];
+    console.log("Value of index: ", tempRGB);
+    if(getColourSimilarity(tempRGB, CONFIG[count]) > THRESHOLD && !(tempPos===[-1,-1]))
+    {
+      error = true;
+    }
+    count++;
+  }
+  return error;
+}
+
+getMap();
