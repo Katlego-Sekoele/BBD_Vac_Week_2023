@@ -141,7 +141,7 @@ io.on("connection", (socket) => {
     if (playersThatCanDuel.length > 0) {
       const duelPlayer = playersThatCanDuel[0];
       io.emit("duel", duelPlayer);
-      setTimeout(function() {io.emit('duel_done', duelPlayer)}, 10000);
+      setTimeout(function() {io.emit('duel_done', duelPlayer)}, 20000);
       for (const p of players) {
         if (p.playerId !== duelPlayer.playerId) {
           p.score = Math.max(0, p.score - kPointUnit);
