@@ -29,8 +29,12 @@ body {
     row-gap: 5em;
 }
 
-.control-container, .lobby-container, .quiz-container {
+.control-container, .lobby-container, .quiz-container, .elimination-container, .win-container {
     display: none;
+}
+
+.eliminationDescription, .winDescription {
+    font-size: 6rem;
 }
 
 .errorUsername, .errorGameCode {
