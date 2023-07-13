@@ -106,6 +106,14 @@ io.on("connection", (socket) => {
   socket.on('game_master_quit_game', () => {
     io.emit('game_is_quit');
     players = [];
+    gameIsRunning = false;
+    quizRunning = false;
+    allSockets = [];
+    players = [];
+    playerCounter = 0;
+    playerWhoAnsweredFirstId = -1;
+    currentQuestion = undefined;
+    mainGameCode = genCode();
   });
 
   socket.on("generate_initial_map", (data) => {

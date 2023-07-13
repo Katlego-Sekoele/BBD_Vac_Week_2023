@@ -149,6 +149,9 @@ function updateScoreboard(currentPlayers) {
         lobbyUsername.innerText = player.username;
         document.getElementById('numJoined').innerText = players.length + "/8 joined";
       }
+      if(players.length === 0){
+        document.getElementById('numJoined').innerText = players.length + "/8 joined";
+      }
 }   
 
 let cameraOn = true;
