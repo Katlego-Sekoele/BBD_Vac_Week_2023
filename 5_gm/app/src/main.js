@@ -99,7 +99,7 @@ document.getElementById("username_8").onclick=function(){removeFromGame("8")};
 
 
 
-document.getElementById('pixel_map_container').innerHTML = ""; 
+
 // Socket.io stuff
 const SERVER_URL = window.location.host === "server-bbd-vac-week.onrender.com" ? "https://server-bbd-vac-week.onrender.com/" : "http://localhost:3000";
 const DEFAULT_SIZE = 4
